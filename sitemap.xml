@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://myurl.com/eleventy-base-blog/about/</loc>
+    <lastmod>2018-09-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://myurl.com/eleventy-base-blog/</loc>
+    <lastmod>2018-09-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://myurl.com/eleventy-base-blog/posts/firstpost/</loc>
+    <lastmod>2018-09-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://myurl.com/eleventy-base-blog/posts/secondpost/</loc>
+    <lastmod>2018-09-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://myurl.com/eleventy-base-blog/posts/thirdpost/</loc>
+    <lastmod>2018-09-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://myurl.com/eleventy-base-blog/tags/</loc>
+    <lastmod>2018-09-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://myurl.com/eleventy-base-blog/tags/another-tag/</loc>
+    <lastmod>2018-09-26</lastmod>
+  </url>
+</urlset>
