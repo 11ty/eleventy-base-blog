@@ -23,3 +23,20 @@ function myCommand() {
 // Test with a line break above this line.
 console.log('Test');
 ```
+``` csssss
+#markdown {
+  slkdjf: lsdjfkls;
+}
+.class {
+  -webkit-no: no;
+}
+```
+
+{% highlight csssss %}
+#testing {
+  slkdjf: lsdjfkls;
+}
+.class {
+  -webkit-no: no;
+}
+{% endhighlight %}
