@@ -22,6 +22,11 @@
   </url>
   
   <url>
+    <loc>https://myurl.com/eleventy-base-blog/posts/fourthpost/</loc>
+    <lastmod>2018-09-30</lastmod>
+  </url>
+  
+  <url>
     <loc>https://myurl.com/eleventy-base-blog/posts/secondpost/</loc>
     <lastmod>2018-09-30</lastmod>
   </url>
