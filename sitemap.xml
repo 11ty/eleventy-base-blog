@@ -23,26 +23,26 @@
   
   <url>
     <loc>https://myurl.com/eleventy-base-blog/about/</loc>
-    <lastmod>2019-02-11</lastmod>
+    <lastmod>2019-02-14</lastmod>
   </url>
   
   <url>
     <loc>https://myurl.com/eleventy-base-blog/posts/</loc>
-    <lastmod>2019-02-11</lastmod>
+    <lastmod>2019-02-14</lastmod>
   </url>
   
   <url>
     <loc>https://myurl.com/eleventy-base-blog/</loc>
-    <lastmod>2019-02-11</lastmod>
+    <lastmod>2019-02-14</lastmod>
   </url>
   
   <url>
     <loc>https://myurl.com/eleventy-base-blog/tags/</loc>
-    <lastmod>2019-02-11</lastmod>
+    <lastmod>2019-02-14</lastmod>
   </url>
   
   <url>
     <loc>https://myurl.com/eleventy-base-blog/tags/another-tag/</loc>
-    <lastmod>2019-02-11</lastmod>
+    <lastmod>2019-02-14</lastmod>
   </url>
 </urlset>
