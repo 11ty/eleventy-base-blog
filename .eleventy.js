@@ -18,7 +18,12 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter('htmlDateString', (dateObj) => {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
   });
-
+  
+  // URL encode - used for example to encode links in the <head>
+  eleventyConfig.addFilter("encodeURI", function(code) {
+    return encodeURI(code);
+  });
+  
   // Get the first `n` elements of a collection.
   eleventyConfig.addFilter("head", (array, n) => {
     if( n < 0 ) {
