@@ -33,6 +33,10 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("img");
   eleventyConfig.addPassthroughCopy("css");
 
+  if (fs.existsSync("admin")) {
+    eleventyConfig.addPassthroughCopy("admin");
+  }
+
   /* Markdown Plugins */
   let markdownIt = require("markdown-it");
   let markdownItAnchor = require("markdown-it-anchor");
