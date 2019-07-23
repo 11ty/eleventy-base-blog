@@ -8,7 +8,12 @@ A starter repository showing how to build a blog with the [Eleventy](https://git
 
 * [Netlify](https://eleventy-base-blog.netlify.com/)
 * [Get your own Eleventy web site on Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/11ty/eleventy-base-blog)—seriously, just click OK a few times and it’s live—Netlify is amazing.
+
+  [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/11ty/eleventy-base-blog)
 * [GitHub Pages](https://11ty.github.io/eleventy-base-blog/)
+* [Get your own Eleventy web site on Stackbit](https://app.stackbit.com/create?theme=https://github.com/stackbithq/eleventy-base-blog)—this is powered by a single config file, [stackbit.yaml](https://docs.stackbit.com/uniform/stackbit-yaml/), which defines a [Uniform theme model](https://docs.stackbit.com/uniform/) and enables integration with CMS like Contentful, DatoCMS, Forestry, NetlifyCMS, etc.
+
+  [![Create with Stackbit](https://assets.stackbit.com/badge/create-with-stackbit.svg)](https://app.stackbit.com/create?theme=https://github.com/stackbithq/eleventy-base-blog)
 
 ## Getting Started
 
