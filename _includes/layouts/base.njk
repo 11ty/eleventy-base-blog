@@ -14,7 +14,7 @@
       <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
       <ul class="nav">
         {%- for nav in collections.nav | reverse -%}
-        <li class="nav-item{% if nav.url == page.url %} nav-item-active{% endif %}"><a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a></li>
+        <li class="nav-item{% if nav.url == page.url %} nav-item-active{% endif %}"><a href="{{ nav.url | url }}">{{ nav.data.navtitle or nav.data.title }}</a></li>
         {%- endfor -%}
       </ul>
     </header>
