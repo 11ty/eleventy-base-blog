@@ -1,0 +1,133 @@
+stackbitVersion: ~0.2.0
+ssgName: custom
+buildCommand: "npm install && npm run build"
+publishDir: _site
+staticDir: ""
+uploadDir: img
+dataDir: _data
+pagesDir: ""
+pageLayoutKey: layout
+models:
+  metadata:
+    type: data
+    label: Site metadata
+    file: metadata.json
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: url
+        label: Absolute site URL
+        type: string
+      - name: description
+        label: Description
+        type: string
+      - name: feed
+        label: RSS feed details
+        type: object
+        fields:
+          - name: subtitle
+            label: Sub-title
+            type: string
+          - name: filename
+            label: File name
+            type: string
+            hidden: true
+          - name: path
+            label: Path
+            type: string
+            hidden: true
+          - name: id
+            label: Feed ID
+            type: string
+      - name: author
+        label: Author
+        type: object
+        fields:
+          - name: name
+            label: Name
+            type: string
+          - name: email
+            label: Email
+            type: string
+  page:
+    type: page
+    label: Page
+    layout: layouts/post.njk
+    match: "**/*.md"
+    exclude: "{404.md,README.md,posts/**}"
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: Description
+        type: string
+      - name: navtitle
+        label: Navigation item title
+        type: string
+      - name: tags
+        label: Tags
+        description: "Add the 'nav' tag to add to the top level site navigation"
+        type: list
+      - name: templateClass
+        label: Body class
+        type: string
+        const: tmpl-post
+        hidden: true
+      - name: permalink
+        label: Permalink
+        description: URL of the page
+        type: string
+      - name: eleventyExcludeFromCollections
+        label: Exclude content from collections
+        type: boolean
+        default: false
+  post:
+    type: page
+    label: Post
+    layout: layouts/post.njk
+    folder: posts
+    match: "**/*.md"
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+      - name: description
+        label: Description
+        type: string
+      - name: tags
+        label: Tags
+        type: list
+      - name: permalink
+        label: Permalink
+        description: URL of the page
+        type: string
+      - name: eleventyExcludeFromCollections
+        label: Exclude content from collections
+        type: boolean
+        default: false
+  not_found:
+    type: page
+    label: 404 page
+    singleInstance: true
+    file: 404.md
+    layout: layouts/home.njk
+    fields:
+      - name: permalink
+        label: Permalink
+        description: URL of the page
+        type: string
+        const: 404.html
+        hidden: true
+      - name: eleventyExcludeFromCollections
+        label: Exclude content from collections
+        type: boolean
+        default: true
+        hidden: true
