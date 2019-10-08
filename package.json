@@ -28,5 +28,9 @@
     "luxon": "^1.12.0",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.0.2"
+  },
+  "dependencies": {
+    "eleventy-plugin-typeset": "^1.0.0",
+    "lodash": "^4.17.15"
   }
 }
