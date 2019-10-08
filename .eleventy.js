@@ -2,13 +2,22 @@ const { DateTime } = require("luxon");
 const fs = require("fs");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const typesetPlugin = require('eleventy-plugin-typeset');
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.setDataDeepMerge(true);
+  eleventy-plugin-typeset config https://www.npmjs.com/package/eleventy-plugin-typeset
+  eleventyConfig.addPlugin(
+    typesetPlugin({
+      only: '.note' // Run only on HTML content within a certain CSS selector
+      disable: ['smallCaps'], // Disable typesetting feature 'smallCaps'
+      etc.
+    })
+  );
 
-  eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
+  eleventyConfig.addLayoutAlias("note", "layouts/post.njk");
 
   eleventyConfig.addFilter("readableDate", dateObj => {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");
