@@ -8,7 +8,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.setDataDeepMerge(true);
-  eleventy-plugin-typeset config https://www.npmjs.com/package/eleventy-plugin-typeset
+  // eleventy-plugin-typeset config https://www.npmjs.com/package/eleventy-plugin-typeset
   eleventyConfig.addPlugin(
     typesetPlugin({
       only: '.note' // Run only on HTML content within a certain CSS selector
