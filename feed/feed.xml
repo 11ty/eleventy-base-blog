@@ -2,7 +2,8 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<title>Your Blog Name</title>
 	<subtitle>I am writing about my experiences as a naval navel-gazer.</subtitle>
-	<link href="https://myurl.com/feed/feed.xml" rel="self"/>
+	
+	<link href="https://myurl.com/eleventy-base-blog/feed/feed.xml" rel="self"/>
 	<link href="https://myurl.com/"/>
 	<updated>2018-09-30T00:00:00-00:00</updated>
 	<id>https://myurl.com/</id>
