@@ -1,5 +1,7 @@
 const purify = require("../third_party/purify-css/purify-css");
 const minify = require("html-minifier").minify;
+const AmpOptimizer = require("@ampproject/toolbox-optimizer");
+const ampOptimizer = AmpOptimizer.create();
 
 const purifyCss = (rawContent, outputPath) => {
   let content = rawContent;
@@ -29,11 +31,20 @@ const minifyHtml = (rawContent, outputPath) => {
   return content;
 };
 
+const optimizeAmp = async (rawContent, outputPath) => {
+  let content = rawContent;
+  if (outputPath.endsWith(".html") && isAmp(content)) {
+    content = await ampOptimizer.transformHtml(content);
+  }
+  return content;
+};
+
 module.exports = {
   initArguments: {},
   configFunction: async (eleventyConfig, pluginOptions = {}) => {
     eleventyConfig.addTransform("purifyCss", purifyCss);
     eleventyConfig.addTransform("minifyHtml", minifyHtml);
+    eleventyConfig.addTransform("optimizeAmp", optimizeAmp);
   },
 };
 
