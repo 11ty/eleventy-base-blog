@@ -22,7 +22,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(require("./_11ty/img-dim.js"));
 
-  eleventyConfig.addPlugin(require("./_11ty/purify-css.js"));
+  eleventyConfig.addPlugin(require("./_11ty/optimize-html.js"));
 
   eleventyConfig.setDataDeepMerge(true);
 
