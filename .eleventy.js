@@ -5,7 +5,7 @@ const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
-const localImages = require("eleventy-plugin-local-images");
+const localImages = require("./third_party/eleventy-plugin-local-images/.eleventy.js");
 const CleanCSS = require("clean-css");
 
 module.exports = function (eleventyConfig) {
@@ -16,7 +16,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(localImages, {
     distPath: "_site",
     assetPath: "/img/remote",
-    selector: "img",
+    selector: "img,amp-img,amp-video",
     verbose: false,
   });
 

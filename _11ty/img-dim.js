@@ -19,7 +19,9 @@ const dimImages = async (rawContent, outputPath) => {
 
   if (outputPath.endsWith(".html")) {
     const dom = new JSDOM(content);
-    const images = [...dom.window.document.querySelectorAll("img")];
+    const images = [...dom.window.document.querySelectorAll("img")].filter(
+      (img) => !img.getAttribute("width")
+    );
 
     if (images.length > 0) {
       await Promise.all(images.map((i) => processImage(i)));
