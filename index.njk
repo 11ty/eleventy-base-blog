@@ -7,5 +7,12 @@ eleventyNavigation:
   order: 1
 ---
 
+<h2>New on the web</h2>
+
+<a href="/new-on-the-web/">
+  A curated, monthly-updated list of Tweets about web development.
+</a> Updated: {{ newontheweb[0].title }}
+
+<h2>Posts</h2>
 {% set postslist = collections.posts %}
 {% include "postslist.njk" %}
