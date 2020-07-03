@@ -36,7 +36,7 @@ I want to propose a way to level up above that senior level. The way I would tal
 
 ![Slide text: “I know how others would solve the problem”](https://cdn-images-1.medium.com/max/6696/1*UyLoKH7y54JAYigVlwCJpQ.png)*Slide text: “I know how others would solve the problem”*
 
-And my theory is that the next level is that I can say about myself “I know how *others *would solve the problem”.
+And my theory is that the next level is that I can say about myself “I know how *others* would solve the problem”.
 
 ![Slide text: “I can anticipate how API choices and abstractions impact the way other people would solve the problem.”](https://cdn-images-1.medium.com/max/4012/1*zBBGLRIZw94gp54pspvx-g.png)*Slide text: “I can anticipate how API choices and abstractions impact the way other people would solve the problem.”*
 
@@ -150,7 +150,7 @@ Here is a good example: package.json, which is used by npm. Every package says �
 
 ![Slide text: Dependency trees](https://cdn-images-1.medium.com/max/4020/1*E_g_WgMXGuJtyG-F4AGTNg.png)*Slide text: Dependency trees*
 
-More abstractly I would describe this idea that we take responsibility for how our application is designed in the abstract, how it is organized, as* taking responsibility of shaping the dependency tree of our application*. When I say “dependency” I mean that very abstractly. It could be module dependencies, it could be data dependencies, service dependencies, there are many different kinds.
+More abstractly I would describe this idea that we take responsibility for how our application is designed in the abstract, how it is organized, as *taking responsibility of shaping the dependency tree of our application*. When I say “dependency” I mean that very abstractly. It could be module dependencies, it could be data dependencies, service dependencies, there are many different kinds.
 
 ![Slide text: Example dependency tree with router and 3 root components.](https://cdn-images-1.medium.com/max/4016/1*DfOMmyxC4guVZkyQ4IlF7g.png)*Slide text: Example dependency tree with router and 3 root components.*
 

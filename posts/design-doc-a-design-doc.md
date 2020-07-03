@@ -113,15 +113,15 @@ This “funnel” is chosen so readers
 
 * and can then choose to read the entire document.
 
-**Meta information
-**Design docs should always have a title and immediately state their authors as primary contacts and a last updated date. Stating the status is helpful for setting expectations for the reader as to the completeness and definiteness of the document. Useful states are:
+#### Meta information
+Design docs should always have a title and immediately state their authors as primary contacts and a last updated date. Stating the status is helpful for setting expectations for the reader as to the completeness and definiteness of the document. Useful states are:
 > enum[ ](https://cs.corp.google.com/#piper///depot/google3/ads/base/ad-enums.proto&ct=xref_usages&gs=proto:type-ClickCostSource@google3/ads/base/ad-enums.proto&l=1714&gsn=ClickCostSource)DesignDocState { UNKNOWN = 0; INCOHERENT_RAMBLING = 1; DRAFT = 2; FINAL = 3; IMPLEMENTED = 4; OBSOLETE = 5;
 };
 
 *(The above code snippet was inserted to illustrate the point further down that copy pasting irrelevant code snippets is not a great idea.)*
 
-**Context, scope & goals
-**The document should first establish the context and scope of the design. This may be done across multiple or a single paragraph. This section should include bullet point lists of “Goals” and “Non-goals” for three reasons:
+#### Context, scope & goals
+The document should first establish the context and scope of the design. This may be done across multiple or a single paragraph. This section should include bullet point lists of “Goals” and “Non-goals” for three reasons:
 
 1. It is an efficient way for the reader to establish what the design tries to achieve and what it doesn’t want to achieve.
 
@@ -131,18 +131,18 @@ This “funnel” is chosen so readers
 
 ![](https://cdn-images-1.medium.com/max/2000/1*_HJawJ-Vps3U8u99fBZKMQ.png)
 
-**Overview
-**Next the document gives an overview of the design. This helps readers gain an understanding of the overall approach, which will make it much easier to evaluate how the details relate to the design. It is important to realize that the design doc should not build up tension when being read from start to the end. Quite the opposite, information is given as fast as possible and the structure should aim to avoid putting related information too far apart.
+#### Overview
+Next the document gives an overview of the design. This helps readers gain an understanding of the overall approach, which will make it much easier to evaluate how the details relate to the design. It is important to realize that the design doc should not build up tension when being read from start to the end. Quite the opposite, information is given as fast as possible and the structure should aim to avoid putting related information too far apart.
 
-**Detailed design
-**This section explains the design, its trade offs and consequences as appropriate. The concrete contents are greatly determined by what is being designed and will vary widely between various types of systems, APIs, front ends, etc. The authors are explicitly empowered to choose a form that best fits their design.
+#### Detailed design
+This section explains the design, its trade offs and consequences as appropriate. The concrete contents are greatly determined by what is being designed and will vary widely between various types of systems, APIs, front ends, etc. The authors are explicitly empowered to choose a form that best fits their design.
 See “Level of detail” below for guidance as to what should determine the contents of the detailed design section.
 
-**Cross cutting concerns
-**There may be one or multiple chapters that talk about specific concerns from their specific point of view. While the entire design should have them in mind the dedicated chapters ensure that they are addressed and highlight how the design applies to them. Examples for such concerns are privacy, security, scalability and monitoring.
+#### Cross cutting concerns
+There may be one or multiple chapters that talk about specific concerns from their specific point of view. While the entire design should have them in mind the dedicated chapters ensure that they are addressed and highlight how the design applies to them. Examples for such concerns are privacy, security, scalability and monitoring.
 
-**Alternatives considered
-**This section is a fixed part of the document structure as it forces the authors to think about what alternatives would have been available to achieve the goals of the design. Alternatives may be other possible designs or the use of an existing system that does almost what is needed, the purchase of a standard software or to do nothing at all.
+#### Alternatives considered
+This section is a fixed part of the document structure as it forces the authors to think about what alternatives would have been available to achieve the goals of the design. Alternatives may be other possible designs or the use of an existing system that does almost what is needed, the purchase of a standard software or to do nothing at all.
 
 ### Level of detail
 
@@ -166,18 +166,18 @@ The design document itself is not responsible to give any reader independent of 
 
 ### Lifecycle
 
-**Document creation
-**Early in the lifecycle of a design doc major changes are more likely than later in the project when the design is more settled. Early iterations of the document should thus be as lightweight as possible so that changes are quick and the author’s resistance to change it minimized.
+#### Document creation
+Early in the lifecycle of a design doc major changes are more likely than later in the project when the design is more settled. Early iterations of the document should thus be as lightweight as possible so that changes are quick and the author’s resistance to change it minimized.
 
 Techniques such as whiteboarding and sketching out chapters with bullet point lists may be employed in early phases of the doc.
 
 While the document itself is informal, initial setup can be sped up through the use of templates or by the time proven technique of copy pasting the last design doc one has written. The usage of these templates helps ensure a minimum level of coverage and reduces boilerplate.
 
-**Canary rollout
-**When the document has stabilized it is advisable to first share it with a small set of canary readers. These will often be peers who participated in early whiteboard sessions and design discussions. By incorporating their feedback into the design doc we ensure that no major questions are unaddressed and ensure general soundness of the design before circulating it with a wider audience.
+#### Canary rollout
+When the document has stabilized it is advisable to first share it with a small set of canary readers. These will often be peers who participated in early whiteboard sessions and design discussions. By incorporating their feedback into the design doc we ensure that no major questions are unaddressed and ensure general soundness of the design before circulating it with a wider audience.
 
-**Rollout
-**At this time the document is shared with the wider team and other stakeholders. Readers are encouraged to ask questions and make suggestions via inline comments and authors reply. If warranted the document should be updated to address the feedback.
+#### Rollout
+At this time the document is shared with the wider team and other stakeholders. Readers are encouraged to ask questions and make suggestions via inline comments and authors reply. If warranted the document should be updated to address the feedback.
 
 Eventually the design is declared final. Often this happens informally signaled by the fact that people start implementing the design.
 
@@ -191,8 +191,8 @@ The design doc has dedicated sections for security and privacy considerations an
 It is great when this is sufficient to document a design, but often systems are too complex to be expressed through a single whiteboarding session and people who did not themselves take part in the discussion may be missing context.
 Having said that, whiteboarding sessions are a great start to flesh out the major points of a design in a lightweight process before diving in to actually write it down.
 
-* **Agile Scrum KISS™, just winging it.
-**Doing the simplest thing that could possibly work is generally a great idea but it stops being fun when that includes a lot of boilerplate or in aggregate becomes so complex that everyone loses track what is going on. If the simplest thing that could work is still complex a design doc may help document that simplest thing.
+* **Agile Scrum KISS™, just winging it.** 
+Doing the simplest thing that could possibly work is generally a great idea but it stops being fun when that includes a lot of boilerplate or in aggregate becomes so complex that everyone loses track what is going on. If the simplest thing that could work is still complex a design doc may help document that simplest thing.
 
 * **Verbal design review**
 Design reviews are another way to discuss a design and spread knowledge about it. It can be a great addition to every design doc but is insufficient to serve as long term evolving documentation of a project’s design.

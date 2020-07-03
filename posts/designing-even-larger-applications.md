@@ -8,11 +8,11 @@ This is a mildly edited transcript of my [JSConf Hawaiʻi talk (video)](https://
 
 Hey everyone! My name is [Malte](https://twitter.com/cramforce), I’m a Principal Software Engineer at Google, and today I want to talk about *Designing Even Larger Applications.* This is a [sequel to a talk I gave at JSConf Australia two years ago](../designing-very-large-javascript-applications/). And just like last time, I want to kind of ground this talk in our career progression as software engineers. I think many of you in the audience would call yourself *senior engineers*; or, if you’re not there yet, you aspire to be one.
 
-The way I would describe what it means to be a senior engineer is that if someone comes to me and they say something like *“Hey, Malte, do this project in this domain that you are already familiar with”,* I would say* “Yeah, that is actually something I know how to do. I don’t need to get anyone else’s help”*.
+The way I would describe what it means to be a senior engineer is that if someone comes to me and they say something like *“Hey, Malte, do this project in this domain that you are already familiar with”,* I would say *“Yeah, that is actually something I know how to do. I don’t need to get anyone else’s help”*.
 
 In my last talk I looked at how to go beyond that level of seniority in software engineering. It stops being only about yourself and instead your craft starts impacting other engineers. You’d say *“I can anticipate how others do things and design APIs accordingly.”*
 
-In this talk I want to go yet one more level beyond that. I want to reach the stage where I can say, *“I can design software such that for** large groups of engineers** the **probability** increases that the software that they produce is **good**.”*
+In this talk I want to go yet one more level beyond that. I want to reach the stage where I can say, *“I can design software such that for **large groups of engineers** the **probability** increases that the software that they produce is **good**.”*
 
 ![](https://cdn-images-1.medium.com/max/3404/1*74apT-vKvnyGLkrZyEUwvQ.png)
 
@@ -116,7 +116,7 @@ So, think about what it means to *not* know everything about your framework. And
 Now that we have learned to solve all known problems of software engineering, let’s go to the final chapter which is *deploying change*.
 > # *If it has no users then it has no impact.*
 
-This part is really, really key. Software infrastructure, no matter how great it is, if it has no users then it has no impact. However, in this field it is incredibly common that people build [*ivory towers](https://en.wikipedia.org/wiki/Ivory_tower)* with no real users in mind. They build something they’re excited about, and it was probably really fun to build. And then they come and say *“Hey, I have a thing”* and you’re like *“But that thing doesn’t do what I need”* and everyone is sad and they move on to build the next ivory tower.
+This part is really, really key. Software infrastructure, no matter how great it is, if it has no users then it has no impact. However, in this field it is incredibly common that people build *[ivory towers](https://en.wikipedia.org/wiki/Ivory_tower)* with no real users in mind. They build something they’re excited about, and it was probably really fun to build. And then they come and say *“Hey, I have a thing”* and you’re like *“But that thing doesn’t do what I need”* and everyone is sad and they move on to build the next ivory tower.
 
 If you want to professionalize building software infrastructure then this is obviously not the right way to do it. Getting your stuff adopted is everything. It is a big part of your job. So much so that my first piece of advice on how to get this right is actually totally in the realm of marketing.
 
