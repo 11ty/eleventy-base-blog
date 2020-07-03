@@ -6,10 +6,8 @@
     <title>{{ renderData.title or title or metadata.title }}</title>
     <meta name="Description" content="{{ renderData.description or description or metadata.description }}">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
-    {% set css %}
-      {% include "css/bahunya.css" %}
-    {% endset %}
-    <link rel="preconnect" href="https://rsms.me">
+    
+    
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141920860-1"></script>
     <script>
@@ -19,10 +17,8 @@
 
       gtag('config', 'UA-141920860-1');
     </script>
-
-    <style>
-      {{ css | cssmin | safe }}
-    </style>
+    <link rel="preconnect" href="https://rsms.me">
+    <!-- css is inserted by purify-css custom plugin -->
   </head>
   <body>
     <header>

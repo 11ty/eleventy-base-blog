@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "clean-css": "^4.2.3",
-    "image-size": "^0.8.3"
+    "image-size": "^0.8.3",
+    "purify-css": "^1.2.5"
   }
 }

@@ -1,15 +1,14 @@
 {
-  "title": "nonblocking.io",
-  "url": "https://www.nonblocking.io",
+  "title": "Industrial Empathy",
+  "url": "https://www.industrialempathy.com",
   "description": "Malte Ubl's literal website",
   "feed": {
     "subtitle": "Malte Ubl's literal website",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://www.nonblocking.io"
+    "id": "https://www.industrialempathy.com"
   },
   "author": {
-    "name": "Malte Ubl",
-    "email": "youremailaddress@example.com"
+    "name": "Malte Ubl"
   }
 }

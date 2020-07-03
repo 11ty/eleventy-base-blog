@@ -7,7 +7,7 @@ eleventyNavigation:
   order: 3
 ---
 
-Malte is a Principal Engineer at Google, the creator of <a href="https://amp.dev/">AMP</a>, and now a member of the AMP Project’s Technical Steering Committee. Previously Malte has created JavaScript infrastructure for lots of Google web apps and he is a founder and curator of <a href="https://www.jsconf.eu/">JSConf EU</a>.
+I'm a Principal Engineer at Google, the creator of <a href="https://amp.dev/">AMP</a>, and now a member of the AMP Project’s Technical Steering Committee. Previously Malte has created JavaScript infrastructure for lots of Google web apps and he is a founder and curator of <a href="https://www.jsconf.eu/">JSConf EU</a>.
 
 
 <ul>
