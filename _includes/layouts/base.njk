@@ -5,22 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ renderData.title or title or metadata.title }}</title>
     <meta name="Description" content="{{ renderData.description or description or metadata.description }}">
-    <link rel="stylesheet" href="{{ '/css/bahunya.css' | url }}">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
+    {% set css %}
+      {% include "css/bahunya.css" %}
+    {% endset %}
+    <link rel="preconnect" href="https://rsms.me">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141920860-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-141920860-1');
+    </script>
+
+    <style>
+      {{ css | cssmin | safe }}
+    </style>
   </head>
   <body>
     <header>
       <nav>
-        <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
+        <h1><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
         {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
         {%- for entry in collections.all | eleventyNavigation %}
           <a href="{{ entry.url | url }}">{{ entry.title }}</a>
         {%- endfor %}
       </nav>
       <h1>{{ title }}</h1>
+      {% if page.url.indexOf("/posts/") > -1 %}
+      <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+      {% endif %}
     </header>
 
-    <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
+    <main>
       <article>
         {{ content | safe }}
       </article>

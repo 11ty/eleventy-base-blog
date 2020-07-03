@@ -11,6 +11,6 @@ Malte is a Principal Engineer at Google, the creator of <a href="https://amp.dev
 
 
 <ul>
-  <li><a href="https://twitter.com/cramforce">Twitter</a></li>
-  <li><a href="https://www.linkedin.com/in/malteubl/">LinkedIn</a></li>
+  <li><a href="https://twitter.com/cramforce" rel="me">Twitter</a></li>
+  <li><a href="https://www.linkedin.com/in/malteubl/" rel="me">LinkedIn</a></li>
 </ul>

@@ -4,9 +4,7 @@ date: 2020-02-16
 layout: layouts/post.njk
 ---
 
-This is a mildly edited transcript of my JSConf Hawaiʻi talk. Use this link to share this post and bypass Medium’s paywall.
-
-<center><iframe width="560" height="315" src="https://www.youtube.com/embed/z4mRkhhHdWo" frameborder="0" allowfullscreen></iframe></center>
+This is a mildly edited transcript of my [JSConf Hawaiʻi talk (video)](https://www.youtube.com/watch?v=z4mRkhhHdWo).
 
 Hey everyone! My name is [Malte](https://twitter.com/cramforce), I’m a Principal Software Engineer at Google, and today I want to talk about *Designing Even Larger Applications.* This is a [sequel to a talk I gave at JSConf Australia two years ago](../designing-very-large-javascript-applications/). And just like last time, I want to kind of ground this talk in our career progression as software engineers. I think many of you in the audience would call yourself *senior engineers*; or, if you’re not there yet, you aspire to be one.
 
@@ -198,5 +196,3 @@ That is all I have today. Thank you very much.
 [Malte Ubl](https://twitter.com/cramforce), 2020
 
 Thanks to [Esther](https://twitter.com/notestherkim), Ryan, and [Jan](https://twitter.com/janl) for helping me copy-edit my verbal mess 🤣
-
-PS: If you’d like to share this post and bypass Medium’s paywall, use [this link.](https://medium.com/@cramforce/designing-even-larger-applications-460ee029012d?source=friends_link&sk=e732423e46e87029473431067fd066fc)
