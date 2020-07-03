@@ -31,5 +31,8 @@
     "luxon": "^1.21.3",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.2.5"
+  },
+  "dependencies": {
+    "image-size": "^0.8.3"
   }
 }

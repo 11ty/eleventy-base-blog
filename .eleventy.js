@@ -19,6 +19,8 @@ module.exports = function (eleventyConfig) {
     verbose: false,
   });
 
+  eleventyConfig.addPlugin(require("./_11ty/img-dim.js"));
+
   eleventyConfig.setDataDeepMerge(true);
 
   eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
