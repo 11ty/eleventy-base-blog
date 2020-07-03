@@ -1,15 +1,15 @@
 {
-  "title": "Your Blog Name",
-  "url": "https://myurl.com/",
-  "description": "I am writing about my experiences as a naval navel-gazer.",
+  "title": "nonblocking.io",
+  "url": "https://www.nonblocking.io",
+  "description": "Malte Ubl's literal website",
   "feed": {
-    "subtitle": "I am writing about my experiences as a naval navel-gazer.",
+    "subtitle": "Malte Ubl's literal website",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://myurl.com/"
+    "id": "https://www.nonblocking.io"
   },
   "author": {
-    "name": "Your Name Here",
+    "name": "Malte Ubl",
     "email": "youremailaddress@example.com"
   }
 }
