@@ -6,9 +6,12 @@ const ampOptimizer = AmpOptimizer.create();
 const purifyCss = (rawContent, outputPath) => {
   let content = rawContent;
   if (outputPath.endsWith(".html") && !isAmp(content)) {
-    const before = require("fs").readFileSync("css/bahunya.css", {
+    let before = require("fs").readFileSync("css/bahunya.css", {
       encoding: "utf-8",
     });
+
+    before = before.replace(/@font-face {/g, "@font-face {font-display:swap;");
+
     const after = purify(rawContent, before, {
       minify: true,
     });
