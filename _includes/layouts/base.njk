@@ -48,6 +48,18 @@
       <a href="/about/">Malte Ubl</a>
     </footer>
 
+    <script>
+    onmouseover = ontouchstart = function(e) {
+      if (e.target.tagName != 'A') {
+        return;
+      }
+      var l = document.createElement('link');
+      l.rel = 'prefetch';
+      l.href = e.target.href;
+      document.head.appendChild(l);
+    }
+    </script>
+
     <!-- Current page: {{ page.url | url }} -->
   </body>
 </html>
