@@ -7,7 +7,33 @@ title: New on the web
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ renderData.title or title or metadata.title }}</title>
-  <script
+  <meta property="og:title" content="{{title or 'New on the web in ' + month.title}}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ metadata.url }}{{ page.url }}" />
+  <meta property="og:description" content="My team asked me: `Hey, Malte, how do you stay so on top of what is happening on the web?`…" />
+  <meta name="description" content="My team asked me: `Hey, Malte, how do you stay so on top of what is happening on the web?`…" />
+  <meta property="og:image" content="https://cdn.glitch.com/c88340c0-ab92-4979-a135-2e1a71e72e48%2FIMG_20200207_110932.jpg.out.jpg?v=1581526483091" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#f9c412">
+
+  <style>
+  body {
+    margin: 0;
+  }
+  nav {
+    position: absolute;
+    z-index: 2;
+    font-size: 1.6em;
+    top: 16px;
+    left: 12px;
+  }
+  </style>
+</head >
+<body>
+  <nav><a href="/" title="Home">🏚</a></nav>
+  <main>
+
+    <script
     src="https://cdn.ampproject.org/amp-story-player-v0.js"
   ></script>
   <link
@@ -26,24 +52,8 @@ title: New on the web
   <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-video-0.1.js">
   <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-twitter-0.1.js">
   <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js">
-  
-  <style>
-  body {
-    margin: 0;
-  }
-  nav {
-    position: absolute;
-    z-index: 2;
-    font-size: 1.6em;
-    top: 16px;
-    left: 12px;
-  }
-  </style>
-</head >
-<body>
-  <nav><a href="/" title="Home">🏚</a></nav>
-  <main>
-    <amp-story-player style="width: 100vw; height: 100vh">
+
+    <amp-story-player style="width: 100vw;  height: 100vh;">
       <a href="./intro/">Intro</a>
       {% for month in newontheweb %}
         <a href="./{{ month.title | slug }}.html">{{ month.title }}</a>
