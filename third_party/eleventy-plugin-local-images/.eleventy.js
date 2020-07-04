@@ -47,6 +47,10 @@ const processImage = async (img) => {
     processImageAttr(img, "src"),
     processImageAttr(img, "poster"),
     processImageAttr(img, "content"),
+    processImageAttr(img, "publisher-logo-src"),
+    processImageAttr(img, "poster-portrait-src"),
+    processImageAttr(img, "poster-square-src"),
+    processImageAttr(img, "poster-landscape-src"),
   ]);
 };
 

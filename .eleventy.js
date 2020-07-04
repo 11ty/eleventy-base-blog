@@ -17,7 +17,7 @@ module.exports = function (eleventyConfig) {
     distPath: "_site",
     assetPath: "/img/remote",
     selector:
-      "img,amp-img,amp-video,meta[property='og:image'],meta[name='twitter:image']",
+      "img,amp-img,amp-video,meta[property='og:image'],meta[name='twitter:image'],amp-story",
     verbose: false,
   });
 
