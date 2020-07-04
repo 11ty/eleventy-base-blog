@@ -3,14 +3,26 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ renderData.title or title or metadata.title }}</title>
-    {% if enderData.description or description %}
-    <meta name="Description" content="{{ renderData.description or description }}">
-    {% endif %}
-    <link rel="canonical" href="{{ metadata.url }}{{ page.url }}">
-    <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta name="theme-color" content="#f9c412">
+    <title>{{ renderData.title or title or metadata.title | escape }}</title>
+    <meta name="twitter:title" content="{{ renderData.title or title or metadata.title | escape }}">
+    <meta property="og:title" content="{{ renderData.title or title or metadata.title | escape  }}">
+    {% if renderData.description or description %}
+      <meta name="Description" content="{{ renderData.description or description }}">
+      <meta name="description" content="{{ renderData.description or description | escape  }}">
+      <meta name="twitter:description" content="{{ renderData.description or description | escape  }}">
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cramforce">
+    <meta name="twitter:creator" content="@cramforce">
+    {% if image %}
+      <meta name="twitter:image" content="{{ image }}">
+      <meta property="og:image" content="{{ image }}">
+    {% endif %}
+    
+    <link rel="canonical" href="{{ metadata.url }}{{ page.url }}">
+    <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
 
     <link rel="preconnect" href="https://rsms.me" crossorigin>
     <link rel="preload" href="https://rsms.me/inter/font-files/Inter-Bold.woff2?v=3.13" as="font" type="font/woff2" crossorigin>

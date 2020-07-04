@@ -2,6 +2,7 @@
 title: Designing Even Larger Applications
 date: 2020-02-16
 layout: layouts/post.njk
+image: https://cdn-images-1.medium.com/max/3404/1*G-B2aNC3aPYExoBKIebejQ.png
 ---
 
 This is a mildly edited transcript of my [JSConf Hawaiʻi talk (video)](https://www.youtube.com/watch?v=z4mRkhhHdWo).

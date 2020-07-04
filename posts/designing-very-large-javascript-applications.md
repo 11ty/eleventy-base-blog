@@ -2,6 +2,7 @@
 title: Designing very large (JavaScript) applications
 date: 2018-04-15
 layout: layouts/post.njk
+image: https://cdn-images-1.medium.com/max/4020/1*pnYiZTAfQqsbeS7kVkLe_g.png
 ---
 
 This is a mildly edited transcript of my JSConf Australia talk. [Watch the whole talk on YouTube](https://www.youtube.com/watch?v=ZZmUwXEiPm4). A sequel to this post is available over here.
