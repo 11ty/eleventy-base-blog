@@ -43,7 +43,15 @@ const getFileType = (filename, buffer) => {
 const urlJoin = (a, b) => `${a.replace(/\/$/, "")}/${b.replace(/^\//, "")}`;
 
 const processImage = async (img) => {
-  let { distPath, assetPath, attribute } = config;
+  await Promise.all([
+    processImageAttr(img, "src"),
+    processImageAttr(img, "poster"),
+    processImageAttr(img, "content"),
+  ]);
+};
+
+const processImageAttr = async (img, attribute) => {
+  let { distPath, assetPath } = config;
 
   const external = /https?:\/\/((?:[\w\d-]+\.)+[\w\d]{2,})/i;
   const imgPath = img.getAttribute(attribute);
@@ -97,8 +105,6 @@ const processImage = async (img) => {
       console.log(error);
     }
   }
-
-  return img;
 };
 
 const grabRemoteImages = async (rawContent, outputPath) => {

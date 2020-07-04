@@ -16,7 +16,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(localImages, {
     distPath: "_site",
     assetPath: "/img/remote",
-    selector: "img,amp-img,amp-video",
+    selector:
+      "img,amp-img,amp-video,meta[property='og:image'],meta[name='twitter:image']",
     verbose: false,
   });
 
