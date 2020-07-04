@@ -3,7 +3,7 @@
 <html amp>
   <head>
     <meta charset="utf-8">
-    <title>{{title}}</title>
+    <title>{{title or 'New on the web in ' +month.title}}</title>
     <link rel="canonical" href="{{ metadata.url }}{{ page.url }}">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
@@ -15,9 +15,9 @@
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
     <script async custom-element="amp-fit-text" src="https://cdn.ampproject.org/v0/amp-fit-text-0.1.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400" rel="stylesheet">
-    <meta property="og:title" content="What is new on the Web with Malte" />
+    <meta property="og:title" content="{{title or 'New on the web in ' + month.title}}" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://new.nonblocking.io/" />
+    <meta property="og:url" content="{{ metadata.url }}{{ page.url }}" />
     <meta property="og:description" content="My team asked me: `Hey, Malte, how do you stay so on top of what is happening on the web?`…" />
     <meta name="description" content="My team asked me: `Hey, Malte, how do you stay so on top of what is happening on the web?`…" />
     <meta property="og:image" content="https://cdn.glitch.com/c88340c0-ab92-4979-a135-2e1a71e72e48%2FIMG_20200207_110932.jpg.out.jpg?v=1581526483091" />
