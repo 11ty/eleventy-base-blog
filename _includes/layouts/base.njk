@@ -49,7 +49,7 @@
     </footer>
 
     <script>
-    onmouseover = ontouchstart = function(e) {
+    function prefetch(e) {
       if (e.target.tagName != 'A') {
         return;
       }
@@ -58,6 +58,14 @@
       l.href = e.target.href;
       document.head.appendChild(l);
     }
+    document.documentElement.addEventListener('mouseover', prefetch, {
+      capture: true,
+      passive: true
+    });
+    document.documentElement.addEventListener('touchstart', prefetch, {
+      capture: true,
+      passive: true
+    });
     </script>
 
     <!-- Current page: {{ page.url | url }} -->
