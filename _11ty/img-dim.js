@@ -1,6 +1,7 @@
 const { JSDOM } = require("jsdom");
 const { promisify } = require("util");
 const sizeOf = promisify(require("image-size"));
+const blurryPlaceholder = require("./blurry-placeholder");
 
 const processImage = async (img) => {
   const src = img.getAttribute("src");
@@ -12,6 +13,12 @@ const processImage = async (img) => {
   img.setAttribute("height", dimensions.height);
   img.setAttribute("decoding", "async");
   img.setAttribute("loading", "lazy");
+  img.setAttribute(
+    "style",
+    `background-size:cover;background-image:url("${await blurryPlaceholder(
+      src
+    )}")`
+  );
 };
 
 const dimImages = async (rawContent, outputPath) => {

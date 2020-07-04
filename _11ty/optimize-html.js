@@ -1,7 +1,11 @@
 const purify = require("../third_party/purify-css/purify-css");
 const minify = require("html-minifier").minify;
 const AmpOptimizer = require("@ampproject/toolbox-optimizer");
-const ampOptimizer = AmpOptimizer.create();
+const ampOptimizer = AmpOptimizer.create({
+  blurredPlaceholders: true,
+  imageBasePath: "./_site/",
+  //verbose: true,
+});
 
 const purifyCss = (rawContent, outputPath) => {
   let content = rawContent;
