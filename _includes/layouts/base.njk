@@ -13,9 +13,9 @@
       {% set desc = content | striptags | truncate(140) %}
     {% endif %}
     {% if desc %}
-      <meta name="Description" content="{{ desc | escape }}">
       <meta name="description" content="{{ desc | escape  }}">
       <meta name="twitter:description" content="{{ desc | escape }}">
+      <meta property="og:description" content="{{ desc | escape }}">
     {% endif %}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@cramforce">
