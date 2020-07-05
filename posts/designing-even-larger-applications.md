@@ -39,7 +39,7 @@ Again, think about you being the person who is responsible for your team’s sof
 
 How certain are we about the type of problems that we will need to solve in the future? This question is absolutely key for software engineering and I’m going to talk about a technique to understand how well we understand things.
 
-![Photo of Werner Heisenberg, discoverer of the [Heisenberg uncertainty principle](https://en.wikipedia.org/wiki/Uncertainty_principle). [Source](https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild183-R57262,_Werner_Heisenberg.jpg)](https://cdn-images-1.medium.com/max/3404/1*RgFoTMZKMMJzCN4D6xvGoQ.png)*Photo of Werner Heisenberg, discoverer of the [Heisenberg uncertainty principle](https://en.wikipedia.org/wiki/Uncertainty_principle). [Source](https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild183-R57262,_Werner_Heisenberg.jpg)*
+![Photo of Werner Heisenberg, discoverer of the [Heisenberg uncertainty principle](https://en.wikipedia.org/wiki/Uncertainty_principle). [Source](https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild183-R57262,_Werner_Heisenberg.jpg)](https://cdn-images-1.medium.com/max/3404/1*RgFoTMZKMMJzCN4D6xvGoQ.png)
 
 What we’ll do is try to answer a set of questions:
 
@@ -70,18 +70,18 @@ Compare that to this scenario: imagine it is 2015 and your manager comes and say
 
 ### Dealing with uncertainty
 
-![Photo of surgeons putting on medical gloves. [Getty](https://www.gettyimages.com/detail/photo/female-doctor-helping-surgeon-wearing-glove-royalty-free-image/1156479713?adppopup=true)](https://cdn-images-1.medium.com/max/3392/1*YBsQBbL1_I-boHZcwP4wwA.png)*Photo of surgeons putting on medical gloves. [Getty](https://www.gettyimages.com/detail/photo/female-doctor-helping-surgeon-wearing-glove-royalty-free-image/1156479713?adppopup=true)*
+![Photo of surgeons putting on medical gloves. [Getty](https://www.gettyimages.com/detail/photo/female-doctor-helping-surgeon-wearing-glove-royalty-free-image/1156479713?adppopup=true)](https://cdn-images-1.medium.com/max/3392/1*YBsQBbL1_I-boHZcwP4wwA.png)
 
 And so the question is: what do we do if the degree of uncertainty is very high? We tailor the degree of abstraction.
 
 Let me get something out of the way: *abstractions are awesome.* You want to abstract everything as much as possible because abstractions make everything really expressive, more correct, reusable, and generally, more awesome. However, things rapidly fall apart if the abstractions don’t quite allow us to do exactly what we’d like to do. We now have to work around it and beat them into doing what we want. Everything is suddenly painful and terrible.
 > # *If uncertainty is high then reduce the degree of abstraction.*
 
-![Graph showing very unscientifically how uncertainty and abstraction should be related to another.](https://cdn-images-1.medium.com/max/2112/1*RJv7TMI_kOkZPLuZKHd3ZA.png)*Graph showing very unscientifically how uncertainty and abstraction should be related to another.*
+![Graph showing very unscientifically how uncertainty and abstraction should be related to another.](https://cdn-images-1.medium.com/max/2112/1*RJv7TMI_kOkZPLuZKHd3ZA.png)
 
 That is why we need to understand the problem space really well: It allows us to tailor the abstraction to the degree of uncertainty. And if uncertainty is high then we *reduce* the degree of abstraction.
 
-![Photo of abstract art ([Source](https://www.publicdomainpictures.net/en/view-image.php?image=44807&picture=abstract-art-face)) and photo of woman looking remarkably similar to the abstraction ([Source](https://www.flickr.com/photos/justanothersheena/6304824201) by Sheena876 [licensed under CC](https://creativecommons.org/licenses/by-sa/2.0/))](https://cdn-images-1.medium.com/max/6666/1*nGFDnipyGFG8kSCWizHNyA.png)*Photo of abstract art ([Source](https://www.publicdomainpictures.net/en/view-image.php?image=44807&picture=abstract-art-face)) and photo of woman looking remarkably similar to the abstraction ([Source](https://www.flickr.com/photos/justanothersheena/6304824201) by Sheena876 [licensed under CC](https://creativecommons.org/licenses/by-sa/2.0/))*
+![Photo of abstract art ([Source](https://www.publicdomainpictures.net/en/view-image.php?image=44807&picture=abstract-art-face)) and photo of woman looking remarkably similar to the abstraction ([Source](https://www.flickr.com/photos/justanothersheena/6304824201) by Sheena876 [licensed under CC](https://creativecommons.org/licenses/by-sa/2.0/))](https://cdn-images-1.medium.com/max/6666/1*nGFDnipyGFG8kSCWizHNyA.png)
 
 ## Solving all known problems
 
@@ -103,7 +103,7 @@ Similar to the debuggability you’re in control of how testable a system is. Ma
 
 ### Empathy
 
-![Photo of two cats. One says “I don’t know everything”. The other says “That’s OK”. [Getty](https://www.gettyimages.com/detail/photo/kitten-placing-paw-on-other-kitten-royalty-free-image/148649774?adppopup=true)](https://cdn-images-1.medium.com/max/3404/1*G-B2aNC3aPYExoBKIebejQ.png)*Photo of two cats. One says “I don’t know everything”. The other says “That’s OK”. [Getty](https://www.gettyimages.com/detail/photo/kitten-placing-paw-on-other-kitten-royalty-free-image/148649774?adppopup=true)*
+![Photo of two cats. One says “I don’t know everything”. The other says “That’s OK”. [Getty](https://www.gettyimages.com/detail/photo/kitten-placing-paw-on-other-kitten-royalty-free-image/148649774?adppopup=true)](https://cdn-images-1.medium.com/max/3404/1*G-B2aNC3aPYExoBKIebejQ.png)
 
 For the last technique to solve all known problems of software engineering we’ll move a little bit away from the pure software side of things. We’ll talk about empathy.
 
@@ -125,7 +125,7 @@ Software engineers are human beings. They want to work on stuff that they think 
 
 ### Incremental adoption
 
-![Photo of parents with their adopted child. [Getty](https://www.gettyimages.com/detail/photo/gay-parents-running-in-the-park-with-their-adopted-royalty-free-image/625686006?adppopup=true)](https://cdn-images-1.medium.com/max/3404/1*SC4YJ492eXYpM4hiNykZ0g.png)*Photo of parents with their adopted child. [Getty](https://www.gettyimages.com/detail/photo/gay-parents-running-in-the-park-with-their-adopted-royalty-free-image/625686006?adppopup=true)*
+![Photo of parents with their adopted child. [Getty](https://www.gettyimages.com/detail/photo/gay-parents-running-in-the-park-with-their-adopted-royalty-free-image/625686006?adppopup=true)](https://cdn-images-1.medium.com/max/3404/1*SC4YJ492eXYpM4hiNykZ0g.png)
 
 Adopting software is easier if you can do it incrementally. What this means is that instead of going like *“Hey, try this new framework, rewrite everything from scratch in two years and hopefully it is good”*, you migrate smaller parts step by step–and thus you see positive impact long before that 2 year full rewrite. What I’ve seen is that even projects that start out as a full rewrite will often pivot to ship at least a few parts early as the pressure from essentially having to do double-work (maintaining the legacy system and building the new one) increases and management wants to see results.
 
@@ -151,7 +151,7 @@ Step two is to then go and allow all existing violations using an allow-list. Wi
 
 ### A ledger of technical debt
 
-![Photo of a ledger ([Getty](https://www.gettyimages.com/detail/photo/london-statistics-in-old-notebook-royalty-free-image/157317892?adppopup=true)).](https://cdn-images-1.medium.com/max/4006/1*-VWLN3P6hfyHTUZQFn2CpA.jpeg)*Photo of a ledger ([Getty](https://www.gettyimages.com/detail/photo/london-statistics-in-old-notebook-royalty-free-image/157317892?adppopup=true)).*
+![Photo of a ledger ([Getty](https://www.gettyimages.com/detail/photo/london-statistics-in-old-notebook-royalty-free-image/157317892?adppopup=true)).](https://cdn-images-1.medium.com/max/4006/1*-VWLN3P6hfyHTUZQFn2CpA.jpeg)
 
 There is one more interesting insight. This allow-list which you check into your repository is, in fact, *a ledger of technical debt*. Technical debt can be this abstract concept that you know you have. It is probably out there somewhere but it is really difficult to nail down where it is. The ledger allows you to literally know that *file X.js, line 15* has technical debt in it.
 
