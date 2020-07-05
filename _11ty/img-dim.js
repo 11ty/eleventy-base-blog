@@ -2,6 +2,7 @@ const { JSDOM } = require("jsdom");
 const { promisify } = require("util");
 const sizeOf = promisify(require("image-size"));
 const blurryPlaceholder = require("./blurry-placeholder");
+const srcset = require("./srcset");
 
 const processImage = async (img) => {
   const src = img.getAttribute("src");
@@ -19,6 +20,8 @@ const processImage = async (img) => {
       src
     )}")`
   );
+  img.setAttribute("srcset", await srcset(src));
+  img.setAttribute("sizes", "(max-width: 608px) 100vw, 608px");
 };
 
 const dimImages = async (rawContent, outputPath) => {

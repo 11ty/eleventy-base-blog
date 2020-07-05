@@ -44,6 +44,7 @@
     "image-size": "^0.8.3",
     "jimp": "^0.14.0",
     "lru-cache": "^5.1.1",
-    "purify-css": "^1.2.5"
+    "purify-css": "^1.2.5",
+    "sharp": "^0.25.4"
   }
 }
