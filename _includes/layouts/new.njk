@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>{{title or 'New on the web in ' +month.title}}</title>
-    <link rel="canonical" href="{{ metadata.url }}{{ page.url }}">
+    <link rel="canonical" href="{{ metadata.url }}{{ canonicalUrl or page.url }}">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script async custom-element="amp-story"

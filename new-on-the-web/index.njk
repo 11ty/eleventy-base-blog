@@ -7,6 +7,7 @@ title: New on the web
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ renderData.title or title or metadata.title }}</title>
+  <link rel="canonical" href="{{ metadata.url }}{{ canonicalUrl or page.url }}">
   <meta property="og:title" content="{{title or 'New on the web in ' + month.title}}" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="{{ metadata.url }}{{ page.url }}" />
