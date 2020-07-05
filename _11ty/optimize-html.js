@@ -9,7 +9,11 @@ const ampOptimizer = AmpOptimizer.create({
 
 const purifyCss = (rawContent, outputPath) => {
   let content = rawContent;
-  if (outputPath.endsWith(".html") && !isAmp(content)) {
+  if (
+    outputPath.endsWith(".html") &&
+    !isAmp(content) &&
+    !/data-style-override/.test(content)
+  ) {
     let before = require("fs").readFileSync("css/bahunya.css", {
       encoding: "utf-8",
     });
