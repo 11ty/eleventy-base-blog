@@ -103,7 +103,7 @@ Software design is primarily driven by the project requirements and if applicabl
 
 ### Structure
 
-![](https://cdn-images-1.medium.com/max/2416/1*WXJkFVzgjuuQRriPSBaSEw.png)
+![Meta information > Context, scope & goals > Overview > Detailed design > Cross cutting concerns > Alternatives](https://cdn-images-1.medium.com/max/2416/1*WXJkFVzgjuuQRriPSBaSEw.png)
 
 The structure of a design doc is chosen, so that a reader can efficiently and effectively dive into the subject matter. The document starts out relatively high level and then dives deeper into the details of the design.
 
@@ -115,8 +115,7 @@ This “funnel” is chosen so readers
 
 #### Meta information
 Design docs should always have a title and immediately state their authors as primary contacts and a last updated date. Stating the status is helpful for setting expectations for the reader as to the completeness and definiteness of the document. Useful states are:
-> enum[ ](https://cs.corp.google.com/#piper///depot/google3/ads/base/ad-enums.proto&ct=xref_usages&gs=proto:type-ClickCostSource@google3/ads/base/ad-enums.proto&l=1714&gsn=ClickCostSource)DesignDocState { UNKNOWN = 0; INCOHERENT_RAMBLING = 1; DRAFT = 2; FINAL = 3; IMPLEMENTED = 4; OBSOLETE = 5;
-};
+> enum[ ] DesignDocState { UNKNOWN = 0; INCOHERENT_RAMBLING = 1; DRAFT = 2; FINAL = 3; IMPLEMENTED = 4; OBSOLETE = 5; };
 
 *(The above code snippet was inserted to illustrate the point further down that copy pasting irrelevant code snippets is not a great idea.)*
 
@@ -129,7 +128,7 @@ The document should first establish the context and scope of the design. This ma
 
 1. It forces the authors to actually make decisions about the scope.
 
-![](https://cdn-images-1.medium.com/max/2000/1*_HJawJ-Vps3U8u99fBZKMQ.png)
+![Bart system writing on blackboard: I will not invent a new storage system](https://cdn-images-1.medium.com/max/2000/1*_HJawJ-Vps3U8u99fBZKMQ.png)
 
 #### Overview
 Next the document gives an overview of the design. This helps readers gain an understanding of the overall approach, which will make it much easier to evaluate how the details relate to the design. It is important to realize that the design doc should not build up tension when being read from start to the end. Quite the opposite, information is given as fast as possible and the structure should aim to avoid putting related information too far apart.

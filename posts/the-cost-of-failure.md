@@ -34,7 +34,7 @@ Differing development environments exhibit vastly differing times for each eleme
 
 Steps 1, 2 and 6 are the only steps that are necessary. All other steps would ideally take 0 seconds and there are, indeed, systems that do not require these steps at all.
 
-![Image: [https://www.flickr.com/photos/swamibu/2977849554/in/gallery-chloefaith-72157624559418388/](https://www.flickr.com/photos/swamibu/2977849554/in/gallery-chloefaith-72157624559418388/)](https://cdn-images-1.medium.com/max/7800/1*OfniTBae22oCGP5ZrXObrw.jpeg)*Image: [https://www.flickr.com/photos/swamibu/2977849554/in/gallery-chloefaith-72157624559418388/](https://www.flickr.com/photos/swamibu/2977849554/in/gallery-chloefaith-72157624559418388/)*
+![Image of a horse carousel https://cdn-images-1.medium.com/max/7800/1*OfniTBae22oCGP5ZrXObrw.jpeg](https://cdn-images-1.medium.com/max/7800/1*OfniTBae22oCGP5ZrXObrw.jpeg)
 
 The get-off-my-lawn old person in me remembers the golden days of the 90s where in VisualWorks SmallTalk one would just stop the UI, unwind to some previous state, change the running program and rerun the relevant part.
 

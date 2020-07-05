@@ -10,7 +10,6 @@ This is the story about how I became what some people would call a frontend engi
 This was October 2008 and I just joined a new company and was leading a team of 11 or so engineers in a company of roughly 200.
 
 I was also really excited about this new company but then I discovered the thing that made me really mad:
-*Image: [http://en.wikipedia.org/wiki/Trans-Alaska_Pipeline_System](http://en.wikipedia.org/wiki/Trans-Alaska_Pipeline_System)*
 > # *Almost all the experienced, senior and well-respected engineers called themselves “backend developers” and refused to do client side work and so the client side was left to the inexperienced, junior and not as well-respected engineers (with a few exceptions, of course).*
 
 Me being the new manager for the team I decided to do some pair programming with each person on the team to kinda get a feel for what their work was like. When I eventually got to work with the first dev doing client side work I went completely What The Fuck?!?! Their work flow for JS and CSS was to make the changes and then click the deploy button in Eclipse, which would then
