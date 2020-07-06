@@ -11,6 +11,8 @@ May 19th, 2015
 Status: Draft
 Authors: Malte Ubl
 
+**Note**: While this post continues to be independently useful, I have published a more approachable write-up about Google's use of design docs in [Design Docs at Google](/posts/design-docs-at-google/)
+
 ## Context and scope
 
 [Software design](http://en.wikipedia.org/wiki/Software_design) is an important element of software engineering in which, after we established the requirements of the product or system we are building, we make plans and decisions how to best implement those requirements in software.
@@ -124,9 +126,9 @@ The document should first establish the context and scope of the design. This ma
 
 1. It is an efficient way for the reader to establish what the design tries to achieve and what it doesn’t want to achieve.
 
-1. It can be used to evaluate whether the detailed design establishes how those goals are achieved.
+2. It can be used to evaluate whether the detailed design establishes how those goals are achieved.
 
-1. It forces the authors to actually make decisions about the scope.
+3. It forces the authors to actually make decisions about the scope.
 
 ![Bart system writing on blackboard: I will not invent a new storage system](https://cdn-images-1.medium.com/max/2000/1*_HJawJ-Vps3U8u99fBZKMQ.png)
 
