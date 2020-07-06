@@ -73,37 +73,38 @@ const processImageAttr = async (img, attribute) => {
       // this will prevent filename clashes
       const hash = sh.unique(imgPath);
 
-      if (path.extname(filename)) {
-        const hashedFilename = `${hash}${path.extname(filename)}`;
-        const outputFilePath = path.join(distPath, assetPath, hashedFilename);
-        if (fs.existsSync(outputFilePath)) {
-          img.setAttribute(attribute, urlJoin(assetPath, hashedFilename));
-          return img;
+      let hashedFilename = `${hash}${path.extname(filename)}`;
+      let outputFilePath = path.join(distPath, assetPath, hashedFilename);
+      if (!path.extname(filename) || !fs.existsSync(outputFilePath)) {
+        hashedFilename = null;
+        // image is external so download it.
+        let imgBuffer = await downloadImage(imgPath);
+        if (imgBuffer) {
+          // check if the remote image has a file extension and then hash the filename
+          hashedFilename = !path.extname(filename)
+            ? `${hash}-${getFileType(filename, imgBuffer)}`
+            : `${hash}${path.extname(filename)}`;
+
+          // create the file path from config
+          outputFilePath = path.join(distPath, assetPath, hashedFilename);
+
+          // save the file out, and log it to the console
+          await fs.outputFile(outputFilePath, imgBuffer);
+          if (config.verbose) {
+            console.log(
+              `eleventy-plugin-local-images: Saving ${filename} to ${outputFilePath}`
+            );
+          }
         }
       }
 
-      // image is external so download it.
-
-      let imgBuffer = await downloadImage(imgPath);
-      if (imgBuffer) {
-        // check if the remote image has a file extension and then hash the filename
-        const hashedFilename = !path.extname(filename)
-          ? `${hash}-${getFileType(filename, imgBuffer)}`
-          : `${hash}${path.extname(filename)}`;
-
-        // create the file path from config
-        let outputFilePath = path.join(distPath, assetPath, hashedFilename);
-
-        // save the file out, and log it to the console
-        await fs.outputFile(outputFilePath, imgBuffer);
-        if (config.verbose) {
-          console.log(
-            `eleventy-plugin-local-images: Saving ${filename} to ${outputFilePath}`
-          );
-        }
-
+      if (hashedFilename) {
         // Update the image with the new file path
-        img.setAttribute(attribute, urlJoin(assetPath, hashedFilename));
+        let href = urlJoin(assetPath, hashedFilename);
+        if (attribute == "content") {
+          href = `https://www.industrialempathy.com${href}`;
+        }
+        img.setAttribute(attribute, href);
       }
     } catch (error) {
       console.log(error);
