@@ -50,14 +50,15 @@
         {%- endfor %}
       </nav>
       <h1>{{ title }}</h1>
-      {% if page.url.indexOf("/posts/") > -1 %}
-      <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
-      {% endif %}
     </header>
 
     <main>
       <article>
         {{ content | safe }}
+
+        {% if page.url.indexOf("/posts/") > -1 %}
+          <p>Published <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time></p>
+        {% endif %}
       </article>
     </main>
 
