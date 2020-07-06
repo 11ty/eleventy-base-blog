@@ -5,7 +5,7 @@ layout: layouts/post.njk
 image: https://i.pinimg.com/originals/fe/8f/26/fe8f26548e9c75575a0e0d25a88e58e4.jpg
 ---
 
-One of the defining elements of Google's software engineering culture is the use of defining software designs through design docs. These are relatively informal documents that the primary author or authors of a software system or application create before they embark on the coding project. The design doc documents the high level implementation strategy and key design decisions with emphasis on the trade-offs that were considered during those decisions.
+One of the key elements of Google's software engineering culture is the use of defining software designs through design docs. These are relatively informal documents that the primary author or authors of a software system or application create before they embark on the coding project. The design doc documents the high level implementation strategy and key design decisions with emphasis on the trade-offs that were considered during those decisions.
 
 As software engineers our job is not to produce code per se, but rather to solve problems. Unstructured text, like in the form of a design doc, may be the better tool for solving problems early in a project lifecycle, as it may be more concise and easier to comprehend, and communicates the problems and solutions at a higher level than code.
 
