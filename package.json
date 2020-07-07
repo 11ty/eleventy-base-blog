@@ -40,6 +40,7 @@
   "dependencies": {
     "@ampproject/toolbox-optimizer": "^2.5.5",
     "clean-css": "^4.2.3",
+    "hasha": "^5.2.0",
     "html-minifier": "^4.0.0",
     "image-size": "^0.8.3",
     "jimp": "^0.14.0",

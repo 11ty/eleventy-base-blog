@@ -1,5 +1,7 @@
 /img/*
   cache-control: public,max-age=31536000,immutable
+*hash=*
+  cache-control: public,max-age=31536000,immutable
 /favicon.svg
   cache-control: public,max-age=3600
 

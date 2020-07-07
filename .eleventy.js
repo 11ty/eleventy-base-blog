@@ -1,5 +1,8 @@
 const { DateTime } = require("luxon");
+const { promisify } = require("util");
 const fs = require("fs");
+const hasha = require("hasha");
+const readFile = promisify(require("fs").readFile);
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
@@ -28,6 +31,22 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setDataDeepMerge(true);
 
   eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
+
+  eleventyConfig.addNunjucksAsyncFilter("addHash", function (
+    absolutePath,
+    callback
+  ) {
+    readFile(`_site${absolutePath}`, {
+      encoding: "utf-8",
+    })
+      .then((content) => {
+        return hasha.async(content);
+      })
+      .then((hash) => {
+        callback(null, `${absolutePath}?hash=${hash.substr(0, 10)}`);
+      })
+      .catch((error) => callback(error));
+  });
 
   eleventyConfig.addFilter("cssmin", function (code) {
     return new CleanCSS({}).minify(code).styles;
