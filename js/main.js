@@ -8,7 +8,6 @@ setInterval(time, 60 * 1000);
 
 function time() {
   if (document.hidden) return;
-  console.log("track");
   gtag("event", "time", {
     event_category: "time",
     event_label: "seconds",
