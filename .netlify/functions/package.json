@@ -1,0 +1,16 @@
+{
+  "name": "netlify functions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "proxy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "querystring": "^0.2.0",
+    "request": "^2.88.2",
+    "uuid": "^8.2.0"
+  }
+}

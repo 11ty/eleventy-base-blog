@@ -35,8 +35,8 @@
     <link rel="preload" href="https://rsms.me/inter/font-files/Inter-ExtraLight.woff2?v=3.13" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://rsms.me/inter/font-files/Inter-Regular.woff2?v=3.13" as="font" type="font/woff2" crossorigin>
     
-    <script async defer src="https://www.googletagmanager.com/gtag/js?id=UA-141920860-1"></script>
     <script async defer src="{{ "/js/main.js" | addHash }}"></script>
+    <script async defer src="{{ "/js/cached.js" | addHash }}"></script>
     <script></script>
     <link rel="preconnect" href="https://www.google-analytics.com">
     <!-- css is inserted by purify-css custom plugin -->
@@ -66,26 +66,6 @@
     <footer>
       <a href="/about/">Malte Ubl</a>
     </footer>
-
-    <script>
-    function prefetch(e) {
-      if (e.target.tagName != 'A') {
-        return;
-      }
-      var l = document.createElement('link');
-      l.rel = 'prefetch';
-      l.href = e.target.href;
-      document.head.appendChild(l);
-    }
-    document.documentElement.addEventListener('mouseover', prefetch, {
-      capture: true,
-      passive: true
-    });
-    document.documentElement.addEventListener('touchstart', prefetch, {
-      capture: true,
-      passive: true
-    });
-    </script>
 
     <!-- Current page: {{ page.url | url }} -->
   </body>
