@@ -1,0 +1,49 @@
+{
+  "version": "https://jsonfeed.org/version/1",
+  "title": "Your Blog Name",
+  "home_page_url": "https://myurl.com/",
+  "feed_url": "https://myurl.com/feed/feed.json",
+  "description": "I am writing about my experiences as a naval navel-gazer.",
+  "author": {
+    "name": "Your Name Here",
+    "url": ""
+  },
+  "items": [
+    {
+      "id": "https://myurl.com/eleventy-base-blog/posts/firstpost/",
+      "url": "https://myurl.com/eleventy-base-blog/posts/firstpost/",
+      "title": "This is my first post.",
+      "content_html": "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\n<p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>\n<h2 id=\"section-header\">Section Header <a class=\"direct-link\" href=\"#section-header\">#</a></h2>\n<p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>\n<pre class=\"language-text\"><code class=\"language-text\"><span class=\"highlight-line\">// this is a command</span><br><span class=\"highlight-line\">function myCommand() {</span><br><mark class=\"highlight-line highlight-line-active\">\tlet counter = 0;</mark><br><mark class=\"highlight-line highlight-line-active\">\tcounter++;</mark><br><span class=\"highlight-line\">}</span><br><span class=\"highlight-line\"></span><br><span class=\"highlight-line\">// Test with a line break above this line.</span><br><span class=\"highlight-line\">console.log('Test');</span></code></pre>\n",
+      "date_published": "2018-05-01T00:00:00-00:00",
+      "tags": [
+      ]
+    },
+    {
+      "id": "https://myurl.com/eleventy-base-blog/posts/secondpost/",
+      "url": "https://myurl.com/eleventy-base-blog/posts/secondpost/",
+      "title": "This is my second post.",
+      "content_html": "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\n<h2 id=\"section-header\">Section Header <a class=\"direct-link\" href=\"#section-header\">#</a></h2>\n<p><a href=\"/eleventy-base-blog/posts/firstpost/\">First post</a><br>\n<a href=\"/eleventy-base-blog/posts/thirdpost/\">Third post</a></p>\n<p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>\n<p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>\n",
+      "date_published": "2018-07-04T00:00:00-00:00",
+      "tags": [
+      ]
+    },
+    {
+      "id": "https://myurl.com/eleventy-base-blog/posts/thirdpost/",
+      "url": "https://myurl.com/eleventy-base-blog/posts/thirdpost/",
+      "title": "This is my third post.",
+      "content_html": "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\n<pre class=\"language-js\"><code class=\"language-js\"><span class=\"highlight-line\"><span class=\"token comment\">// this is a command</span></span><br><span class=\"highlight-line\"><span class=\"token keyword\">function</span> <span class=\"token function\">myCommand</span><span class=\"token punctuation\">(</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">{</span></span><br><ins class=\"highlight-line highlight-line-add\">\t<span class=\"token keyword\">let</span> counter <span class=\"token operator\">=</span> <span class=\"token number\">0</span><span class=\"token punctuation\">;</span></ins><br><span class=\"highlight-line\"></span><br><del class=\"highlight-line highlight-line-remove\">\tcounter<span class=\"token operator\">++</span><span class=\"token punctuation\">;</span></del><br><span class=\"highlight-line\"></span><br><span class=\"highlight-line\"><span class=\"token punctuation\">}</span></span><br><span class=\"highlight-line\"></span><br><span class=\"highlight-line\"><span class=\"token comment\">// Test with a line break above this line.</span></span><br><span class=\"highlight-line\">console<span class=\"token punctuation\">.</span><span class=\"token function\">log</span><span class=\"token punctuation\">(</span><span class=\"token string\">'Test'</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span></span></code></pre>\n<p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>\n<h2 id=\"section-header\">Section Header <a class=\"direct-link\" href=\"#section-header\">#</a></h2>\n<p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>\n",
+      "date_published": "2018-08-24T00:00:00-00:00",
+      "tags": [
+      ]
+    },
+    {
+      "id": "https://myurl.com/eleventy-base-blog/posts/fourthpost/",
+      "url": "https://myurl.com/eleventy-base-blog/posts/fourthpost/",
+      "title": "This is my fourth post.",
+      "content_html": "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\n<p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>\n<h2 id=\"section-header\">Section Header <a class=\"direct-link\" href=\"#section-header\">#</a></h2>\n<p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>\n",
+      "date_published": "2018-09-30T00:00:00-00:00",
+      "tags": [
+      ]
+    }
+  ]
+}
