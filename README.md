@@ -95,6 +95,8 @@ Or in debug mode:
 make npm debug
 ```
 
+More detail on this Docker setup can be found in the [Running Node.js in Docker for local development](https://nystudio107.com/blog/run-your-node-js-apps-buildchains-via-docker) article.
+
 ### Implementation Notes
 
 * `about/index.md` shows how to add a content page.
