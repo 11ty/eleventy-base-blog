@@ -63,6 +63,38 @@ Or in debug mode:
 DEBUG=* npx eleventy
 ```
 
+### Run Eleventy via Docker
+
+This project comes with an optional [Docker](https://www.docker.com/) config ready to go.
+
+Just have [Docker installed](https://docs.docker.com/get-docker/) and then from the project directory, run in your Terminal:
+
+```
+make docker
+make npm install
+```
+
+Then you can use any of the scripts in your `package.json` to run the project via Docker container:
+
+```
+make npm build
+```
+
+Or build and host locally for local development
+```
+make npm serve
+```
+
+Or build automatically when a template changes:
+```
+make npm watch
+```
+
+Or in debug mode:
+```
+make npm debug
+```
+
 ### Implementation Notes
 
 * `about/index.md` shows how to add a content page.
