@@ -19,14 +19,14 @@ These builders are amazing—try them out to get your own Eleventy site in a few
 
 ## Getting Started
 
-### 1. Clone this Repository
+### 1. Clone this Repository:
 
 ```
 git clone https://github.com/11ty/eleventy-base-blog.git my-blog-name
 ```
 
 
-### 2. Navigate to the directory
+### 2. Navigate to the directory:
 
 ```
 cd my-blog-name
@@ -34,7 +34,7 @@ cd my-blog-name
 
 Specifically have a look at `.eleventy.js` to see if you want to configure any Eleventy options differently.
 
-### 3. Install dependencies
+### 3. Install dependencies:
 
 ```
 npm install
@@ -42,7 +42,7 @@ npm install
 
 ### 4. Edit _data/metadata.json
 
-### 5. Run Eleventy
+### 5. Run Eleventy:
 
 ```
 npx eleventy
