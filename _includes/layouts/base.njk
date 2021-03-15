@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title or metadata.title }}</title>
     <meta name="description" content="{{ description or metadata.description }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
@@ -12,6 +17,8 @@
   </head>
   <body>
     <header>
+
+
       <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
 
       {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
@@ -24,22 +31,30 @@
 
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
 
-      <!-- Delete this message -->
-      <div class="warning">
-        <ol>
-          <li>Edit the <code>_data/metadata.json</code> with your blog’s information.</li>
-          <li>(Optional) Edit <code>.eleventy.js</code> with your <a href="https://www.11ty.dev/docs/config/">configuration preferences</a>.</li>
-          <li>Delete this message from <code>_includes/layouts/base.njk</code>.</li>
-        </ol>
-        <p><em>This is an <a href="https://www.11ty.dev/">Eleventy project</a> created from the <a href="https://github.com/11ty/eleventy-base-blog"><code>eleventy-base-blog</code> repo</a>.</em></p>
-      </div>
+    
       <!-- Stop deleting -->
 
       {{ content | safe }}
     </main>
 
-    <footer></footer>
-
+    
+<!-- Footer -->
+<footer class="footer">
+  <!-- Social Media-->
+  <div class = "social-media">
+    <a href="https://twitter.com/NeilC98875055" class="fa fa-twitter"></a>
+    <a href="https://www.linkedin.com/in/neil-c-881955186/" class="fa fa-linkedin"></a>
+    <a href="https://github.com/neilchadders" class="fa fa-github"></a>
+  </div>  
+ 
+    <a class = "footer-tag" href="">Neil Chadwick | Web Developer</a>
+ 
+</footer>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <!-- Current page: {{ page.url | url }} -->
   </body>
+
+
+
+
 </html>
