@@ -41,17 +41,16 @@ module.exports = function(eleventyConfig) {
     return Math.min.apply(null, numbers);
   });
 
+  eleventyConfig.addFilter("filterTagList", tags => {
+    // should match the list in tags.njk
+    return (tags || []).filter(tag => ["all", "nav", "post", "posts"].indexOf(tag) === -1);
+  })
+
   // Create an array of all tags
   eleventyConfig.addCollection("tagList", function(collection) {
     let tagSet = new Set();
-    collection.getAll().forEach(function(item) {
-      if( "tags" in item.data ) {
-        let tags = item.data.tags;
-
-        // this list should match the `filter` list in tags.njk
-        tags.filter(tag => ["all", "nav", "post", "posts"].indexOf(tag) === -1)
-          .forEach(tag => tagSet.add(tag));
-      }
+    collection.getAll().forEach(item => {
+      (item.data.tags || []).forEach(tag => tagSet.add(tag));
     });
 
     return [...tagSet];
