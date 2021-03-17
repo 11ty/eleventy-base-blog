@@ -27,8 +27,8 @@
     "@11ty/eleventy": "^0.11.1",
     "@11ty/eleventy-navigation": "^0.1.6",
     "@11ty/eleventy-plugin-rss": "^1.1.0",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.6",
-    "luxon": "^1.25.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.1.0",
+    "luxon": "^1.26.0",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.2.5"
   }
