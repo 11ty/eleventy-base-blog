@@ -1,6 +1,5 @@
+/* Colors */
 :root {
-  --red: #C5004A;
-  --darkred: #7F0036;
   --lightgray: #e0e0e0;
   --gray: #C0C0C0;
   --darkgray: #333;
@@ -8,14 +7,17 @@
   --blue: #082840;
   --white: #fff;
 }
+
+/* Global stylesheet */
 * {
   box-sizing: border-box;
 }
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: -apple-system, system-ui, sans-serif;
   color: var(--darkgray);
   background-color: var(--white);
 }
@@ -182,20 +184,26 @@ pre {
 
 /* Tags */
 .post-tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   vertical-align: text-top;
   text-transform: uppercase;
-  font-size: 0.625em; /* 10px /16 */
+  font-size: 0.6875em; /* 11px /16 */
   padding: 2px 4px;
   margin-left: 0.8em; /* 8px /10 */
-  background-color: var(--red);
-  color: var(--white);
+  color: var(--darkgray);
+  border: 1px solid var(--gray);
   border-radius: 0.25em; /* 3px /12 */
   text-decoration: none;
 }
 a[href].post-tag,
 a[href].post-tag:visited {
-  color: #fff;
+  color: inherit;
+}
+a[href].post-tag:hover,
+a[href].post-tag:focus {
+  background-color: var(--lightgray);
 }
 
 /* Warning */
