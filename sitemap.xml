@@ -23,41 +23,41 @@
   
   <url>
     <loc>https://example.com/eleventy-base-blog/about/</loc>
-    <lastmod>2021-03-17</lastmod>
+    <lastmod>2021-03-19</lastmod>
   </url>
   
   <url>
     <loc>https://example.com/eleventy-base-blog/posts/</loc>
-    <lastmod>2021-03-17</lastmod>
+    <lastmod>2021-03-19</lastmod>
   </url>
   
   <url>
     <loc>https://example.com/eleventy-base-blog/</loc>
-    <lastmod>2021-03-17</lastmod>
+    <lastmod>2021-03-19</lastmod>
   </url>
   
   <url>
     <loc>https://example.com/eleventy-base-blog/page-list/</loc>
-    <lastmod>2021-03-17</lastmod>
+    <lastmod>2021-03-19</lastmod>
   </url>
   
   <url>
     <loc>https://example.com/eleventy-base-blog/tags/</loc>
-    <lastmod>2021-03-17</lastmod>
+    <lastmod>2021-03-19</lastmod>
   </url>
   
   <url>
     <loc>https://example.com/eleventy-base-blog/tags/another-tag/</loc>
-    <lastmod>2021-03-17</lastmod>
+    <lastmod>2021-03-19</lastmod>
   </url>
   
   <url>
     <loc>https://example.com/eleventy-base-blog/tags/second-tag/</loc>
-    <lastmod>2021-03-17</lastmod>
+    <lastmod>2021-03-19</lastmod>
   </url>
   
   <url>
     <loc>https://example.com/eleventy-base-blog/tags/number-2/</loc>
-    <lastmod>2021-03-17</lastmod>
+    <lastmod>2021-03-19</lastmod>
   </url>
 </urlset>
