@@ -1,7 +1,7 @@
 {
   "version": "https://jsonfeed.org/version/1.1",
   "title": "Your Blog Name",
-  "language" "en",
+  "language": "en",
   "home_page_url": "https://example.com/",
   "feed_url": "https://example.com/feed/feed.json",
   "description": "I am writing about my experiences as a naval navel-gazer.",
