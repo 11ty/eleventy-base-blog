@@ -197,7 +197,6 @@ code {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  vertical-align: text-top;
   text-transform: uppercase;
   font-size: 0.6875em; /* 11px /16 */
   padding: 0.09090909090909em 0.3636363636364em; /* 1px 4px /11 */
@@ -215,6 +214,9 @@ a[href].post-tag:visited {
 a[href].post-tag:hover,
 a[href].post-tag:focus {
   background-color: var(--lightgray);
+}
+.postlist-item > .post-tag {
+  align-self: center;
 }
 
 /* Warning */
