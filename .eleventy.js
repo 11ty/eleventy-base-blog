@@ -7,12 +7,15 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 
 module.exports = function(eleventyConfig) {
+  // Add plugins
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
 
+  // https://www.11ty.dev/docs/data-deep-merge/
   eleventyConfig.setDataDeepMerge(true);
 
+  // Alias `layout: post` to `layout: layouts/post.njk`
   eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
 
   eleventyConfig.addFilter("readableDate", dateObj => {
@@ -33,43 +36,31 @@ module.exports = function(eleventyConfig) {
     return array.slice(0, n);
   });
 
+  // Return the smallest number argument
   eleventyConfig.addFilter("min", (...numbers) => {
     return Math.min.apply(null, numbers);
   });
 
+  eleventyConfig.addFilter("filterTagList", tags => {
+    // should match the list in tags.njk
+    return (tags || []).filter(tag => ["all", "nav", "post", "posts"].indexOf(tag) === -1);
+  })
+
+  // Create an array of all tags
   eleventyConfig.addCollection("tagList", function(collection) {
     let tagSet = new Set();
-    collection.getAll().forEach(function(item) {
-      if( "tags" in item.data ) {
-        let tags = item.data.tags;
-
-        tags = tags.filter(function(item) {
-          switch(item) {
-            // this list should match the `filter` list in tags.njk
-            case "all":
-            case "nav":
-            case "post":
-            case "posts":
-              return false;
-          }
-
-          return true;
-        });
-
-        for (const tag of tags) {
-          tagSet.add(tag);
-        }
-      }
+    collection.getAll().forEach(item => {
+      (item.data.tags || []).forEach(tag => tagSet.add(tag));
     });
 
-    // returning an array in addCollection works in Eleventy 0.5.3
     return [...tagSet];
   });
 
+  // Copy the `img` and `css` folders to the output
   eleventyConfig.addPassthroughCopy("img");
   eleventyConfig.addPassthroughCopy("css");
 
-  /* Markdown Overrides */
+  // Customize Markdown library and settings:
   let markdownLibrary = markdownIt({
     html: true,
     breaks: true,
@@ -81,7 +72,7 @@ module.exports = function(eleventyConfig) {
   });
   eleventyConfig.setLibrary("md", markdownLibrary);
 
-  // Browsersync Overrides
+  // Override Browsersync defaults (used only with --serve)
   eleventyConfig.setBrowserSyncConfig({
     callbacks: {
       ready: function(err, browserSync) {
@@ -89,6 +80,7 @@ module.exports = function(eleventyConfig) {
 
         browserSync.addMiddleware("*", (req, res) => {
           // Provides the 404 content without redirect.
+          res.writeHead(404, {"Content-Type": "text/html; charset=UTF-8"});
           res.write(content_404);
           res.end();
         });
@@ -99,6 +91,8 @@ module.exports = function(eleventyConfig) {
   });
 
   return {
+    // Control which files Eleventy will process
+    // e.g.: *.md, *.njk, *.html, *.liquid
     templateFormats: [
       "md",
       "njk",
@@ -106,21 +100,30 @@ module.exports = function(eleventyConfig) {
       "liquid"
     ],
 
-    // If your site lives in a different subdirectory, change this.
-    // Leading or trailing slashes are all normalized away, so don’t worry about those.
+    // -----------------------------------------------------------------
+    // If your site deploys to a subdirectory, change `pathPrefix`.
+    // Don’t worry about leading and trailing slashes, we normalize these.
 
     // If you don’t have a subdirectory, use "" or "/" (they do the same thing)
     // This is only used for link URLs (it does not affect your file structure)
     // Best paired with the `url` filter: https://www.11ty.dev/docs/filters/url/
 
     // You can also pass this in on the command line using `--pathprefix`
-    // pathPrefix: "/",
 
-    markdownTemplateEngine: "liquid",
+    // Optional (default is shown)
+    pathPrefix: "/",
+    // -----------------------------------------------------------------
+
+    // Pre-process *.md files with: (default: `liquid`)
+    markdownTemplateEngine: "njk",
+
+    // Pre-process *.html files with: (default: `liquid`)
     htmlTemplateEngine: "njk",
-    dataTemplateEngine: "njk",
 
-    // These are all optional, defaults are shown:
+    // Opt-out of pre-processing global data JSON files: (default: `liquid`)
+    dataTemplateEngine: false,
+
+    // These are all optional (defaults are shown):
     dir: {
       input: ".",
       includes: "_includes",
