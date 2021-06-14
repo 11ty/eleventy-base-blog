@@ -4,7 +4,7 @@ pagination:
   size: 20
   alias: entries
 layout: layouts/home.njk
-permalink: /page-list/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber }}/{% endif %}
+permalink: /page-list/{{ pagination.pageNumber + "/" if pagination.pageNumber > 0 }}
 ---
 <table>
   <thead>
