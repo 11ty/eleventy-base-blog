@@ -41,10 +41,11 @@ module.exports = function(eleventyConfig) {
     return Math.min.apply(null, numbers);
   });
 
-  eleventyConfig.addFilter("filterTagList", tags => {
-    // should match the list in tags.njk
+  function filterTagList(tags) {
     return (tags || []).filter(tag => ["all", "nav", "post", "posts"].indexOf(tag) === -1);
-  })
+  }
+
+  eleventyConfig.addFilter("filterTagList", filterTagList)
 
   // Create an array of all tags
   eleventyConfig.addCollection("tagList", function(collection) {
@@ -53,7 +54,7 @@ module.exports = function(eleventyConfig) {
       (item.data.tags || []).forEach(tag => tagSet.add(tag));
     });
 
-    return [...tagSet];
+    return filterTagList([...tagSet]);
   });
 
   // Copy the `img` and `css` folders to the output
