@@ -70,9 +70,13 @@ module.exports = function(eleventyConfig) {
     breaks: true,
     linkify: true
   }).use(markdownItAnchor, {
-    permalink: true,
-    permalinkClass: "direct-link",
-    permalinkSymbol: "#"
+    permalink: markdownItAnchor.permalink.ariaHidden({
+      placement: "after",
+      class: "direct-link",
+      symbol: "#",
+      level: [1,2,3,4],
+    }),
+    slugify: eleventyConfig.getFilter("slug")
   });
   eleventyConfig.setLibrary("md", markdownLibrary);
 
