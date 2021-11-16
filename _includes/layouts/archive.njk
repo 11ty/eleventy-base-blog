@@ -1,0 +1,45 @@
+---
+layout: layouts/base.njk
+---
+
+<nav class="paging" aria-label="pagination">
+  <ul>
+    <li>{% if page.url != pagination.href.first %}<a href="{{ pagination.href.first }}">First</a>{% else %}First{% endif %}</li>
+    <li>{% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">Previous</a>{% else %}Previous{% endif %}</li>
+    <li>{% if pagination.href.next %}<a href="{{ pagination.href.next }}">Next</a>{% else %}Next{% endif %}</li>
+    <li>{% if page.url != pagination.href.last %}<a href="{{ pagination.href.last }}">Last</a>{% else %}Last{% endif %}</li>
+  </ul>
+</nav>
+
+{{ content | safe }}  
+
+<div class="posts-list">
+  {% for post in posts %}
+      <article>
+        <header>
+          <h2><a href="{{ post.url }}">{{ post.data.pageTitle }}</a></h2>
+          <time datetime="{{ post.date | dateFormatMachine }}">
+            <span class="date-day">{{ post.date.getDate() }}</span> 
+            <span class="date-month">{{ post.date.toLocaleString('default', { month: 'long' }) }}</span>, 
+            <span class="date-year">{{ post.date.getFullYear() }}</span>
+          </time>
+        </header>
+        {% if post.data.page.excerpt %}
+          {{ post.data.page.excerpt | md | safe}}
+        {% else %}
+          {{ post.templateContent | safe}}
+        {% endif %}
+      </article>
+      <hr aria-hidden="true"/>
+  {% endfor %}  
+</div> 
+
+
+<nav class="paging" aria-label="pagination">
+  <ul>
+    <li>{% if page.url != pagination.href.first %}<a href="{{ pagination.href.first }}">First</a>{% else %}First{% endif %}</li>
+    <li>{% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">Previous</a>{% else %}Previous{% endif %}</li>
+    <li>{% if pagination.href.next %}<a href="{{ pagination.href.next }}">Next</a>{% else %}Next{% endif %}</li>
+    <li>{% if page.url != pagination.href.last %}<a href="{{ pagination.href.last }}">Last</a>{% else %}Last{% endif %}</li>
+  </ul>
+</nav>
