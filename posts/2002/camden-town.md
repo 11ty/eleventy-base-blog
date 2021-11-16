@@ -1,0 +1,13 @@
+---
+pageTitle: Camden Town
+date: 2002-07-22
+tags: travel
+---
+<p>Here <del>are</del> were some photos of Camden, the area I lived in for the best part of two years. A more bizzare, interesting, diverse and touristy place all wrapped in one is not known to me anywhere on earth. It is unique. 
+</p>
+---
+
+<p>
+There is something here for everybody - as long as you like things to be different. The highstreet is packed with tourists and locals alike on weekends, especially on sunny summer sundays, but even on cold wet days in winter this place is bursting to the brim. The attraction is obvious, the brightly coloured shops with their huge signs attached to the walls are equally strange as the somehwat run down Stables Market area full of little stalls selling anything from Cheap CDs to 60s clothing, from authentic american indian artefacts to the latest and coolest in techno clothing, from PVC to fetish and bondage gear! Beer, food and drinks are also available freely here, as are drugs (if you know where to look - not that I would advise anybody to try them) and other illegal goods. This place sells pretty much anything there is demand for. Other places worth seeing here are the Roundhouse (always hosting interesting shows) and the Chalk Farm Art Gallery, easily my favourite art gallery due to its consistently high quality and original displays. Two shops you have to enter are Cybderdog (for all things techno) and Cyber Goth (for all things fetish!).</p>
+<p>Nightlife in Camden (and also Kentish Town to the north) is equally lively. I won't go through listing all the pubs, but particular favourites of mine are the Oxford Arms (for it unassuming atmosphere and the fact that it contains a theatre), the Lock Tavern (near the main entrance to the Stables Market) and the Enterprise (near Chalk Farm tube station). Foodwise the local Wagamama is always a good option, but a special recommendation has to go to a small lebanese takeaway on Parkway (about 5 minutes from Camden tube on the left hand side) for its fantastic shish kebabs. Clubbing depends on your tastes, for 70s and 80s cheese go to the Electric Ballroom just next to Camden tube station. If you like things to be more hard rock go to the Underworld (opposite Camden tube station) and if you like techno then the Camden Palace is the place to be (near Mornington Crescent). Finally the Forum in Kentish Town is also worth a visit.</p>
+<p><del>I have included some pictures below, but they do not do the place justice. Camden is a place you have to be in order appreciate the atmosphere - it cannot be experienced over the internet.<br /></del> Unfortunately these have been lost on the interwebs!</p>

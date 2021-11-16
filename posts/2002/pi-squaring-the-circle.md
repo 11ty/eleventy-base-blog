@@ -1,0 +1,17 @@
+---
+pageTitle: Pi - Squaring the Circle
+date: 2002-12-10
+tags: general
+---
+<blockquote>
+<p>The mysterious and wonderful pi is reduced to a gargle that helps computing machines clear their throats.<br />Philip J. Davis, The Love of Large Numbers</p>
+</blockquote>
+---
+
+<h3>3.141592653...</h3>
+<p>Draw a circle of any radius on a piece of paper. Now draw a square whose area exactly matches that of the circle you've just drawn. Whilst your attempting this I'll ramble on a bit about the mystery of pi.</p>
+<h3>What is pi?</h3>
+<p>As we all learnt at school pi is what you get when you divide the circumference of a circle by its diameter and the area of a circle is given by computing the square of its radius and multiplying by pi. But can any of us actually give the exact value of pi? Some might remember it to four decimal places - 3.1415, others might remember nine (3.141592653) although I would guess most of us would have difficulty remembering it to two digits. Of course, it is impossible to give the exact value, since its digits after the decimal place do not repeat in any form - that is they are completely random. Getting back to the problem mentioned above, if you have solved it then you have found the exact value of pi, more likely though you won't have. This is because in order to do this you would need to know the exact value of pi. Something nobody has achieved yet, not even with the help of the most powerful super computers. And this is something I find amazing. We have put a man on the moon, we communicate with mobile phones smaller than our palms, we clone sheep, we have deciphered the genetic code - Christ - I've just read we are on the verge recreating a black hole (not the best thing to be attempting...) but we can't determine pi. To put this more bluntly, it is impossible to calculate the exact area of the circle you drew above. It's a finite object - how on earth can we not be able to determine its exact area?</p>
+<h3>In Quest of digits</h3>
+<p>The record for caculating the digits of pi stands at 51 billion digits (Kanada and Takahashim, 1997). Probably the most interesting characters in determining pi are the Chudnovsky brother, who became so obsessed with this number, that they have built their own supercomputer in their apartment. They correctly calculated pi to over 8 billion digits on this computer in 1996. Another interesting person in this never ending quest is Srinivasa Ramanujan. Ramanujan was born in southern India in 1887 and whilst at school it quickly became apparent he was a prodigy at maths. Eventualy he came into contact with an english professor, G.H. Hardy (having been rejected by two others as a crackpot). Hardy reasoned that the equations he had been sent were so bizzare that they must be true, since nobody could have invented them! Ramanujan then travelled to England to study, but sadly soon became chronically ill and finally died in 1920, back in India. Even today, mathematicians are still unravelling the equations Ramanujan wrote down and are using them to generate algorithms for calculaitng pi.</p>
+<p>Want to find out more? Go to "The Joy of Pi" at www.joyofpi.com or buy the book of the same title by David Blatner.</p>

@@ -1,0 +1,14 @@
+---
+pageTitle: Windows speech recognition for power users
+date: 2011-04-14
+tags: a11y
+---
+<p>Earlier in the year I wrote two posts about using your computer more efficiently using  <a title="Windows computing for RSI sufferers" href="/posts/2011/windows-computing-for-rsi-sufferers/">keyboard shortcuts</a> and <a title="Windows Speech Recognition" href="/posts/2011/windows-speech-recognition/">windows speech recognition</a>. In the three months since then I have gained further insights about how to use the computer without touching the keyboard or mouse.</p>
+---
+
+<h3>Typing mode</h3>
+<p>Windows speech recognition offers a typing mode, which can be activated by saying "start typing" and deactivated by saying "stop typing". This tells speech recognition that all future commands are to be interpreted as keyboard keys. You are essentially telling the computer which keyboard key you wish to press. So if for example you're trying to dictate a strange word, perhaps a foreign word, it might be quicker to do this in typing mode. So the German word "schadenfreude" is probably easier dictated in typing mode as follows: s c h a d e n f r e u d e . Importantly you do not need to pause between each letter, so it is really quite quick to dictate complicated words in typing mode. Further, if you're having trouble getting speech recognition to understand certain letters you can also dictate the letters using<a href="http://en.wikipedia.org/wiki/NATO_phonetic_alphabet"> NATO's phonetic alphabet</a>. So the word would start with "Sierra" "Charlie" "Hotel". You can of course also press keys such as "Insert", "Tab" and "Control". Set to close the current window in typing mode you would say "Alt F4".</p>
+<h3>Know your shortcuts</h3>
+<p>Getting around your computer without using a mouse means knowing your shortcuts. I believe there is nothing in windows 7 that you need a mouse for. However sometimes it is hard to figure out what the keyboard shortcut is. Still, it is vital to know as many keyboard shortcuts as possible as you can then switch into typing mode to emulate these keyboard shortcuts. As an example, I work on a dual monitor system which means I am often moving windows from one monitor to the other. The way to do this using keyboard shortcuts is to press and hold down "shift", "window" and either the "left" or "right" arrow. In typing mode, all you have to say is: "shift window left". I especially like how this reads like a normal command!</p>
+<h3>The whole is greater than the sum of its parts</h3>
+<p>When you start adding all this together windows speech recognition starts to become really powerful to the point where it is possibly easier than actually using a mouse or keyboard. For example, using typing mode in conjunction with the <a href="http://www.mouseless.de/index.php?/content/view/14/26/">mouseless browsing plugin</a> for Firefox is a very efficient way to navigate the web using a browser and speech recognition.</p>

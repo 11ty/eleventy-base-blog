@@ -1,0 +1,10 @@
+---
+pageTitle: Browser History
+date: 2003-02-03
+tags: web
+---
+<p>The history of web browsers started with the "invention" of the world-wide-web by Tim Berners-Lee at the beginning of the '90s. The first widely used browser was Mosaic. Netscape entered the browser market shortly after this giving birth to what is commonly known as the "Browser Wars".</p> 
+---
+
+<p>Microsoft quickly realized that browser technology had the ability to supplant the operating system as the base element for computer users. In short, what operating system you used would be immaterial as long as you had a good web browser. This of course threatened the whole of Microsoft?s business model and they quickly developed a browser of their own, Internet Explorer, pushing its capabilities quicker than web standards could be fully developed and completely integrating it into it's Windows OS. Thus 90% of home computer users effectively had IE thrust on them overnight ? with no way of removing it if they didn't like it. The rest as they say "is history". IE became the de-facto standard and Netscape more or less went bust, being bought by AOL (who, curiously, themselves relied on IE browser technology). The internet has suffered ever since (and Microsoft has landed in a number of courts around the world on anti-trust and abuse of market power charges).</p>
+<p>Instead of one standard, the web ended up with a "one plus many" standard, where web developers had to cover a multitude of browsers, effectively at least doubling their work. Only recently have web standards made a strong comeback. And thanks to the efforts of the largely standards compliant browsers Mozilla, Opera and others are actually being followed. With universal support for HTML4.01 (at the least) more or less upon us, the future of the web appears to be back on the right track.</p>

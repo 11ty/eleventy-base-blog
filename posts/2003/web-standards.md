@@ -1,0 +1,11 @@
+---
+pageTitle: The case for Web Standards
+date: 2003-05-15
+tags: web
+---
+<p>There is a lot of talk at present about the need for web standards and their use in real life situations. Many developers/designers, whilst appreciating the need for common standards, tend to ignore them if something can be more easily implemented in another way. The main reason for this, they claim, is largely that not all functionality is available to them or few browsers adequately support the standards.</p>
+---
+
+<p>The first point is not applicable in most cases, whilst the latter is becoming increasingly obsolete with the latest generation browsers of Mozilla, Opera and to some extent IE. With the correct use of HTML 4.01, CSS 2 and DOM 2, pretty much all needs of the web developer and designer can be met. Where not, a standards compliant XML document complete with DTD and XSLT should do the trick. Thus the case for ignoring standards is very weak.</p>
+<p>Why have standards in the first place? The need for standards is mainly business driven. They enable different businesses to interact in a common and pre-defined way. Much like there is only one ?standard? kilogram, so there should only be one standard version of HTML 4.01. Imagine the confusion if every supermarket had its own definition of the kilogram. Well, this unthinkable situation has plagued the web for years. In the early days, when web standards were somewhat basic, the two main browser vendors decided on their own interpretation of HTML. They often added their own elements to increase functionality and usability. What resulted was an unprecedented mess for the web developers. Any web page worth its salt had to be written at least twice. The extra cost to business was and still is enormous.</p>
+<p>In defence of the early browsers, much of the apathy towards standards was on the grounds that existing standards were limited and failed to keep up with the possibilities of the web. On the other hand, whilst it takes time to develop sound standards, those for HTML 4.01, CSS 2 and DOM 2 have been around since roughly the turn of the century. So it is in fact the browser vendors who have been dragging their heels. In particular the market leader who understandably has little interest in fully supporting standards.</p>
