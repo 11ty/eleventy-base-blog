@@ -1,9 +1,36 @@
 ---
-layout: layouts/home.njk
-eleventyNavigation:
-  key: Home
-  order: 1
+layout: layouts/base.njk
 ---
+
+<article>
+    <h1>Welcome!</h1>
+    <p>This is my personal site which I use to note down my thoughts. I hope you find it interesting and leave it feeling contented. Enjoy.</p>
+</article>
+
+<div class="posts-list">
+  {% for post in collections.posts | reverse %}
+    {% if loop.index0 < 15 %}
+      <article>
+        <header>
+          <h2><a href="{{ post.url }}">{{ post.data.pageTitle }}</a></h2>
+          <time datetime="{{ post.date.toISOString() | dateFormatMachine }}">
+            <span class="date-day">{{ post.date.getDate() }}</span> 
+            <span class="date-month">{{ post.date.toLocaleString('default', { month: 'long' }) }}</span>, 
+            <span class="date-year">{{ post.date.getFullYear() }}</span>
+          </time>
+        </header>
+        {% if post.data.page.excerpt %}
+          {{ post.data.page.excerpt | md | safe}}
+        {% else %}
+          {{ post.templateContent | safe}}
+        {% endif %}
+      </article>
+      <hr aria-hidden="true"/>
+    {% endif %}
+  {% endfor %}  
+</div> 
+
+
 {% set maxPosts = collections.posts.length | min(3) %}
 <h1>Latest {% if maxPosts == 1 %}Post{% else %}{{ maxPosts }} Posts{% endif %}</h1>
 
@@ -12,3 +39,4 @@ eleventyNavigation:
 {% include "postslist.njk" %}
 
 <p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>
+ 

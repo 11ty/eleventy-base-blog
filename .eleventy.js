@@ -6,9 +6,6 @@ const pluginNavigation = require("@11ty/eleventy-navigation");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 
-//added by me
-var moment = require('moment-timezone');
-
 module.exports = function(eleventyConfig) {
   // Add plugins
   eleventyConfig.addPlugin(pluginRss);
@@ -32,15 +29,12 @@ module.exports = function(eleventyConfig) {
 
   //vvvvvvvvvvvvv
   //added by me
-  //installed moment npm plugins which are legacy:
-  // - npm i moment
-  // - npm i moment-timezone
   eleventyConfig.addFilter("dateFormatShort", function(dateIn) {
-    return moment(dateIn).format('DD MMMM, YYYY');
+    return DateTime.fromISO(dateIn).toFormat('dd LLLL, yyyy');
   });
 
   eleventyConfig.addFilter("dateFormatMachine", function(dateIn) {
-    return moment(dateIn).format('YYYY-MM-DD hh:mm:ss');
+    return DateTime.fromISO(dateIn, { zone: 'utc' }).toFormat('yyyy-LL-dd HH-mm-ss');
   });
 
   eleventyConfig.addFilter('dateFromTimestamp', (timestamp) => {
