@@ -1,45 +1,91 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en-GB">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <!-- See: https://www.w3schools.com/css/css_rwd_viewport.asp-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title or metadata.title }}</title>
-    <meta name="description" content="{{ description or metadata.description }}">
+    <meta name="description" content="Web accessibility, photos, travel and random stuff" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{% if pageTitle %}{{ pageTitle }} | ContentedWeb {% else %}ContentedWeb{% endif %}" />
+    <meta property="og:description" content="Web accessibility, photos, travel and random stuff" />
+    <meta property="og:url" content="https://www.contentedweb.com{{ page.url }}" />
+    <meta property="og:site_name" content="ContentedWeb" />
+    <meta property="og:image" content="" />
+    <link rel="canonical" href="https://www.contentedweb.com{{ page.url }}" />
+    <link href="https://github.com/contentedweb" rel="me" />
+    <link rel="icon" href="/assets/images/cwfav.png" type="image.png" size="130x130">
+    <link rel="stylesheet" href="/assets/css/style.css" media="all" />
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
   </head>
   <body>
-    <header>
-      <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
-
-      {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-      <ul class="nav">
-      {%- for entry in collections.all | eleventyNavigation %}
-        <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}"><a href="{{ entry.url | url }}">{{ entry.title }}</a></li>
-      {%- endfor %}
-      </ul>
+    <a class="skip-link" href="#site-content">Skip to the content</a>
+    <header class="masthead">
+        <div class="header-area">
+            <div class="header-title">
+              <address class="h-card bio">
+                <img class="u-photo" src="/assets/images/cw.jpg" alt="" />
+                <div class="p-name sitetitle">
+                    <a href="{{ '/' | url }}" class="u-url">{{ metadata.title }}</a>
+                </div>
+                <div class="p-note subtitle">Web accessibility, photos, travel and random noise</div>
+              </address>
+            </div>
+            <div class="header-nav">
+                <nav>
+                    {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
+                    {% set navPages = collections.all | eleventyNavigation %}
+                    <ul>
+                    {%- for entry in navPages %}
+                        <li {% if page.url.startsWith(entry.url) %} class="current"{% endif %}>
+                            <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+                        </li>
+                    {%- endfor %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </header>
-
-    <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
-
-      <!-- Delete this message -->
-      <div class="warning">
-        <ol>
-          <li>Edit the <code>_data/metadata.json</code> with your blog’s information.</li>
-          <li>(Optional) Edit <code>.eleventy.js</code> with your <a href="https://www.11ty.dev/docs/config/">configuration preferences</a>.</li>
-          <li>Delete this message from <code>_includes/layouts/base.njk</code>.</li>
-        </ol>
-        <p><em>This is an <a href="https://www.11ty.dev/">Eleventy project</a> created from the <a href="https://github.com/11ty/eleventy-base-blog"><code>eleventy-base-blog</code> repo</a>.</em></p>
-      </div>
-      <!-- Stop deleting -->
-
-      {{ content | safe }}
+    <main id="site-content" {% if templateClass %} class="{{ templateClass }}"{% endif %}>
+       <article>
+        {% if pageTitle or (tags and "posts" in tags) %}
+          <header>
+              {% if pageTitle %}
+                  <h1>{{ pageTitle }}</h1> 
+              {% endif %}
+              {% if tags and "posts" in tags %}
+                  <h2 class="published">
+                      <time class="dt-published" datetime="{{ page.date | dateFormatMachine }}">
+                          <span class="date-day">{{ page.date.getDate() }}</span> 
+                          <span class="date-month">{{ page.date.toLocaleString('default', { month: 'long' }) }}</span>, 
+                          <span class="date-year">{{ page.date.getFullYear() }}</span>
+                      </time>
+                  </h2>
+              {% endif %}
+          </header>
+        {% endif %}
+        {{ content | safe }} 
+      </article>
     </main>
-
-    <footer></footer>
-
+    <footer>
+        <div class="footer-area">
+            <span class="copy">
+                &copy; 2021 ContentedWeb
+                <br/>
+                <span class="emojis">👍</span>  
+            </span> 
+            <span class="power">
+            <a class="a11y-statement" href="/accessibility/">Accessibility Statement</a>            
+            <br/>
+            Powered with HTML, CSS and <a href="https://www.a11yproject.com/">a11y</a>.
+            </span>
+        </div>
+    </footer>
     <!-- Current page: {{ page.url | url }} -->
   </body>
 </html>

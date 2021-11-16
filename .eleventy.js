@@ -6,6 +6,9 @@ const pluginNavigation = require("@11ty/eleventy-navigation");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 
+//added by me
+var moment = require('moment-timezone');
+
 module.exports = function(eleventyConfig) {
   // Add plugins
   eleventyConfig.addPlugin(pluginRss);
@@ -26,6 +29,25 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter('htmlDateString', (dateObj) => {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
   });
+
+  //vvvvvvvvvvvvv
+  //added by me
+  //installed moment npm plugins which are legacy:
+  // - npm i moment
+  // - npm i moment-timezone
+  eleventyConfig.addFilter("dateFormatShort", function(dateIn) {
+    return moment(dateIn).format('DD MMMM, YYYY');
+  });
+
+  eleventyConfig.addFilter("dateFormatMachine", function(dateIn) {
+    return moment(dateIn).format('YYYY-MM-DD hh:mm:ss');
+  });
+
+  eleventyConfig.addFilter('dateFromTimestamp', (timestamp) => {
+    return DateTime.fromISO(timestamp, { zone: 'utc' }).toJSDate()
+  });
+  //^^^^^^^^^^^^^
+
 
   // Get the first `n` elements of a collection.
   eleventyConfig.addFilter("head", (array, n) => {
