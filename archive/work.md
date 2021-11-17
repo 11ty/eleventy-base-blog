@@ -1,6 +1,6 @@
 ---
 layout: layouts/archive.njk
-pageTitle: Work
+title: Work
 pagination:
   data: collections.work
   size: 20

@@ -1,6 +1,6 @@
 ---
 layout: layouts/archive.njk
-pageTitle: General
+title: General
 pagination:
   data: collections.general
   size: 20

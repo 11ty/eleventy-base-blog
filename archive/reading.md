@@ -1,6 +1,6 @@
 ---
 layout: layouts/archive.njk
-pageTitle: Reading List
+title: Reading List
 pagination:
   data: collections.reading 
   size: 20

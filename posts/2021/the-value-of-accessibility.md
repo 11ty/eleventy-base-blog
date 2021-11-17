@@ -1,7 +1,10 @@
 ---
 pageTitle: The value of accessibility
+title: The value of accessibility www
 date: 2021-03-18
-tags: web
+tags: 
+    - web
+    - a11y
 ---
 <p>
 Jeremy Keith recently blogged about the <a href="https://adactio.com/journal/17943">great usability of the UKs Covid vaccination online booking process</a>.  Having recently renewed my UK passport online I can only second this. The UKs test and trace system perhaps wasn't world beating. But their Government Digital Service most defintely is!</p>

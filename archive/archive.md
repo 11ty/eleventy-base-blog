@@ -1,6 +1,6 @@
 ---
 layout: layouts/archive.njk
-pageTitle: Archive
+title: Archive
 eleventyNavigation:
   key: Archive
   order: 300

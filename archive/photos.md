@@ -1,6 +1,6 @@
 ---
 layout: layouts/archive.njk
-pageTitle: Photos
+title: Photos
 pagination:
   data: collections.photos
   size: 20

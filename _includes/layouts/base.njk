@@ -56,10 +56,10 @@
     </header>
     <main id="site-content" {% if templateClass %} class="{{ templateClass }}"{% endif %}>
        <article>
-        {% if pageTitle or (tags and "posts" in tags) %}
+        {% if title or (tags and "posts" in tags) %}
           <header>
-              {% if pageTitle %}
-                  <h1>{{ pageTitle }}</h1> 
+              {% if title %}
+                  <h1>{{ title }}</h1> 
               {% endif %}
               {% if tags and "posts" in tags %}
                   <h2 class="published">

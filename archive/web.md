@@ -1,6 +1,6 @@
 ---
 layout: layouts/archive.njk
-pageTitle: Web development
+title: Web development
 pagination:
   data: collections.web
   size: 20

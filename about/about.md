@@ -1,6 +1,6 @@
 ---
 layout: layouts/base.njk
-pageTitle: About Me
+title: About Me
 eleventyNavigation:
   key: About
   order: 200

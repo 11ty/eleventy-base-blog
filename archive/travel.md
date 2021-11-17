@@ -1,6 +1,6 @@
 ---
 layout: layouts/archive.njk
-pageTitle: Travel
+title: Travel
 pagination:
   data: collections.travel
   size: 20
