@@ -1,0 +1,147 @@
+* {margin:0;padding:0;border:0;}
+
+body {
+   font-family: 	Georgia,"times new roman",times,serif;
+   /*14px/20px Helvetica, Verdana, sans-serif; */
+}
+
+a {
+  text-decoration:none;
+  color:#666;
+}
+
+html,body{height:100%}
+
+
+
+#main{
+  margin:5em auto;
+	width:605px;;
+}
+
+#main h1 {
+  margin: 0 0 10px 0;
+  padding:10px;
+  background-color:#DCDCDC;
+  border-radius: 15px;
+  height:80px;
+  text-transform:lowercase;
+  font-size:400%;
+  line-height:1em;
+  color:#666;
+}
+
+#main h2 {
+  clear:both;
+  margin: 10px 0 0 0;
+  padding:10px;
+  background-color:#fff;
+  border-radius: 15px;
+  height:15px;
+  text-transform:lowercase;
+  font-size:60%;
+  line-height:0.2em;
+  color:#666;
+}
+
+/*
+#main h1 a{
+  text-transform:lowercase;
+  font-size:200%;
+  line-height:1em;
+}
+*/
+#main h1 img{
+  margin: 0 20px 0 5px;
+  vertical-align:bottom;
+  border-radius: 15px;
+}
+
+#main ul li {
+  float:left;
+  padding:15px;
+  width:270px;
+  height:100px;
+  display:block;
+  background-color:#dcdcdc;
+  opacity:1;
+}
+#main ul li a {
+  display:block;
+  height:100px;
+  width:270px;
+}
+#main ul li p {
+  height:100px;
+  font-size:140%;
+  line-height:1,5em;
+  font-weight:bold;
+}
+
+#main ul li p span {
+  display:inline-block;
+  width:170px;
+  padding-top:20px;
+}
+
+/* Common */
+#main ul li.wordpress p img,
+#main ul li.flickr p img {
+  float:left;
+  margin-right:20px;
+}
+
+#main ul li.facebook p img,
+#main ul li.twitter p img {
+  float:right;
+  margin-left:20px;
+}
+
+/* Wordpress */
+#main ul li.wordpress {
+  border-radius: 15px 0 0  0;
+  margin-bottom:5px;
+  margin-right:5px;
+}
+
+/* Facebook */
+#main ul li.facebook {
+  border-radius: 0 15px 0  0;
+  margin-bottom:5px;
+}
+
+/* Flickr */
+#main ul li.flickr {
+  border-radius: 0 0 0 15px;
+  margin-right:5px;
+}
+
+/* Twitter */
+#main ul li.twitter {
+  border-radius: 0 0 15px 0;
+  text-decoration: line-through;
+}
+
+/* logos 
+#main ul li.wordpress p {
+  background:url(wordpress-logo-125x125.png) no-repeat left top;
+}
+#main ul li.facebook p {
+  background:url(facebook-logo-125x125.png) no-repeat right top;
+}
+#main ul li.flickr p {
+  background:url(flickr-logo-125x125.png) no-repeat left bottom;
+}
+#main ul li.twitter p {
+  background:url(twitter-logo-125x125.png) no-repeat right bottom;
+}
+*/
+
+#main ul li:hover { 
+  opacity:0.5;
+}
+
+#main ul li:hover a {
+  color:#000;
+} 
+

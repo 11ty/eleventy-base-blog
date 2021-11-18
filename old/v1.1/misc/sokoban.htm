@@ -1,0 +1,982 @@
+<HTML>
+<HEAD>
+<TITLE>Sokoban</TITLE>
+<link rel="stylesheet" href="../resource/robin.css" type="text/css">
+<STYLE>
+TD.wall{
+	background-color	:"#000000";	
+}
+
+TD.floor{
+	background-color	:"#000000";
+}
+
+TD.sokoban{
+	background-color	:"#000000";
+}
+</STYLE>
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript" SRC="../resource/common.js"></SCRIPT>
+<SCRIPT LANGUAGE="javascript">
+
+//aBoulders = new Array();			//stores id of cells containing a boulder
+//aBoulderEndPoints = new Array();	//stores id of cells where boulders are to be pushed to
+var iRowsMax = 20;
+var iCellsMax = 20;
+var wall = "#000000";
+var floor = "#cccccc";
+var soko = "#ff0000";
+var boulder = "#00ff00";
+var boulderspot = "#0000ff";
+var blank = "#ffffff";
+var ns = (document.layers) ? true : false;
+var ie = (document.all) ? true : false;
+var gbPull = false;
+var giCurrentLevel = 1;
+
+//0=wall,1=floor,2=sokoban,3=boulder,4=boulderspot
+//_=new line
+var aLevels = new Array();
+aLevels[0] = "00000000000_00001000000_00011000110_00131111110_01112310110_00013000110_00011044110_00010040100_00111111000_00111110000_00111100000_00000000000_";
+aLevels[1] = "000000000_000001410_000013410_000131110_001321000_013110000_044100000_011100000_000000000_";
+aLevels[2] = "0000000000000000_0000000000001110_0000000000011110_0000000000013100_0000011000031300_0000011111313100_0000010013131300_0000114011313100_0000114011111100_0000010000000000_0444412110000000_0444411110000000_0011000000000000_0000000000000000_";
+aLevels[3] = "0000000000000_0001111101120_0001313301110_0000311113310_0000113101110_0000001000000_0441443100000_0144111100000_0114400000000_0000000000000_";
+aLevels[4] = "000000000000000_000111101111000_000131303131000_010313101313010_013114404411310_011344404443110_013144111441310_000000121000000_013144111441310_011344404443110_013114404411310_010313101313010_000131303131000_000111101111000_000000000000000_";
+aLevels[5] = "000000000000000_000411434114000_000131131131000_000014434410000_000003030300000_000004313400000_000001121100000_000000010000000_000001313100000_000041131140000_000000141000000_000000000000000_";
+aLevels[6] = "0000000000000000000_0000000000001111000_0000011000011001000_0001111000010111310_0113121444144113110_0131311001000111000_0001000111000000000_0011111100000000000_0011100000000000000_0000000000000000000_";
+aLevels[7] = "0000000000000_0000011111000_0000010001100_0111111101100_0231114100310_0110111100140_0011001101310_0001100004340_0000111111110_0000000001100_0000000000000_";
+aLevels[8] = "000000000_041411110_043414110_001000210_001131100_001331000_001131000_001100000_000000000_";
+aLevels[9] = "000000000000000000_000000011110000000_000000012110000000_000000011111100000_011000044040300000_013131004441111110_011111444440331110_000000100300100000_000000113111100000_000000000100000000_000000001100000000_000000001100000000_000000001311110000_000000113131110000_000000103010000000_000000111110000000_000000000000000000_";
+
+
+//OBJECTS
+function grid(h,w){
+	this.height = h;
+	this.width = w;
+	this.objectStoreRow = new Array();	//index 0 is always soko
+	this.objectStoreCol = new Array();
+	this.oRows = new Array(this.height);
+
+	for (var i=0;i<this.height;i++){
+		this.oRows[i] = new row(i,this.width);
+	}
+	this.detCellType = gridDetCellType;
+	this.findSoko = gridFindSoko;
+	this.set = gridSet;
+	this.unset = gridUnset;
+	this.moveSoko = gridMoveSoko;
+	this.moveBoulder = gridMoveBoulder;
+	this.checkValidMove = gridCheckValidMove;
+	this.finished = gridFinished;
+}
+
+function row(r,w){
+if(document.all){
+	this.row = r;
+	this.width = w;
+	this.oCells = new Array(this.width);
+	for (var i=0;i<this.width;i++){
+		this.oCells[i] = new cell(this.row,i);
+	}
+}
+}
+
+function cell(r,c){
+	this.row = r;
+	this.col = c;
+	this.id = r+"_"+c;
+	this.type;
+	this.currentType;
+	this.setType = cellSetType;
+//	alert(this.id);
+}
+
+//METHODS
+function cellSetType(type){
+	this.type = type;
+	this.currentType = type;
+}
+
+function gridDetCellType(r,c){
+	return this.oRows[r].oCells[c].currentType;
+}
+
+function gridFindSoko(){
+	for(var i=0;i<this.height;i++){
+		for(var j=0;j<this.width;j++){
+			if(this.oRows[i].oCells[j].currentType == 2)
+				return i+"_"+j;
+		}
+	}
+	return 0;
+}
+
+function gridCheckValidMove(iNewRow,iNewCol,iOldRow,iOldCol,bSoko){
+	var iNewType;
+	var iRowDiff = iNewRow - iOldRow;
+	var iColDiff = iNewCol - iOldCol;
+	if(((iRowDiff*iRowDiff==1)&&(iColDiff==0))||((iColDiff*iColDiff==1)&&(iRowDiff==0))){
+		iNewType = this.detCellType(iNewRow,iNewCol);
+		if((iNewType==1)||(iNewType==4)){
+			return true;
+		}
+		if((iNewType==3)&&(bSoko)){
+			return this.moveBoulder(iNewRow,iNewCol,iNewRow+iRowDiff,iNewCol+iColDiff);
+		}
+	}
+	return false;
+}
+
+function gridSet(r,c,iType){
+	this.oRows[r].oCells[c].currentType = iType;
+	var sColor = boulder;
+	switch(iType){
+		case 2:
+			sColor = soko;
+			break;
+		case 3:
+			sColor = boulder;
+			break;
+	}
+	eval("document.all.f_"+c+"_"+r+".style.backgroundColor='"+sColor+"';");
+}
+
+function gridUnset(r,c){
+	var sColor = floor;
+	var iOrigType =	this.oRows[r].oCells[c].type;
+	this.oRows[r].oCells[c].currentType = iOrigType;
+	switch(iOrigType){
+		case 0:
+			sColor = wall;
+			break;
+		case 1:
+			sColor = floor;
+			break;
+		case 4:
+			sColor = boulderspot;
+			break;
+	}
+	eval("document.all.f_"+c+"_"+r+".style.backgroundColor='"+sColor+"';");
+	return;
+}
+
+function gridMoveSoko(r,c){
+	var iPos;
+	var iOldRow;
+	var iOldCol;
+	var bOkMove;
+	var sSokoCoords = this.findSoko();
+	if (sSokoCoords!='0'){
+		iPos = sSokoCoords.indexOf("_");
+		iOldRow = parseInt(sSokoCoords.substring(0,iPos));
+		iOldCol = parseInt(sSokoCoords.substring(iPos+1,sSokoCoords.length));
+	}
+	else {
+		iOldRow = -1;
+		iOldCol = -1;
+	}
+
+	bOkMove = this.checkValidMove(r,c,iOldRow,iOldCol,true);
+	if(bOkMove){
+		if((iOldRow>-1)||(iOldCol>-1)){
+			this.unset(iOldRow,iOldCol);
+			this.set(r,c,2);
+			return true;
+		}
+	}
+
+	return false;
+}
+
+function gridMoveBoulder(r,c,iNewRow,iNewCol){
+	var bOkMove;
+	bOkMove = this.checkValidMove(iNewRow,iNewCol,r,c,false);
+	if (bOkMove){
+		this.unset(r,c);
+		this.set(iNewRow,iNewCol,3);
+		return true;
+	}
+	return false;
+}
+
+function gridFinished(){
+	var bFinished = false;
+	for(var i=0;i<this.height;i++){
+		for(var j=0;j<this.width;j++){
+			if(this.oRows[i].oCells[j].type == 4){
+				if(this.oRows[i].oCells[j].currentType == 3){
+					bFinished = true;
+				}
+				else{
+					return false;
+				}
+			}
+		}
+	}
+	return bFinished;
+}
+
+function moveSoko(oCell){
+if(document.all){
+	var sId = oCell.id;
+	var iType;
+	var iCol;
+	var iRow;
+	var iPos1;
+	var iPos2;
+	gbPull = window.event.ctrlKey;
+
+	//determine cell setType()and coordinates
+	iPos1 = sId.indexOf("_")
+	iPos2 = sId.indexOf("_",iPos1+1)
+	iCol = parseFloat(sId.substring(iPos1+1,iPos2));
+	iRow = parseFloat(sId.substring(iPos2+1,sId.length));
+	iType = oGrid.detCellType(iRow,iCol);
+
+	if(oGrid.oRows[iRow]){
+		if(oGrid.oRows[iRow].oCells[iCol]){
+			if(iType!=0){
+				oGrid.moveSoko(iRow,iCol);
+			}
+
+			//check finished
+			if(oGrid.finished()){
+				alert("Level Complete");
+			}
+		}
+	}
+}
+}
+
+function moveSokoGrid(sDir){
+	var sSokoCoords = oGrid.findSoko();
+	var iType;
+	var iPos;
+	var iRow;
+	var iCol;
+	if (sSokoCoords!='0'){
+		iPos = sSokoCoords.indexOf("_");
+		iRow = parseInt(sSokoCoords.substring(0,iPos));
+		iCol = parseInt(sSokoCoords.substring(iPos+1,sSokoCoords.length));
+	}
+	else {
+		alert("Can't find Soko!");
+		return false;
+	}
+	
+	switch(sDir){
+		case 'u':
+			iRow--;
+			break;
+		case 'l':
+			iCol--;
+			break;
+		case 'r':
+			iCol++;
+			break;
+		case 'd':
+			iRow++;
+			break;
+	}	
+
+	iType = oGrid.detCellType(iRow,iCol);
+	if(oGrid.oRows[iRow]){
+		if(oGrid.oRows[iRow].oCells[iCol]){
+			if(iType!=0){
+				oGrid.moveSoko(iRow,iCol);
+			}
+			//check finished
+			if(oGrid.finished()){
+				alert("Level Complete");
+			}
+		}
+	}
+}
+
+function initGrid(){
+	var sColorSet;
+	var i, j, iCellType
+	for (i=0;i<oGrid.oRows.length;i++){
+		for(j=0;j<oGrid.oRows[i].oCells.length;j++){
+			iCellType= oGrid.oRows[i].oCells[j].currentType;
+			switch(iCellType){
+				case 0:
+					if (ie) sColorSet = "document.all.f_"+j+"_"+i+".style.backgroundColor='"+wall+"';";
+					break;
+				case 1:
+					if (ie) sColorSet = "document.all.f_"+j+"_"+i+".style.backgroundColor='"+floor+"';";
+					break;
+				case 2:
+					if (ie) sColorSet = "document.all.f_"+j+"_"+i+".style.backgroundColor='"+soko+"';";
+					break;
+				case 3:
+					if (ie) sColorSet = "document.all.f_"+j+"_"+i+".style.backgroundColor='"+boulder+"';";
+					break;
+				case 4:
+					if (ie) sColorSet = "document.all.f_"+j+"_"+i+".style.backgroundColor='"+boulderspot+"';";
+					break;
+				case 5:
+					if (ie) sColorSet = "document.all.f_"+j+"_"+i+".style.backgroundColor='"+blank+"';";
+					break;
+			}
+			eval(sColorSet);
+		}
+	}
+}
+
+function start(){
+	if(document.all){
+		document.all.nsonly.style.visibility="hidden";
+		document.all.ieonly.style.visibility="visible";
+		document.all.ieonly.document.control.total.value = aLevels.length;
+		var sLoc = this.location.href;
+		iIndex = 1;
+		setUpLevel(iIndex);
+	}
+	else{
+		document.layers.nsonly.visibility="visible";
+		document.layers.ieonly.visibility="hidden";
+	}
+}
+
+function setUpLevel(iIndex){
+iIndex = parseInt(iIndex);
+if(document.all){
+	if(iIndex<1){
+		alert("You are already in the first level");
+		return false;
+	}
+	if(iIndex>aLevels.length){
+		alert("You are already in the last level");
+		return false;
+	}
+	giCurrentLevel = iIndex;
+	document.all.ieonly.document.control.level.value=(giCurrentLevel);
+	var sColor;
+	var sChar;
+	var sLevel = aLevels[iIndex-1];
+	var iCount = 0;
+	var iRows = 0;
+	var iCells = sLevel.indexOf("_")
+
+	for(var i=0;i<sLevel.length;i++){
+		sChar = sLevel.substring(i,i+1);
+		if (sChar=="_"){
+			iRows++;
+		}
+	}
+	oGrid = new grid(iRows,iCells);
+	for (i=0;i<iRowsMax;i++){
+		for(var j=0;j<iCellsMax;j++){
+			if((i<oGrid.oRows.length)&&(j<oGrid.oRows[i].oCells.length)){
+				sChar = sLevel.substring(iCount,iCount+1)
+				if(sChar=="_"){
+					iCount++;
+					sChar = sLevel.substring(iCount,iCount+1);
+				}
+				switch(sChar){
+					case "0":
+						oGrid.oRows[i].oCells[j].setType(0);
+						break;
+					case "1":
+						oGrid.oRows[i].oCells[j].setType(1);
+						break;
+					case "2":
+						oGrid.oRows[i].oCells[j].setType(1);
+						oGrid.oRows[i].oCells[j].currentType = 2;
+						break;
+					case "3":
+						oGrid.oRows[i].oCells[j].setType(1);
+						oGrid.oRows[i].oCells[j].currentType = 3;
+						break;
+					case "4":
+						oGrid.oRows[i].oCells[j].setType(4);
+						break;
+				}
+				iCount++;
+			}
+			else{
+				document.all["f_"+j+"_"+i].style.backgroundColor=blank;
+			}
+	/*			if(iCount>=sLevel.length){
+				i = oGrid.oRows.length;
+				j = oGrid.oRows[i].oCells.length;
+			}
+*/		}
+	}
+
+	initGrid();
+}
+}
+
+
+
+</SCRIPT>
+</HEAD>
+<BODY onload="start();">
+<TABLE>
+<TR>
+<TD WIDTH=100>&nbsp;</TD>
+<TD WIDTH="100%" ALIGN="middle" VALIGN="top">
+	<SPAN CLASS="title">Sokoban</SPAN>
+</TD>
+<TD WIDTH=100>&nbsp;</TD>
+</TR>
+</TABLE>
+<BR>
+<DIV class="main">
+This is an html version of Sokoban. Have a play around, it's fairly simple, since I am still working on it. Excellent graphics - I think not!
+<BR>
+Move Soko by clicking on the grid or by clicking on the navigation arrows to the left of the grid. It takes a second or two to load each level.
+<BR>
+Please email any levels you may want to donate to <A href="mailto://rmassart@yahoo.com">me</A>. All <A HREF="#donors">donors</A> will be named on this page.
+<BR><BR>
+</DIV>
+<DIV class="main" id="nsonly" name="nsonly" STYLE="visibility:hidden;position:absolute;top:110;left:8;">
+This only works in Internet Explorer. Nestcape Users: I don't really have the time or will to make this Netscape compatible. The only way I can think of doing his (and admittedly I haven't given it much thought) is by using loads of images and "A" tags. If you can think of better way, do get in touch. Else use Internet Explorer which is a much better browser nowadays - and I used to be a strict Netscape user not so long ago.
+<BR><BR>
+</DIV>
+<DIV id="ieonly" name="ieonly" STYLE="visibility:hidden;position:absolute;top:125;left:8;z-index:1;">
+<FORM name="control" id="control">
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0">
+<TR>
+<TD nowrap height="25"><SPAN class="subtitle">Legend:</SPAN>&nbsp;&nbsp;</TD>
+<TD height="25" width="25" bgcolor="#000000">&nbsp;</TD>
+<TD nowrap>&nbsp;Wall&nbsp;&nbsp;&nbsp;</TD>
+<TD height="25" width="25" bgcolor="#ff0000">&nbsp;</TD>
+<TD nowrap>&nbsp;Soko&nbsp;&nbsp;&nbsp;</TD>
+<TD height="25" width="25" bgcolor="#00ff00">&nbsp;</TD>
+<TD nowrap>&nbsp;Boulder&nbsp;&nbsp;&nbsp;</TD>
+<TD height="25" width="25" bgcolor="#0000ff">&nbsp;</TD>
+<TD nowrap>&nbsp;Boulder Destination</TD>
+</TR>
+</TABLE>
+<BR>
+<TABLE BORDER="0" CELLSPACING="1" CELLPADDING="0">
+<TR>
+	<TD rowspan="20" nowrap valign="top">
+		<A HREF="javascript:void(0);" onClick="setUpLevel(giCurrentLevel-1);">Previous Level</A>&nbsp;&nbsp;&nbsp;
+		<BR><A HREF="javascript:void(0);" onClick="setUpLevel(giCurrentLevel+1);">Next Level</A>
+		<BR><A HREF="javascript:void(0);" onClick="setUpLevel(giCurrentLevel);">Reset</A>
+		<SPAN STYLE="font-size:8pt;">
+		<BR>Go to Level: <input STYLE="font-size:8pt;" type="text" name="goto" id="goto" size="2" maxlength="2">
+		<A HREF="javascript:void(0);" onClick="setUpLevel(document.all.ieonly.document.control.goto.value);">Go</A>&nbsp;&nbsp;&nbsp;
+		<BR>Level: <input STYLE="font-size:8pt;" type="text" name="level" id="level" value="1" size="2" maxlength="2" disabled> of: <input STYLE="font-size:8pt;" type="text" name="total" id="total" size="2" maxlength="2" disabled>
+		</SPAN>
+		<TABLE cellpadding="0" cellspacing="0" border="0" BGCOLOR="#ffffff">
+		<TR>
+			<TD width="25" height="25" rowspan="3">&nbsp;
+			</TD>
+			<TD width="25" height="25">&nbsp;
+			</TD>
+			<TD width="25" height="25">
+			<A HREF="javascript:void(0);" onClick="moveSokoGrid('u');"><IMG SRC="../resource/up_arrow.gif" WIDTH=25 HEIGHT=25 BORDER=0 ALT="Move Up"></A>
+			</TD>
+			<TD width="25" height="25">&nbsp;
+			</TD>
+		</TR>
+		<TR>
+			<TD width="25" height="25">
+			<A HREF="javascript:void(0);" onClick="moveSokoGrid('l');"><IMG SRC="../resource/left_arrow.gif" WIDTH=25 HEIGHT=25 BORDER=0 ALT="Move Left"></A>
+			</TD>
+			<TD width="25" height="25">&nbsp;
+			</TD>
+			<TD width="25" height="25">
+			<A HREF="javascript:void(0);" onClick="moveSokoGrid('r');"><IMG SRC="../resource/right_arrow.gif" WIDTH=25 HEIGHT=25 BORDER=0 ALT="Move Right"></A>
+			</TD>
+		</TR>
+		<TR>
+			<TD width="25" height="25">&nbsp;
+			</TD>
+			<TD width="25" height="25">
+			<A HREF="javascript:void(0);" onClick="moveSokoGrid('d');"><IMG SRC="../resource/down_arrow.gif" WIDTH=25 HEIGHT=25 BORDER=0 ALT="Move Down"></A>
+			</TD>
+			<TD width="25" height="25">&nbsp;
+			</TD>
+		</TR>
+		</TABLE>
+	</TD>
+	<TD id="f_0_0" name="f_0_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_0" name="f_1_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_0" name="f_2_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_0" name="f_3_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_0" name="f_4_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_0" name="f_5_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_0" name="f_6_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_0" name="f_7_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_0" name="f_8_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_0" name="f_9_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_0" name="f_10_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_0" name="f_11_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_0" name="f_12_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_0" name="f_13_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_0" name="f_14_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_0" name="f_15_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_0" name="f_16_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_0" name="f_17_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_0" name="f_18_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_0" name="f_19_0" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_1" name="f_0_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_1" name="f_1_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_1" name="f_2_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_1" name="f_3_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_1" name="f_4_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_1" name="f_5_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_1" name="f_6_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_1" name="f_7_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_1" name="f_8_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_1" name="f_9_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_1" name="f_10_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_1" name="f_11_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_1" name="f_12_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_1" name="f_13_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_1" name="f_14_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_1" name="f_15_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_1" name="f_16_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_1" name="f_17_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_1" name="f_18_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_1" name="f_19_1" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_2" name="f_0_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_2" name="f_1_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_2" name="f_2_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_2" name="f_3_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_2" name="f_4_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_2" name="f_5_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_2" name="f_6_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_2" name="f_7_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_2" name="f_8_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_2" name="f_9_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_2" name="f_10_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_2" name="f_11_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_2" name="f_12_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_2" name="f_13_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_2" name="f_14_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_2" name="f_15_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_2" name="f_16_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_2" name="f_17_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_2" name="f_18_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_2" name="f_19_2" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_3" name="f_0_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_3" name="f_1_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_3" name="f_2_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_3" name="f_3_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_3" name="f_4_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_3" name="f_5_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_3" name="f_6_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_3" name="f_7_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_3" name="f_8_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_3" name="f_9_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_3" name="f_10_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_3" name="f_11_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_3" name="f_12_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_3" name="f_13_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_3" name="f_14_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_3" name="f_15_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_3" name="f_16_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_3" name="f_17_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_3" name="f_18_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_3" name="f_19_3" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_4" name="f_0_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_4" name="f_1_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_4" name="f_2_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_4" name="f_3_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_4" name="f_4_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_4" name="f_5_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_4" name="f_6_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_4" name="f_7_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_4" name="f_8_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_4" name="f_9_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_4" name="f_10_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_4" name="f_11_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_4" name="f_12_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_4" name="f_13_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_4" name="f_14_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_4" name="f_15_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_4" name="f_16_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_4" name="f_17_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_4" name="f_18_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_4" name="f_19_4" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_5" name="f_0_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_5" name="f_1_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_5" name="f_2_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_5" name="f_3_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_5" name="f_4_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_5" name="f_5_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_5" name="f_6_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_5" name="f_7_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_5" name="f_8_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_5" name="f_9_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_5" name="f_10_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_5" name="f_11_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_5" name="f_12_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_5" name="f_13_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_5" name="f_14_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_5" name="f_15_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_5" name="f_16_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_5" name="f_17_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_5" name="f_18_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_5" name="f_19_5" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_6" name="f_0_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_6" name="f_1_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_6" name="f_2_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_6" name="f_3_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_6" name="f_4_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_6" name="f_5_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_6" name="f_6_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_6" name="f_7_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_6" name="f_8_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_6" name="f_9_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_6" name="f_10_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_6" name="f_11_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_6" name="f_12_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_6" name="f_13_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_6" name="f_14_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_6" name="f_15_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_6" name="f_16_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_6" name="f_17_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_6" name="f_18_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_6" name="f_19_6" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_7" name="f_0_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_7" name="f_1_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_7" name="f_2_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_7" name="f_3_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_7" name="f_4_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_7" name="f_5_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_7" name="f_6_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_7" name="f_7_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_7" name="f_8_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_7" name="f_9_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_7" name="f_10_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_7" name="f_11_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_7" name="f_12_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_7" name="f_13_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_7" name="f_14_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_7" name="f_15_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_7" name="f_16_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_7" name="f_17_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_7" name="f_18_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_7" name="f_19_7" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_8" name="f_0_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_8" name="f_1_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_8" name="f_2_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_8" name="f_3_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_8" name="f_4_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_8" name="f_5_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_8" name="f_6_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_8" name="f_7_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_8" name="f_8_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_8" name="f_9_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_8" name="f_10_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_8" name="f_11_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_8" name="f_12_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_8" name="f_13_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_8" name="f_14_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_8" name="f_15_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_8" name="f_16_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_8" name="f_17_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_8" name="f_18_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_8" name="f_19_8" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_9" name="f_0_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_9" name="f_1_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_9" name="f_2_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_9" name="f_3_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_9" name="f_4_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_9" name="f_5_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_9" name="f_6_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_9" name="f_7_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_9" name="f_8_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_9" name="f_9_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_9" name="f_10_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_9" name="f_11_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_9" name="f_12_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_9" name="f_13_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_9" name="f_14_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_9" name="f_15_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_9" name="f_16_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_9" name="f_17_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_9" name="f_18_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_9" name="f_19_9" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_10" name="f_0_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_10" name="f_1_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_10" name="f_2_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_10" name="f_3_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_10" name="f_4_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_10" name="f_5_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_10" name="f_6_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_10" name="f_7_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_10" name="f_8_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_10" name="f_9_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_10" name="f_10_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_10" name="f_11_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_10" name="f_12_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_10" name="f_13_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_10" name="f_14_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_10" name="f_15_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_10" name="f_16_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_10" name="f_17_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_10" name="f_18_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_10" name="f_19_10" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_11" name="f_0_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_11" name="f_1_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_11" name="f_2_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_11" name="f_3_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_11" name="f_4_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_11" name="f_5_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_11" name="f_6_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_11" name="f_7_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_11" name="f_8_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_11" name="f_9_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_11" name="f_10_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_11" name="f_11_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_11" name="f_12_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_11" name="f_13_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_11" name="f_14_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_11" name="f_15_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_11" name="f_16_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_11" name="f_17_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_11" name="f_18_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_11" name="f_19_11" width=25 height=25 onClick="moveSoko(this);"></TD>
+<TR>
+	<TD id="f_0_12" name="f_0_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_12" name="f_1_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_12" name="f_2_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_12" name="f_3_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_12" name="f_4_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_12" name="f_5_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_12" name="f_6_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_12" name="f_7_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_12" name="f_8_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_12" name="f_9_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_12" name="f_10_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_12" name="f_11_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_12" name="f_12_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_12" name="f_13_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_12" name="f_14_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_12" name="f_15_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_12" name="f_16_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_12" name="f_17_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_12" name="f_18_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_12" name="f_19_12" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_13" name="f_0_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_13" name="f_1_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_13" name="f_2_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_13" name="f_3_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_13" name="f_4_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_13" name="f_5_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_13" name="f_6_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_13" name="f_7_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_13" name="f_8_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_13" name="f_9_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_13" name="f_10_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_13" name="f_11_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_13" name="f_12_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_13" name="f_13_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_13" name="f_14_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_13" name="f_15_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_13" name="f_16_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_13" name="f_17_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_13" name="f_18_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_13" name="f_19_13" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_14" name="f_0_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_14" name="f_1_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_14" name="f_2_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_14" name="f_3_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_14" name="f_4_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_14" name="f_5_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_14" name="f_6_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_14" name="f_7_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_14" name="f_8_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_14" name="f_9_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_14" name="f_10_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_14" name="f_11_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_14" name="f_12_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_14" name="f_13_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_14" name="f_14_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_14" name="f_15_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_14" name="f_16_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_14" name="f_17_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_14" name="f_18_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_14" name="f_19_14" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_15" name="f_0_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_15" name="f_1_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_15" name="f_2_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_15" name="f_3_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_15" name="f_4_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_15" name="f_5_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_15" name="f_6_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_15" name="f_7_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_15" name="f_8_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_15" name="f_9_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_15" name="f_10_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_15" name="f_11_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_15" name="f_12_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_15" name="f_13_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_15" name="f_14_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_15" name="f_15_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_15" name="f_16_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_15" name="f_17_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_15" name="f_18_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_15" name="f_19_15" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_16" name="f_0_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_16" name="f_1_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_16" name="f_2_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_16" name="f_3_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_16" name="f_4_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_16" name="f_5_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_16" name="f_6_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_16" name="f_7_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_16" name="f_8_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_16" name="f_9_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_16" name="f_10_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_16" name="f_11_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_16" name="f_12_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_16" name="f_13_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_16" name="f_14_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_16" name="f_15_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_16" name="f_16_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_16" name="f_17_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_16" name="f_18_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_16" name="f_19_16" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_17" name="f_0_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_17" name="f_1_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_17" name="f_2_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_17" name="f_3_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_17" name="f_4_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_17" name="f_5_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_17" name="f_6_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_17" name="f_7_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_17" name="f_8_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_17" name="f_9_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_17" name="f_10_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_17" name="f_11_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_17" name="f_12_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_17" name="f_13_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_17" name="f_14_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_17" name="f_15_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_17" name="f_16_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_17" name="f_17_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_17" name="f_18_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_17" name="f_19_17" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_18" name="f_0_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_18" name="f_1_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_18" name="f_2_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_18" name="f_3_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_18" name="f_4_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_18" name="f_5_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_18" name="f_6_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_18" name="f_7_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_18" name="f_8_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_18" name="f_9_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_18" name="f_10_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_18" name="f_11_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_18" name="f_12_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_18" name="f_13_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_18" name="f_14_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_18" name="f_15_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_18" name="f_16_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_18" name="f_17_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_18" name="f_18_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_18" name="f_19_18" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+<TR>
+	<TD id="f_0_19" name="f_0_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_1_19" name="f_1_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_2_19" name="f_2_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_3_19" name="f_3_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_4_19" name="f_4_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_5_19" name="f_5_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_6_19" name="f_6_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_7_19" name="f_7_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_8_19" name="f_8_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_9_19" name="f_9_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_10_19" name="f_10_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_11_19" name="f_11_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_12_19" name="f_12_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_13_19" name="f_13_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_14_19" name="f_14_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_15_19" name="f_15_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_16_19" name="f_16_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_17_19" name="f_17_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_18_19" name="f_18_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+	<TD id="f_19_19" name="f_19_19" width=25 height=25 onClick="moveSoko(this);"></TD>
+</TR>
+</TR>
+</TABLE>
+</form>
+<A NAME="donors">&nbsp;</A>
+<TABLE cellpadding="3" cellspacing="1" border="0">
+<TR>
+	<TD class="head">Person</TD>
+	<TD class="head">Levels</TD>
+</TR>
+<TR>
+	<TD class="item"><A HREF="mailto:sasquatch@bentonrea.com">David W. Skinner</A></TD>
+	<TD class="item">1-10</TD>
+</TR>
+</TABLE>
+<BR><BR>
+<BR><BR>
+</DIV>
+<BR><BR>
+<DIV STYLE="visibility:hidden;">
+<!--#easybanner4--> 
+</DIV>
+<!-- Start of TheCounter.com Code -->
+<SCRIPT TYPE="text/javascript" LANGUAGE="javascript">
+s="na";c="na";j="na";f=""+escape(document.referrer)
+</SCRIPT>
+<SCRIPT TYPE="text/javascript" LANGUAGE="javascript1.2">
+s=screen.width;v=navigator.appName
+if (v != "Netscape") {c=screen.colorDepth}
+else {c=screen.pixelDepth}
+j=navigator.javaEnabled()
+</SCRIPT>
+<SCRIPT TYPE="text/javascript" LANGUAGE="javascript">
+function pr(n) {document.write(n,"\n");}
+NS2Ch=0
+if (navigator.appName == "Netscape" &&
+navigator.appVersion.charAt(0) == "2") {NS2Ch=1}
+if (NS2Ch == 0) {
+r="&size="+s+"&colors="+c+"&referer="+f+"&java="+j+""
+pr("<A HREF=\"http://www.TheCounter.com\" TARGET=\"_top\"><IMG"+
+" BORDER=0 SRC=\"http://c2.thecounter.com/id=1573332"+r+"\"><\/A>")}
+</SCRIPT>
+<NOSCRIPT><A HREF="http://www.TheCounter.com" TARGET="_top"><IMG
+SRC="http://c2.thecounter.com/id=1573332" ALT="TC" BORDER=0></A>
+</NOSCRIPT>
+<!-- End of TheCounter.com Code -->
+</BODY>
+</HTML>

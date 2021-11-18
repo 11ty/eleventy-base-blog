@@ -1,0 +1,54 @@
+body.guestbook{
+	margin: 10px;
+}
+table{
+	background-color:#edd3a9;
+	width: 580px;
+}
+table.form{
+	text-align:left;
+	width:400px;
+}
+tr{
+	border: 5px solid black;
+}
+td{
+	white-space:nowrap;
+	font-weight:bold;
+}
+td.hint{
+	white-space:normal;
+	font-weight:normal;
+}
+td.who{
+	text-align:center;
+}
+td.form{
+	white-space:nowrap;
+	font-weight:bold;
+	vertical-align:top;
+	width:1%;
+}
+td.field{
+	vertical-align:top;
+	width:99%;
+}
+td.title{
+	white-space: 		nowrap;
+	background-color:	#edd3a9;
+	font-size: 		13px;
+	font-weight: 		bold;
+	color: 			#ff6633;
+	vertical-align:		top;
+}
+td.email{
+	width:100%;
+}
+td.comment{
+	white-space: normal;
+}
+img{
+	border: 0px;
+}
+
+

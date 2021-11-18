@@ -1,0 +1,276 @@
+/*==== BODY element ====*/
+BODY{
+	background-color:	#000000;
+	font-family : 		arial, courier;
+	font-size:			10pt;
+	margin: 			0px;
+	padding: 			0px;
+}
+
+/*==== DIV element ====*/
+DIV{
+	background-color: 	#000000;
+	position:			absolute;
+	display:			block;
+}
+
+DIV.menuitemtop{
+	top:		5px;
+	left:		5px;
+}
+
+DIV.menuitem1{
+	top:		5px;
+	left:		4px;
+}
+
+DIV.menuitem2{
+	top:		23px;
+	left:		4px;
+}
+
+DIV.menuitem3{
+	top:		41px;
+	left:		4px;
+}
+
+DIV.menuitem4{
+	top:		59px;
+	left:		4px;
+}
+
+DIV.menuitem5{
+	top:		77px;
+	left:		4px;
+}
+
+DIV.menuitem6{
+	top:		95px;
+	left:		4px;
+}
+
+DIV.menuitem7{
+	top:		113px;
+	left:		4px;
+}
+
+DIV.menuitem8{
+	top:		131px;
+	left:		4px;
+}
+
+DIV.menuitem9{
+	top:		149px;
+	left:		4px;
+}
+
+DIV.menuitem10{
+	top:		167px;
+	left:		4px;
+}
+
+DIV.menuseperatorH{
+	background-color: 	#FF9900;
+	width:				300px;
+	height: 			1px;
+	top: 				29px;
+	clip: 				rect(0px,auto,1px,0px);
+}
+
+DIV.thecompass{
+	color:			#ff9900;
+	position:		absolute;
+	top:			0px;
+	left:			770px;
+	height:			30px;
+	width:			110px;
+	z-index:		11;
+	font-size:		13px;
+}
+
+DIV.themenu{
+	top:			0px;
+	left:			29px;
+	z-index:		2;
+}
+
+DIV.thetitle{
+	top:			0px;
+	left:			0px;
+	clip:			rect(0px,30px,589px,0px);
+	z-index:		1;
+}
+
+DIV.themargin{
+	top:			30px;
+	left:			30px;
+	height:			570px;
+	width:			160px;
+}
+
+DIV.thenavbar{
+	color:			#ff9900;
+	top:			0px;
+	left:			770px;
+	min-width:		110px;
+	visibility:		hidden;
+	z-index:		12;
+}
+
+DIV.themain{
+	background-color:	#edd3a9;
+	top:			30px;
+	left:			190px;
+	min-height:		530px;
+	width:			750px;
+	padding:		20px 20px;
+}
+
+DIV.thetitlerm{
+	background-color:	#FF9900;
+	top:				30px;
+	left:				0px;
+	height:				498px;
+	width:				30px;
+}
+
+DIV.imagecolumn{ /* used in travel pages to display photos */
+	float:				right;
+	position:			relative;
+	background-color:	#edd3a9; /*inherit; IE doesn't understand this.*/
+	margin: 			7px;
+	clear: 				right;
+}
+
+/*==== SPAN element ====*/
+SPAN.title  {
+	color: 			#ff6633;
+	font-size: 		21px;
+	font-weight: 	bold;
+}
+
+SPAN.subtitle  {
+	color: 			#ff6633;
+	font-size: 		13px;
+	font-weight: 	bold;
+}
+
+SPAN.quote  { /*page header*/
+	color: 			#006600;
+	font-size: 		13px;
+	font-weight: 	normal;
+}
+
+SPAN.author  { /*page header*/
+	font-size: 		13px;
+	font-weight: 	bold;
+}
+
+SPAN.day  { /*used mainly in diary*/
+	font-weight: 	bold;
+}
+
+SPAN.place  { /*used mainly in diary*/
+	color: 			#006600;
+	font-weight: 	bold;
+}
+
+/*==== TR element ====*/
+TR.columnrow{ /*used in Bulgarian impressions page*/
+	padding:0px;
+	margin:	0px;
+	border:	0px;
+}
+
+/*==== TD element ====*/
+TD.item  { /*used for tables in travel intro, packing and diary pages*/
+	background-color: 	#f7b56b;
+	color: 				#3f8e33;
+	font-weight: 		bold;
+	font-size: 			13px;
+	white-space:		nowrap;
+	vertical-align:		top;
+}
+
+TD.use  { /*used for tables in travel intro, packing and diary pages*/
+	background-color: 	#edd3a9;
+	font-size: 			13px;
+	vertical-align:		top; 
+}
+
+TD.title { /*used for tables in travel intro, packing and diary pages*/
+	background-color: 	#eeda79;
+	color: 				#408080;
+	font-size: 			13px;
+	font-weight: 		bold;
+	white-space:		nowrap;
+}
+
+TD.column{ /*used in Bulgarian impressions page*/
+	font-size: 		13px;
+	font-weight:	normal;
+	text-align:		justify;
+	padding: 		0px 10px 0px 10px;
+	width:			230px;
+	border-width: 	0px 0px 0px 1px;
+	border-style: 	solid;
+	border-color: 	#ff6633;
+	vertical-align:	top;
+}
+
+TD.columnhead{ /*used in Bulgarian impressions page*/
+	text-align:	center;
+}
+
+#zerowidth{ /*used in Bulgarian impressions page*/
+	width:		0px;
+}
+
+
+/*==== A element ====*/
+A{
+	color: 			#006600;	
+	font-size: 		13px;
+}
+
+A.menuitem{
+	color: 			#ff9900;
+	font-size: 		13px;
+	text-decoration:none;
+}
+
+/*==== IMG element ====*/
+IMG.navbar{
+	border:			0px;
+	height:			30px;
+	width:			30px;
+	vertical-align:	middle;
+}
+
+IMG.bullet{
+	height:		11px;
+	width:		11px;
+}
+
+IMG.block{ /* used for "amsterdam" like pages, to have image displayed below text*/
+	display:block;
+}
+
+IMG.standards{ /*image logos of software used*/
+	border:	0px;
+}
+
+IMG.titleleft{ /* left image in page header */
+	float:	left;
+	margin:	0px 20px 0px 0px;
+}
+
+IMG.titleright{ /* right image in page header */
+	float:	right;
+	margin:	0px 0px 0px 20px;
+}
+
+/*==== Other ====*/
+P.titlecenter{ /* central text in page header*/
+	text-align:	center;
+}

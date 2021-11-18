@@ -1,0 +1,17 @@
+TD.link{
+	width:			150px;
+	white-space:	nowrap;
+	vertical-align:	top;
+	text-align:		left;
+}
+
+TD.desc{
+	vertical-align:	top;
+	text-align:		left;
+	font:			arial;
+	font-size:		10pt;
+}
+
+TD.center{
+	text-align:		center;
+}

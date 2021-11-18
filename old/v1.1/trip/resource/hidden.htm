@@ -1,0 +1,271 @@
+<html>
+<head>
+	<title>Hidden Page</title>
+<SCRIPT LANGUAGE="javascript">
+<!--
+function menuItem(sName, iSubs, sLink, iState, sPath, sDescr)
+{
+	this.name = sName;		//name of link
+	this.subs = iSubs;		//number of subs
+	this.links = sLink;		//link
+	this.state = iState;	//0=closed, 1=open
+	this.path = sPath;
+	this.descr = sDescr;
+	this.sel = 0;
+	this.subItem = new Array();
+}
+
+aItem = new Array();
+aItem[0] = new menuItem("United States",2,"California_50439.htm",0,"../content/","United States");
+aItem[1] = new menuItem("South Pacific",2,"Fiji_50447.htm",0,"../content/","South Pacific");
+aItem[2] = new menuItem("Australia",2,"EastCoast_50486.htm",0,"../content/","Australia");
+aItem[3] = new menuItem("Indonesia",3,"BaliandLombok_50546.htm",0,"../content/","Indonesia");
+aItem[4] = new menuItem("Asian City Tour",3,"KualaLumpur_50550.htm",0,"../content/","Asian City Tour");
+
+aItem[0].subItem[0] = new menuItem("California",0,"../content/California_50439.htm",0);
+aItem[0].subItem[1] = new menuItem("Hawaii",0,"../content/Hawaii_50440.htm",0);
+
+aItem[1].subItem[0] = new menuItem("Fiji",0,"../content/Fiji_50447.htm",0);
+aItem[1].subItem[1] = new menuItem("New Zealand",0,"../content/NewZealand_50448.htm",0);
+
+aItem[2].subItem[0] = new menuItem("East Coast",0,"../content/EastCoast_50486.htm",0);
+aItem[2].subItem[1] = new menuItem("Central",0,"../content/Central_50542.htm",0);
+
+aItem[3].subItem[0] = new menuItem("Bali",0,"../content/BaliandLombok_50546.htm",0);
+aItem[3].subItem[1] = new menuItem("Java",0,"../content/Java_50547.htm",0);
+aItem[3].subItem[2] = new menuItem("Sumatra",0,"../content/Summatra_50548.htm",0);
+
+aItem[4].subItem[0] = new menuItem("Kuala Lumpur",0,"../content/KualaLumpur_50550.htm",0);
+aItem[4].subItem[1] = new menuItem("Singapore",0,"../content/Singapore_50549.htm",0);
+aItem[4].subItem[2] = new menuItem("Bangkok",0,"../content/Bangkok_50551.htm",0);
+aItem[4].subItem[3] = new menuItem("Hong Kong",0,"../content/HongKong_50586.htm",0);
+
+imgBulletOff = new Image;  imgBulletOff.src = "../../resource/bullet_off.gif";
+imgBulletOn = new Image;  imgBulletOn.src = "../../resource/bullet_on.gif";
+imgDownArrow = new Image; imgDownArrow.src = "../../resource/down.gif";
+
+function checkPage(){
+	var sName = parent.location.href;
+	var iLoc = sName.indexOf("file=");
+	if(iLoc!=-1){
+		sName = sName.substring(iLoc+5,sName.length);
+		switch(sName){
+			case "BaliandLombok_50546":
+				loadPage(0,3,'../content/');
+				break;
+			case "Bangkok_50551":
+				loadPage(2,4,'../content/');
+				break;
+			case "California_50439":
+				loadPage(0,0,'../content/');
+				break;
+			case "Central_50542":
+				loadPage(1,2,'../content/');
+				break;
+			case "EastCoast_50486":
+				loadPage(0,2,'../content/');
+				break;
+			case "Fiji_50447":
+				loadPage(0,1,'../content/');
+				break;
+			case "Hawaii_50440":
+				loadPage(1,0,'../content/');
+				break;
+			case "HongKong_50586":
+				loadPage(3,4,'../content/');
+				break;
+			case "Java_50547":
+				loadPage(1,3,'../content/');
+				break;
+			case "KualaLumpur_50550":
+				loadPage(0,4,'../content/');
+				break;
+			case "NewZealand_50448":
+				loadPage(1,1,'../content/');
+				break;
+			case "Singapore_50549":
+				loadPage(1,4,'../content/');
+				break;
+			case "Summatra_50548":
+				loadPage(2,3,'../content/');
+				break;
+		}
+			
+	}
+	else{
+		loadPage(0,-1,'../misc/');
+	}
+}
+
+//iNum = index of page wrt to parent
+//iParent = index of parent (-1 = no parent)
+function loadPage(iNum,iParent,sPath)
+{
+	//check if item has subs, if so simulate as if
+	//1st sub was clicked
+	if ((iParent==-1)&&(aItem[iNum].subs>0)&&(aItem[iNum].state==0))
+	{
+		iParent = iNum;
+		iNum = 0;	
+	}
+	
+	setTable(iNum, iParent, sPath)
+
+	if (iParent==-1)
+		window.open(sPath+aItem[iNum].links,"MAIN_TRAVEL");
+	else
+		window.open(sPath+aItem[iParent].subItem[iNum].links,"MAIN_TRAVEL");
+
+}
+
+//sets menu table
+function setTable(iNum, iParent, sPath)
+{
+//	alert("num: "+iNum+"  parent: "+iParent);
+
+	iSel = iParent;
+	if (iParent==-1){
+		iSel = iNum;
+	}
+
+	for (i=0; i<aItem.length; i++){
+		if (i==iSel){
+			aItem[i].sel = 1;
+			if (aItem[i].subItem.length>0){
+				if (aItem[i].state==0){
+					aItem[i].state=1;
+				}
+				else if (iParent==-1){
+					aItem[i].state=0;
+				}
+			}
+		}
+		else{
+			aItem[i].sel = 0;
+		}
+
+		for (j=0; j<aItem[i].subItem.length; j++){
+			if ((j==iNum)&&(aItem[i].sel==1)){
+				aItem[i].subItem[j].sel=1;
+			}
+			else{
+				aItem[i].subItem[j].sel=0;
+			}
+		}
+	}
+	var bCollapse = false;
+	writeCode(iNum, iParent, sPath);
+}
+
+//writes dhtml code
+function writeCode(iNum, iParent, sPath)
+{
+	if (iParent==-1)
+	{
+		iParent = iNum;
+	}
+	
+	var sCode = "";
+	sCode = sCode + "<TABLE CLASS=\"menu\" WIDTH=\"100%\" BORDER=\"0\" CELLSPACING=\"2\" CELLPADDING=\"0\" ALIGN=\"CENTER\">";
+	sCode = sCode + "<BR>";
+	for (i=0;i<aItem.length;i++){
+		sCode = sCode + "<TR><TD CLASS=\"MENU\">";
+		sCode = sCode + "<A class=\"menu\" HREF=\"javascript:void(0);\" onClick=\"parent.HIDDEN_TRAVEL.loadPage("+i+",-1,'"+aItem[i].path+"'); return false;\" CLASS=\"MENU\" onMouseOver=\"window.status='"+aItem[i].descr+"'; parent.HIDDEN_TRAVEL.setHigh(this); return true;\" onMouseOut=\"window.status='My Homepage'; parent.HIDDEN_TRAVEL.setLow(this); return true;\">";
+		sCode = sCode + "<IMG NAME=\"img1\" SRC='"; //\"resource/";
+		if (i==iParent){
+			if (aItem[i].state==0)
+				sCode = sCode + imgBulletOn.src; //"bullet_on";
+			else
+				sCode = sCode + imgDownArrow.src; //"down";
+		}
+		else{
+			if (aItem[i].state==0)
+				sCode = sCode + imgBulletOff.src;  // "bullet_off";
+			else
+				sCode = sCode + imgDownArrow.src; //"down";
+		}
+
+		sCode = sCode + "' BORDER=0 ALT=\""+aItem[i].name+"\">&nbsp;"+aItem[i].name+"</A>";
+		sCode = sCode + "</TD></TR>";
+
+		// draw subitems
+		if (aItem[i].state==1){
+			for (j=0;j<aItem[i].subItem.length;j++){
+				sCode = sCode + "<TR><TD>&nbsp;&nbsp;&nbsp;";
+				sCode = sCode + "<A class=\"menu\" HREF=\"javascript:parent.HIDDEN_TRAVEL.loadPage("+j+","+i+",'"+aItem[i].path+"');\" CLASS=MENU onMouseOver=\"window.status='"+aItem[i].subItem[j].name+"'; parent.HIDDEN_TRAVEL.setHigh(this); return true;\" onMouseOut=\"window.status='My Homepage'; parent.HIDDEN_TRAVEL.setLow(this); return true;\">";
+				sCode = sCode + "<IMG NAME='img"+iNum+"_"+i+"' SRC='"; //'resource/bullet_";
+				
+				if (aItem[i].subItem[j].sel==1){
+					sCode = sCode + imgBulletOn.src; //"on";
+				}
+				else{
+					sCode = sCode + imgBulletOff.src; //"off";
+				}
+				
+				sCode = sCode + "' BORDER=0 ALT='"+aItem[i].subItem[j].name+"'>&nbsp;"+aItem[i].subItem[j].name+"</A><BR>";				
+				sCode = sCode + "</TD></TR>";
+			}
+		}
+	}
+	sCode = sCode + "</TABLE>\n";
+/*	sStyle="<STYLE>A.menu{TEXT-DECORATION : none;COLOR : Black;font-family : arial;font-size : 9pt;font-weight : bold;}";
+	sStyle=sStyle+"A{text-decoration : none;}TD{font-size : 10pt;font-family : arial;}";
+	sStyle=sStyle+"A.mainlink{TEXT-DECORATION : none;COLOR : blue;font-weight : bold;}</STYLE>\n";
+*/
+	sStyle="<LINK REL=\"Stylesheet\" TITLE=\"ATD Stylesheet\" MEDIA=\"SCREEN\" HREF=\"../resource/page.css\">";
+
+	
+	doc = parent.MENU_TRAVEL.document;
+	doc.open("text/html","replace");
+	doc.write("<HTML>");
+	doc.write("<HEAD>");
+	doc.write(sStyle);
+	doc.write("</HEAD>");
+	doc.write("<body class=\"menu\" bgcolor=\"#edd3a9\" bcolor=\"#66ccff\" oLoad=\"loadPage(0,-1,'');\">");
+	doc.write(sCode);
+	doc.write("</BODY></HTML>");
+	doc.close();
+//	return 1;
+}
+
+
+function overColor(obj)
+{
+	obj.style.color = "red";
+}
+
+function overColor(obj)
+{
+	obj.style.color = "#F8B376";
+}
+
+function setHigh(obj){
+	if (document.all){
+		obj.style.color = "#088829";
+		obj.style.fontWeight = "bold";
+	}
+}
+
+function setLow(obj){
+	if (document.all){
+		obj.style.color = "#ffffff";
+		obj.style.fontWeight = "normal";
+	}
+}
+
+function setTabHigh(obj){
+	if (document.all){
+		obj.style.color = "#ff0000";
+	}
+}
+
+function setTabLow(obj){
+	if (document.all){
+		obj.style.color = "#ffffff";
+	}
+}
+//-->
+</SCRIPT>
+</head>
+<body bgcolor="#edd3a9" onLoad="checkPage();"></BODY>
+</html>

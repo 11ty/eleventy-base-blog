@@ -1,0 +1,68 @@
+/*Menu*/
+BODY.menu{
+    BACKGROUND-COLOR: #414f65;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 9pt;
+}
+TABLE.menu{
+	font-size : 10pt;
+	font-family : arial;
+}
+A.menu{
+	COLOR: #ffffff;
+	/*COLOR: #000000;*/
+	font-family: verdana;
+	font-size: 9pt;
+	text-decoration : none;
+}
+/*Page*/
+BODY.tour
+{
+/*    BACKGROUND-COLOR: #ffffff;*/
+    BACKGROUND-COLOR: #7CAC87;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 9pt;
+}
+TABLE.tour
+{
+/*    BACKGROUND-COLOR: #ffffff;*/
+	BACKGROUND-COLOR: #7CAC87;
+	FONT-SIZE: 9pt;
+}
+TD.imglabel{
+	COLOR: red;
+}
+DIV.tab{
+	font-family: arial;
+	position: absolute;
+	top: 15;
+	left: 10;
+	visibility: visible;
+
+}
+
+/*Tabs*/
+A.link{
+	COLOR: blue;
+}
+
+A.tabhigh
+{
+    COLOR: red;
+    TEXT-DECORATION: none;
+}
+A.tabnormal
+{
+    COLOR: white;
+	FONT-FAMILY: arial;
+    TEXT-DECORATION: none;
+}
+SPAN.tabhigh{
+    COLOR: white;
+	FONT-FAMILY: arial;
+    TEXT-DECORATION: none;
+}
+/* - */
+DIV.banner{
+	visibility:hidden;
+}

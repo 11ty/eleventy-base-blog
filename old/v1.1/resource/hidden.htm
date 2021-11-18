@@ -1,0 +1,260 @@
+<html>
+<head>
+	<title>Hidden Page</title>
+<SCRIPT LANGUAGE="javascript">
+<!--
+function menuItem(sName, iSubs, sLink, iState, sPath, sDescr)
+{
+	this.name = sName;		//name of link
+	this.subs = iSubs;		//number of subs
+	this.links = sLink;		//link
+	this.state = iState;	//0=closed, 1=open
+	this.path = sPath;
+	this.descr = sDescr;
+	this.sel = 0;
+	this.subItem = new Array();
+}
+
+aItem = new Array();
+aItem[0] = new menuItem("Home",0,"welcome.htm",0,"../misc/","Home Page");
+aItem[1] = new menuItem("Travel",6,"travel.htm",0,"../travel/","My Round the World Trip");
+aItem[2] = new menuItem("Everton",2,"everton.htm",0,"../everton/","Thoughts on Everton");
+aItem[3] = new menuItem("F1",2,"f1.htm",0,"../f1/","Thoughts on F1");
+aItem[4] = new menuItem("Pi",0,"pi.htm",0,"../misc/","Squating the Circle");
+aItem[5] = new menuItem("Fun",2,"create.htm",0,"../misc/","Fun and Games");
+aItem[6] = new menuItem("About Me",0,"aboutme.htm",0,"../misc/","Info about me");
+aItem[7] = new menuItem("Links",0,"links.htm",0,"../misc/","Links Page");
+
+aItem[1].subItem[0] = new menuItem("Introduction",0,"travel.htm",0);
+aItem[1].subItem[1] = new menuItem("Reasons",0,"reasons.htm",0);
+aItem[1].subItem[2] = new menuItem("Preparation",0,"prep.htm",0);
+aItem[1].subItem[3] = new menuItem("Packing",0,"packing.htm",0);
+aItem[1].subItem[4] = new menuItem("My Trip",0,"my_trip.htm",0);
+aItem[1].subItem[5] = new menuItem("My Diary",0,"my_diary.htm",0);
+
+aItem[2].subItem[0] = new menuItem("Introduction",0,"everton.htm",0);
+aItem[2].subItem[1] = new menuItem("This Season",0,"efc_sofar.htm",0);
+
+aItem[3].subItem[0] = new menuItem("Introduction",0,"f1.htm",0);
+aItem[3].subItem[1] = new menuItem("This Season",0,"f1_sofar.htm",0);
+
+aItem[5].subItem[0] = new menuItem("Create",0,"create.htm",0);
+aItem[5].subItem[1] = new menuItem("Sokoban",0,"sokoban.htm",0);
+
+imgBulletOff = new Image;  imgBulletOff.src = "../resource/bullet_off.gif";
+imgBulletOn = new Image;  imgBulletOn.src = "../resource/bullet_on.gif";
+imgDownArrow = new Image; imgDownArrow.src = "../resource/down.gif";
+
+function checkPage(){
+	var sName = parent.location.href;
+	var iLoc = sName.indexOf("file=");
+	if(iLoc!=-1){
+		sName = sName.substring(iLoc+5,sName.length);
+		switch(sName){
+			case "everton":
+				loadPage(0,2,'../everton/');
+				break;
+			case "efc_sofar":
+				loadPage(1,2,'../everton/');
+				break;
+			case "f1":
+				loadPage(0,3,'../f1/');
+				break;
+			case "f1_sofar":
+				loadPage(1,3,'../f1/');
+				break;
+			case "aboutme":
+				loadPage(6,-1,'../misc/');
+				break;
+			case "create":
+				loadPage(0,5,'../misc/');
+				break;
+			case "links":
+				loadPage(7,-1,'../misc/');
+				break;
+			case "pi":
+				loadPage(4,-1,'../misc/');
+				break;
+			case "sokoban":
+				loadPage(1,5,'../misc/');
+				break;
+			case "my_diary":
+				loadPage(5,1,'../travel/');
+				break;
+			case "my_trip":
+				loadPage(4,1,'../travel/');
+				break;
+			case "packing":
+				loadPage(3,1,'../travel/');
+				break;
+			case "prep":
+				loadPage(2,1,'../travel/');
+				break;
+			case "reasons":
+				loadPage(1,1,'../travel/');
+				break;
+			case "travel":
+				loadPage(0,1,'../travel/');
+				break;
+			case "welcome":
+				loadPage(0,-1,'../misc/');
+				break;
+		}
+			
+	}
+	else{
+		loadPage(0,-1,'../misc/');
+	}
+}
+
+//iNum = index of page wrt to parent
+//iParent = index of parent (-1 = no parent)
+function loadPage(iNum,iParent,sPath)
+{
+	//check if item has subs, if so simulate as if
+	//1st sub was clicked
+	if ((iParent==-1)&&(aItem[iNum].subs>0)&&(aItem[iNum].state==0))
+	{
+		iParent = iNum;
+		iNum = 0;	
+	}
+	
+	setTable(iNum, iParent, sPath)
+
+	if (iParent==-1)
+		window.open(sPath+aItem[iNum].links,"MAIN");
+	else
+		window.open(sPath+aItem[iParent].subItem[iNum].links,"MAIN");
+
+}
+
+//sets menu table
+function setTable(iNum, iParent, sPath)
+{
+//	alert("num: "+iNum+"  parent: "+iParent);
+	iSel = iParent;
+	if (iParent==-1){
+		iSel = iNum;
+	}
+
+	for (i=0; i<aItem.length; i++){
+		if (i==iSel){
+			aItem[i].sel = 1;
+			if (aItem[i].subItem.length>0){
+				if (aItem[i].state==0){
+					aItem[i].state=1;
+				}
+				else if (iParent==-1){
+					aItem[i].state=0;
+				}
+			}
+		}
+		else{
+			aItem[i].sel = 0;
+		}
+
+		for (j=0; j<aItem[i].subItem.length; j++){
+			if ((j==iNum)&&(aItem[i].sel==1)){
+				aItem[i].subItem[j].sel=1;
+			}
+			else{
+				aItem[i].subItem[j].sel=0;
+			}
+		}
+	}
+	var bCollapse = false;
+	writeCode(iNum, iParent, sPath);
+}
+
+//writes dhtml code
+function writeCode(iNum, iParent, sPath)
+{
+	if (iParent==-1)
+	{
+		iParent = iNum;
+	}
+	
+	var sCode = "";
+	sCode = sCode + "<TABLE WIDTH=\"100%\" BORDER=\"0\" CELLSPACING=\"2\" CELLPADDING=\"1\" ALIGN=\"CENTER\">";
+	sCode = sCode + "<BR>";
+	sCode = sCode + "<TR><TD CLASS=\"MENU\"><A HREF=\"javascript:void(0);\" onClick=\"parent.HIDDEN.loadPage(0,-1,'../misc/'); return false;\" CLASS=\"MENU\" onMouseOver=\"window.status='Home'; return true;\" onMouseOut=\"window.status='My Homepage'; return true;\">";
+	sCode = sCode + "<IMG NAME=\"img0\" SRC='";
+	if (aItem[0].sel==0){
+		sCode = sCode + imgBulletOff.src; //"off";
+	}
+	else{
+		sCode = sCode + imgBulletOn.src; //"on";
+	}
+	sCode = sCode + "' BORDER=0 ALT=\"Home\">&nbsp;Home</A></TD></TR>";
+
+	for (i=1;i<aItem.length;i++){
+		sCode = sCode + "<TR><TD CLASS=\"MENU\">";
+		sCode = sCode + "<A HREF=\"javascript:void(0);\" onClick=\"parent.HIDDEN.loadPage("+i+",-1,'"+aItem[i].path+"'); return false;\" CLASS=\"MENU\" onMouseOver=\"window.status='"+aItem[i].descr+"'; return true;\" onMouseOut=\"window.status='My Homepage'; return true;\">";
+		sCode = sCode + "<IMG NAME=\"img1\" SRC='";
+		if (i==iParent){
+			if (aItem[i].state==0)
+				sCode = sCode + imgBulletOn.src; //"bullet_on";
+			else
+				sCode = sCode + imgDownArrow.src; //"down";
+		}
+		else{
+			if (aItem[i].state==0)
+				sCode = sCode + imgBulletOff.src;  // "bullet_off";
+			else
+				sCode = sCode + imgDownArrow.src; //"down";
+		}
+
+		sCode = sCode + "' BORDER=0 ALT=\""+aItem[i].name+"\">&nbsp;"+aItem[i].name+"</A>";
+		sCode = sCode + "</TD></TR>";
+
+		// draw subitems
+		if (aItem[i].state==1){
+			for (j=0;j<aItem[i].subItem.length;j++){
+				sCode = sCode + "<TR><TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+				sCode = sCode + "<A HREF=\"javascript:parent.HIDDEN.loadPage("+j+","+i+",'"+aItem[i].path+"');\" CLASS=MENU onMouseOver=\"window.status='"+aItem[i].subItem[j].name+"'; return true;\" onMouseOut=\"window.status='My Homepage'; return true;\">";
+				sCode = sCode + "<IMG NAME='img"+iNum+"_"+i+"' SRC='";
+				
+				if (aItem[i].subItem[j].sel==1){
+					sCode = sCode + imgBulletOn.src; //"on";
+				}
+				else{
+					sCode = sCode + imgBulletOff.src; //"off";
+				}
+				
+				sCode = sCode + "' BORDER=0 ALT='"+aItem[i].subItem[j].name+"'>&nbsp;"+aItem[i].subItem[j].name+"</A><BR>";				
+				sCode = sCode + "</TD></TR>";
+			}
+		}
+	}
+	sCode = sCode + "</TABLE>\n";
+	sStyle="<STYLE>A.menu{TEXT-DECORATION : none;COLOR : Black;font-family : arial;font-size : 9pt;font-weight : bold;}";
+	sStyle=sStyle+"A{text-decoration : none;}TD{font-size : 10pt;font-family : arial;}";
+	sStyle=sStyle+"A.mainlink{TEXT-DECORATION : none;COLOR : blue;font-weight : bold;}</STYLE>\n";
+
+	doc = parent.MENU.document;
+	doc.open("text/html","replace");
+	doc.write("<HTML>");
+	doc.write("<HEAD>");
+	doc.write(sStyle);
+	doc.write("</HEAD>");
+	doc.write("<body class=\"menu\" bgcolor=\"#edd3a9\" oLoad=\"loadPage(0,-1,'');\">");
+	doc.write(sCode);
+	doc.write("</BODY></HTML>");
+	doc.close();
+}
+
+
+function overColor(obj)
+{
+	obj.style.color = "red";
+}
+
+function overColor(obj)
+{
+	obj.style.color = "#F8B376";
+}
+//-->
+</SCRIPT>
+</head>
+<body bgcolor="#edd3a9" onLoad="checkPage();"></BODY>
+</html>
