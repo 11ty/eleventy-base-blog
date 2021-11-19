@@ -1,5 +1,5 @@
 ---
-pageTitle: The problem with Education?
+title: The problem with Education?
 date: 2012-07-22
 tags: general
 ---

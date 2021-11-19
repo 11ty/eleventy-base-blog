@@ -1,5 +1,5 @@
 ---
-pageTitle: Testing Treatments Interactive
+title: Testing Treatments Interactive
 date: 2012-09-11
 tags: work
 ---

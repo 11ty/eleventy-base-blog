@@ -1,5 +1,5 @@
 ---
-pageTitle: The end of web design?
+title: The end of web design?
 date: 2012-05-26    
 tags: web
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Centre for Evidence-Based Medicine
+title: Centre for Evidence-Based Medicine
 date: 2011-09-23
 tags: work
 ---

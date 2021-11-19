@@ -1,5 +1,5 @@
 ---
-pageTitle: Smolyan
+title: Smolyan
 date: 2013-08-30
 tags: photos   
 ---

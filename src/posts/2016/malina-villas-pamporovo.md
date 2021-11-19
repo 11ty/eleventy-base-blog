@@ -1,5 +1,5 @@
 ---
-pageTitle: Malina Villas, Pamporovo
+title: Malina Villas, Pamporovo
 date: 2016-08-27
 tags: photos
 ---

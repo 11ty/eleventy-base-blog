@@ -1,5 +1,5 @@
 ---
-pageTitle: Art in Rosehill
+title: Art in Rosehill
 date: 2011-09-27
 tags: work
 ---

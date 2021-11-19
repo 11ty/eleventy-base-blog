@@ -1,5 +1,5 @@
 ---
-pageTitle: Treasure hunt in Luxembourg
+title: Treasure hunt in Luxembourg
 date: 2021-04-01
 tags: photos
 ---

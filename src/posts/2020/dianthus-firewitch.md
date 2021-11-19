@@ -1,5 +1,5 @@
 ---
-pageTitle: Dianthus Firewitch
+title: Dianthus Firewitch
 date: 2020-05-09
 tags: photos
 ---

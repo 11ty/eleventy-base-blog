@@ -1,5 +1,5 @@
 ---
-pageTitle: Oostduinkerke, Belgium, Summer 2011
+title: Oostduinkerke, Belgium, Summer 2011
 date: 2011-10-01
 tags: photos
 ---

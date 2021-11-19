@@ -1,5 +1,5 @@
 ---
-pageTitle: Redesigned site for Centre for Evidence-Based Dentistry
+title: Redesigned site for Centre for Evidence-Based Dentistry
 date: 2012-06-23
 tags: work
 ---

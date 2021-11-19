@@ -1,5 +1,5 @@
 ---
-pageTitle: The Relativity of Wrong
+title: The Relativity of Wrong
 date: 2019-12-02
 tags: general
 ---

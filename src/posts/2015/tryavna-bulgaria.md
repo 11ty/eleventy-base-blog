@@ -1,5 +1,5 @@
 ---
-pageTitle: Tryavna, Bulgaria
+title: Tryavna, Bulgaria
 date: 2015-09-06
 tags: photos
 ---

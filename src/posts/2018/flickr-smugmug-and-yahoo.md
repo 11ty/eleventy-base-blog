@@ -1,5 +1,5 @@
 ---
-pageTitle: Flickr, SmugMug and Yahoo
+title: Flickr, SmugMug and Yahoo
 date: 2018-09-16
 tags: general
 ---

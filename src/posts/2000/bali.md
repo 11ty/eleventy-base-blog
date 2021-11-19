@@ -1,5 +1,5 @@
 ---
-pageTitle: Bali
+title: Bali
 date: 2000-08-13
 tags: travel
 ---

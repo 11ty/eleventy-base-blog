@@ -1,5 +1,5 @@
 ---
-pageTitle: The player of games
+title: The player of games
 date: 2021-09-30
 tags: reading
 ---

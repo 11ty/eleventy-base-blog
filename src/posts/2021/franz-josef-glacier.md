@@ -1,5 +1,5 @@
 ---
-pageTitle: Franz Josef Glacier receeding over time
+title: Franz Josef Glacier receeding over time
 date: 2021-05-01
 tags: travel
 ---

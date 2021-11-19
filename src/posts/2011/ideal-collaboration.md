@@ -1,5 +1,5 @@
 ---
-pageTitle: IDEAL Collaboration
+title: IDEAL Collaboration
 date: 2011-12-04
 tags: work
 ---

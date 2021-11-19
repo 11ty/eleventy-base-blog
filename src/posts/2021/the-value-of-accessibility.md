@@ -1,6 +1,5 @@
 ---
-pageTitle: The value of accessibility
-title: The value of accessibility www
+title: The value of accessibility
 date: 2021-03-18
 tags: 
     - web

@@ -1,5 +1,5 @@
 ---
-pageTitle: Farenheit 451
+title: Farenheit 451
 date: 2020-04-14
 tags: reading
 

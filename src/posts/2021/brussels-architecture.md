@@ -1,5 +1,5 @@
 ---
-pageTitle: Brussels architecture
+title: Brussels architecture
 date: 2021-10-29
 tags: photos
 

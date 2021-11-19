@@ -1,5 +1,5 @@
 ---
-pageTitle: Enjoying the beach
+title: Enjoying the beach
 date: 2021-08-08
 tags: photos
 

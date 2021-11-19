@@ -1,5 +1,5 @@
 ---
-pageTitle: Windows computing without a mouse
+title: Windows computing without a mouse
 date: 2011-01-02
 tags: a11y
 ---

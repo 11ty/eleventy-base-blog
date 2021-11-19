@@ -1,5 +1,5 @@
 ---
-pageTitle: Round the world trip
+title: Round the world trip
 date: 2000-08-01
 tags: travel
 ---

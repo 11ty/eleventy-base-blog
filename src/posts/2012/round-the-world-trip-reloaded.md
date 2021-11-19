@@ -1,5 +1,5 @@
 ---
-pageTitle: Round The World Trip Reloaded
+title: Round The World Trip Reloaded
 date: 2012-08-31
 tags: travel
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: So you want to be a web designer
+title: So you want to be a web designer
 date: 2011-05-30
 tags: web
 ---

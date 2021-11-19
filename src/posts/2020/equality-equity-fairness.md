@@ -1,5 +1,5 @@
 ---
-pageTitle: Equality, Equity, Fairness
+title: Equality, Equity, Fairness
 date: 2020-11-20
 tags: general
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Sunset over Varna
+title: Sunset over Varna
 date: 2014-08-07
 tags: photos
 ---

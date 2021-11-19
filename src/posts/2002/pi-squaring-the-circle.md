@@ -1,5 +1,5 @@
 ---
-pageTitle: Pi - Squaring the Circle
+title: Pi - Squaring the Circle
 date: 2002-12-10
 tags: general
 ---

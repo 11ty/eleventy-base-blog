@@ -1,5 +1,5 @@
 ---
-pageTitle: Let's help kill software patents
+title: Let's help kill software patents
 date: 2013-12-22
 tags: general   
 ---

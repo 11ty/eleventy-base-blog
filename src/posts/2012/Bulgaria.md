@@ -1,5 +1,5 @@
 ---
-pageTitle: Bulgaria
+title: Bulgaria
 date: 2012-09-16
 tags: travel
 ---

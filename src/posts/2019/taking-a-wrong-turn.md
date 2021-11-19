@@ -1,5 +1,5 @@
 ---
-pageTitle: Taking a wrong turn
+title: Taking a wrong turn
 date: 2019-08-25
 tags: travel
 ---

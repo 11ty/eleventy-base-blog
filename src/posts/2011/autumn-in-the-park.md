@@ -1,5 +1,5 @@
 ---
-pageTitle: Autumn in the park
+title: Autumn in the park
 date: 2011-11-05
 tags: photos
 ---

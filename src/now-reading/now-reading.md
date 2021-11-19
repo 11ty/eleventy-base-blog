@@ -1,6 +1,6 @@
 ---
 layout: layouts/base.njk
-pageTitle: Now reading
+title: Now reading
 
 ---
 I am now reading:

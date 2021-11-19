@@ -1,5 +1,5 @@
 ---
-pageTitle: Impressions of Bulgaria
+title: Impressions of Bulgaria
 date: 2004-01-09
 tags: travel
 ---

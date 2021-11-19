@@ -1,5 +1,5 @@
 ---
-pageTitle: Hawaii
+title: Hawaii
 date: 2000-08-08
 tags: travel
 ---

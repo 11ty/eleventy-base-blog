@@ -1,5 +1,5 @@
 ---
-pageTitle: Overview of Bulgaria
+title: Overview of Bulgaria
 date: 2003-07-16
 tags: travel
 ---

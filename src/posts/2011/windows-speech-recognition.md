@@ -1,5 +1,5 @@
 ---
-pageTitle: Windows Speech Recognition
+title: Windows Speech Recognition
 date: 2011-01-14
 tags: a11y
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: My Trip
+title: My Trip
 date: 2000-08-06
 tags: travel
 ---

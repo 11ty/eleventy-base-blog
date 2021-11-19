@@ -1,5 +1,5 @@
 ---
-pageTitle: Sumatra
+title: Sumatra
 date: 2000-08-15
 tags: travel
 ---

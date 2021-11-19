@@ -1,5 +1,5 @@
 ---
-pageTitle: Ubuntu useful hints
+title: Ubuntu useful hints
 date: 2012-03-09  
 tags: web
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Happy New Year
+title: Happy New Year
 date: 2010-12-31
 tags: general
 ---

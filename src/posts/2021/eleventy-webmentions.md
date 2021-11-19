@@ -1,5 +1,5 @@
 ---
-pageTitle: Eleventy, webmentions and my new site
+title: Eleventy, webmentions and my new site
 date: 2021-01-29
 tags: web
 ---

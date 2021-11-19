@@ -1,5 +1,5 @@
 ---
-pageTitle: Australia East Coast
+title: Australia East Coast
 date: 2000-08-11
 tags: travel
 ---

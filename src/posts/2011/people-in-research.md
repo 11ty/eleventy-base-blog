@@ -1,5 +1,5 @@
 ---
-pageTitle: People in Research
+title: People in Research
 date: 2011-10-07
 tags: work
 ---

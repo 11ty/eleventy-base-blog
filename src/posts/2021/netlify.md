@@ -1,5 +1,5 @@
 ---
-pageTitle: Moving to Netlify
+title: Moving to Netlify
 date: 2021-04-17
 tags: web
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Snail
+title: Snail
 date: 2012-08-15
 tags: photos
 ---

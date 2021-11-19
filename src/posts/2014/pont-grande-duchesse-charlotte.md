@@ -1,5 +1,5 @@
 ---
-pageTitle: Pont Grande-Duchesse-Charlotte
+title: Pont Grande-Duchesse-Charlotte
 date: 2014-04-16
 tags: photos
 ---

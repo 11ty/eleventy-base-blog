@@ -1,5 +1,5 @@
 ---
-pageTitle: Blue Red
+title: Blue Red
 date: 2011-10-05
 tags: photos
 ---

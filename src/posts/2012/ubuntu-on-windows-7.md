@@ -1,5 +1,5 @@
 ---
-pageTitle: Using Google to install Ubuntu on a separate hard disk without touching Windows 7
+title: Using Google to install Ubuntu on a separate hard disk without touching Windows 7
 date: 2012-02-29    
 tags: web
 ---

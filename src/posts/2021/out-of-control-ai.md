@@ -1,5 +1,5 @@
 ---
-pageTitle: Out of control AI
+title: Out of control AI
 date: 2021-10-22
 tags: general
 

@@ -1,5 +1,5 @@
 ---
-pageTitle: New Zealand
+title: New Zealand
 date: 2000-08-10
 tags: travel
 ---

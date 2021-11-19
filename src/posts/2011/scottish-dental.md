@@ -1,5 +1,5 @@
 ---
-pageTitle: Scottish Dental
+title: Scottish Dental
 date: 2011-09-28
 tags: work
 ---

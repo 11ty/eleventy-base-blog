@@ -1,5 +1,5 @@
 ---
-pageTitle: Blindsight
+title: Blindsight
 date: 2021-08-31
 tags: reading
 ---

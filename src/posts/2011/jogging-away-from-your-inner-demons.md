@@ -1,5 +1,5 @@
 ---
-pageTitle: Jogging away from over your inner demons
+title: Jogging away from over your inner demons
 date: 2011-11-07
 tags: general
 ---

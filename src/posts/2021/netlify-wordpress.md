@@ -1,5 +1,5 @@
 ---
-pageTitle: The Jamstack, will it supplant Wordpress?
+title: The Jamstack, will it supplant Wordpress?
 date: 2021-04-20
 tags: web
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Freiburg, October 2018
+title: Freiburg, October 2018
 date: 2018-12-06
 tags: photos
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Batak and Beglik lake
+title: Batak and Beglik lake
 date: 2021-08-23
 tags: travel
 

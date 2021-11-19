@@ -1,5 +1,5 @@
 ---
-pageTitle: Paris 2001
+title: Paris 2001
 date: 2013-03-24
 tags: travel   
 ---

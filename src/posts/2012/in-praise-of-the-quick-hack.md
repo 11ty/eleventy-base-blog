@@ -1,5 +1,5 @@
 ---
-pageTitle: In praise of the quick hack
+title: In praise of the quick hack
 date: 2012-08-30
 tags: general
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Packing
+title: Packing
 date: 2000-08-05
 tags: travel
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Yellow
+title: Yellow
 date: 2011-10-04
 tags: photos
 ---

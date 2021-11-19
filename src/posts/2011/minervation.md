@@ -1,5 +1,5 @@
 ---
-pageTitle: Minervation
+title: Minervation
 date: 2011-09-04
 tags: work
 ---

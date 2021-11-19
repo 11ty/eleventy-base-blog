@@ -1,5 +1,5 @@
 ---
-pageTitle: Understanding user needs - a helpful Venn diagram
+title: Understanding user needs - a helpful Venn diagram
 date: 2011-05-05
 tags: web
 ---

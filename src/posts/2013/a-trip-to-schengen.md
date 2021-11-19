@@ -1,5 +1,5 @@
 ---
-pageTitle: A trip to Schengen
+title: A trip to Schengen
 date: 2013-11-04
 tags: photos   
 ---

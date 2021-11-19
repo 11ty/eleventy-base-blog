@@ -1,5 +1,5 @@
 ---
-pageTitle: Alicante, Spain
+title: Alicante, Spain
 date: 2018-02-25
 tags: photos
 ---

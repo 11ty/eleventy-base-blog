@@ -1,5 +1,5 @@
 ---
-pageTitle: The Semantic Web
+title: The Semantic Web
 date: 2003-09-02
 tags: web
 ---

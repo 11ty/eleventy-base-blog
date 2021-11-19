@@ -1,5 +1,5 @@
 ---
-pageTitle: Handmaid's Tale
+title: Handmaid's Tale
 date: 2020-01-15
 tags: reading
 

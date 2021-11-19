@@ -1,5 +1,5 @@
 ---
-pageTitle: Minervation.com Wordpress migration
+title: Minervation.com Wordpress migration
 date: 2012-04-23
 tags: work
 ---

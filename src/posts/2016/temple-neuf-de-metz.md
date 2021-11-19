@@ -1,5 +1,5 @@
 ---
-pageTitle: Temple Neuf de Metz
+title: Temple Neuf de Metz
 date: 2016-05-13
 tags: photos
 ---

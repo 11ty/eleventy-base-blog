@@ -1,5 +1,5 @@
 ---
-pageTitle: Autumn in Brussels
+title: Autumn in Brussels
 date: 2021-10-30
 tags: photos
 

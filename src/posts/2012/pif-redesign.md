@@ -1,5 +1,5 @@
 ---
-pageTitle: PiF redesign
+title: PiF redesign
 date: 2012-12-16
 tags: work
 ---

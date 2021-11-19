@@ -1,5 +1,5 @@
 ---
-pageTitle: NearlyFreeSpeech.Net
+title: NearlyFreeSpeech.Net
 date: 2021-02-05
 tags: web
 ---

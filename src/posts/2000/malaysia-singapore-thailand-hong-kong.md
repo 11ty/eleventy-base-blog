@@ -1,5 +1,5 @@
 ---
-pageTitle: Malaysia, Singapore, Thailand, Hong Kong
+title: Malaysia, Singapore, Thailand, Hong Kong
 date: 2000-08-16
 tags: travel
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Ripped Off
+title: Ripped Off
 date: 2000-08-04
 tags: travel
 ---

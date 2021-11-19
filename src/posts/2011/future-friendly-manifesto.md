@@ -1,5 +1,5 @@
 ---
-pageTitle: Future Friendly Manifesto
+title: Future Friendly Manifesto
 date: 2011-12-13
 tags: web
 ---

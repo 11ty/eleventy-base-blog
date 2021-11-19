@@ -1,5 +1,5 @@
 ---
-pageTitle: Super Blood Wolf Moon
+title: Super Blood Wolf Moon
 date: 2019-01-21
 tags: photos
 ---

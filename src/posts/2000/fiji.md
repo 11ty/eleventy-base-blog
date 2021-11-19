@@ -1,5 +1,5 @@
 ---
-pageTitle: Fiji
+title: Fiji
 date: 2000-08-09
 tags: travel
 ---

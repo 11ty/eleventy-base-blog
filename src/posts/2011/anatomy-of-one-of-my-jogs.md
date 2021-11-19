@@ -1,5 +1,5 @@
 ---
-pageTitle: Anatomy of one of my jogs
+title: Anatomy of one of my jogs
 date: 2011-10-23
 tags: general
 ---

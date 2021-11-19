@@ -1,5 +1,5 @@
 ---
-pageTitle: Prague 1997
+title: Prague 1997
 date: 2013-04-01
 tags: travel   
 ---

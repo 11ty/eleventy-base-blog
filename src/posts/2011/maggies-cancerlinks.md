@@ -1,5 +1,5 @@
 ---
-pageTitle: Maggie's CancerLinks
+title: Maggie's CancerLinks
 date: 2011-12-20
 tags: work
 ---

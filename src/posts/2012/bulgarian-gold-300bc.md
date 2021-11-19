@@ -1,5 +1,5 @@
 ---
-pageTitle: Bulgarian Gold 300BC
+title: Bulgarian Gold 300BC
 date: 2012-06-19    
 tags: photos
 ---

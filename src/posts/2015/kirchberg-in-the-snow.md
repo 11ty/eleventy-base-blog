@@ -1,5 +1,5 @@
 ---
-pageTitle: Kirchberg in the snow
+title: Kirchberg in the snow
 date: 2015-02-04
 tags: photos
 ---

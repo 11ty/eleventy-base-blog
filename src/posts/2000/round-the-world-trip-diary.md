@@ -1,5 +1,5 @@
 ---
-pageTitle: Round the world trip diary
+title: Round the world trip diary
 date: 2000-08-17
 tags: travel
 ---

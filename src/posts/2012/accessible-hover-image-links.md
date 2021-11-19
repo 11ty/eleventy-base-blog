@@ -1,5 +1,5 @@
 ---
-pageTitle: Accessible hover image links
+title: Accessible hover image links
 date: 2012-05-25    
 tags: web
 ---

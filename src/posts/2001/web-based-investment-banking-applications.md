@@ -1,5 +1,5 @@
 ---
-pageTitle: Web based investment banking applications
+title: Web based investment banking applications
 date: 2001-12-31
 tags: work
 ---

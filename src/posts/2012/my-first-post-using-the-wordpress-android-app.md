@@ -1,5 +1,5 @@
 ---
-pageTitle: My first post using the wordpress android app
+title: My first post using the wordpress android app
 date: 2012-06-22  
 tags: general
 ---

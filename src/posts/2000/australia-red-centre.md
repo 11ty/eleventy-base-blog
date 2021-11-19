@@ -1,5 +1,5 @@
 ---
-pageTitle: Australia Red Centre
+title: Australia Red Centre
 date: 2000-08-12
 tags: travel
 ---

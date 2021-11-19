@@ -1,5 +1,5 @@
 ---
-pageTitle: Yogi Berra Quotes
+title: Yogi Berra Quotes
 date: 2016-09-26
 tags: general
 ---

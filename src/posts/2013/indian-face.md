@@ -1,5 +1,5 @@
 ---
-pageTitle: Indian face
+title: Indian face
 date: 2013-07-24
 tags: photos
 

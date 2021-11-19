@@ -1,5 +1,5 @@
 ---
-pageTitle: XML - So What?
+title: XML - So What?
 date: 2003-07-21
 tags: web
 ---

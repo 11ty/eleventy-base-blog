@@ -1,5 +1,5 @@
 ---
-pageTitle: Internet Privacy - A Helpful Venn Diagram
+title: Internet Privacy - A Helpful Venn Diagram
 date: 2010-11-25
 tags: web
 ---

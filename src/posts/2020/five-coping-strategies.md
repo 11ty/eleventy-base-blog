@@ -1,5 +1,5 @@
 ---
-pageTitle: Five coping strategies
+title: Five coping strategies
 date: 2020-11-24
 tags: general
 ---

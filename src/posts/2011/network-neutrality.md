@@ -1,5 +1,5 @@
 ---
-pageTitle: Network neutrality
+title: Network neutrality
 date: 2011-06-27
 tags: web
 ---

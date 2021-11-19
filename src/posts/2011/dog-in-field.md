@@ -1,5 +1,5 @@
 ---
-pageTitle: Dog in field
+title: Dog in field
 date: 2011-11-06
 tags: photos
 ---

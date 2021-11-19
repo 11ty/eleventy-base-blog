@@ -1,5 +1,5 @@
 ---
-pageTitle: Health Rights Information Scotland
+title: Health Rights Information Scotland
 date: 2011-09-11
 tags: work
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Browser History
+title: Browser History
 date: 2003-02-03
 tags: web
 ---

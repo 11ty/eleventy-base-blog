@@ -1,5 +1,5 @@
 ---
-pageTitle: Thinkwell
+title: Thinkwell
 date: 2011-09-07
 tags: work
 ---

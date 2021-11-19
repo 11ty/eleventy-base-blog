@@ -1,5 +1,5 @@
 ---
-pageTitle: Yet more windows short cuts
+title: Yet more windows short cuts
 date: 2011-05-11
 tags: a11y
 ---

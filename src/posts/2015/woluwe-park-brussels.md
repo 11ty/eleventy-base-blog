@@ -1,5 +1,5 @@
 ---
-pageTitle: Woluwe Park, Brussels
+title: Woluwe Park, Brussels
 date: 2015-05-31
 tags: photos
 ---

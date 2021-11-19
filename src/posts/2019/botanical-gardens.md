@@ -1,5 +1,5 @@
 ---
-pageTitle: Botanical Gardens
+title: Botanical Gardens
 date: 2019-03-09
 tags: photos
 ---

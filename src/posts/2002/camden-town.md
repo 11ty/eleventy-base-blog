@@ -1,5 +1,5 @@
 ---
-pageTitle: Camden Town
+title: Camden Town
 date: 2002-07-22
 tags: travel
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Pfaffenthal in the morning mist
+title: Pfaffenthal in the morning mist
 date: 2016-10-16
 tags: photos
 ---

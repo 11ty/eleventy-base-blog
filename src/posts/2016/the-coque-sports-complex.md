@@ -1,5 +1,5 @@
 ---
-pageTitle: The Coque sports complex
+title: The Coque sports complex
 date: 2016-01-23
 tags: photos
 ---

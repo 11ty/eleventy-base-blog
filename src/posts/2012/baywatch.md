@@ -1,5 +1,5 @@
 ---
-pageTitle: Baywatch
+title: Baywatch
 date: 2012-07-29
 tags: photos
 ---

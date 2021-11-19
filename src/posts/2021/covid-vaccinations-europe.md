@@ -1,5 +1,5 @@
 ---
-pageTitle: Covid vaccination rollout in Europe
+title: Covid vaccination rollout in Europe
 date: 2021-04-13
 tags: general
 ---

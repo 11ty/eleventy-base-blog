@@ -1,5 +1,5 @@
 ---
-pageTitle: Spain
+title: Spain
 date: 2001-09-01
 tags: travel
 ---

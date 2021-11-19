@@ -1,5 +1,5 @@
 ---
-pageTitle: Cathedral, Metz
+title: Cathedral, Metz
 date: 2016-06-03
 tags: photos
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Sunrise
+title: Sunrise
 date: 2019-01-24
 tags: photos
 ---

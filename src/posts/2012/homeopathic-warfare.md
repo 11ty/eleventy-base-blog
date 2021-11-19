@@ -1,5 +1,5 @@
 ---
-pageTitle: Homeopathic Warfare
+title: Homeopathic Warfare
 date: 2012-12-17
 tags: general
 ---

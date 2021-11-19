@@ -1,5 +1,5 @@
 ---
-pageTitle: A brief history of Smugmug's acquisition of Flickr
+title: A brief history of Smugmug's acquisition of Flickr
 date: 2018-11-05
 tags: general
 ---

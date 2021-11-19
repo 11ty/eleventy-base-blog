@@ -1,5 +1,5 @@
 ---
-pageTitle: Riding into the sunset
+title: Riding into the sunset
 date: 2012-07-28
 tags: photos
 ---

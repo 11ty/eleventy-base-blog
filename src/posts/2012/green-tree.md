@@ -1,5 +1,5 @@
 ---
-pageTitle: Green Tree
+title: Green Tree
 date: 2012-07-27
 tags: photos
 ---

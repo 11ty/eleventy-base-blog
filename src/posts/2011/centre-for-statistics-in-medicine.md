@@ -1,5 +1,5 @@
 ---
-pageTitle: Centre for Statistics in Medicine
+title: Centre for Statistics in Medicine
 date: 2011-09-22
 tags: work
 ---

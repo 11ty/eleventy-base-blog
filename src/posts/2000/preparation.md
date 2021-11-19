@@ -1,5 +1,5 @@
 ---
-pageTitle: Preparation
+title: Preparation
 date: 2000-08-03
 tags: travel
 ---

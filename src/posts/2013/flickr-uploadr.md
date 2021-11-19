@@ -1,5 +1,5 @@
 ---
-pageTitle: Flickr Uploadr
+title: Flickr Uploadr
 date: 2013-10-19
 tags: general   
 ---

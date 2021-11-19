@@ -1,5 +1,5 @@
 ---
-pageTitle: The size of a point
+title: The size of a point
 date: 2013-03-09
 tags: web   
 ---

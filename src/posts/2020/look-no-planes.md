@@ -1,5 +1,5 @@
 ---
-pageTitle: Look, no planes!
+title: Look, no planes!
 date: 2020-03-22
 tags: photos
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Boat of life
+title: Boat of life
 date: 2012-09-15
 tags: general
 ---

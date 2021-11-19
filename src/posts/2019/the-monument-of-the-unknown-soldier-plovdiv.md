@@ -1,5 +1,5 @@
 ---
-pageTitle: The Monument of the Unknown Soldier, Plovdiv
+title: The Monument of the Unknown Soldier, Plovdiv
 date: 2019-10-30
 tags: photos
 ---

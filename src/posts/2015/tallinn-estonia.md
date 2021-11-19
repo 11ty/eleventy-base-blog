@@ -1,5 +1,5 @@
 ---
-pageTitle: Tallinn, Estonia
+title: Tallinn, Estonia
 date: 2015-06-02
 tags: photos
 ---

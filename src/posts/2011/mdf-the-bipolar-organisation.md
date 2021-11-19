@@ -1,5 +1,5 @@
 ---
-pageTitle: MDF The Bipolar Organisation
+title: MDF The Bipolar Organisation
 date: 2011-09-01
 tags: work
 ---

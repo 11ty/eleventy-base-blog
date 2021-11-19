@@ -1,5 +1,5 @@
 ---
-pageTitle: Equator Network
+title: Equator Network
 date: 2011-09-20
 tags: work
 ---

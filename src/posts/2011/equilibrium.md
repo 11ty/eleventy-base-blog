@@ -1,5 +1,5 @@
 ---
-pageTitle: Equilibrium
+title: Equilibrium
 date: 2011-09-10
 tags: work
 ---

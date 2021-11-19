@@ -1,5 +1,5 @@
 ---
-pageTitle: Centre for Evidence-based Dentistry
+title: Centre for Evidence-based Dentistry
 date: 2011-09-21
 tags: work
 ---

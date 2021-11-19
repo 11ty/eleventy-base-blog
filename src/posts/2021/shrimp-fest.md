@@ -1,5 +1,5 @@
 ---
-pageTitle: Garnaalfeesten Oostduinkerke
+title: Garnaalfeesten Oostduinkerke
 date: 2021-06-28T00:00:00+02:00
 tags: travel
 

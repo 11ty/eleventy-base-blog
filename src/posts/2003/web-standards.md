@@ -1,5 +1,5 @@
 ---
-pageTitle: The case for Web Standards
+title: The case for Web Standards
 date: 2003-05-15
 tags: web
 ---

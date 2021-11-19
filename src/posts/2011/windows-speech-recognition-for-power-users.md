@@ -1,5 +1,5 @@
 ---
-pageTitle: Windows speech recognition for power users
+title: Windows speech recognition for power users
 date: 2011-04-14
 tags: a11y
 ---

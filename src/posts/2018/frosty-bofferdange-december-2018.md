@@ -1,5 +1,5 @@
 ---
-pageTitle: Frosty Bofferdange, December 2018
+title: Frosty Bofferdange, December 2018
 date: 2018-12-26
 tags: photos
 ---

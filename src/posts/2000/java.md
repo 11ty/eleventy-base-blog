@@ -1,5 +1,5 @@
 ---
-pageTitle: Java
+title: Java
 date: 2000-08-14
 tags: travel
 ---

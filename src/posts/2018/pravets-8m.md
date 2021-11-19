@@ -1,5 +1,5 @@
 ---
-pageTitle: Pravets 8M
+title: Pravets 8M
 date: 2018-09-02
 tags: photos
 ---

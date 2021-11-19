@@ -1,5 +1,5 @@
 ---
-pageTitle: .net magazine awards aftermath
+title: .net magazine awards aftermath
 date: 2010-11-23
 tags: web
 ---

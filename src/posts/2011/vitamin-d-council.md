@@ -1,5 +1,5 @@
 ---
-pageTitle: Vitamin D Council
+title: Vitamin D Council
 date: 2011-10-14
 tags: work
 ---

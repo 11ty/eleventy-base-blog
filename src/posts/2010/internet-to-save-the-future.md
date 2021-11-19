@@ -1,5 +1,5 @@
 ---
-pageTitle: Internet to save the future
+title: Internet to save the future
 date: 2010-11-29
 tags: web
 ---

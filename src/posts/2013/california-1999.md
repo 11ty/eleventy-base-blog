@@ -1,5 +1,5 @@
 ---
-pageTitle: California 1999
+title: California 1999
 date: 2013-03-26
 tags: travel   
 ---

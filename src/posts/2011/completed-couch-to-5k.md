@@ -1,5 +1,5 @@
 ---
-pageTitle: Completed Couch To 5K
+title: Completed Couch To 5K
 date: 2011-10-20
 tags: general
 ---

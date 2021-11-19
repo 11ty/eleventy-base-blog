@@ -1,5 +1,5 @@
 ---
-pageTitle: Stonehenge
+title: Stonehenge
 date: 2016-06-04
 tags: photos
 ---

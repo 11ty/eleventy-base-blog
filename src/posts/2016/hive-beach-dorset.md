@@ -1,5 +1,5 @@
 ---
-pageTitle: Hive Beach, Dorset
+title: Hive Beach, Dorset
 date: 2016-05-29
 tags: photos
 ---

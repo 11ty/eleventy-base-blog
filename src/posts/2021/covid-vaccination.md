@@ -1,5 +1,5 @@
 ---
-pageTitle: Covid vaccination
+title: Covid vaccination
 date: 2021-07-01
 tags: general
 

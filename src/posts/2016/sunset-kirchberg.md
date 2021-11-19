@@ -1,5 +1,5 @@
 ---
-pageTitle: Sunset, Kirchberg
+title: Sunset, Kirchberg
 date: 2016-01-02
 tags: photos
 ---

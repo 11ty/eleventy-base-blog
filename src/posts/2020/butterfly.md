@@ -1,5 +1,5 @@
 ---
-pageTitle: Butterfly
+title: Butterfly
 date: 2020-07-07
 tags: photos
 ---

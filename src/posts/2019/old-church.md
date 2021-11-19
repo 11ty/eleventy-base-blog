@@ -1,5 +1,5 @@
 ---
-pageTitle: Old Church
+title: Old Church
 date: 2019-12-30
 tags: photos
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Bullring, Alicante, Spain
+title: Bullring, Alicante, Spain
 date: 2018-03-26
 tags: photos
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Bridge to 10k
+title: Bridge to 10k
 date: 2011-10-23
 tags: general
 ---

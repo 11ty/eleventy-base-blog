@@ -1,5 +1,5 @@
 ---
-pageTitle: California
+title: California
 date: 2000-08-07
 tags: travel
 ---

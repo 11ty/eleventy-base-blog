@@ -1,5 +1,5 @@
 ---
-pageTitle: JavaScript for the ages
+title: JavaScript for the ages
 date: 2021-02-09
 tags: web
 ---

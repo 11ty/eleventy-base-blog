@@ -1,5 +1,5 @@
 ---
-pageTitle: WAD, HEN and WCAGs
+title: WAD, HEN and WCAGs
 date: 2020-10-11
 tags: web
 ---

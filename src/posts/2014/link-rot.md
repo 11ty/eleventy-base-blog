@@ -1,5 +1,5 @@
 ---
-pageTitle: Link rot
+title: Link rot
 date: 2014-06-12
 tags: web
 ---

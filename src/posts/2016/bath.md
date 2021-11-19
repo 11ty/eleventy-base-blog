@@ -1,5 +1,5 @@
 ---
-pageTitle: Batch
+title: Batch
 date: 2016-06-06
 tags: photos
 ---

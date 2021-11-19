@@ -1,5 +1,5 @@
 ---
-pageTitle: Welcome to my blog
+title: Welcome to my blog
 date: 2010-11-06
 tags: general
 ---

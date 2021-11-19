@@ -1,5 +1,5 @@
 ---
-pageTitle: Strasbourg, November 2018
+title: Strasbourg, November 2018
 date: 2018-12-07
 tags: photos
 ---

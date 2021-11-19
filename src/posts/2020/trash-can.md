@@ -1,5 +1,5 @@
 ---
-pageTitle: Trash can
+title: Trash can
 date: 2020-09-19
 tags: photos
 ---

@@ -1,5 +1,5 @@
 ---
-pageTitle: Websites and browser compatibility
+title: Websites and browser compatibility
 date: 2011-10-16
 tags: web
 ---

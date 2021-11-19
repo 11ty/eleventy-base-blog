@@ -1,5 +1,5 @@
 ---
-pageTitle: Photos of Bulgaria
+title: Photos of Bulgaria
 date: 2018-10-30
 tags: travel
 ---

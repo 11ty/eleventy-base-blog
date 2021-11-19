@@ -1,5 +1,5 @@
 ---
-pageTitle: Privacy - how GDPR is meant to work
+title: Privacy - how GDPR is meant to work
 date: 2021-02-03
 tags: web
 ---

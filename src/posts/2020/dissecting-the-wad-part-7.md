@@ -1,5 +1,5 @@
 ---
-pageTitle: Dissecting the WAD, part 7
+title: Dissecting the WAD, part 7
 date: 2020-11-16
 tags: web
 ---
