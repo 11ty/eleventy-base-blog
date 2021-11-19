@@ -13,7 +13,7 @@ pagination:
 layout: layouts/home.njk
 eleventyComputed:
   title: Posts tagged “{{ tag }}”
-permalink: /tags/{{ tag | slug }}/
+permalink: /archive/tagged/{{ tag | slug }}/
 ---
 
 {% set postslist = collections[ tag ] %}
