@@ -1,0 +1,36 @@
+---
+layout: layouts/home.njk
+title: All posts
+---
+
+{% if 1 == 1 %}
+<p>These are all my posts in one long list, grouped by year.</p>
+{% endif %}
+
+{% for year, yearPosts in collections.postsByYear %}
+  <h2>{{ year }}</h2>
+  <ul class="postlist">
+    {% for post in yearPosts | reverse %}
+      <li>
+        <a href="{{ post.url | url }}" class="post-title">{{ post.data.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endfor %}
+
+{#
+<ol reversed>
+{% for post in collections.posts | reverse %}
+  <li>
+    <a href="{{ post.url | url }}" class="post-title">{{ post.data.title }};</a>
+    <time class="postlist-date" datetime="{{ post.date | htmlDateString }}"> written on {{ post.date | readableDate }}</time>
+
+    {% for tag in post.data.tags | filterTagList %}
+      {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+      <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
+    {% endfor %}
+
+  </li>
+{% endfor %}
+</ol>
+#}

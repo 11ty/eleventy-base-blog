@@ -258,6 +258,19 @@ header time {
     font-size: 0.75em;
 }
 
+.postlist time {
+    font-size: 0.85em;
+}
+
+ul.postlist {
+    list-style-type:none;
+    padding-left: 1em;
+}
+
+.postlist li {
+    padding-bottom: 0.2em;
+}
+
 main article header {
     /*width: calc(100% - 4rem);*/
     text-align: center;
