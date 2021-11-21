@@ -17,7 +17,7 @@ layout: layouts/base.njk
   {% for post in posts %}
       <article>
         <header>
-          <h2><a href="{{ post.url }}">{{ post.data.pageTitle }}</a></h2>
+          <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
           <time datetime="{{ post.date | dateFormatMachine }}">
             <span class="date-day">{{ post.date.getDate() }}</span> 
             <span class="date-month">{{ post.date.toLocaleString('default', { month: 'long' }) }}</span>, 

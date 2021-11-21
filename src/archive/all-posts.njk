@@ -8,7 +8,7 @@ title: All posts
 {% endif %}
 
 {% for year, yearPosts in collections.postsByYear %}
-  <h2>{{ year }}</h2>
+  <h2 class="all-posts-list">{{ year }}</h2>
   <ul class="postlist">
     {% for post in yearPosts | reverse %}
       <li>

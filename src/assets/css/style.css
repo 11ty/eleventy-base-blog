@@ -264,11 +264,18 @@ header time {
 
 ul.postlist {
     list-style-type:none;
-    padding-left: 1em;
+    padding-left: 0;
 }
 
 .postlist li {
-    padding-bottom: 0.2em;
+    padding-bottom: 0.2em;    
+}
+
+ul.postlist li:before {
+    content: '👉';
+    font-size: 0.9em;
+    vertical-align: top;
+    padding-right: 0.5em;    
 }
 
 main article header {
@@ -389,6 +396,11 @@ main article h1 {
 
 main article h2 {
     font-size: 1.3em;
+}
+
+h2.all-posts-list {
+    border-top:2px solid #aaa;
+    border-bottom:2px solid #aaa;
 }
 
 main article h3 {

@@ -12,7 +12,7 @@ layout: layouts/base.njk
     {% if loop.index0 < 15 %}
       <article>
         <header>
-          <h2><a href="{{ post.url }}">{{ post.data.pageTitle }}</a></h2>
+          <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
           <time datetime="{{ post.date.toISOString() | dateFormatMachine }}">
             <span class="date-day">{{ post.date.getDate() }}</span> 
             <span class="date-month">{{ post.date.toLocaleString('default', { month: 'long' }) }}</span>, 

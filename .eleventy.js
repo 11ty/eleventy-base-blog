@@ -4,7 +4,7 @@ const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const markdownIt = require("markdown-it");
-const markdownItAnchor = require("markdown-it-anchor");
+// const markdownItAnchor = require("markdown-it-anchor");
 
 // From: https://darekkay.com/blog/eleventy-group-posts-by-year/
 const _ = require("lodash");
@@ -97,7 +97,9 @@ module.exports = function(eleventyConfig) {
     html: true,
     breaks: true,
     linkify: true
-  }).use(markdownItAnchor, {
+  });
+/*
+  .use(markdownItAnchor, {
     permalink: markdownItAnchor.permalink.ariaHidden({
       placement: "after",
       class: "direct-link",
@@ -106,6 +108,7 @@ module.exports = function(eleventyConfig) {
     }),
     slugify: eleventyConfig.getFilter("slug")
   });
+*/
   eleventyConfig.setLibrary("md", markdownLibrary);
 
   // Override Browsersync defaults (used only with --serve)
