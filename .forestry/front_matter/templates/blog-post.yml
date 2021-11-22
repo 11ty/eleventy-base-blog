@@ -3,8 +3,8 @@ label: Blog post
 hide_body: false
 fields:
 - type: text
-  name: pageTitle
-  label: pageTitle
+  name: title
+  label: Page Title
 - type: datetime
   name: date
   label: date
