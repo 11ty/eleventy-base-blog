@@ -1,0 +1,72 @@
+---
+label: Blog post
+hide_body: false
+fields:
+- type: text
+  name: pageTitle
+  label: pageTitle
+- type: datetime
+  name: date
+  label: date
+  config:
+    display_utc: false
+    export_format: YYYY-MM-DD
+- type: text
+  name: tags
+  label: tags
+pages:
+- src/posts/2020/brave-new-world.md
+- src/posts/2020/farenheit-451.md
+- src/posts/2020/handmaids-tale.md
+- src/posts/2020/martian-chronicles.md
+- src/posts/2021/Feierstengszalot.md
+- src/posts/2021/Feierstengszalot.md
+- src/posts/2021/autumn-angie.md
+- src/posts/2021/autumn-angie.md
+- src/posts/2021/autumn-leaves.md
+- src/posts/2021/autumn-leaves.md
+- src/posts/2021/batak.md
+- src/posts/2021/batak.md
+- src/posts/2021/british-grand-prix-2021.md
+- src/posts/2021/brussels-architecture.md
+- src/posts/2021/brussels-architecture.md
+- src/posts/2021/brussels-autumn.md
+- src/posts/2021/brussels-autumn.md
+- src/posts/2021/carbs-in-food.md
+- src/posts/2021/carbs-in-food.md
+- src/posts/2021/covid-vaccination.md
+- src/posts/2021/covid-vaccination.md
+- src/posts/2021/dog-beach.md
+- src/posts/2021/dog-beach.md
+- src/posts/2021/dog-log.md
+- src/posts/2021/dog-log.md
+- src/posts/2021/floods.md
+- src/posts/2021/floods.md
+- src/posts/2021/fonts-all-in.md
+- src/posts/2021/fonts-all-in.md
+- src/posts/2021/forestry-io.md
+- src/posts/2021/forestry-io.md
+- src/posts/2021/gitpod.md
+- src/posts/2021/gitpod.md
+- src/posts/2021/inflated-grades.md
+- src/posts/2021/inflated-grades.md
+- src/posts/2021/jungle-in-the-city.md
+- src/posts/2021/jungle-in-the-city.md
+- src/posts/2021/luxembourg-autumn.md
+- src/posts/2021/luxembourg-autumn.md
+- src/posts/2021/more-autumn.md
+- src/posts/2021/more-autumn.md
+- src/posts/2021/out-of-control-ai.md
+- src/posts/2021/out-of-control-ai.md
+- src/posts/2021/plovdiv-in-may.md
+- src/posts/2021/plovdiv-in-may.md
+- src/posts/2021/shrimp-fest.md
+- src/posts/2021/shrimp-fest.md
+- src/posts/2021/usable-design.md
+- src/posts/2021/usable-design.md
+- src/posts/2021/user-preferences-font.md
+- src/posts/2021/user-preferences-font.md
+- src/posts/2021/vaccine-equality.md
+- src/posts/2021/vaccine-equality.md
+- src/posts/2021/why-facebook.md
+- src/posts/2021/why-facebook.md
