@@ -1,7 +1,7 @@
 ---
 pageTitle: Brave New World
 date: 2020-02-10
-tags: reading scifi
+tags: reading
 
 ---
 Very interesting read and incredibly prescient for a book written in the 1930s. Well worth reading.
