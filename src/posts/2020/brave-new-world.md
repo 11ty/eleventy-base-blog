@@ -5,6 +5,6 @@ tags: reading
 title: Brave New World
 
 ---
-Very interesting read and incredibly prescient for a book written in the 1930s. Well worth reading.
+Very interesting read and incredibly prescient for a book written in the 1930s. Well worth reading. 
 
 ![](https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1551151249l/3180338._SY475_.jpg)
