@@ -35,7 +35,7 @@ collections:
     folder: "src/posts" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     nested:
-        depth: 2 # max depth to show in the collection tree
+        depth: 5 # max depth to show in the collection tree
         summary: '{{title}}' # optional summary for a tree node, defaults to the inferred title field
     slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
