@@ -91,7 +91,8 @@ module.exports = function(eleventyConfig) {
   // Copy the `img` and `css` folders to the output
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("old");
-
+  eleventyConfig.addPassthroughCopy("src/admin/config.yml"); //added for netlifycms
+  
   // Customize Markdown library and settings:
   let markdownLibrary = markdownIt({
     html: true,
