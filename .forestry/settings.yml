@@ -1,0 +1,37 @@
+---
+new_page_extension: md
+auto_deploy: false
+admin_path: ''
+webhook_url: 
+sections:
+- type: directory
+  path: src/posts/2021
+  label: 2021 Posts
+  create: documents
+  match: "**/*"
+  templates:
+  - blog-post
+- type: directory
+  path: src/posts/2020
+  label: 2020 Posts
+  create: all
+  match: "**/*"
+  templates:
+  - blog-post
+- type: directory
+  path: src
+  label: Source Root
+  create: all
+  match: "**/*"
+upload_dir: src/assets/images
+public_path: "/assets/images"
+front_matter_path: ''
+use_front_matter_path: false
+file_template: ":filename:"
+build:
+  preview_output_directory: public
+  install_dependencies_command: npm install
+  preview_docker_image: forestryio/node:12
+  mount_path: "/srv"
+  working_dir: "/srv"
+  instant_preview_command: npx @11ty/eleventy --serve
