@@ -7,13 +7,14 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 
 module.exports = function(eleventyConfig) {
+  // Copy the `img` and `css` folders to the output
+  eleventyConfig.addPassthroughCopy("img");
+  eleventyConfig.addPassthroughCopy("css");
+
   // Add plugins
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
-
-  // https://www.11ty.dev/docs/data-deep-merge/
-  eleventyConfig.setDataDeepMerge(true);
 
   // Alias `layout: post` to `layout: layouts/post.njk`
   eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
@@ -60,10 +61,6 @@ module.exports = function(eleventyConfig) {
     return filterTagList([...tagSet]);
   });
 
-  // Copy the `img` and `css` folders to the output
-  eleventyConfig.addPassthroughCopy("img");
-  eleventyConfig.addPassthroughCopy("css");
-
   // Customize Markdown library and settings:
   let markdownLibrary = markdownIt({
     html: true,
@@ -108,6 +105,12 @@ module.exports = function(eleventyConfig) {
       "liquid"
     ],
 
+    // Pre-process *.md files with: (default: `liquid`)
+    markdownTemplateEngine: "njk",
+
+    // Pre-process *.html files with: (default: `liquid`)
+    htmlTemplateEngine: "njk",
+
     // -----------------------------------------------------------------
     // If your site deploys to a subdirectory, change `pathPrefix`.
     // Don’t worry about leading and trailing slashes, we normalize these.
@@ -121,15 +124,6 @@ module.exports = function(eleventyConfig) {
     // Optional (default is shown)
     pathPrefix: "/",
     // -----------------------------------------------------------------
-
-    // Pre-process *.md files with: (default: `liquid`)
-    markdownTemplateEngine: "njk",
-
-    // Pre-process *.html files with: (default: `liquid`)
-    htmlTemplateEngine: "njk",
-
-    // Opt-out of pre-processing global data JSON files: (default: `liquid`)
-    dataTemplateEngine: false,
 
     // These are all optional (defaults are shown):
     dir: {
