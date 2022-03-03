@@ -68,7 +68,6 @@ pre[class*="language-"] {
 	text-decoration: line-through;
 }
 .token.inserted {
-	border-bottom: 1px dotted #f9f8f5;
 	text-decoration: none;
 }
 .token.italic {
