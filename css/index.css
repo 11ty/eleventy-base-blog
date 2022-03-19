@@ -223,7 +223,7 @@ a[href].post-tag:focus {
 /* Warning */
 .warning {
   background-color: #ffc;
-  color: var(--color-gray-level-50);
+  color: var(--color-gray-level-90);
   padding: 1em 0.625em; /* 16px 10px /16 */
 }
 .warning ol:only-child {
