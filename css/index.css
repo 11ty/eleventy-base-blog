@@ -1,12 +1,40 @@
 /* Colors */
 :root {
-  --lightgray: #e0e0e0;
-  --gray: #C0C0C0;
-  --darkgray: #333;
-  --navy: #17050F;
-  --blue: #082840;
-  --white: #fff;
+  /* levels go from closer to background color (0) to opposite to background color (100) */
+  --color-gray-level-20: #e0e0e0;
+  --color-gray-level-50: #C0C0C0;
+  --color-gray-level-90: #333;
+
+  --text-color-default: #000;
+  --text-color-link-default: #082840;
+  --text-color-link-visited: #17050F;
+  --text-color-invese: #fff;
+
+  --background-color-default: #fff;
+
+
+  --font-family-default: -apple-system, system-ui, sans-serif;
+  --font-family-monospace:
+    Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console",
+    "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
+    "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-gray-level-20: #e0e0e0;
+    --color-gray-level-50: #C0C0C0;
+    --color-gray-level-90: #dad8d8;
+
+    --text-color-default: #fff;
+    --text-color-link-default: #1269b0;
+    --text-color-link-visited: #7575a9;
+    --text-color-invese: #000;
+    
+    --background-color-default: #000;
+  }
+}
+  
 
 /* Global stylesheet */
 * {
@@ -17,9 +45,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, system-ui, sans-serif;
-  color: var(--darkgray);
-  background-color: var(--white);
+  font-family: var(--font-family-default);
+  color: var(--text-color-default);
+  background-color: var(--background-color-default);
 }
 p:last-child {
   margin-bottom: 0;
@@ -34,10 +62,10 @@ p,
   line-height: 1.45;
 }
 a[href] {
-  color: var(--blue);
+  color: var(--text-color-link-default);
 }
 a[href]:visited {
-  color: var(--navy);
+  color: var(--text-color-link-visited);
 }
 main {
   padding: 1rem;
@@ -46,7 +74,7 @@ main :first-child {
   margin-top: 0;
 }
 header {
-  border-bottom: 1px dashed var(--lightgray);
+  border-bottom: 1px dashed var(--color-gray-level-20);
 }
 header:after {
   content: "";
@@ -63,7 +91,7 @@ table th {
 
 pre,
 code {
-  font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+  font-family: var(--font-family-monospace);
   line-height: 1.5;
 }
 pre {
@@ -141,7 +169,7 @@ code {
 .postlist-date,
 .postlist-item:before {
   font-size: 0.8125em; /* 13px /16 */
-  color: var(--darkgray);
+  color: var(--color-gray-level-90);
 }
 .postlist-date {
   word-spacing: -0.5px;
@@ -173,8 +201,8 @@ code {
   margin-left: 0.6666666666667em; /* 8px /12 */
   margin-top: 0.5em; /* 6px /12 */
   margin-bottom: 0.5em; /* 6px /12 */
-  color: var(--darkgray);
-  border: 1px solid var(--gray);
+  color: var(--color-gray-level-90);
+  border: 1px solid var(--color-gray-level-50);
   border-radius: 0.25em; /* 3px /12 */
   text-decoration: none;
   line-height: 1.8;
@@ -185,7 +213,8 @@ a[href].post-tag:visited {
 }
 a[href].post-tag:hover,
 a[href].post-tag:focus {
-  background-color: var(--lightgray);
+  background-color: var(--color-gray-level-20);
+  color: var(--text-color-invese)
 }
 .postlist-item > .post-tag {
   align-self: center;
