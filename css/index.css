@@ -1,11 +1,13 @@
 /* Colors */
 :root {
+  color-scheme: light dark;
   --lightgray: #e0e0e0;
   --gray: #C0C0C0;
   --darkgray: #333;
   --navy: #17050F;
   --blue: #082840;
   --white: #fff;
+  --almostblack: #121212;
 }
 
 /* Global stylesheet */
@@ -18,9 +20,129 @@ body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, system-ui, sans-serif;
-  color: var(--darkgray);
-  background-color: var(--white);
 }
+
+@media (prefers-color-scheme: light) {
+  body {
+    color: var(--darkgray);
+    background-color: var(--white);
+  }
+
+  a[href],
+  a[href]:visited,
+  code,
+  .postlist-link,
+  .postlist-date {
+    color: var(--darkgray);
+  }
+
+  .toggle, .post-tag {
+    border: 1px solid var(--gray);
+    color: var(--darkgray);
+    background-color: var(--white);
+  }
+
+  .post-tag:hover,
+  .post-tag:focus {
+    border: 1px solid var(--gray);
+    color: var(--darkgray);
+    background-color: var(--lightgray);
+  }
+
+  pre {
+    background-color: var(--lightgray);
+  }
+
+  body.dark {
+    color: var(--lightgray);
+    background-color: var(--almostblack);
+  }
+
+  .dark a[href],
+  .dark a[href]:visited,
+  .dark code {
+    color: var(--gray);
+  }
+
+  .dark .postlist-link,
+  .dark .postlist-date {
+    color: var(--gray);
+  }
+  
+  .dark .toggle,
+  .dark .post-tag,
+  .dark .post-tag:hover,
+  .dark .post-tag:focus {
+    border: 1px solid var(--gray);
+    background-color: var(--almostblack);
+    color: var(--gray);
+  }
+
+  .dark pre {
+    background-color: var(--darkgray);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: var(--lightgray);
+    background-color: var(--almostblack);
+  }
+
+  a[href],
+  a[href]:visited,
+  code {
+    color: var(--gray);
+  }
+  
+  .postlist-link,
+  .postlist-date {
+    color: var(--gray);
+  }
+
+  .toggle, .post-tag,
+  .post-tag:hover,
+  .post-tag:focus {
+    border: 1px solid var(--gray);
+    background-color: var(--almostblack);
+    color: var(--gray);
+  }
+
+  pre {
+    background-color: var(--darkgray);
+  }
+
+  body.light {
+    color: var(--darkgray);
+    background-color: var(--white);
+  }
+
+  .light a[href],
+  .light a[href]:visited,
+  .light code,
+  .light .postlist-link,
+  .light .postlist-date {
+    color: var(--darkgray); 
+  }
+
+  .light .toggle, .light .post-tag {
+    border: 1px solid var(--gray);
+    background-color: var(--white);
+    color: var(--darkgray);
+  }
+
+  .light .post-tag:hover,
+  .light .post-tag:focus {
+    border: 1px solid var(--gray);
+    background-color: var(--lightgray);
+    color: var(--darkgray);
+  }
+
+  .light pre {
+    background-color: var(--lightgray);
+  }
+}
+
 p:last-child {
   margin-bottom: 0;
 }
@@ -33,11 +155,8 @@ p,
 .tmpl-post li {
   line-height: 1.45;
 }
-a[href] {
-  color: var(--blue);
-}
+a[href],
 a[href]:visited {
-  color: var(--navy);
 }
 main {
   padding: 1rem;
@@ -46,7 +165,7 @@ main :first-child {
   margin-top: 0;
 }
 header {
-  border-bottom: 1px dashed var(--lightgray);
+  border-bottom: 1px dashed var(--gray);
 }
 header:after {
   content: "";
@@ -83,7 +202,6 @@ pre {
   hyphens: none;
   padding: 1em;
   margin: .5em 0;
-  background-color: #f6f6f6;
 }
 code {
   word-break: break-all;
@@ -98,6 +216,17 @@ code {
 }
 .home :link:not(:hover) {
   text-decoration: none;
+}
+
+.toggle {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 6px 10px 4px 10px;
+  border-radius: 0.25em;
 }
 
 /* Nav */
@@ -141,7 +270,6 @@ code {
 .postlist-date,
 .postlist-item:before {
   font-size: 0.8125em; /* 13px /16 */
-  color: var(--darkgray);
 }
 .postlist-date {
   word-spacing: -0.5px;
@@ -173,19 +301,15 @@ code {
   margin-left: 0.6666666666667em; /* 8px /12 */
   margin-top: 0.5em; /* 6px /12 */
   margin-bottom: 0.5em; /* 6px /12 */
-  color: var(--darkgray);
-  border: 1px solid var(--gray);
   border-radius: 0.25em; /* 3px /12 */
   text-decoration: none;
   line-height: 1.8;
 }
 a[href].post-tag,
-a[href].post-tag:visited {
-  color: inherit;
-}
+a[href].post-tag:visited,
 a[href].post-tag:hover,
 a[href].post-tag:focus {
-  background-color: var(--lightgray);
+  color: inherit;
 }
 .postlist-item > .post-tag {
   align-self: center;
@@ -194,7 +318,11 @@ a[href].post-tag:focus {
 /* Warning */
 .warning {
   background-color: #ffc;
+  color: var(--darkgray);
   padding: 1em 0.625em; /* 16px 10px /16 */
+}
+.warning code, .warning a[href], .warning a[href]:visited {
+  color: var(--darkgray);
 }
 .warning ol:only-child {
   margin: 0;

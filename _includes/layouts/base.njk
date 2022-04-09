@@ -5,11 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title or metadata.title }}</title>
     <meta name="description" content="{{ description or metadata.description }}">
+    <meta name="color-scheme" content="dark light">
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-diff.css' | url }}">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const button = document.querySelector(".toggle")
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)")
+        const currentTheme = localStorage.getItem("theme")
+
+        if (currentTheme == "dark") {
+          document.body.classList.toggle("dark")
+        } else if (currentTheme == "light") {
+          document.body.classList.toggle("light")
+        }
+
+        button.addEventListener("click", () => {
+          if (prefersDarkScheme.matches) {
+            document.body.classList.toggle("light")
+            var theme = document.body.classList.contains("light") ? "light" : "dark"
+          } else {
+            document.body.classList.toggle("dark")
+            theme = document.body.classList.contains("dark") ? "dark" : "light"
+          }
+          localStorage.setItem("theme", theme)
+        })
+      })
+    </script>
   </head>
   <body>
     <header>
@@ -21,6 +46,7 @@
         <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}"><a href="{{ entry.url | url }}">{{ entry.title }}</a></li>
       {%- endfor %}
       </ul>
+      <button class="toggle">Dark?</button>
     </header>
 
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
