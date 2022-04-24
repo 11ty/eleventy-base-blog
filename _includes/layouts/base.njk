@@ -6,6 +6,8 @@
     <title>{{ title or metadata.title }}</title>
     <meta name="description" content="{{ description or metadata.description }}">
     <meta name="color-scheme" content="dark light">
+    <meta name="generator" content="{{ eleventy.generator }}">
+
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-diff.css' | url }}">
