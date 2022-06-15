@@ -9,6 +9,7 @@ A starter repository showing how to build a blog with the [Eleventy](https://git
 * [Netlify](https://eleventy-base-blog.netlify.com/)
 * [GitHub Pages](https://11ty.github.io/eleventy-base-blog/)
 * [Remix on Glitch](https://glitch.com/~11ty-eleventy-base-blog)
+* [Azure Static Web Apps](https://aka.ms/11ty-swa)
 
 ## Deploy this to your own site
 
@@ -16,6 +17,7 @@ Deploy this Eleventy site in just a few clicks on these services:
 
 * [Get your own Eleventy web site on Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/11ty/eleventy-base-blog)
 * [Get your own Eleventy web site on Vercel](https://vercel.com/import/project?template=11ty%2Feleventy-base-blog)
+* [Get your own Eleventy web site on Azure Static Web Apps](https://github.com/manekinekko/11ty-blog-swa)
 
 Or, read more about [Deploying an Eleventy project](https://www.11ty.dev/docs/deployment/).
 
