@@ -7,8 +7,8 @@
     "bench": "DEBUG=Eleventy:Benchmark* npx @11ty/eleventy",
     "watch": "npx @11ty/eleventy --watch",
     "serve": "npx @11ty/eleventy --serve",
-    "start": "npx @11ty/eleventy --serve",
-    "debug": "DEBUG=* npx @11ty/eleventy"
+    "start": "npx @11ty/eleventy --serve --quiet",
+    "debug": "DEBUG=Eleventy* npx @11ty/eleventy"
   },
   "repository": {
     "type": "git",
@@ -25,12 +25,11 @@
   },
   "homepage": "https://github.com/11ty/eleventy-base-blog#readme",
   "dependencies": {
-    "@11ty/eleventy": "^1.0.1",
+    "@11ty/eleventy": "^2.0.0-canary.12",
     "@11ty/eleventy-navigation": "^0.3.3",
-    "@11ty/eleventy-plugin-rss": "^1.1.2",
+    "@11ty/eleventy-plugin-rss": "^1.2.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
     "luxon": "^2.4.0",
-    "markdown-it": "^13.0.1",
     "markdown-it-anchor": "^8.6.4"
   }
 }

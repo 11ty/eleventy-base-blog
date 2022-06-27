@@ -1,7 +1,4 @@
-const fs = require("fs");
-
 const { DateTime } = require("luxon");
-const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 
 const pluginRss = require("@11ty/eleventy-plugin-rss");
@@ -44,54 +41,35 @@ module.exports = function(eleventyConfig) {
     return Math.min.apply(null, numbers);
   });
 
-  function filterTagList(tags) {
-    return (tags || []).filter(tag => ["all", "nav", "post", "posts"].indexOf(tag) === -1);
-  }
-
-  eleventyConfig.addFilter("filterTagList", filterTagList)
-
-  // Create an array of all tags
-  eleventyConfig.addCollection("tagList", function(collection) {
+  // Return all the tags used in a collection
+  eleventyConfig.addFilter("getAllTags", collection => {
     let tagSet = new Set();
-    collection.getAll().forEach(item => {
+    for(let item of collection) {
       (item.data.tags || []).forEach(tag => tagSet.add(tag));
-    });
+    }
+    return Array.from(tagSet);
+  });
 
-    return filterTagList([...tagSet]);
+  eleventyConfig.addFilter("filterTagList", function filterTagList(tags) {
+    return (tags || []).filter(tag => ["all", "nav", "post", "posts"].indexOf(tag) === -1);
   });
 
   // Customize Markdown library and settings:
-  let markdownLibrary = markdownIt({
-    html: true,
-    breaks: true,
-    linkify: true
-  }).use(markdownItAnchor, {
-    permalink: markdownItAnchor.permalink.ariaHidden({
-      placement: "after",
-      class: "direct-link",
-      symbol: "#",
-      level: [1,2,3,4],
-    }),
-    slugify: eleventyConfig.getFilter("slug")
+  eleventyConfig.amendLibrary("md", mdLib => {
+    mdLib.use(markdownItAnchor, {
+      permalink: markdownItAnchor.permalink.ariaHidden({
+        placement: "after",
+        class: "direct-link",
+        symbol: "#",
+        level: [1,2,3,4],
+      }),
+      slugify: eleventyConfig.getFilter("slug")
+    });
   });
-  eleventyConfig.setLibrary("md", markdownLibrary);
 
-  // Override Browsersync defaults (used only with --serve)
-  eleventyConfig.setBrowserSyncConfig({
-    callbacks: {
-      ready: function(err, browserSync) {
-        const content_404 = fs.readFileSync('_site/404.html');
-
-        browserSync.addMiddleware("*", (req, res) => {
-          // Provides the 404 content without redirect.
-          res.writeHead(404, {"Content-Type": "text/html; charset=UTF-8"});
-          res.write(content_404);
-          res.end();
-        });
-      },
-    },
-    ui: false,
-    ghostMode: false
+  // Override @11ty/eleventy-dev-server defaults (used only with --serve)
+  eleventyConfig.setServerOptions({
+    showVersion: true,
   });
 
   return {
