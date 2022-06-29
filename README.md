@@ -12,10 +12,12 @@ A starter repository showing how to build a blog with the [Eleventy](https://git
 
 ## Deploy this to your own site
 
-These builders are amazing—try them out to get your own Eleventy site in a few clicks!
+Deploy this Eleventy site in just a few clicks on these services:
 
 - [Get your own Eleventy web site on Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/11ty/eleventy-base-blog)
 - [Get your own Eleventy web site on Vercel](https://vercel.com/import/project?template=11ty%2Feleventy-base-blog)
+
+Or, read more about [Deploying an Eleventy project](https://www.11ty.dev/docs/deployment/).
 
 ## Getting Started
 
@@ -69,7 +71,7 @@ DEBUG=* npx eleventy
 
 - `about/index.md` shows how to add a content page.
 - `posts/` has the blog posts but really they can live in any directory. They need only the `post` tag to be added to this collection.
-- Add the `nav` tag to add a template to the top level site navigation. For example, this is in use on `index.njk` and `about/index.md`.
+- Use the `eleventyNavigation` key in your front matter to add a template to the top level site navigation. For example, this is in use on `index.njk` and `about/index.md`.
 - Content can be any template format (blog posts needn’t be markdown, for example). Configure your supported templates in `.eleventy.js` -> `templateFormats`.
 - The `css` and `png` directories in the input directory are going to be copied without modification to the output, because they're passed to `addPassthroughCopy()`.
 - The blog post feed template is in `feed/feed.njk`. This is also a good example of using a global data files in that it uses `_data/metadata.json`.
@@ -78,3 +80,4 @@ DEBUG=* npx eleventy
   - `_includes/layouts/home.njk`: the home page template (wrapped into `base.njk`)
   - `_includes/layouts/post.njk`: the blog post template (wrapped into `base.njk`)
 - `_includes/postlist.njk` is a Nunjucks include and is a reusable component used to display a list of all the posts. `index.njk` has an example of how to use it.
+
