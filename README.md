@@ -73,7 +73,7 @@ DEBUG=* npx @11ty/eleventy
 - `posts/` has the blog posts but really they can live in any directory. They need only the `post` tag to be added to this collection.
 - Use the `eleventyNavigation` key in your front matter to add a template to the top level site navigation. For example, this is in use on `index.njk` and `about/index.md`.
 - Content can be any template format (blog posts needn’t be markdown, for example). Configure your supported templates in `.eleventy.js` -> `templateFormats`.
-- The `css` and `png` directories in the input directory are going to be copied without modification to the output, because they're passed to `addPassthroughCopy()`.
+- The `css` and `img` directories in the input directory will be copied to the output folder (via `addPassthroughCopy()` in the `.eleventy.js` file).
 - The blog post feed template is in `feed/feed.njk`. This is also a good example of using a global data files in that it uses `_data/metadata.json`.
 - This example uses three layouts:
   - `_includes/layouts/base.njk`: the top level HTML structure
