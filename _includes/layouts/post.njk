@@ -6,7 +6,7 @@ templateClass: tmpl-post
 
 <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
 {%- for tag in tags | filterTagList %}
-{%- set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
 <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
 {%- endfor %}
 

@@ -72,7 +72,7 @@ module.exports = function(eleventyConfig) {
       symbol: "#"
     }),
     level: [1,2,3,4],
-    slugify: eleventyConfig.getFilter("slug")
+    slugify: eleventyConfig.getFilter("slugify")
   });
   eleventyConfig.setLibrary("md", markdownLibrary);
 
