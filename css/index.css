@@ -1,40 +1,36 @@
-/* Colors */
+/* Defaults */
 :root {
-  /* levels go from closer to background color (0) to opposite to background color (100) */
-  --color-gray-level-20: #e0e0e0;
-  --color-gray-level-50: #C0C0C0;
-  --color-gray-level-90: #333;
+  --font-family: -apple-system, system-ui, sans-serif;
+  --font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+}
 
-  --text-color-default: #000;
-  --text-color-link-default: #082840;
+/* Theme colors */
+:root {
+  --color-gray-20: #e0e0e0;
+  --color-gray-50: #C0C0C0;
+  --color-gray-90: #333;
+
+  --background-color: #fff;
+
+  --text-color: var(--color-gray-90);
+  --text-color-link: #082840;
   --text-color-link-visited: #17050F;
-  --text-color-invese: #fff;
-
-  --background-color-default: #fff;
-
-
-  --font-family-default: -apple-system, system-ui, sans-serif;
-  --font-family-monospace:
-    Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console",
-    "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
-    "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-gray-level-20: #e0e0e0;
-    --color-gray-level-50: #C0C0C0;
-    --color-gray-level-90: #dad8d8;
+    --color-gray-20: #e0e0e0;
+    --color-gray-50: #C0C0C0;
+    --color-gray-90: #dad8d8;
 
-    --text-color-default: #fff;
-    --text-color-link-default: #1269b0;
-    --text-color-link-visited: #7575a9;
-    --text-color-invese: #000;
-    
-    --background-color-default: #000;
+    /* --text-color is assigned to --color-gray-_ above */
+    --text-color-link: #1493fb;
+    --text-color-link-visited: #a6a6f8;
+
+    --background-color: #15202b;
   }
 }
-  
+
 
 /* Global stylesheet */
 * {
@@ -45,10 +41,11 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: var(--font-family-default);
-  color: var(--text-color-default);
-  background-color: var(--background-color-default);
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
+
 p:last-child {
   margin-bottom: 0;
 }
@@ -61,12 +58,14 @@ p,
 .tmpl-post li {
   line-height: 1.45;
 }
+
 a[href] {
-  color: var(--text-color-link-default);
+  color: var(--text-color-link);
 }
 a[href]:visited {
   color: var(--text-color-link-visited);
 }
+
 main {
   padding: 1rem;
 }
@@ -74,13 +73,14 @@ main :first-child {
   margin-top: 0;
 }
 header {
-  border-bottom: 1px dashed var(--color-gray-level-20);
+  border-bottom: 1px dashed var(--color-gray-20);
 }
 header:after {
   content: "";
   display: table;
   clear: both;
 }
+
 table {
   margin: 1em 0;
 }
@@ -106,7 +106,6 @@ pre {
   -o-tab-size: 2;
   tab-size: 2;
   -webkit-hyphens: none;
-  -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
   padding: 1em;
@@ -169,7 +168,7 @@ code {
 .postlist-date,
 .postlist-item:before {
   font-size: 0.8125em; /* 13px /16 */
-  color: var(--color-gray-level-90);
+  color: var(--color-gray-90);
 }
 .postlist-date {
   word-spacing: -0.5px;
@@ -201,8 +200,8 @@ code {
   margin-left: 0.6666666666667em; /* 8px /12 */
   margin-top: 0.5em; /* 6px /12 */
   margin-bottom: 0.5em; /* 6px /12 */
-  color: var(--color-gray-level-90);
-  border: 1px solid var(--color-gray-level-50);
+  color: var(--color-gray-90);
+  border: 1px solid var(--color-gray-50);
   border-radius: 0.25em; /* 3px /12 */
   text-decoration: none;
   line-height: 1.8;
@@ -213,20 +212,28 @@ a[href].post-tag:visited {
 }
 a[href].post-tag:hover,
 a[href].post-tag:focus {
-  background-color: var(--color-gray-level-20);
-  color: var(--text-color-invese)
+  background-color: var(--color-gray-20);
 }
 .postlist-item > .post-tag {
   align-self: center;
 }
 
-/* Warning */
-.warning {
-  background-color: #ffc;
-  color: var(--color-gray-level-90);
+/* Infobox */
+:root {
+  --color-infobox: #ffc;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-infobox: #082840;
+  }
+}
+
+.infobox {
+  background-color: var(--color-infobox);
+  color: var(--color-gray-90);
   padding: 1em 0.625em; /* 16px 10px /16 */
 }
-.warning ol:only-child {
+.infobox ol:only-child {
   margin: 0;
 }
 
