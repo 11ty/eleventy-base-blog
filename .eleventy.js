@@ -61,8 +61,8 @@ module.exports = function(eleventyConfig) {
         placement: "after",
         class: "direct-link",
         symbol: "#",
-        level: [1,2,3,4],
       }),
+      level: [1,2,3,4],
       slugify: eleventyConfig.getFilter("slug")
     });
   });

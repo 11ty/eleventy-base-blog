@@ -5,7 +5,6 @@ pagination:
   alias: tag
   filter:
     - all
-    - nav
     - post
     - posts
     - tagList
@@ -13,7 +12,7 @@ pagination:
 layout: layouts/home.njk
 eleventyComputed:
   title: Tagged “{{ tag }}”
-permalink: /tags/{{ tag | slug }}/
+permalink: /tags/{{ tag | slugify }}/
 ---
 <h1>Tagged “{{ tag }}”</h1>
 

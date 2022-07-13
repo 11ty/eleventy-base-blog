@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ metadata.language }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title or metadata.title }}</title>
     <meta name="description" content="{{ description or metadata.description }}">
-    <meta name="generator" content="{{ eleventy.generator }}">
+
+    {#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
+    {#- <meta name="generator" content="{{ eleventy.generator }}"> #}
 
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
@@ -28,7 +30,7 @@
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
 
       <!-- Delete this message -->
-      <div class="warning">
+      <div class="infobox">
         <ol>
           <li>Edit the <code>_data/metadata.json</code> with your blog’s information.</li>
           <li>(Optional) Edit <code>.eleventy.js</code> with your <a href="https://www.11ty.dev/docs/config/">configuration preferences</a>.</li>
