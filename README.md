@@ -55,16 +55,10 @@ Or build and host locally for local development
 npx @11ty/eleventy --serve
 ```
 
-Or build automatically when a template changes:
-
-```
-npx @11ty/eleventy --watch
-```
-
 Or in debug mode:
 
 ```
-DEBUG=* npx @11ty/eleventy
+DEBUG=Eleventy* npx @11ty/eleventy
 ```
 
 ### Implementation Notes
