@@ -1,11 +1,14 @@
 const { DateTime } = require("luxon");
 const markdownItAnchor = require("markdown-it-anchor");
 
+const { EleventyI18nPlugin } = require("@11ty/eleventy");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 
 module.exports = function(eleventyConfig) {
+  eleventyConfig.ignores.add("README.md");
+
   // Copy the `img` and `css` folders to the output
   eleventyConfig.addPassthroughCopy("img");
   eleventyConfig.addPassthroughCopy("css");
@@ -14,6 +17,10 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
+  eleventyConfig.addPlugin(EleventyI18nPlugin, {
+    defaultLanguage: "en",
+    errorMode: "allow-fallback",
+  });
 
   eleventyConfig.addFilter("readableDate", dateObj => {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");

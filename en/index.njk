@@ -12,3 +12,10 @@ eleventyNavigation:
 {% include "postslist.njk" %}
 
 <p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>
+
+
+<ul>
+  {%- for entry in collections.all %}
+  <li><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></li>
+  {%- endfor %}
+</ul>

@@ -12,14 +12,27 @@ templateClass: tmpl-post
 
 {{ content | safe }}
 
-{%- if collections.posts %}
-{%- set nextPost = collections.posts | getNextCollectionItem(page) %}
-{%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
-{%- if nextPost or previousPost %}
 <hr>
+
+{% set i18nLinks = page.url | locale_links %}
+{% if i18nLinks.length %}
 <ul>
-  {%- if nextPost %}<li>Next: <a href="{{ nextPost.url | url }}">{{ nextPost.data.title }}</a></li>{% endif %}
-  {%- if previousPost %}<li>Previous: <a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}</a></li>{% endif %}
+  <li>
+    This page is also available in: <!-- don’t forget to localize this text too -->
+{%- for link in i18nLinks %}
+{%- if not loop.first %},{% endif %}<a href="{{link.url}}" lang="{{link.lang}}" hreflang="{{link.lang}}">{{link.label}}</a>
+{%- endfor -%}
+  </li>
+</ul>
+{% endif %}
+
+{%- if collections.posts %}
+{%- set previousPost = collections.posts | getPreviousCollectionItem() %}
+{%- set nextPost = collections.posts | getNextCollectionItem() %}
+{%- if nextPost or previousPost %}
+<ul>
+  {%- if previousPost %}<li>Previous: <a href="{{ previousPost.url | locale_url | url }}">{{ previousPost.data.title }}</a></li>{% endif %}
+  {%- if nextPost %}<li>Next: <a href="{{ nextPost.url | locale_url | url }}">{{ nextPost.data.title }}</a></li>{% endif %}
 </ul>
 {%- endif %}
 {%- endif %}
