@@ -18,10 +18,11 @@ templateClass: tmpl-post
 {% if i18nLinks.length %}
 <ul>
   <li>
-    This page is also available in: <!-- don’t forget to localize this text too -->
-{%- for link in i18nLinks %}
-{%- if not loop.first %},{% endif %}<a href="{{link.url}}" lang="{{link.lang}}" hreflang="{{link.lang}}">{{link.label}}</a>
-{%- endfor -%}
+    This page is also available in:
+    {%- for link in i18nLinks %}
+    <a href="{{ link.url }}" lang="{{ link.lang }}" hreflang="{{ link.lang }}">{{ link.label }}</a>
+    {%- if not loop.last %},{% endif %}
+    {%- endfor -%}
   </li>
 </ul>
 {% endif %}
