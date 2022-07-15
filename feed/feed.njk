@@ -1,16 +1,15 @@
 ---
 # Metadata comes from _data/metadata.json
-permalink: "{{ metadata.feed.path }}"
+permalink: /feed/feed.xml
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="{{ metadata.language }}">
 	<title>{{ metadata.title }}</title>
-	<subtitle>{{ metadata.feed.subtitle }}</subtitle>
-	{% set absoluteUrl %}{{ metadata.feed.path | url | absoluteUrl(metadata.url) }}{% endset %}
-	<link href="{{ absoluteUrl }}" rel="self"/>
+	<subtitle>{{ metadata.description }}</subtitle>
+	<link href="{{ permalink | url | absoluteUrl(metadata.url) }}" rel="self"/>
 	<link href="{{ metadata.url }}"/>
-	<updated>{{ collections.posts | rssLastUpdatedDate }}</updated>
-	<id>{{ metadata.feed.id }}</id>
+	<updated>{{ collections.posts | getNewestCollectionItemDate | dateToRfc3339 }}</updated>
+	<id>{{ metadata.url }}</id>
 	<author>
 		<name>{{ metadata.author.name }}</name>
 		<email>{{ metadata.author.email }}</email>
@@ -20,7 +19,7 @@ permalink: "{{ metadata.feed.path }}"
 	<entry>
 		<title>{{ post.data.title }}</title>
 		<link href="{{ absolutePostUrl }}"/>
-		<updated>{{ post.date | rssDate }}</updated>
+		<updated>{{ post.date | dateToRfc3339 }}</updated>
 		<id>{{ absolutePostUrl }}</id>
 		<content type="html">{{ post.templateContent | htmlToAbsoluteUrls(absolutePostUrl) }}</content>
 	</entry>
