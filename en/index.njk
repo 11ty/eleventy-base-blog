@@ -13,9 +13,10 @@ eleventyNavigation:
 
 <p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>
 
-
+{# List all of the pages in the project
 <ul>
   {%- for entry in collections.all %}
   <li><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></li>
   {%- endfor %}
 </ul>
+#}
