@@ -69,15 +69,18 @@ DEBUG=* npx @11ty/eleventy
 
 ### Implementation Notes
 
-- `about/index.md` shows how to add a content page.
-- `posts/` has the blog posts but really they can live in any directory. They need only the `post` tag to be added to this collection.
+- `en` is the folder for content (written using the primary language for project, here we’re using English)
+- `en/about/index.md` is an example of an English content page.
+- `en/blog/` has the English blog posts but really they can live in any directory. They need only the `post` tag to be included in the blog posts [collection](https://www.11ty.dev/docs/collections/).
+  - To localize a blog post you will need to add a top level folder for that language (`es` for Spanish, `ja` for Japanese, `en-us` for American English) and match the rest of the file path to the primary language folder. For example `en/blog/my-post.md` could have `ja/blog/my-post.md` or `es/blog/my-post.md`. Read more about [best practices for organizing files for internationalization (i18n) in Eleventy projects](https://www.11ty.dev/docs/i18n/).
 - Use the `eleventyNavigation` key in your front matter to add a template to the top level site navigation. For example, this is in use on `index.njk` and `about/index.md`.
+  - This makes use of the [Eleventy Navigation plugin](https://www.11ty.dev/docs/plugins/navigation/)
 - Content can be any template format (blog posts needn’t be markdown, for example). Configure your supported templates in `.eleventy.js` -> `templateFormats`.
-- The `css` and `img` directories in the input directory will be copied to the output folder (via `addPassthroughCopy()` in the `.eleventy.js` file).
+- The `public` folder in your input directory will be copied to the output folder (via `addPassthroughCopy()` in the `.eleventy.js` file). This means `./public/css/*` will live at `./_site/css/*` after your build completes. [When using `--serve` this behavior is emulated](/docs/copy/#passthrough-during-serve) (the files will not show up in `_site`).
 - The blog post feed template is in `feed/feed.njk`. This is also a good example of using a global data files in that it uses `_data/metadata.json`.
-- This example uses three layouts:
+- This project uses three layouts:
   - `_includes/layouts/base.njk`: the top level HTML structure
   - `_includes/layouts/home.njk`: the home page template (wrapped into `base.njk`)
   - `_includes/layouts/post.njk`: the blog post template (wrapped into `base.njk`)
-- `_includes/postlist.njk` is a Nunjucks include and is a reusable component used to display a list of all the posts. `index.njk` has an example of how to use it.
+- `_includes/postslist.njk` is a Nunjucks include and is a reusable component used to display a list of all the posts. `index.njk` has an example of how to use it.
 
