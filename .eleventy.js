@@ -8,9 +8,9 @@ const { EleventyI18nPlugin } = require("@11ty/eleventy");
 module.exports = function(eleventyConfig) {
   eleventyConfig.ignores.add("README.md");
 
-  // Copy the `img` and `css` folders to the output
-  eleventyConfig.addPassthroughCopy("img");
-  eleventyConfig.addPassthroughCopy("css");
+  // Copy the contents of the `public` folder to the output folder
+  // For example, `./public/css/` ends up in `_site/css/`
+  eleventyConfig.addPassthroughCopy({"./public/": "/"});
 
   // Add plugins
   eleventyConfig.addPlugin(pluginRss);
