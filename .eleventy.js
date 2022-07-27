@@ -1,9 +1,11 @@
 const { DateTime } = require("luxon");
+const rosetta = require("rosetta");
 const markdownItAnchor = require("markdown-it-anchor");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const { EleventyI18nPlugin } = require("@11ty/eleventy");
+const languageStrings = require("./i18n.js");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.ignores.add("README.md");
@@ -76,6 +78,19 @@ module.exports = function(eleventyConfig) {
   // Override @11ty/eleventy-dev-server defaults (used only with --serve)
   eleventyConfig.setServerOptions({
     showVersion: true,
+  });
+
+  // i18n filter using Rosetta
+  const rosettaLib = rosetta(languageStrings);
+
+  eleventyConfig.addFilter("i18n", function (key, lang) {
+    const I18N_PREFIX = "i18n.";
+    if(key.startsWith(I18N_PREFIX)) {
+      key = key.slice(I18N_PREFIX.length);
+    }
+    // depends on page.lang in 2.0.0-canary.14+
+    let page = this.page || this.ctx?.page || this.context?.environments?.page || {};
+    return rosettaLib.t(key, {}, lang || page.lang);
   });
 
   return {

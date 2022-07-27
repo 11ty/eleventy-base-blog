@@ -18,7 +18,7 @@ templateClass: tmpl-post
 {% if i18nLinks.length %}
 <ul>
   <li>
-    This page is also available in:
+    {{ "i18n.also" | i18n }}
     {%- for link in i18nLinks %}
     <a href="{{ link.url }}" lang="{{ link.lang }}" hreflang="{{ link.lang }}">{{ link.label }}</a>
     {%- if not loop.last %},{% endif %}
@@ -28,12 +28,13 @@ templateClass: tmpl-post
 {% endif %}
 
 {%- if collections.posts %}
-{%- set previousPost = collections.posts | getPreviousCollectionItem() %}
-{%- set nextPost = collections.posts | getNextCollectionItem() %}
+{# these filters are locale-aware in 2.0.0-canary.14 #}
+{%- set previousPost = collections.posts | getPreviousCollectionItem %}
+{%- set nextPost = collections.posts | getNextCollectionItem %}
 {%- if nextPost or previousPost %}
 <ul>
-  {%- if previousPost %}<li>Previous: <a href="{{ previousPost.url | locale_url | url }}">{{ previousPost.data.title }}</a></li>{% endif %}
-  {%- if nextPost %}<li>Next: <a href="{{ nextPost.url | locale_url | url }}">{{ nextPost.data.title }}</a></li>{% endif %}
+  {%- if previousPost %}<li>{{ "i18n.previous" | i18n }}: <a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}</a></li>{% endif %}
+  {%- if nextPost %}<li>{{ "i18n.next" | i18n }}: <a href="{{ nextPost.url | url }}">{{ nextPost.data.title }}</a></li>{% endif %}
 </ul>
 {%- endif %}
 {%- endif %}
