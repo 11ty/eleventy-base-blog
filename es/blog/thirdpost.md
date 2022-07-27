@@ -5,6 +5,19 @@ layout: layouts/post.njk
 ---
 Aproveche los marcos ágiles para proporcionar una sinopsis sólida para descripciones generales de alto nivel. Los enfoques iterativos de la estrategia corporativa fomentan el pensamiento colaborativo para promover la propuesta de valor general. Hacer crecer orgánicamente la visión holística del mundo de la innovación disruptiva a través de la diversidad y el empoderamiento en el lugar de trabajo.
 
+```diff-js
+// this is a command
+function myCommand() {
++	let counter = 0;
+
+-	counter++;
+
+}
+
+// Test with a line break above this line.
+console.log('Test');
+```
+
 Traiga a la mesa estrategias de supervivencia de ganar-ganar para asegurar una dominación proactiva. Al final del día, en el futuro, una nueva normalidad que ha evolucionado desde la generación X está en camino hacia una solución de nube optimizada. El contenido generado por el usuario en tiempo real tendrá múltiples puntos de contacto para la deslocalización.
 
 ## Encabezado de sección
