@@ -14,6 +14,7 @@
 
   --text-color: var(--color-gray-90);
   --text-color-link: #082840;
+  --text-color-link-active: #5f2b48;
   --text-color-link-visited: #17050F;
 }
 
@@ -25,6 +26,7 @@
 
     /* --text-color is assigned to --color-gray-_ above */
     --text-color-link: #1493fb;
+    --text-color-link-active: #6969f7;
     --text-color-link-visited: #a6a6f8;
 
     --background-color: #15202b;
@@ -40,23 +42,27 @@
 html,
 body {
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   font-family: var(--font-family);
   color: var(--text-color);
   background-color: var(--background-color);
+}
+html {
+  overflow-y: scroll;
+}
+body {
+  max-width: 40em;
 }
 
 p:last-child {
   margin-bottom: 0;
 }
-p,
-.tmpl-post li,
-img {
-  max-width: 37.5em; /* 600px /16 */
+p {
+  line-height: 1.5;
 }
-p,
-.tmpl-post li {
-  line-height: 1.45;
+
+li {
+  line-height: 1.5;
 }
 
 a[href] {
@@ -64,6 +70,10 @@ a[href] {
 }
 a[href]:visited {
   color: var(--text-color-link-visited);
+}
+a[href]:hover,
+a[href]:active {
+  color: var(--text-color-link-active);
 }
 
 main {
@@ -114,11 +124,15 @@ code {
 }
 
 /* Header */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 1em;
+}
 .home {
-  padding: 0 1rem;
-  float: left;
-  margin: 1rem 0; /* 16px /16 */
   font-size: 1em; /* 16px /16 */
+  margin-right: 2em;
 }
 .home :link:not(:hover) {
   text-decoration: none;
@@ -126,10 +140,10 @@ code {
 
 /* Nav */
 .nav {
+  display: flex;
   padding: 0;
+  margin: 0;
   list-style: none;
-  float: left;
-  margin-left: 1em;
 }
 .nav-item {
   display: inline-block;
@@ -147,13 +161,14 @@ code {
 .postlist {
   list-style: none;
   padding: 0;
+  padding-left: 1.5rem;
 }
 .postlist-item {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   counter-increment: start-from -1;
-  line-height: 1.8;
+  margin-bottom: 1em;
 }
 .postlist-item:before {
   display: inline-block;
@@ -161,6 +176,7 @@ code {
   content: "" counter(start-from, decimal-leading-zero) ". ";
   line-height: 100%;
   text-align: right;
+  margin-left: -1.5rem;
 }
 .postlist-date,
 .postlist-item:before {
@@ -171,8 +187,9 @@ code {
   word-spacing: -0.5px;
 }
 .postlist-link {
+  flex-basis: calc(100% - 1.5rem);
   padding-left: .25em;
-  padding-right: .25em;
+  padding-right: .5em;
   text-underline-position: from-font;
   text-underline-offset: 0;
   text-decoration-thickness: 1px;
@@ -191,28 +208,23 @@ code {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-transform: uppercase;
-  font-size: 0.75em; /* 12px /16 */
-  padding: 0.08333333333333em 0.3333333333333em; /* 1px 4px /12 */
-  margin-left: 0.6666666666667em; /* 8px /12 */
-  margin-top: 0.5em; /* 6px /12 */
-  margin-bottom: 0.5em; /* 6px /12 */
-  color: var(--color-gray-90);
-  border: 1px solid var(--color-gray-50);
-  border-radius: 0.25em; /* 3px /12 */
-  text-decoration: none;
-  line-height: 1.8;
-}
-a[href].post-tag,
-a[href].post-tag:visited {
-  color: inherit;
-}
-a[href].post-tag:hover,
-a[href].post-tag:focus {
-  background-color: var(--color-gray-20);
+  text-transform: capitalize;
 }
 .postlist-item > .post-tag {
   align-self: center;
+}
+
+/* Tags list */
+.post-metadata {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: .5em;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.post-metadata time {
+  margin-right: 1em;
 }
 
 /* Infobox */
