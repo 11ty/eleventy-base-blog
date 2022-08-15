@@ -3,15 +3,17 @@
  */
 
 pre[class*="language-diff-"] {
-  --eleventy-code-padding: 1.25em;
+	--eleventy-code-padding: 1.25em;
 	padding-left: var(--eleventy-code-padding);
 	padding-right: var(--eleventy-code-padding);
 }
 .token.deleted {
 	background-color: hsl(0, 51%, 37%);
+	color: inherit;
 }
 .token.inserted {
 	background-color: hsl(126, 31%, 39%);
+	color: inherit;
 }
 
 /* Make the + and - characters unselectable for copy/paste */
@@ -20,13 +22,16 @@ pre[class*="language-diff-"] {
 .token.prefix.deleted {
 	-webkit-user-select: none;
 	user-select: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--eleventy-code-padding);
-  padding-top: 2px;
-  padding-bottom: 2px;
-  background-color: rgba(0,0,0,.2);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.token.prefix.inserted,
+.token.prefix.deleted {
+	width: var(--eleventy-code-padding);
+	background-color: rgba(0,0,0,.2);
 }
 
 /* Optional: full-width background color */

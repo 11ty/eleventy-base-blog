@@ -5,6 +5,7 @@ const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const { EleventyI18nPlugin } = require("@11ty/eleventy");
+
 const languageStrings = require("./i18n.js");
 
 module.exports = function(eleventyConfig) {
@@ -12,7 +13,10 @@ module.exports = function(eleventyConfig) {
 
   // Copy the contents of the `public` folder to the output folder
   // For example, `./public/css/` ends up in `_site/css/`
-  eleventyConfig.addPassthroughCopy({"./public/": "/"});
+  eleventyConfig.addPassthroughCopy({
+    "./public/": "/",
+    "./node_modules/prismjs/themes/prism-okaidia.css": "/css/prism-theme.css",
+  });
 
   // Add plugins
   eleventyConfig.addPlugin(pluginRss);

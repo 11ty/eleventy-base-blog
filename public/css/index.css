@@ -92,25 +92,23 @@ table th {
 pre,
 code {
   font-family: var(--font-family-monospace);
-  line-height: 1.5;
 }
-pre {
-  font-size: 14px;
-  line-height: 1.375;
-  direction: ltr;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
+pre,
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  line-height: 1.375; /* 22px /16 */
   -moz-tab-size: 2;
   -o-tab-size: 2;
   tab-size: 2;
   -webkit-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  padding: 1em;
-  margin: .5em 0;
-  background-color: #f6f6f6;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
 }
 code {
   word-break: break-all;
