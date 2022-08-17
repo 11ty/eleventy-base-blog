@@ -213,6 +213,7 @@ a[href].post-tag:visited {
 a[href].post-tag:hover,
 a[href].post-tag:focus {
   background-color: var(--color-gray-20);
+  color: #15202b;
 }
 .postlist-item > .post-tag {
   align-self: center;
