@@ -22,6 +22,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
+  eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+
   eleventyConfig.addPlugin(EleventyI18nPlugin, {
     defaultLanguage: "en",
     errorMode: "allow-fallback",

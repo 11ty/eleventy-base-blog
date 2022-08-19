@@ -9,28 +9,28 @@
     {#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
     {#- <meta name="generator" content="{{ eleventy.generator }}"> #}
 
-    <link rel="stylesheet" href="{{ '/css/prism-theme.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/prism-diff.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
-    <link rel="alternate" href="{{ '/feed/feed.xml' | url }}" type="application/atom+xml" title="{{ metadata.title }}">
-    <link rel="alternate" href="{{ '/feed/feed.json' | url }}" type="application/json" title="{{ metadata.title }}">
+    <link rel="stylesheet" href="/css/prism-theme.css">
+    <link rel="stylesheet" href="/css/prism-diff.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="{{ metadata.title }}">
 
     {%- set alternateUrls = page.url | locale_links %}
     {% if alternateUrls.length %}
-    <link rel="alternate" hreflang="{{ lang or metadata.language }}" href="{{ page.url | absoluteUrl(metadata.url) }}">
+    <link rel="alternate" hreflang="{{ lang or metadata.language }}" href="{{ page.url | htmlBaseUrl(metadata.url) }}">
     {%- for link in alternateUrls %}
-    <link rel="alternate" hreflang="{{ link.lang }}" href="{{ link.url | absoluteUrl(metadata.url) }}">
+    <link rel="alternate" hreflang="{{ link.lang }}" href="{{ link.url | htmlBaseUrl(metadata.url) }}">
     {%- endfor %}
     {%- endif %}
   </head>
   <body>
     <header>
-      <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
+      <h1 class="home"><a href="/">{{ metadata.title }}</a></h1>
 
       {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
       <ul class="nav">
       {%- for entry in collections.all | eleventyNavigation %}
-        <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}"><a href="{{ entry.url | url }}">{{ entry.title | i18n }}</a></li>
+        <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}"><a href="{{ entry.url }}">{{ entry.title | i18n }}</a></li>
       {%- endfor %}
       </ul>
     </header>
@@ -53,6 +53,6 @@
 
     <footer></footer>
 
-    <!-- Current page: {{ page.url | url }} -->
+    <!-- Current page: {{ page.url | htmlBaseUrl }} -->
   </body>
 </html>
