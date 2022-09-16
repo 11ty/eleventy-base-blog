@@ -66,6 +66,9 @@ Or in debug mode:
 ```
 DEBUG=* npx @11ty/eleventy
 ```
+### Contact Form
+
+if you want to add a contact form to this theme try [static website forms](https://fabform.io) from fabform.io
 
 ### Implementation Notes
 
