@@ -1,11 +1,11 @@
-# eleventy-base-blog
+# eleventy-base-blog v8
 
 A starter repository showing how to build a blog with the [Eleventy](https://github.com/11ty/eleventy) site generator.
 
 ## Features
 
+- Using [Eleventy v2.0](https://www.11ty.dev/blog/eleventy-v2-beta/)
 - Zero-JavaScript output.
-- Using the [very fast Eleventy v2.0](https://www.11ty.dev/blog/eleventy-v2-beta/)
 - Live reload provided by [Eleventy Dev Server](https://www.11ty.dev/docs/dev-server/).
 - Easily [deploy](#deploy-this-to-your-own-site) to various hosting providers.
 - Content is entirely pre-rendered (this is a static site).
