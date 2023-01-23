@@ -8,13 +8,22 @@ const pluginNavigation = require("@11ty/eleventy-navigation");
 const eleventyImage = require("@11ty/eleventy-img");
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
-function relativeToInputPath(inputPath, relativeFilePath) {
-	let split = inputPath.split(path.sep);
-	split.pop();
-	return path.resolve(split.join(path.sep), relativeFilePath);
-}
-
 module.exports = function(eleventyConfig) {
+	eleventyConfig.addPlugin(function enableDrafts(eleventyConfig) {
+		let logged = false;
+		eleventyConfig.on("eleventy.before", ({runMode}) => {
+			// only show drafts in serve/watch modes
+			if(runMode === "serve" || runMode === "watch") {
+				process.env.BUILD_DRAFTS = true;
+				if(!logged) {
+					console.log( "[11ty/eleventy-base-blog] including `draft: true` posts" );
+				}
+
+				logged = true;
+			}
+		});
+	})
+
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig.addPassthroughCopy({
@@ -38,6 +47,12 @@ module.exports = function(eleventyConfig) {
 	// Eleventy Image shortcode
 	// https://www.11ty.dev/docs/plugins/image/
 	eleventyConfig.addPlugin(eleventyConfig => {
+		function relativeToInputPath(inputPath, relativeFilePath) {
+			let split = inputPath.split(path.sep);
+			split.pop();
+			return path.resolve(split.join(path.sep), relativeFilePath);
+		}
+
 		eleventyConfig.addAsyncShortcode("image", async function imageShortcode(src, alt, sizes) {
 			let file = relativeToInputPath(this.page.inputPath, src);
 			let metadata = await eleventyImage(file, {
