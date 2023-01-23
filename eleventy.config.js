@@ -1,3 +1,4 @@
+const path = require("path");
 const { DateTime } = require("luxon");
 const markdownItAnchor = require("markdown-it-anchor");
 
@@ -5,6 +6,13 @@ const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
+const eleventyImage = require("@11ty/eleventy-img");
+
+function relativeToInputPath(inputPath, relativeFilePath) {
+	let split = inputPath.split(path.sep);
+	split.pop();
+	return path.resolve(split.join(path.sep), relativeFilePath);
+}
 
 module.exports = function(eleventyConfig) {
 	eleventyConfig.ignores.add("README.md");
@@ -20,12 +28,30 @@ module.exports = function(eleventyConfig) {
 	// to emulate the file copy on the dev server. Learn more: https://www.11ty.dev/docs/copy/#emulate-passthrough-copy-during-serve
 	// eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
 
-	// Add plugins
+	// Plugins
 	eleventyConfig.addPlugin(pluginRss);
 	eleventyConfig.addPlugin(pluginSyntaxHighlight);
 	eleventyConfig.addPlugin(pluginNavigation);
 	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
 
+	// Shortcodes
+	eleventyConfig.addAsyncShortcode("imageOptimized", async function imageShortcode(src, alt, sizes) {
+		let file = relativeToInputPath(this.page.inputPath, src);
+		let metadata = await eleventyImage(file, {
+			widths: ["auto"],
+			formats: ["webp", "png"], // Can add "avif" or "jpeg" here
+			outputDir: "_site/img/"
+		});
+		let imageAttributes = {
+			alt,
+			sizes,
+			loading: "lazy",
+			decoding: "async",
+		};
+		return eleventyImage.generateHTML(metadata, imageAttributes);
+	});
+
+	// Filters
 	eleventyConfig.addFilter("readableDate", (dateObj, format = "dd LLLL yyyy") => {
 		return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat(format);
 	});
