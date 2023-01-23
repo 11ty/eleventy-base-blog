@@ -1,44 +1,44 @@
 <!doctype html>
 <html lang="{{ metadata.language }}">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title or metadata.title }}</title>
-    <meta name="description" content="{{ description or metadata.description }}">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{ title or metadata.title }}</title>
+		<meta name="description" content="{{ description or metadata.description }}">
 
-    {#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
-    {#- <meta name="generator" content="{{ eleventy.generator }}"> #}
+		{#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
+		{#- <meta name="generator" content="{{ eleventy.generator }}"> #}
 
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/prism-okaidia.css">
-    <link rel="stylesheet" href="/css/prism-diff.css">
+		<link rel="stylesheet" href="/css/index.css">
+		<link rel="stylesheet" href="/css/prism-okaidia.css">
+		<link rel="stylesheet" href="/css/prism-diff.css">
 
-    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
-    <link rel="alternate" href="/feed/feed.json" type="application/json" title="{{ metadata.title }}">
-  </head>
-  <body>
-    <a href="#skip" class="visually-hidden">Skip to main content</a>
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="{{ metadata.title }}">
+	</head>
+	<body>
+		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
-    <header>
-      <a href="/" class="home-link">{{ metadata.title }}</a>
+		<header>
+			<a href="/" class="home-link">{{ metadata.title }}</a>
 
-      {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-      <nav>
-        <ul class="nav">
-          <h2 class="visually-hidden">Top level navigation menu</h2>
-        {%- for entry in collections.all | eleventyNavigation %}
-          <li class="nav-item"><a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
-        {%- endfor %}
-        </ul>
-      </nav>
-    </header>
+			{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
+			<nav>
+				<ul class="nav">
+					<h2 class="visually-hidden">Top level navigation menu</h2>
+				{%- for entry in collections.all | eleventyNavigation %}
+					<li class="nav-item"><a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
+				{%- endfor %}
+				</ul>
+			</nav>
+		</header>
 
-    <main id="skip">
-      {{ content | safe }}
-    </main>
+		<main id="skip">
+			{{ content | safe }}
+		</main>
 
-    <footer></footer>
+		<footer></footer>
 
-    <!-- Current page: {{ page.url | htmlBaseUrl }} -->
-  </body>
+		<!-- Current page: {{ page.url | htmlBaseUrl }} -->
+	</body>
 </html>
