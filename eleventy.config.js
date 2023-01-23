@@ -9,21 +9,6 @@ const eleventyImage = require("@11ty/eleventy-img");
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
 module.exports = function(eleventyConfig) {
-	eleventyConfig.addPlugin(function enableDrafts(eleventyConfig) {
-		let logged = false;
-		eleventyConfig.on("eleventy.before", ({runMode}) => {
-			// only show drafts in serve/watch modes
-			if(runMode === "serve" || runMode === "watch") {
-				process.env.BUILD_DRAFTS = true;
-				if(!logged) {
-					console.log( "[11ty/eleventy-base-blog] including `draft: true` posts" );
-				}
-
-				logged = true;
-			}
-		});
-	})
-
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig.addPassthroughCopy({
@@ -71,6 +56,26 @@ module.exports = function(eleventyConfig) {
 			return eleventyImage.generateHTML(metadata, imageAttributes);
 		});
 	});
+
+	// Drafts implementation, see `content/blog/blog.11tydata.js` for additional code.
+	// This section *could* be simplified to an environment variable in an npm script,
+	// but this way an ENV is not required and this code works cross-platform.
+	eleventyConfig.addPlugin(function enableDrafts(eleventyConfig) {
+		let logged = false;
+		eleventyConfig.on("eleventy.before", ({runMode}) => {
+			// Only show drafts in serve/watch modes
+			if(runMode === "serve" || runMode === "watch") {
+				process.env.BUILD_DRAFTS = true;
+
+				// Only log once
+				if(!logged) {
+					console.log( "[11ty/eleventy-base-blog] including `draft: true` posts" );
+				}
+
+				logged = true;
+			}
+		});
+	})
 
 	// Filters
 	eleventyConfig.addFilter("readableDate", (dateObj, format = "dd LLLL yyyy") => {
