@@ -105,6 +105,12 @@ header:after {
   clear: both;
 }
 
+.links-nextprev {
+	list-style: none;
+	border-top: 1px dashed var(--color-gray-20);
+	padding: 1em 0;
+}
+
 table {
   margin: 1em 0;
 }
@@ -219,6 +225,7 @@ header {
   align-items: center;
   justify-content: center;
   text-transform: capitalize;
+	font-style: italic;
 }
 .postlist-item > .post-tag {
   align-self: center;
