@@ -4,15 +4,16 @@ A starter repository showing how to build a blog with the [Eleventy](https://www
 
 ## Features
 
-- Using [Eleventy v2.0](https://www.11ty.dev/blog/eleventy-v2-beta/)
-- Zero-JavaScript output.
+- Using [Eleventy v2.0](https://www.11ty.dev/blog/eleventy-v2-beta/) with zero-JavaScript output.
 - Live reload provided by [Eleventy Dev Server](https://www.11ty.dev/docs/dev-server/).
 - Easily [deploy](#deploy-this-to-your-own-site) to various hosting providers.
 - Content is entirely pre-rendered (this is a static site).
 - Content-driven [hierarchical navigation](https://www.11ty.dev/docs/plugins/navigation/)
-- Automated [image optimization](https://www.11ty.dev/docs/plugins/image/) via the `{% image %}` shortcode (images can be co-located with posts).
+- Automated [image optimization](https://www.11ty.dev/docs/plugins/image/) via the `{% image %}` shortcode (images can be co-located with posts) (with zero-JavaScript output).
+- Built-in [syntax highlighter](https://www.11ty.dev/docs/plugins/syntaxhighlight/) (with zero-JavaScript output).
 - Automated next/previous links on blog posts.
 - Easily [deploy to a subfolder without changing any content](https://www.11ty.dev/docs/plugins/html-base/)
+- Easily configure templates via the [Eleventy Data Cascade](https://www.11ty.dev/docs/data-cascade/)
 - Output URLs are independent of content’s location on the file system.
 - Generated:
 	1. [feeds for Atom and JSON](https://www.11ty.dev/docs/plugins/rss/)
