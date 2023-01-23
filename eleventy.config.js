@@ -57,7 +57,7 @@ module.exports = function(eleventyConfig) {
 		});
 	});
 
-	// Drafts implementation, see `content/blog/blog.11tydata.js` for additional code.
+	// Drafts implementation, see `content/content.11tydata.js` for additional code.
 	// This section *could* be simplified to an environment variable in an npm script,
 	// but this way an ENV is not required and this code works cross-platform.
 	eleventyConfig.addPlugin(function enableDrafts(eleventyConfig) {
