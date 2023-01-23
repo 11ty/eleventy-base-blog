@@ -5,8 +5,8 @@ const markdownItAnchor = require("markdown-it-anchor");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
-const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 const eleventyImage = require("@11ty/eleventy-img");
+const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
 function relativeToInputPath(inputPath, relativeFilePath) {
 	let split = inputPath.split(path.sep);
@@ -24,10 +24,6 @@ module.exports = function(eleventyConfig) {
 		"./node_modules/prismjs/themes/prism-okaidia.css": "/css/prism-okaidia.css"
 	});
 
-	// If your passthrough copy gets heavy and cumbersome, add this line
-	// to emulate the file copy on the dev server. Learn more: https://www.11ty.dev/docs/copy/#emulate-passthrough-copy-during-serve
-	// eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
-
 	// Plugins
 	eleventyConfig.addPlugin(pluginRss);
 	eleventyConfig.addPlugin(pluginSyntaxHighlight);
@@ -35,21 +31,24 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
 
 	// Shortcodes
-	eleventyConfig.addAsyncShortcode("imageOptimized", async function imageShortcode(src, alt, sizes) {
-		let file = relativeToInputPath(this.page.inputPath, src);
-		let metadata = await eleventyImage(file, {
-			widths: ["auto"],
-			formats: ["webp", "png"], // Can add "avif" or "jpeg" here
-			outputDir: "_site/img/"
+	eleventyConfig.addPlugin(eleventyConfig => {
+		eleventyConfig.addAsyncShortcode("imageOptimized", async function imageShortcode(src, alt, sizes) {
+			let file = relativeToInputPath(this.page.inputPath, src);
+			let metadata = await eleventyImage(file, {
+				widths: ["auto"],
+				// Can add "avif" or "jpeg" here if you’d like!
+				formats: ["webp", "png"],
+				outputDir: path.join(eleventyConfig.dir.output, "img"),
+			});
+			let imageAttributes = {
+				alt,
+				sizes,
+				loading: "lazy",
+				decoding: "async",
+			};
+			return eleventyImage.generateHTML(metadata, imageAttributes);
 		});
-		let imageAttributes = {
-			alt,
-			sizes,
-			loading: "lazy",
-			decoding: "async",
-		};
-		return eleventyImage.generateHTML(metadata, imageAttributes);
-	});
+	})
 
 	// Filters
 	eleventyConfig.addFilter("readableDate", (dateObj, format = "dd LLLL yyyy") => {
@@ -104,6 +103,14 @@ module.exports = function(eleventyConfig) {
 		});
 	});
 
+	// Features to make your build faster (as you need them)
+
+	// If your passthrough copy gets heavy and cumbersome, add this line
+	// to emulate the file copy on the dev server. Learn more:
+	// https://www.11ty.dev/docs/copy/#emulate-passthrough-copy-during-serve
+
+	// eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
+
 	return {
 		// Control which files Eleventy will process
 		// e.g.: *.md, *.njk, *.html, *.liquid
@@ -126,10 +133,11 @@ module.exports = function(eleventyConfig) {
 			includes: "_includes",
 			data: "_data",
 			output: "_site"
-		}
+		},
 
 		// -----------------------------------------------------------------
-		// Optional:
+		// Optional items:
+		// -----------------------------------------------------------------
 
 		// If your site deploys to a subdirectory, change `pathPrefix`.
 		// Read more: https://www.11ty.dev/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix
@@ -137,9 +145,6 @@ module.exports = function(eleventyConfig) {
 		// When paired with the HTML <base> plugin https://www.11ty.dev/docs/plugins/html-base/
 		// it will transform any absolute URLs in your HTML to include this
 		// folder name and does **not** affect where things go in the output folder.
-
-		// Optional (default is shown)
-		// pathPrefix: "/",
-		// -----------------------------------------------------------------
+		pathPrefix: "/",
 	};
 };

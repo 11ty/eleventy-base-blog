@@ -5,12 +5,10 @@
 	"scripts": {
 		"build": "npx @11ty/eleventy",
 		"build-ghpages": "npx @11ty/eleventy --pathprefix=/eleventy-base-blog/",
-		"bench": "DEBUG=Eleventy:Benchmark* npx @11ty/eleventy",
-		"watch": "npx @11ty/eleventy --watch",
 		"serve": "npx @11ty/eleventy --serve",
 		"start": "npx @11ty/eleventy --serve --quiet",
-		"start-ghpages": "npx @11ty/eleventy --serve --quiet --pathprefix=/eleventy-base-blog/",
-		"debug": "DEBUG=Eleventy* npx @11ty/eleventy"
+		"debug": "DEBUG=Eleventy* npx @11ty/eleventy",
+		"benchmark": "DEBUG=Eleventy:Benchmark* npx @11ty/eleventy"
 	},
 	"repository": {
 		"type": "git",

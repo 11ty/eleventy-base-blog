@@ -15,9 +15,9 @@ A starter repository showing how to build a blog with the [Eleventy](https://git
 Deploy this Eleventy site in just a few clicks on these services:
 
 - [Get your own Eleventy web site on Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/11ty/eleventy-base-blog)
+- If you run Eleventy locally you can drag your `_site` folder to [`drop.netlify.com`](https://drop.netlify.com/) to upload it!
 - [Get your own Eleventy web site on Vercel](https://vercel.com/import/project?template=11ty%2Feleventy-base-blog)
-
-Or, read more about [Deploying an Eleventy project](https://www.11ty.dev/docs/deployment/).
+- Read more about [Deploying an Eleventy project](https://www.11ty.dev/docs/deployment/) to the web.
 
 ## Getting Started
 
