@@ -1,19 +1,10 @@
 const { DateTime } = require("luxon");
-const rosetta = require("rosetta");
 const markdownItAnchor = require("markdown-it-anchor");
 
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
-const pluginWebc = require("@11ty/eleventy-plugin-webc");
-
-const {
-  EleventyRenderPlugin,
-  EleventyI18nPlugin,
-  EleventyHtmlBasePlugin
-} = require("@11ty/eleventy");
-
-const languageStrings = require("./i18n.js");
+const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.ignores.add("README.md");
@@ -22,23 +13,18 @@ module.exports = function(eleventyConfig) {
   // For example, `./public/css/` ends up in `_site/css/`
   eleventyConfig.addPassthroughCopy({
     "./public/": "/",
+    "./node_modules/prismjs/themes/prism-okaidia.css": "/css/prism-okaidia.css"
   });
+
+  // If your passthrough copy gets heavy and cumbersome, add this line
+  // to emulate the file copy on the dev server. Learn more: https://www.11ty.dev/docs/copy/#emulate-passthrough-copy-during-serve
+  // eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
 
   // Add plugins
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
-  eleventyConfig.addPlugin(EleventyRenderPlugin);
-
-  eleventyConfig.addPlugin(pluginWebc, {
-    components: "./_includes/components/**/*.webc"
-  });
-
-  eleventyConfig.addPlugin(EleventyI18nPlugin, {
-    defaultLanguage: "en",
-    errorMode: "allow-fallback",
-  });
 
   eleventyConfig.addFilter("readableDate", (dateObj, format = "dd LLLL yyyy") => {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat(format);
@@ -79,7 +65,7 @@ module.exports = function(eleventyConfig) {
     return (tags || []).filter(tag => ["all", "nav", "post", "posts"].indexOf(tag) === -1);
   });
 
-  // Customize Markdown library and settings:
+  // Customize Markdown library settings:
   eleventyConfig.amendLibrary("md", mdLib => {
     mdLib.use(markdownItAnchor, {
       permalink: markdownItAnchor.permalink.ariaHidden({
@@ -88,26 +74,8 @@ module.exports = function(eleventyConfig) {
         symbol: "#",
       }),
       level: [1,2,3,4],
-      slugify: eleventyConfig.getFilter("slug")
+      slugify: eleventyConfig.getFilter("slugify")
     });
-  });
-
-  // Override @11ty/eleventy-dev-server defaults (used only with --serve)
-  eleventyConfig.setServerOptions({
-    showVersion: true,
-  });
-
-  // i18n filter using Rosetta
-  const rosettaLib = rosetta(languageStrings);
-
-  eleventyConfig.addFilter("i18n", function (key, lang) {
-    const I18N_PREFIX = "i18n.";
-    if(key.startsWith(I18N_PREFIX)) {
-      key = key.slice(I18N_PREFIX.length);
-    }
-    // depends on page.lang in 2.0.0-canary.14+
-    let page = this.page || this.ctx?.page || this.context?.environments?.page || {};
-    return rosettaLib.t(key, {}, lang || page.lang);
   });
 
   return {
@@ -126,20 +94,6 @@ module.exports = function(eleventyConfig) {
     // Pre-process *.html files with: (default: `liquid`)
     htmlTemplateEngine: "njk",
 
-    // -----------------------------------------------------------------
-    // If your site deploys to a subdirectory, change `pathPrefix`.
-    // Don’t worry about leading and trailing slashes, we normalize these.
-
-    // If you don’t have a subdirectory, use "" or "/" (they do the same thing)
-    // This is only used for link URLs (it does not affect your file structure)
-    // Best paired with the `url` filter: https://www.11ty.dev/docs/filters/url/
-
-    // You can also pass this in on the command line using `--pathprefix`
-
-    // Optional (default is shown)
-    pathPrefix: "/",
-    // -----------------------------------------------------------------
-
     // These are all optional (defaults are shown):
     dir: {
       input: ".",
@@ -147,5 +101,19 @@ module.exports = function(eleventyConfig) {
       data: "_data",
       output: "_site"
     }
+
+    // -----------------------------------------------------------------
+    // Optional:
+
+    // If your site deploys to a subdirectory, change `pathPrefix`.
+    // Read more: https://www.11ty.dev/docs/config/#deploy-to-a-subdirectory-with-a-path-prefix
+
+    // When paired with the HTML <base> plugin https://www.11ty.dev/docs/plugins/html-base/
+    // it will transform any absolute URLs in your HTML to include this
+    // folder name and does **not** affect where things go in the output folder.
+
+    // Optional (default is shown)
+    // pathPrefix: "/",
+    // -----------------------------------------------------------------
   };
 };

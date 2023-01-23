@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ lang or metadata.language }}">
+<html lang="{{ metadata.language }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,34 +10,27 @@
     {#- <meta name="generator" content="{{ eleventy.generator }}"> #}
 
     <link rel="stylesheet" href="/css/index.css">
-    <style>
-    {{ page.url | webcGetCss | safe }}
-    </style>
+    <link rel="stylesheet" href="/css/prism-okaidia.css">
+    <link rel="stylesheet" href="/css/prism-diff.css">
 
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="{{ metadata.title }}">
-
-    {%- set alternateUrls = page.url | locale_links %}
-    {% if alternateUrls.length %}
-    <link rel="alternate" hreflang="{{ lang or metadata.language }}" href="{{ page.url | htmlBaseUrl(metadata.url) }}">
-    {%- for link in alternateUrls %}
-    <link rel="alternate" hreflang="{{ link.lang }}" href="{{ link.url | htmlBaseUrl(metadata.url) }}">
-    {%- endfor %}
-    {%- endif %}
   </head>
   <body>
     <header>
       <h1 class="home"><a href="/">{{ metadata.title }}</a></h1>
 
       {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-      <ul class="nav">
-      {%- for entry in collections.all | eleventyNavigation %}
-        <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}"><a href="{{ entry.url }}">{{ entry.title | i18n }}</a></li>
-      {%- endfor %}
-      </ul>
-    </header>
+      <nav>
+        <ul class="nav">
+        {%- for entry in collections.all | eleventyNavigation %}
+          <li class="nav-item"><a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
+        {%- endfor %}
+        </ul>
+      </nav>
+  </header>
 
-    <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
+    <main>
       {{ content | safe }}
     </main>
 

@@ -9,13 +9,6 @@ eleventyExcludeFromCollections: true
   <url>
     <loc>{{ absoluteUrl }}</loc>
     <lastmod>{{ page.date | htmlDateString }}</lastmod>
-    {%- set alternateUrls = page.url | locale_links %}
-    {%- if alternateUrls.length %}
-    <xhtml:link rel="alternate" hreflang="{{ page.data.page.lang }}" href="{{ absoluteUrl }}"/>
-    {%- for link in alternateUrls %}
-    <xhtml:link rel="alternate" hreflang="{{ link.lang }}" href="{{ link.url | htmlBaseUrl(metadata.url) }}"/>
-    {%- endfor %}
-    {%- endif %}
   </url>
 {%- endfor %}
 </urlset>

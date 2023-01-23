@@ -1,6 +1,6 @@
 # eleventy-base-blog
 
-A starter repository showing how to build a (multi-language friendly) blog with the [Eleventy](https://github.com/11ty/eleventy) static site generator.
+A starter repository showing how to build a blog with the [Eleventy](https://github.com/11ty/eleventy) site generator.
 
 [![Build Status](https://travis-ci.org/11ty/eleventy-base-blog.svg?branch=master)](https://travis-ci.org/11ty/eleventy-base-blog)
 
@@ -33,7 +33,7 @@ git clone https://github.com/11ty/eleventy-base-blog.git my-blog-name
 cd my-blog-name
 ```
 
-Specifically have a look at `.eleventy.js` to see if you want to configure any Eleventy options differently.
+Specifically have a look at `eleventy.config.js` to see if you want to configure any Eleventy options differently.
 
 ### 3. Install dependencies
 
@@ -63,14 +63,12 @@ DEBUG=Eleventy* npx @11ty/eleventy
 
 ### Implementation Notes
 
-- `en` is the folder for content (written using the primary language for project, here we’re using English)
-- `en/about/index.md` is an example of an English content page.
-- `en/blog/` has the English blog posts but really they can live in any directory. They need only the `post` tag to be included in the blog posts [collection](https://www.11ty.dev/docs/collections/).
-  - To localize a blog post you will need to add a top level folder for that language (`es` for Spanish, `ja` for Japanese, `en-us` for American English) and match the rest of the file path to the primary language folder. For example `en/blog/my-post.md` could have `ja/blog/my-post.md` or `es/blog/my-post.md`. Read more about [best practices for organizing files for internationalization (i18n) in Eleventy projects](https://www.11ty.dev/docs/i18n/).
-- Use the `eleventyNavigation` key in your front matter to add a template to the top level site navigation. For example, this is in use on `index.njk` and `about/index.md`.
+- `about/index.md` is an example of a content page.
+- `blog/` has the blog posts but really they can live in any directory. They need only the `post` tag to be included in the blog posts [collection](https://www.11ty.dev/docs/collections/).
+- Use the `eleventyNavigation` key in your front matter to add a template to the top level site navigation. This is in use on `index.njk` and `about/index.md`.
   - This makes use of the [Eleventy Navigation plugin](https://www.11ty.dev/docs/plugins/navigation/)
-- Content can be any template format (blog posts needn’t be markdown, for example). Configure your supported templates in `.eleventy.js` -> `templateFormats`.
-- The `public` folder in your input directory will be copied to the output folder (via `addPassthroughCopy()` in the `.eleventy.js` file). This means `./public/css/*` will live at `./_site/css/*` after your build completes. [When using `--serve` this behavior is emulated](/docs/copy/#passthrough-during-serve) (the files will not show up in `_site`).
+- Content can be any template format (blog posts needn’t be markdown, for example). Configure your supported templates in `eleventy.config.js` -> `templateFormats`.
+- The `public` folder in your input directory will be copied to the output folder (via `addPassthroughCopy` in the `eleventy.config.js` file). This means `./public/css/*` will live at `./_site/css/*` after your build completes.
 - The blog post feed template is in `feed/feed.njk`. This is also a good example of using a global data files in that it uses `_data/metadata.json`.
 - This project uses three layouts:
   - `_includes/layouts/base.njk`: the top level HTML structure

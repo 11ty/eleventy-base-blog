@@ -152,8 +152,7 @@ header {
 .nav-item a[href]:not(:hover) {
   text-decoration: none;
 }
-.nav-item-active {
-  font-weight: 700;
+.nav a[href][aria-current="page"] {
   text-decoration: underline;
 }
 
@@ -187,6 +186,8 @@ header {
   word-spacing: -0.5px;
 }
 .postlist-link {
+  font-size: 1.1875em; /* 19px /16 */
+  font-weight: 700;
   flex-basis: calc(100% - 1.5rem);
   padding-left: .25em;
   padding-right: .5em;
@@ -197,11 +198,6 @@ header {
 .postlist-item-active .postlist-link {
   font-weight: bold;
 }
-.tmpl-home .postlist-link {
-  font-size: 1.1875em; /* 19px /16 */
-  font-weight: 700;
-}
-
 
 /* Tags */
 .post-tag {

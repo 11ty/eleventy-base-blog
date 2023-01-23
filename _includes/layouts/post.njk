@@ -1,6 +1,5 @@
 ---
 layout: layouts/base.njk
-templateClass: tmpl-post
 ---
 <h1>{{ title }}</h1>
 
@@ -16,27 +15,13 @@ templateClass: tmpl-post
 
 <hr>
 
-{% set i18nLinks = page.url | locale_links %}
-{% if i18nLinks.length %}
-<ul>
-  <li>
-    {{ "i18n.also" | i18n }}
-    {%- for link in i18nLinks %}
-    <a href="{{ link.url }}" lang="{{ link.lang }}" hreflang="{{ link.lang }}">{{ link.label }}</a>
-    {%- if not loop.last %},{% endif %}
-    {%- endfor -%}
-  </li>
-</ul>
-{% endif %}
-
 {%- if collections.posts %}
-{# these filters are locale-aware in 2.0.0-canary.14 #}
 {%- set previousPost = collections.posts | getPreviousCollectionItem %}
 {%- set nextPost = collections.posts | getNextCollectionItem %}
 {%- if nextPost or previousPost %}
 <ul>
-  {%- if previousPost %}<li>{{ "i18n.previous" | i18n }}: <a href="{{ previousPost.url }}">{{ previousPost.data.title }}</a></li>{% endif %}
-  {%- if nextPost %}<li>{{ "i18n.next" | i18n }}: <a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a></li>{% endif %}
+  {%- if previousPost %}<li>Previous: <a href="{{ previousPost.url }}">{{ previousPost.data.title }}</a></li>{% endif %}
+  {%- if nextPost %}<li>Next: <a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a></li>{% endif %}
 </ul>
 {%- endif %}
 {%- endif %}
