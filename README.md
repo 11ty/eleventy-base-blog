@@ -11,8 +11,8 @@ A starter repository showing how to build a blog with the [Eleventy](https://www
 - Content-driven [hierarchical navigation](https://www.11ty.dev/docs/plugins/navigation/)
 - Automated [image optimization](https://www.11ty.dev/docs/plugins/image/) via the `{% image %}` shortcode (images can be co-located with posts) (with zero-JavaScript output).
 - Built-in [syntax highlighter](https://www.11ty.dev/docs/plugins/syntaxhighlight/) (with zero-JavaScript output).
+- Draft posts: use `draft: true` to mark a blog post as a draft. Drafts are **only** included during `--serve`/`--watch` and are excluded from full builds.
 - Automated next/previous links on blog posts.
-- Use `draft: true` to mark a blog post as a draft. Drafts are **only** included during `--serve`/`--watch` and are excluded from full builds.
 - Easily [deploy to a subfolder without changing any content](https://www.11ty.dev/docs/plugins/html-base/)
 - Easily configure templates via the [Eleventy Data Cascade](https://www.11ty.dev/docs/data-cascade/)
 - Output URLs are independent of content’s location on the file system.
