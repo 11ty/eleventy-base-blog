@@ -15,6 +15,8 @@ function relativeToInputPath(inputPath, relativeFilePath) {
 }
 
 module.exports = function(eleventyConfig) {
+	// Don’t process these files
+	// https://www.11ty.dev/docs/ignores/#configuration-api
 	eleventyConfig.ignores.add("README.md");
 
 	// Copy the contents of the `public` folder to the output folder
@@ -24,21 +26,28 @@ module.exports = function(eleventyConfig) {
 		"./node_modules/prismjs/themes/prism-okaidia.css": "/css/prism-okaidia.css"
 	});
 
+	// Run Eleventy when these files change:
+	// https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
+
+	// Process content images to the image pipeline.
+	eleventyConfig.addWatchTarget("**/*.(png|jpeg)");
+
 	// Plugins
 	eleventyConfig.addPlugin(pluginRss);
 	eleventyConfig.addPlugin(pluginSyntaxHighlight);
 	eleventyConfig.addPlugin(pluginNavigation);
 	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
 
-	// Shortcodes
+	// Eleventy Image shortcode
+	// https://www.11ty.dev/docs/plugins/image/
 	eleventyConfig.addPlugin(eleventyConfig => {
-		eleventyConfig.addAsyncShortcode("imageOptimized", async function imageShortcode(src, alt, sizes) {
+		eleventyConfig.addAsyncShortcode("image", async function imageShortcode(src, alt, sizes) {
 			let file = relativeToInputPath(this.page.inputPath, src);
 			let metadata = await eleventyImage(file, {
 				widths: ["auto"],
-				// Can add "avif" or "jpeg" here if you’d like!
+				// You can add "avif" or "jpeg" here if you’d like!
 				formats: ["webp", "png"],
-				outputDir: path.join(eleventyConfig.dir.output, "img"),
+				outputDir: path.join(eleventyConfig.dir.output, "img"), // Advanced usage note: `eleventyConfig.dir` works here because we’re using addPlugin.
 			});
 			let imageAttributes = {
 				alt,
@@ -48,7 +57,7 @@ module.exports = function(eleventyConfig) {
 			};
 			return eleventyImage.generateHTML(metadata, imageAttributes);
 		});
-	})
+	});
 
 	// Filters
 	eleventyConfig.addFilter("readableDate", (dateObj, format = "dd LLLL yyyy") => {
@@ -103,7 +112,7 @@ module.exports = function(eleventyConfig) {
 		});
 	});
 
-	// Features to make your build faster (as you need them)
+	// Features to make your build faster (when you need them)
 
 	// If your passthrough copy gets heavy and cumbersome, add this line
 	// to emulate the file copy on the dev server. Learn more:

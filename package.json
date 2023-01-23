@@ -1,7 +1,7 @@
 {
 	"name": "eleventy-base-blog",
-	"version": "7.0.0",
-	"description": "A starter repository for a blog web site using the Eleventy static site generator.",
+	"version": "8.0.0",
+	"description": "A starter repository for a blog web site using the Eleventy site generator.",
 	"scripts": {
 		"build": "npx @11ty/eleventy",
 		"build-ghpages": "npx @11ty/eleventy --pathprefix=/eleventy-base-blog/",
@@ -20,11 +20,18 @@
 		"url": "https://zachleat.com/"
 	},
 	"license": "MIT",
+	"engines": {
+		"node": ">=14"
+	},
+	"funding": {
+		"type": "opencollective",
+		"url": "https://opencollective.com/11ty"
+	},
 	"bugs": {
 		"url": "https://github.com/11ty/eleventy-base-blog/issues"
 	},
 	"homepage": "https://github.com/11ty/eleventy-base-blog#readme",
-	"dependencies": {
+	"devDependencies": {
 		"@11ty/eleventy": "2.0.0-beta.1",
 		"@11ty/eleventy-img": "^2.0.1",
 		"@11ty/eleventy-navigation": "^0.3.5",

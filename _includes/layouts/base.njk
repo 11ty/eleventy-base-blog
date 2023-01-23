@@ -6,15 +6,36 @@
 		<title>{{ title or metadata.title }}</title>
 		<meta name="description" content="{{ description or metadata.description }}">
 
+		{#- Atom and JSON feeds included by default #}
+		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
+		<link rel="alternate" href="/feed/feed.json" type="application/json" title="{{ metadata.title }}">
+
 		{#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
 		{#- <meta name="generator" content="{{ eleventy.generator }}"> #}
 
+{#-
+		Choices for CSS:
+
+		1. External files (best with local dev server live reload)
+#}
 		<link rel="stylesheet" href="/css/index.css">
-		<link rel="stylesheet" href="/css/prism-okaidia.css">
+		<link rel="stylesheet" href="/css/prism-okaidia.css">{# addPassthroughCopy file #}
 		<link rel="stylesheet" href="/css/prism-diff.css">
 
-		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
-		<link rel="alternate" href="/feed/feed.json" type="application/json" title="{{ metadata.title }}">
+{#-
+		2. Inlined (speediest in production)
+				<style>
+				{% include "public/css/index.css" %}
+				{% include "node_modules/prismjs/themes/prism-okaidia.css" %}
+				{% include "public/css/prism-diff.css" %}
+				…
+				</style>
+		3. Concatenate CSS to one file (slower than 2 but faster than 1):
+				https://www.11ty.dev/docs/quicktips/concatenate/
+		4. Use a bundler
+				e.g. Vite https://www.11ty.dev/docs/server-vite/
+				Or search for additional community plugins for esbuild, rollup, webpack, etc.
+#}
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
