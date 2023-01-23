@@ -15,10 +15,6 @@ function relativeToInputPath(inputPath, relativeFilePath) {
 }
 
 module.exports = function(eleventyConfig) {
-	// Don’t process these files
-	// https://www.11ty.dev/docs/ignores/#configuration-api
-	eleventyConfig.ignores.add("README.md");
-
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig.addPassthroughCopy({
@@ -30,7 +26,8 @@ module.exports = function(eleventyConfig) {
 	// https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
 
 	// Process content images to the image pipeline.
-	eleventyConfig.addWatchTarget("**/*.(png|jpeg)");
+	eleventyConfig.addWatchTarget("content/**/*.{png,jpeg}");
+
 
 	// Plugins
 	eleventyConfig.addPlugin(pluginRss);
@@ -136,11 +133,11 @@ module.exports = function(eleventyConfig) {
 		// Pre-process *.html files with: (default: `liquid`)
 		htmlTemplateEngine: "njk",
 
-		// These are all optional (defaults are shown):
+		// These are all optional:
 		dir: {
-			input: ".",
-			includes: "_includes",
-			data: "_data",
+			input: "content",         // default: "."
+			includes: "../_includes",  // default: "_includes"
+			data: "../_data",          // default: "_data"
 			output: "_site"
 		},
 
