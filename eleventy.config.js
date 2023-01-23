@@ -67,7 +67,7 @@ module.exports = function(eleventyConfig) {
 			if(runMode === "serve" || runMode === "watch") {
 				process.env.BUILD_DRAFTS = true;
 
-				// Only log once
+				// Only log once.
 				if(!logged) {
 					console.log( "[11ty/eleventy-base-blog] including `draft: true` posts" );
 				}
@@ -78,12 +78,13 @@ module.exports = function(eleventyConfig) {
 	})
 
 	// Filters
-	eleventyConfig.addFilter("readableDate", (dateObj, format = "dd LLLL yyyy") => {
-		return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat(format);
+	eleventyConfig.addFilter("readableDate", (dateObj, format, zone) => {
+		// Formatting tokens for Luxon: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
+		return DateTime.fromJSDate(dateObj, { zone: zone || "utc" }).toFormat(format || "dd LLLL yyyy");
 	});
 
-	// https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
 	eleventyConfig.addFilter('htmlDateString', (dateObj) => {
+		// dateObj input: https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
 		return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
 	});
 
