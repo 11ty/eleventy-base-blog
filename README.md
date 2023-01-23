@@ -2,7 +2,23 @@
 
 A starter repository showing how to build a blog with the [Eleventy](https://github.com/11ty/eleventy) site generator.
 
-[![Build Status](https://travis-ci.org/11ty/eleventy-base-blog.svg?branch=master)](https://travis-ci.org/11ty/eleventy-base-blog)
+## Features
+
+- Zero-JavaScript output.
+- Using the [very fast Eleventy v2.0](https://www.11ty.dev/blog/eleventy-v2-beta/)
+- Live reload provided by [Eleventy Dev Server](https://www.11ty.dev/docs/dev-server/).
+- Easily [deploy](#deploy-this-to-your-own-site) to various hosting providers.
+- Content is entirely pre-rendered (this is a static site).
+- Content-driven [hierarchical navigation](https://www.11ty.dev/docs/plugins/navigation/)
+- Automated [image optimization](https://www.11ty.dev/docs/plugins/image/) via the `{% image %}` shortcode (images can be co-located with posts).
+- Automated next/previous links on blog posts.
+- Easily [deploy to a subfolder without changing any content](https://www.11ty.dev/docs/plugins/html-base/)
+- Output URLs are independent of content’s location on the file system.
+- Generated:
+	1. [feeds for Atom and JSON](https://www.11ty.dev/docs/plugins/rss/)
+	1. `sitemap.xml`
+	1. Tag pages ([demo](https://eleventy-base-blog.netlify.app/tags/))
+	1. Content not found (404) page
 
 ## Demos
 
@@ -41,21 +57,23 @@ Specifically have a look at `eleventy.config.js` to see if you want to configure
 npm install
 ```
 
-### 4. Edit \_data/metadata.json
+### 4. Edit `_data/metadata.json`
 
 ### 5. Run Eleventy
+
+Generate a production-ready build:
 
 ```
 npx @11ty/eleventy
 ```
 
-Or build and host locally for local development
+Or build and host locally on a local development server:
 
 ```
 npx @11ty/eleventy --serve
 ```
 
-Or in debug mode:
+Or in debug mode to see all the internals:
 
 ```
 DEBUG=Eleventy* npx @11ty/eleventy
@@ -65,11 +83,10 @@ DEBUG=Eleventy* npx @11ty/eleventy
 
 - `about/index.md` is an example of a content page.
 - `blog/` has the blog posts but really they can live in any directory. They need only the `post` tag to be included in the blog posts [collection](https://www.11ty.dev/docs/collections/).
-- Use the `eleventyNavigation` key in your front matter to add a template to the top level site navigation. This is in use on `index.njk` and `about/index.md`.
-  - This makes use of the [Eleventy Navigation plugin](https://www.11ty.dev/docs/plugins/navigation/)
-- Content can be any template format (blog posts needn’t be markdown, for example). Configure your supported templates in `eleventy.config.js` -> `templateFormats`.
+- Use the `eleventyNavigation` key (via the [Eleventy Navigation plugin](https://www.11ty.dev/docs/plugins/navigation/)) in your front matter to add a template to the top level site navigation. This is in use on `index.njk` and `about/index.md`.
+- Content can be in _any template format_ (blog posts needn’t exclusively be markdown, for example). Configure your project’s supported templates in `eleventy.config.js` -> `templateFormats`.
 - The `public` folder in your input directory will be copied to the output folder (via `addPassthroughCopy` in the `eleventy.config.js` file). This means `./public/css/*` will live at `./_site/css/*` after your build completes.
-- The blog post feed template is in `feed/feed.njk`. This is also a good example of using a global data files in that it uses `_data/metadata.json`.
+- The blog post feed template is in `feed/feed.njk`. This feed also uses the global data file at `_data/metadata.json`.
 - This project uses three layouts:
   - `_includes/layouts/base.njk`: the top level HTML structure
   - `_includes/layouts/home.njk`: the home page template (wrapped into `base.njk`)
