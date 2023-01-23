@@ -227,25 +227,6 @@ header {
   margin-right: 1em;
 }
 
-/* Infobox */
-:root {
-  --color-infobox: #ffc;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-infobox: #082840;
-  }
-}
-
-.infobox {
-  background-color: var(--color-infobox);
-  color: var(--color-gray-90);
-  padding: 1em 0.625em; /* 16px 10px /16 */
-}
-.infobox ol:only-child {
-  margin: 0;
-}
-
 /* Direct Links / Markdown Headers */
 .direct-link {
   font-family: sans-serif;

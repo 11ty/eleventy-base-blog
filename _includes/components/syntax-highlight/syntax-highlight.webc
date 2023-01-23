@@ -1,0 +1,5 @@
+<link rel="stylesheet" href="../../../node_modules/prismjs/themes/prism-okaidia.css">
+<link rel="stylesheet" href="./prism-diff.css">
+```<template @html="this.syntax || ''" webc:nokeep></template>
+<slot></slot>
+```

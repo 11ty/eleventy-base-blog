@@ -1,10 +1,17 @@
 const { DateTime } = require("luxon");
 const rosetta = require("rosetta");
 const markdownItAnchor = require("markdown-it-anchor");
+
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
-const { EleventyI18nPlugin, EleventyHtmlBasePlugin } = require("@11ty/eleventy");
+const pluginWebc = require("@11ty/eleventy-plugin-webc");
+
+const {
+  EleventyRenderPlugin,
+  EleventyI18nPlugin,
+  EleventyHtmlBasePlugin
+} = require("@11ty/eleventy");
 
 const languageStrings = require("./i18n.js");
 
@@ -15,7 +22,6 @@ module.exports = function(eleventyConfig) {
   // For example, `./public/css/` ends up in `_site/css/`
   eleventyConfig.addPassthroughCopy({
     "./public/": "/",
-    "./node_modules/prismjs/themes/prism-okaidia.css": "/css/prism-theme.css",
   });
 
   // Add plugins
@@ -23,6 +29,11 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+  eleventyConfig.addPlugin(EleventyRenderPlugin);
+
+  eleventyConfig.addPlugin(pluginWebc, {
+    components: "./_includes/components/**/*.webc"
+  });
 
   eleventyConfig.addPlugin(EleventyI18nPlugin, {
     defaultLanguage: "en",

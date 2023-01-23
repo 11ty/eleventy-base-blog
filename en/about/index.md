@@ -6,6 +6,6 @@ eleventyNavigation:
   key: nav.about
   order: 3
 ---
-# {{ title }}
+# <span @html="this.title" webc:nokeep></span>
 
 I am a person that writes stuff.
