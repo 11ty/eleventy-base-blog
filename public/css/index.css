@@ -16,6 +16,8 @@
   --text-color-link: #082840;
   --text-color-link-active: #5f2b48;
   --text-color-link-visited: #17050F;
+
+  --syntax-tab-size: 2;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -54,6 +56,17 @@ body {
   max-width: 40em;
 }
 
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 p:last-child {
   margin-bottom: 0;
 }
@@ -82,6 +95,7 @@ main {
 main :first-child {
   margin-top: 0;
 }
+
 header {
   border-bottom: 1px dashed var(--color-gray-20);
 }
@@ -103,13 +117,12 @@ pre,
 code {
   font-family: var(--font-family-monospace);
 }
-pre,
-pre[class*="language-"] {
+pre:not([class*="language-"]) {
   margin: .5em 0;
   line-height: 1.375; /* 22px /16 */
-  -moz-tab-size: 2;
-  -o-tab-size: 2;
-  tab-size: 2;
+  -moz-tab-size: var(--syntax-tab-size);
+  -o-tab-size: var(--syntax-tab-size);
+  tab-size: var(--syntax-tab-size);
   -webkit-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
@@ -130,11 +143,12 @@ header {
   align-items: center;
   padding: 1em;
 }
-.home {
+.home-link {
   font-size: 1em; /* 16px /16 */
+  font-weight: 700;
   margin-right: 2em;
 }
-.home :link:not(:hover) {
+.home-link:link:not(:hover) {
   text-decoration: none;
 }
 

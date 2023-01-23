@@ -17,20 +17,23 @@
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="{{ metadata.title }}">
   </head>
   <body>
+    <a href="#skip" class="visually-hidden">Skip to main content</a>
+
     <header>
-      <h1 class="home"><a href="/">{{ metadata.title }}</a></h1>
+      <a href="/" class="home-link">{{ metadata.title }}</a>
 
       {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
       <nav>
         <ul class="nav">
+          <h2 class="visually-hidden">Top level navigation menu</h2>
         {%- for entry in collections.all | eleventyNavigation %}
           <li class="nav-item"><a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
         {%- endfor %}
         </ul>
       </nav>
-  </header>
+    </header>
 
-    <main>
+    <main id="skip">
       {{ content | safe }}
     </main>
 
