@@ -48,8 +48,9 @@ module.exports = function(eleventyConfig) {
 	// https://www.11ty.dev/docs/plugins/image/
 	eleventyConfig.addPlugin(eleventyConfig => {
 		function relativeToInputPath(inputPath, relativeFilePath) {
-			let split = inputPath.split(path.sep);
+			let split = inputPath.split("/");
 			split.pop();
+
 			return path.resolve(split.join(path.sep), relativeFilePath);
 		}
 
