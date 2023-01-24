@@ -10,7 +10,12 @@ A starter repository showing how to build a blog with the [Eleventy](https://www
 - Easily [deploy](#deploy-this-to-your-own-site) to various hosting providers.
 - Live reload provided by [Eleventy Dev Server](https://www.11ty.dev/docs/dev-server/).
 - Content-driven [hierarchical navigation](https://www.11ty.dev/docs/plugins/navigation/)
-- Automated [image optimization](https://www.11ty.dev/docs/plugins/image/) via the `{% image %}` shortcode (images can be co-located with posts) (with zero-JavaScript output).
+- [Image optimization](https://www.11ty.dev/docs/plugins/image/) (including modern formats AVIF and WebP) via the `{% image %}` shortcode (images can be co-located with posts) (with zero-JavaScript output).
+	- Prefers `<img>` if possible (single image format) but switches automatically to `<picture>` for multiple image formats.
+	- Automated `<picture>` syntax markup with `srcset` and optional `sizes`
+	- Includes `width`/`height` attributes to avoid [content layout shift](https://web.dev/cls/).
+	- Includes `loading="lazy"` for native lazy loading without JavaScript.
+	- Includes [`decoding="async"`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decoding)
 - Built-in [syntax highlighter](https://www.11ty.dev/docs/plugins/syntaxhighlight/) (with zero-JavaScript output).
 - Draft posts: use `draft: true` to mark a blog post as a draft. Drafts are **only** included during `--serve`/`--watch` and are excluded from full builds.
 - Automated next/previous links on blog posts.
