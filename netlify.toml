@@ -9,6 +9,8 @@
 	# 1. via the Netlify UI https://app.netlify.com/sites/eleventy-base-blog/integrations/plugins
 	# 2. Or via `npm install -D @netlify/plugin-lighthouse`
 
+	# Read more: https://github.com/netlify/netlify-plugin-lighthouse
+
 	package = "@netlify/plugin-lighthouse"
 
 	# optional, fails build when a category is below a threshold
