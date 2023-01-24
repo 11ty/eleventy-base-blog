@@ -6,7 +6,7 @@
 
 	# Opt-in to the Netlify Lighthouse plugin (choose one):
 
-	# 1. via the Netlify UI https://app.netlify.com/sites/eleventy-base-blog/integrations/plugins
+	# 1. Go to your site on https://app.netlify.com and navigate to the Integrations tab, search for the `Lighthouse` plugin
 	# 2. Or via `npm install -D @netlify/plugin-lighthouse`
 
 	# Read more: https://github.com/netlify/netlify-plugin-lighthouse
