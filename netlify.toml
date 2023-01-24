@@ -1,16 +1,22 @@
 [build]
-  publish = "_site"
-  command = "npm run build"
+	publish = "_site"
+	command = "npm run build"
 
 [[plugins]]
-  package = "@netlify/plugin-lighthouse"
 
-  # optional, fails build when a category is below a threshold
-  [plugins.inputs.thresholds]
-    performance = 1.0
-    accessibility = 1.0
-    best-practices = 1.0
-    seo = 1.0
+	# Opt-in to the Netlify Lighthouse plugin (choose one):
 
-  [plugins.inputs]
-    output_path = "reports/lighthouse/index.html"
+	# 1. via the Netlify UI https://app.netlify.com/sites/eleventy-base-blog/integrations/plugins
+	# 2. Or via `npm install -D @netlify/plugin-lighthouse`
+
+	package = "@netlify/plugin-lighthouse"
+
+	# optional, fails build when a category is below a threshold
+	[plugins.inputs.thresholds]
+		performance = 1.0
+		accessibility = 1.0
+		best-practices = 1.0
+		seo = 1.0
+
+	[plugins.inputs]
+		output_path = "reports/lighthouse/index.html"
