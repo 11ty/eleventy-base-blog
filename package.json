@@ -37,6 +37,7 @@
 		"@11ty/eleventy-navigation": "^0.3.5",
 		"@11ty/eleventy-plugin-rss": "^1.2.0",
 		"@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
+		"@netlify/plugin-lighthouse": "^4.0.6",
 		"luxon": "^3.2.1",
 		"markdown-it-anchor": "^8.6.6"
 	}
