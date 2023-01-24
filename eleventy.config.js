@@ -17,8 +17,8 @@ module.exports = function(eleventyConfig) {
 	// Run Eleventy when these files change:
 	// https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
 
-	// Process content images to the image pipeline.
-	eleventyConfig.addWatchTarget("content/**/*.{png,jpeg}");
+	// Watch content images for the image pipeline.
+	eleventyConfig.addWatchTarget("content/**/*.{svg,webp,png,jpeg}");
 
 	// App plugins
 	eleventyConfig.addPlugin(require("./eleventy.config.drafts.js"));
