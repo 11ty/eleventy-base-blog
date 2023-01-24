@@ -20,9 +20,10 @@ A starter repository showing how to build a blog with the [Eleventy](https://www
 	- Includes `width`/`height` attributes to avoid [content layout shift](https://web.dev/cls/).
 	- Includes `loading="lazy"` for native lazy loading without JavaScript.
 	- Includes [`decoding="async"`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decoding)
+	- View the [Image plugin source code](https://github.com/11ty/eleventy-base-blog/blob/main/eleventy.config.images.js)
 - Built-in [syntax highlighter](https://www.11ty.dev/docs/plugins/syntaxhighlight/) (with zero-JavaScript output).
 - Blog post features
-	- Draft posts: use `draft: true` to mark a blog post as a draft. Drafts are **only** included during `--serve`/`--watch` and are excluded from full builds.
+	- Draft posts: use `draft: true` to mark a blog post as a draft. Drafts are **only** included during `--serve`/`--watch` and are excluded from full builds. View the [Drafts plugin source code](https://github.com/11ty/eleventy-base-blog/blob/main/eleventy.config.drafts.js).
 	- Automated next/previous links on blog posts.
 	- Accessible deep links to headings
 - Easily [deploy to a subfolder without changing any content](https://www.11ty.dev/docs/plugins/html-base/)
