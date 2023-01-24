@@ -254,11 +254,15 @@ header {
 }
 a[href].header-anchor,
 a[href].header-anchor:visited {
-	color: #aaa;
+	color: transparent;
 }
 a[href].header-anchor:focus,
 a[href].header-anchor:hover {
 	text-decoration: underline;
+}
+a[href].header-anchor:focus,
+:hover > a[href].header-anchor {
+	color: #aaa;
 }
 
 h2 + .header-anchor {
