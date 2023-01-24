@@ -6,8 +6,11 @@ A starter repository showing how to build a blog with the [Eleventy](https://www
 
 - Using [Eleventy v2.0](https://www.11ty.dev/blog/eleventy-v2-beta/) with zero-JavaScript output.
 - Content is entirely pre-rendered (this is a static site).
-- Four-hundos Lighthouse score out of the box!
+- Performance focused.
+	- Four-hundos Lighthouse score out of the box!
 	- [View the Lighthouse report for the latest build.](https://eleventy-base-blog.netlify.app/reports/lighthouse/) (courtesy of the [Netlify Lighthouse plugin](https://github.com/netlify/netlify-plugin-lighthouse))
+	- _0 Cumulative Layout Shift_
+	- _0ms Total Blocking Time_
 - Easily [deploy](#deploy-this-to-your-own-site) to various hosting providers.
 - Live reload provided by [Eleventy Dev Server](https://www.11ty.dev/docs/dev-server/).
 - Content-driven [hierarchical navigation](https://www.11ty.dev/docs/plugins/navigation/)

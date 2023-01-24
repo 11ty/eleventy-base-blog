@@ -17,19 +17,19 @@
 		Choices for CSS:
 
 		1. External files (best with local dev server live reload)
-#}
-		<link rel="stylesheet" href="/css/index.css">
-		<link rel="stylesheet" href="/css/prism-okaidia.css">{# addPassthroughCopy file #}
-		<link rel="stylesheet" href="/css/prism-diff.css">
 
-{#-
+				<link rel="stylesheet" href="/css/index.css">
+				<link rel="stylesheet" href="/css/prism-okaidia.css">
+				<link rel="stylesheet" href="/css/prism-diff.css">
+
 		2. Inlined (speediest in production)
+#}
 				<style>
 				{% include "public/css/index.css" %}
 				{% include "node_modules/prismjs/themes/prism-okaidia.css" %}
 				{% include "public/css/prism-diff.css" %}
-				…
 				</style>
+{#
 		3. Concatenate CSS to one file (slower than 2 but faster than 1):
 				https://www.11ty.dev/docs/quicktips/concatenate/
 		4. Use a bundler
