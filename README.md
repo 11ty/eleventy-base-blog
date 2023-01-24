@@ -7,7 +7,10 @@ A starter repository showing how to build a blog with the [Eleventy](https://www
 ## Features
 
 - Using [Eleventy v2.0](https://www.11ty.dev/blog/eleventy-v2-beta/) with zero-JavaScript output.
-- Content is entirely pre-rendered (this is a static site).
+	- Content is exclusively pre-rendered (this is a static site).
+	- Can easily [deploy to a subfolder without changing any content](https://www.11ty.dev/docs/plugins/html-base/)
+	- All URLs are decoupled from the content’s location on the file system.
+	- Configure templates via the [Eleventy Data Cascade](https://www.11ty.dev/docs/data-cascade/)
 - **Performance focused**: four-hundos Lighthouse score out of the box!
 	- [View the Lighthouse report for the latest build](https://eleventy-base-blog.netlify.app/reports/lighthouse/) courtesy of the [Netlify Lighthouse plugin](https://github.com/netlify/netlify-plugin-lighthouse).
 	- _0 Cumulative Layout Shift_
@@ -35,9 +38,6 @@ A starter repository showing how to build a blog with the [Eleventy](https://www
 	- `sitemap.xml`
 	- Tag pages ([demo](https://eleventy-base-blog.netlify.app/tags/))
 	- Content not found (404) page
-- Easily [deploy to a subfolder without changing any content](https://www.11ty.dev/docs/plugins/html-base/)
-- Easily configure templates via the [Eleventy Data Cascade](https://www.11ty.dev/docs/data-cascade/)
-- Output URLs are independent of content’s location on the file system.
 
 ## Demos
 
