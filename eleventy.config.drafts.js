@@ -3,7 +3,6 @@ function eleventyComputedPermalink() {
 	// `addGlobalData` acts like a global data file and runs the top level function it receives.
 	return (data) => {
 		if(data.draft) {
-			// BUILD_DRAFTS is set in eleventy.config.js
 			if(process.env.BUILD_DRAFTS) {
 				return data.permalink;
 			}
@@ -21,7 +20,6 @@ function eleventyComputedExcludeFromCollections() {
 	// `addGlobalData` acts like a global data file and runs the top level function it receives.
 	return (data) => {
 		if(data.draft) {
-			// BUILD_DRAFTS is set in eleventy.config.js
 			if(process.env.BUILD_DRAFTS) {
 				return data.eleventyExcludeFromCollections;
 			}
