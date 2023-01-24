@@ -36,7 +36,7 @@ A starter repository showing how to build a blog with the [Eleventy](https://www
 	- Home, Archive, and About pages.
 	- [Feeds for Atom and JSON](https://www.11ty.dev/docs/plugins/rss/)
 	- `sitemap.xml`
-	- Tag pages ([demo](https://eleventy-base-blog.netlify.app/tags/))
+	- Zero-maintenance tag pages ([View on the Demo](https://eleventy-base-blog.netlify.app/tags/))
 	- Content not found (404) page
 
 ## Demos
