@@ -246,19 +246,21 @@ header {
 }
 
 /* Direct Links / Markdown Headers */
-.direct-link {
-	font-family: sans-serif;
+.header-anchor {
 	text-decoration: none;
 	font-style: normal;
+	font-size: 1em;
 	margin-left: .1em;
 }
-a[href].direct-link,
-a[href].direct-link:visited {
-	color: transparent;
-}
-a[href].direct-link:focus,
-a[href].direct-link:focus:visited,
-:hover > a[href].direct-link,
-:hover > a[href].direct-link:visited {
+a[href].header-anchor,
+a[href].header-anchor:visited {
 	color: #aaa;
+}
+a[href].header-anchor:focus,
+a[href].header-anchor:hover {
+	text-decoration: underline;
+}
+
+h2 + .header-anchor {
+	font-size: 1.5em;
 }
