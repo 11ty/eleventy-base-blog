@@ -1,4 +1,4 @@
-{
+module.exports = {
 	"title": "Eleventy Base Blog v8",
 	"url": "https://example.com/",
 	"language": "en",
