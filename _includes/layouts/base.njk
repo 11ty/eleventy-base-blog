@@ -18,23 +18,24 @@
 
 		1. External files (best with local dev server live reload)
 
-				<link rel="stylesheet" href="/css/index.css">
-				<link rel="stylesheet" href="/css/message-box.css">
-				<link rel="stylesheet" href="/css/prism-okaidia.css">
-				<link rel="stylesheet" href="/css/prism-diff.css">
+		<link rel="stylesheet" href="/css/index.css">
+		<link rel="stylesheet" href="/css/message-box.css">
+		<link rel="stylesheet" href="/css/prism-okaidia.css">
+		<link rel="stylesheet" href="/css/prism-diff.css">
 
-		2. Inlined (speediest in production)
+		2. Inlined (fastest site performance in production)
 #}
-				<style>
-				{% include "public/css/index.css" %}
-				{% include "public/css/message-box.css" %}
-				{% include "node_modules/prismjs/themes/prism-okaidia.css" %}
-				{% include "public/css/prism-diff.css" %}
-				</style>
+		<style>
+		{% include "public/css/index.css" %}
+		{% include "public/css/message-box.css" %}
+		{% include "node_modules/prismjs/themes/prism-okaidia.css" %}
+		{% include "public/css/prism-diff.css" %}
+		</style>
 {#
-		3. Concatenate CSS to one file (slower than 2 but faster than 1):
+		3. You could even swap between the two methods above using {% if eleventy.env.runMode === "serve" %}
+		4. Concatenate CSS to one file (site performance is slower than 2 but faster than 1):
 				https://www.11ty.dev/docs/quicktips/concatenate/
-		4. Use a bundler
+		5. Use a bundler
 				e.g. Vite https://www.11ty.dev/docs/server-vite/
 				Or search for additional community plugins for esbuild, rollup, webpack, etc.
 #}
