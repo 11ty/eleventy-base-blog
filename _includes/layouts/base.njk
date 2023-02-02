@@ -14,31 +14,25 @@
 		{#- <meta name="generator" content="{{ eleventy.generator }}"> #}
 
 {#-
-		Choices for CSS:
+		CSS bundles are provided via the eleventy-plugin-bundle plugin:
+		1. You can add to them using `{% css %}`
+		2. You can get from them using `{% getBundle "css" %}` or `{% getBundleFileUrl "css" %}`
 
-		1. External files (best with local dev server live reload)
-
-		<link rel="stylesheet" href="/css/index.css">
-		<link rel="stylesheet" href="/css/message-box.css">
-		<link rel="stylesheet" href="/css/prism-okaidia.css">
-		<link rel="stylesheet" href="/css/prism-diff.css">
-
-		2. Inlined (fastest site performance in production)
+		Learn more: https://github.com/11ty/eleventy-plugin-bundle
 #}
-		<style>
-		{% include "public/css/index.css" %}
-		{% include "public/css/message-box.css" %}
-		{% include "node_modules/prismjs/themes/prism-okaidia.css" %}
-		{% include "public/css/prism-diff.css" %}
-		</style>
-{#
-		3. You could even swap between the two methods above using {% if eleventy.env.runMode === "serve" %}
-		4. Concatenate CSS to one file (site performance is slower than 2 but faster than 1):
-				https://www.11ty.dev/docs/quicktips/concatenate/
-		5. Use a bundler
-				e.g. Vite https://www.11ty.dev/docs/server-vite/
-				Or search for additional community plugins for esbuild, rollup, webpack, etc.
-#}
+
+		{#- Add to the CSS bundle #}
+		{%- css %}{% include "public/css/index.css" %}{% endcss %}
+		{%- css %}{# add your own CSS! #}{% endcss %}
+
+		{#- Render the CSS bundle #}
+		{%- if eleventy.env.runMode === "serve" %}
+		{# External files (local dev live reload will refresh without page reload) #}
+		<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
+		{%- else  %}
+		{# Inlined CSS (fastest site performance in production) #}
+		<style>{% getBundle "css" %}</style>
+		{%- endif %}
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
