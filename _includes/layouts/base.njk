@@ -13,26 +13,23 @@
 		{#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
 		{#- <meta name="generator" content="{{ eleventy.generator }}"> #}
 
-{#-
-		CSS bundles are provided via the eleventy-plugin-bundle plugin:
+		{#-
+		CSS bundles are provided via the `eleventy-plugin-bundle` plugin:
 		1. You can add to them using `{% css %}`
 		2. You can get from them using `{% getBundle "css" %}` or `{% getBundleFileUrl "css" %}`
+		3. You can do the same for JS: {% js %}{% endjs %} and <script>{% getBundle "js" %}</script>
+		4. Learn more: https://github.com/11ty/eleventy-plugin-bundle
+		#}
 
-		Learn more: https://github.com/11ty/eleventy-plugin-bundle
-#}
-
-		{#- Add to the CSS bundle #}
+		{#- Add an arbitrary string to the bundle #}
+		{%- css %}* { box-sizing: border-box; }{% endcss %}
+		{#- Add the contents of a file to the bundle #}
 		{%- css %}{% include "public/css/index.css" %}{% endcss %}
-		{%- css %}{# add your own CSS! #}{% endcss %}
+		{#- Or add from node_modules #}
+		{# {%- css %}{% include "node_modules/prismjs/themes/prism-okaidia.css" %}{% endcss %} #}
 
-		{#- Render the CSS bundle #}
-		{%- if eleventy.env.runMode === "serve" %}
-		{# External files (local dev live reload will refresh without page reload) #}
-		<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
-		{%- else  %}
-		{# Inlined CSS (fastest site performance in production) #}
+		{#- Render the CSS bundle using Inlined CSS (for the fastest site performance in production) #}
 		<style>{% getBundle "css" %}</style>
-		{%- endif %}
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
