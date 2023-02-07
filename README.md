@@ -77,7 +77,7 @@ Specifically have a look at `eleventy.config.js` to see if you want to configure
 npm install
 ```
 
-### 4. Edit `_data/metadata.json`
+### 4. Edit `_data/metadata.js`
 
 ### 5. Run Eleventy
 
