@@ -7,6 +7,9 @@ const pluginBundle = require("@11ty/eleventy-plugin-bundle");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 
+const pluginDrafts = require("./eleventy.config.drafts.js");
+const pluginImages = require("./eleventy.config.images.js");
+
 module.exports = function(eleventyConfig) {
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`
@@ -22,8 +25,8 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addWatchTarget("content/**/*.{svg,webp,png,jpeg}");
 
 	// App plugins
-	eleventyConfig.addPlugin(require("./eleventy.config.drafts.js"));
-	eleventyConfig.addPlugin(require("./eleventy.config.images.js"));
+	eleventyConfig.addPlugin(pluginDrafts);
+	eleventyConfig.addPlugin(pluginImages);
 
 	// Official plugins
 	eleventyConfig.addPlugin(pluginRss);
@@ -104,7 +107,7 @@ module.exports = function(eleventyConfig) {
 			"md",
 			"njk",
 			"html",
-			"liquid"
+			"liquid",
 		],
 
 		// Pre-process *.md files with: (default: `liquid`)
@@ -115,7 +118,7 @@ module.exports = function(eleventyConfig) {
 
 		// These are all optional:
 		dir: {
-			input: "content",         // default: "."
+			input: "content",          // default: "."
 			includes: "../_includes",  // default: "_includes"
 			data: "../_data",          // default: "_data"
 			output: "_site"
