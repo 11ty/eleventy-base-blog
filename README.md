@@ -6,35 +6,38 @@ A starter repository showing how to build a blog with the [Eleventy](https://www
 
 ## Getting Started
 
-1. Clone this Repository
+* [Want a more generic/detailed getting started guide?](https://www.11ty.dev/docs/getting-started/)
+
+1. Make a directory and navigate to it:
 
 ```
-git clone https://github.com/11ty/eleventy-base-blog.git my-blog-name
-```
-
-2. Navigate to the directory
-
-```
+mkdir my-blog-name
 cd my-blog-name
 ```
 
-3. Have a look at `eleventy.config.js` to see if you want to configure any Eleventy options differently.
-4. Install dependencies
+2. Clone this Repository
+
+```
+git clone https://github.com/11ty/eleventy-base-blog.git .
+```
+
+_Optional:_ Review `eleventy.config.js` and `_data/metadata.js` to configure the site’s options and data.
+
+3. Install dependencies
 
 ```
 npm install
 ```
 
-5. Edit `_data/metadata.js` to change the site data.
-6. Run Eleventy
+4. Run Eleventy
 
-Generate a production-ready build:
+Generate a production-ready build to the `_site` folder:
 
 ```
 npx @11ty/eleventy
 ```
 
-Or build and host locally on a local development server:
+Or build and host on a local development server:
 
 ```
 npx @11ty/eleventy --serve
