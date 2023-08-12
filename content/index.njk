@@ -5,7 +5,23 @@ eleventyNavigation:
   order: 1
 numberOfLatestPostsToShow: 3
 ---
-{% set postsCount = collections.posts | length %}
+
+<p> Hello, and welcome to my blog! This will be the future site of blog posts I decide to write (however frequently). This may eventually include personal entries, but is currently scoped to technical entries. Until then, feel free to connect with me through the following:
+	<ul>
+		<li> <a href="https://www.linkedin.com/in/cole-juracek/"> LinkedIn </a> </li>
+		<li> <a href="https://github.com/cjuracek"> GitHub </a> </li>
+	</ul>
+</p>
+
+<p> This site was created using
+
+<a href="https://www.11ty.dev/">Eleventy</a>,
+
+a static site generator. If you think that you've seen the look of this blog before, it's possible - this blog was largely modeled around the
+
+<a href="https://github.com/11ty/eleventy-base-blog">Eleventy base blog.</a>
+
+{# {% set postsCount = collections.posts | length %}
 {% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
 <h1>Latest {{ latestPostsCount }} Post{% if latestPostsCount != 1 %}s{% endif %}</h1>
 
@@ -16,7 +32,7 @@ numberOfLatestPostsToShow: 3
 {% set morePosts = postsCount - numberOfLatestPostsToShow %}
 {% if morePosts > 0 %}
 <p>{{ morePosts }} more post{% if morePosts != 1 %}s{% endif %} can be found in <a href="/blog/">the archive</a>.</p>
-{% endif %}
+{% endif %} #}
 
 {# List every content page in the project #}
 {#
