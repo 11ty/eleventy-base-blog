@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 ---
-<!-- Delete this message, it will also remove the component CSS from the bundle -->
+{# <!-- Delete this message, it will also remove the component CSS from the bundle -->
 {%- css %}{% include "public/css/message-box.css" %}{% endcss %}
 <div class="message-box">
 	<ol>
@@ -11,6 +11,6 @@ layout: layouts/base.njk
 	</ol>
 	<p><em>This is an <a href="https://www.11ty.dev/">Eleventy project</a> created from the <a href="https://github.com/11ty/eleventy-base-blog"><code>eleventy-base-blog</code> repo</a>.</em></p>
 </div>
-<!-- Stop deleting -->
+<!-- Stop deleting --> #}
 
 {{ content | safe }}
