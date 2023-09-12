@@ -20,8 +20,25 @@ jobs:
       - name: Build Eleventy
         uses: TartanLlama/actions-eleventy@master
         with:
-          args: --output _site # set output folder
+          args: --output html # set output folder
           install_dependencies: true
+
+        # Sync the _site folder to remote server
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          rm: true
+          source: "html/"
+          target: "${{ secrets.REMOTE_DIR }}"
+
+          # script: |
+          #   cd /path/to/remote/folder
+          #   rsync -avz --delete ./_site/ .
+
 
       # Copying files and artifacts via SSH
       # - name: Copying files to server
@@ -33,4 +50,4 @@ jobs:
       #     # passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
       #     rm: true
       #     source: "html/"
-      #     target: "${{ secrets.REMOTE_DIR }}"
+      #     target: "${{ secrets.REMOTE_DIR }}"        
