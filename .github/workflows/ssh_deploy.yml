@@ -20,7 +20,7 @@ jobs:
       - name: Build Eleventy
         uses: TartanLlama/actions-eleventy@master
         with:
-          args: --output html
+          args: # --output html # set output folder
           install_dependencies: true
 
       # Copying files and artifacts via SSH
@@ -30,7 +30,7 @@ jobs:
       #     host: ${{ secrets.REMOTE_HOST }}
       #     username: ${{ secrets.REMOTE_USER }}
       #     key: ${{ secrets.SSH_KEY }}
-      #     passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+      #     # passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
       #     rm: true
       #     source: "html/"
       #     target: "${{ secrets.REMOTE_DIR }}"
