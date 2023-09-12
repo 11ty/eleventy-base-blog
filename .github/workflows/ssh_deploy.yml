@@ -20,8 +20,7 @@ jobs:
       - name: Build Eleventy
         uses: TartanLlama/actions-eleventy@master
         with:
-          publish_dir: _site
-          # args: --output html # set output folder
+          args: --output _site # set output folder
           install_dependencies: true
 
       # Copying files and artifacts via SSH
