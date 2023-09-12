@@ -32,6 +32,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           rm: true
+          debut: true
           source: "html/"
           target: "${{ secrets.REMOTE_DIR }}"
 
