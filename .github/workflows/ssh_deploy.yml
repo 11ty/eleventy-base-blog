@@ -23,7 +23,7 @@ jobs:
           args: --output html # set output folder
           install_dependencies: true
 
-        # Sync the _site folder to remote server
+        # Sync the html folder to remote server
       - name: Deploy to Server via SSH
         uses: appleboy/scp-action@master
         with:
