@@ -25,7 +25,7 @@ jobs:
 
         # Sync the _site folder to remote server
       - name: Deploy to Server via SSH
-        uses: appleboy/ssh-action@master
+        uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
