@@ -14,13 +14,14 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, 
       # so your workflow can access it
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
 
       # Build your static website with Eleventy
       - name: Build Eleventy
         uses: TartanLlama/actions-eleventy@master
         with:
-          args: # --output html # set output folder
+          publish_dir: _site
+          # args: --output html # set output folder
           install_dependencies: true
 
       # Copying files and artifacts via SSH
