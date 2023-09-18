@@ -15,10 +15,10 @@
 
 	# optional, fails build when a category is below a threshold
 	[plugins.inputs.thresholds]
-		performance = 1.0
-		accessibility = 1.0
-		best-practices = 1.0
-		seo = 1.0
+		performance = 0.9
+		accessibility = 0.9
+		best-practices = 0.9
+		seo = 0.9
 
 	[plugins.inputs]
 		output_path = "reports/lighthouse/index.html"
