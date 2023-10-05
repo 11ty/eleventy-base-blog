@@ -112,12 +112,9 @@ Deploy this Eleventy site in just a few clicks on these services:
 	- `_includes/layouts/post.njk`: the blog post template (wrapped into `base.njk`)
 - `_includes/postslist.njk` is a Nunjucks include and is a reusable component used to display a list of all the posts. `content/index.njk` has an example of how to use it.
 
-If your site enforces a Content Security Policy (as public-facing sites should), either, in `base.njk`, disable
-```html
-<style>{% getBundle "css" %}</style>
-```
-and enable
-```html
-<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
-```
-or configure the server with the CSP directive `style-src: 'unsafe-inline'` (which is less secure).
+#### Content Security Policy
+
+If your site enforces a Content Security Policy (as public-facing sites should), you have a few choices (pick one):
+
+1. In `base.njk`, remove `<style>{% getBundle "css" %}</style>` and uncomment `<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">`
+2. Configure the server with the CSP directive `style-src: 'unsafe-inline'` (less secure).
