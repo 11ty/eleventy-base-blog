@@ -2,8 +2,6 @@
 
 A starter repository showing how to build a blog with the [Eleventy](https://www.11ty.dev/) site generator (using the [v2.0 release](https://www.11ty.dev/blog/eleventy-v2/)).
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/802669dd-d5f8-4d49-963d-6d57b257c2a2/deploy-status)](https://app.netlify.com/sites/eleventy-base-blog/deploys)
-
 ## Getting Started
 
 * [Want a more generic/detailed getting started guide?](https://www.11ty.dev/docs/getting-started/)
@@ -86,6 +84,7 @@ Or you can run [debug mode](https://www.11ty.dev/docs/debugging/) to see all the
 - [Netlify](https://eleventy-base-blog.netlify.com/)
 - [GitHub Pages](https://11ty.github.io/eleventy-base-blog/)
 - [Remix on Glitch](https://glitch.com/~11ty-eleventy-base-blog)
+- [Cloudflare Pages](https://eleventy-base-blog-d2a.pages.dev/)
 
 ## Deploy this to your own site
 
