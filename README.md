@@ -114,7 +114,7 @@ Deploy this Eleventy site in just a few clicks on these services:
 
 #### Content Security Policy
 
-If your site enforces a Content Security Policy (as public-facing sites should), you have a few choices (pick one):
+If your site enforces a [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) (as public-facing sites should), you have a few choices (pick one):
 
 1. In `base.njk`, remove `<style>{% getBundle "css" %}</style>` and uncomment `<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">`
 2. Configure the server with the CSP directive `style-src: 'unsafe-inline'` (less secure).
