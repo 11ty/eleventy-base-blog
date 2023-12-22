@@ -92,6 +92,8 @@ module.exports = function(eleventyConfig) {
 		});
 	});
 
+	eleventyConfig.addWatchTarget('scss');
+
 	// Features to make your build faster (when you need them)
 
 	// If your passthrough copy gets heavy and cumbersome, add this line
