@@ -3,12 +3,14 @@
 	"version": "8.0.0",
 	"description": "A starter repository for a blog web site using the Eleventy site generator.",
 	"scripts": {
-		"watch:eleventy": "npx @11ty/eleventy --serve --quiet",
-		"watch:sass": "npx sass scss:public/css --watch --style=compressed --no-source-map",
-		"start": "npm run watch:eleventy & npm run watch:sass",
+		"build": "npx sass scss:public/css --style=compressed --no-source-map && npx @11ty/eleventy",
+		"build-ghpages": "npx @11ty/eleventy --pathprefix=/eleventy-base-blog/",
 		"debug": "DEBUG=Eleventy* npx @11ty/eleventy",
 		"debugstart": "DEBUG=Eleventy* npm run watch:eleventy & npm run watch:sass",
-		"benchmark": "DEBUG=Eleventy:Benchmark* npx @11ty/eleventy"
+		"benchmark": "DEBUG=Eleventy:Benchmark* npx @11ty/eleventy",
+		"watch:eleventy": "npx @11ty/eleventy --serve --quiet",
+		"watch:sass": "npx sass scss:public/css --watch --style=compressed --no-source-map",
+		"start": "npm run watch:eleventy & npm run watch:sass"
 	},
 	"repository": {
 		"type": "git",
