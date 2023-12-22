@@ -5,7 +5,10 @@
 	"scripts": {
 		"watch:eleventy": "npx @11ty/eleventy --serve --quiet",
 		"watch:sass": "npx sass scss:public/css --watch --style=compressed --no-source-map",
-		"start": "npm run watch:eleventy & npm run watch:sass"
+		"start": "npm run watch:eleventy & npm run watch:sass",
+		"debug": "DEBUG=Eleventy* npx @11ty/eleventy",
+		"debugstart": "DEBUG=Eleventy* npm run watch:eleventy & npm run watch:sass",
+		"benchmark": "DEBUG=Eleventy:Benchmark* npx @11ty/eleventy"
 	},
 	"repository": {
 		"type": "git",
