@@ -25,8 +25,8 @@ module.exports = eleventyConfig => {
 
 	eleventyConfig.on("eleventy.before", ({ runMode }) => {
 		isServing = runMode === "serve" || runMode === "watch";
-		var text = isServing ? "Including" : "Excluding";
 		if (!isLogged) {
+			let text = isServing ? "Including" : "Excluding";
 			console.log(`[11ty/eleventy-base-blog] ${text} drafts.`);
 			isLogged = true;
 		}
