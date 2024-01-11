@@ -1,50 +1,34 @@
-function eleventyComputedPermalink() {
-	// When using `addGlobalData` and you *want* to return a function, you must nest functions like this.
-	// `addGlobalData` acts like a global data file and runs the top level function it receives.
-	return (data) => {
-		// Always skip during non-watch/serve builds
-		if(data.draft && !process.env.BUILD_DRAFTS) {
-			return false;
-		}
-
-		return data.permalink;
-	}
-};
-
-function eleventyComputedExcludeFromCollections() {
-	// When using `addGlobalData` and you *want* to return a function, you must nest functions like this.
-	// `addGlobalData` acts like a global data file and runs the top level function it receives.
-	return (data) => {
-		// Always exclude from non-watch/serve builds
-		if(data.draft && !process.env.BUILD_DRAFTS) {
-			return true;
-		}
-
-		return data.eleventyExcludeFromCollections;
-	}
-};
-
-module.exports.eleventyComputedPermalink = eleventyComputedPermalink;
-module.exports.eleventyComputedExcludeFromCollections = eleventyComputedExcludeFromCollections;
-
 module.exports = eleventyConfig => {
-	eleventyConfig.addGlobalData("eleventyComputed.permalink", eleventyComputedPermalink);
-	eleventyConfig.addGlobalData("eleventyComputed.eleventyExcludeFromCollections", eleventyComputedExcludeFromCollections);
 
-	let logged = false;
-	eleventyConfig.on("eleventy.before", ({runMode}) => {
-		let text = "Excluding";
-		// Only show drafts in serve/watch modes
-		if(runMode === "serve" || runMode === "watch") {
-			process.env.BUILD_DRAFTS = true;
-			text = "Including";
+	var isServing = false;
+	var isLogged = false;
+
+	eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
+		// When using `addGlobalData` and you *want* to return a function, you must nest functions like this.
+		// `addGlobalData` acts like a global data file and runs the top level function it receives.
+		return (data) => {
+			if (isServing) return data.permalink;
+			// Always skip during non-watch/serve builds
+			return data.draft ? false : data.permalink;
 		}
+	});
 
-		// Only log once.
-		if(!logged) {
-			console.log( `[11ty/eleventy-base-blog] ${text} drafts.` );
+	eleventyConfig.addGlobalData("eleventyComputed.eleventyExcludeFromCollections", () => {
+		// When using `addGlobalData` and you *want* to return a function, you must nest functions like this.
+		// `addGlobalData` acts like a global data file and runs the top level function it receives.
+		return (data) => {			
+			if (isServing) return data.eleventyExcludeFromCollections;
+			// Always exclude from non-watch/serve builds
+			return data.draft ? true : data.eleventyExcludeFromCollections;
 		}
+	});
 
-		logged = true;
+	eleventyConfig.on("eleventy.before", ({ runMode }) => {
+		isServing = runMode === "serve" || runMode === "watch";
+		var text = isServing ? "Including" : "Excluding";
+		if (!isLogged) {
+			console.log(`[11ty/eleventy-base-blog] ${text} drafts.`);
+			isLogged = true;
+		}
 	});
 }
