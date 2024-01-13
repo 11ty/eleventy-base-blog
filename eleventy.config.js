@@ -1,6 +1,7 @@
 import { DateTime } from "luxon";
 import markdownItAnchor from "markdown-it-anchor";
 
+import { PathToUrlTransformPlugin, HtmlBasePlugin } from "@11ty/eleventy";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginBundle from "@11ty/eleventy-plugin-bundle";
@@ -11,8 +12,6 @@ import pluginImages from "./eleventy.config.images.js";
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function(eleventyConfig) {
-	const { EleventyHtmlBasePlugin } = await import("@11ty/eleventy");
-
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig.addPassthroughCopy({
@@ -36,8 +35,10 @@ export default async function(eleventyConfig) {
 		preAttributes: { tabindex: 0 }
 	});
 	eleventyConfig.addPlugin(pluginNavigation);
-	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+
 	eleventyConfig.addPlugin(pluginBundle);
+	eleventyConfig.addPlugin(HtmlBasePlugin);
+	eleventyConfig.addPlugin(PathToUrlTransformPlugin);
 
 	// Filters
 	eleventyConfig.addFilter("readableDate", (dateObj, format, zone) => {
@@ -45,7 +46,7 @@ export default async function(eleventyConfig) {
 		return DateTime.fromJSDate(dateObj, { zone: zone || "utc" }).toFormat(format || "dd LLLL yyyy");
 	});
 
-	eleventyConfig.addFilter('htmlDateString', (dateObj) => {
+	eleventyConfig.addFilter("htmlDateString", (dateObj) => {
 		// dateObj input: https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
 		return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
 	});
@@ -67,7 +68,7 @@ export default async function(eleventyConfig) {
 		return Math.min.apply(null, numbers);
 	});
 
-	// Return all the tags used in a collection
+	// Return all the tags used in any collection
 	eleventyConfig.addFilter("getAllTags", collection => {
 		let tagSet = new Set();
 		for(let item of collection) {
@@ -136,6 +137,7 @@ export default async function(eleventyConfig) {
 		// When paired with the HTML <base> plugin https://www.11ty.dev/docs/plugins/html-base/
 		// it will transform any absolute URLs in your HTML to include this
 		// folder name and does **not** affect where things go in the output folder.
-		pathPrefix: "/",
+
+		// pathPrefix: "/",
 	};
 };
