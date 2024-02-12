@@ -1,51 +1,28 @@
-import path from "path";
-import eleventyImage from "@11ty/eleventy-img";
-
-function relativeToInputPath(inputPath, relativeFilePath) {
-	let split = inputPath.split("/");
-	split.pop();
-
-	return path.resolve(split.join(path.sep), relativeFilePath);
-
-}
-
-function isFullUrl(url) {
-	try {
-		new URL(url);
-		return true;
-	} catch(e) {
-		return false;
-	}
-}
+import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 export default function(eleventyConfig) {
-	// Eleventy Image shortcode
-	// https://www.11ty.dev/docs/plugins/image/
-	eleventyConfig.addAsyncShortcode("image", async function imageShortcode(src, alt, widths, sizes) {
-		// Full list of formats here: https://www.11ty.dev/docs/plugins/image/#output-formats
-		// Warning: Avif can be resource-intensive so take care!
-		let formats = ["avif", "webp", "auto"];
-		let input;
-		if(isFullUrl(src)) {
-			input = src;
-		} else {
-			input = relativeToInputPath(this.page.inputPath, src);
-		}
+	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+		// which file extensions to process
+		extensions: "html",
 
-		let metadata = await eleventyImage(input, {
-			widths: widths || ["auto"],
-			formats,
-			outputDir: path.join(eleventyConfig.dir.output, "img"), // Advanced usage note: `eleventyConfig.dir` works here because we’re using addPlugin.
-		});
+		formats: ["avif", "webp", "auto"],
 
-		// TODO loading=eager and fetchpriority=high
-		let imageAttributes = {
-			alt,
-			sizes,
+		// widths: ["auto"],
+
+		// urlPath: "/img/",
+
+		// If a urlPath is not specified:
+
+		// 1. Relative image sources (<img src="./possum.png">) will be co-located in your output directory
+		// 		with the template they are used in. Warning: if the same source image is used in multiple templates,
+		//		it will be written to two different locations!
+		// 2. Absolute image sources (<img src="/possum.png">) will be normalized to your input/content directory
+		// 		and written to ${OUTPUT_DIR}/img/
+
+		// <img loading decoding> assigned on the HTML tag will override these values.
+		defaultAttributes: {
 			loading: "lazy",
-			decoding: "async",
-		};
-
-		return eleventyImage.generateHTML(metadata, imageAttributes);
+			decoding: "async"
+		}
 	});
 };

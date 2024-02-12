@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import markdownItAnchor from "markdown-it-anchor";
 
-import { PathToUrlTransformPlugin, HtmlBasePlugin } from "@11ty/eleventy";
+import { InputPathToUrlTransformPlugin, HtmlBasePlugin } from "@11ty/eleventy";
 import pluginRss from "@11ty/eleventy-plugin-rss";
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginBundle from "@11ty/eleventy-plugin-bundle";
@@ -35,10 +35,9 @@ export default async function(eleventyConfig) {
 		preAttributes: { tabindex: 0 }
 	});
 	eleventyConfig.addPlugin(pluginNavigation);
-
 	eleventyConfig.addPlugin(pluginBundle);
 	eleventyConfig.addPlugin(HtmlBasePlugin);
-	eleventyConfig.addPlugin(PathToUrlTransformPlugin);
+	eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
 
 	// Filters
 	eleventyConfig.addFilter("readableDate", (dateObj, format, zone) => {
