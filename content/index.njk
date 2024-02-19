@@ -3,9 +3,28 @@ layout: layouts/home.njk
 eleventyNavigation:
   key: Home
   order: 1
+  icon: home
 numberOfLatestPostsToShow: 3
 ---
-{% set postsCount = collections.posts | length %}
+{% import "letter_macro.njk" as letterMacro %}
+
+<h1>Hi, I'm {{ letterMacro.interactive_letters("Jackson.") }}</h1>
+
+<p>My name is Jackson Goode. I was born in Charlotte, NC and studied at Occidental College in Los
+Angeles, CA where I graduated with a degree in cognitive science. I recently completed a master’s
+degree in music, communications and technology at the University of Oslo. I currently work as a
+platform engineer at nLine where we monitor the electrical grid of cities in Sub-Saharan Africa.
+</p>
+
+<p>
+Besides the formal elements, I play guitar, make playlists, watch movies, read books, write a bit,
+build collages, and other things that I’ll publicize digitally one day (here are some of my
+favorites).
+</p>
+
+<script src="/js/interactive_letters.js"></script>
+
+{# {% set postsCount = collections.posts | length %}
 {% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
 <h1>Latest {{ latestPostsCount }} Post{% if latestPostsCount != 1 %}s{% endif %}</h1>
 
@@ -16,7 +35,7 @@ numberOfLatestPostsToShow: 3
 {% set morePosts = postsCount - numberOfLatestPostsToShow %}
 {% if morePosts > 0 %}
 <p>{{ morePosts }} more post{% if morePosts != 1 %}s{% endif %} can be found in <a href="/blog/">the archive</a>.</p>
-{% endif %}
+{% endif %} #}
 
 {# List every content page in the project #}
 {#

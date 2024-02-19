@@ -1,0 +1,51 @@
+---
+layout: layouts/base.njk
+eleventyNavigation:
+  key: About Me
+  order: 3
+  icon: user
+---
+
+{% import "letter_macro.njk" as letterMacro %}
+
+<h1>{{ letterMacro.interactive_letters("About Me") }}</h1>
+
+<p> My name is Jackson Goode. I was born in Charlotte, NC and studied at Occidental College in Los
+Angeles, CA where I graduated with a degree in cognitive science. I've completed a master’s degree
+in music, communications and technology at the <a
+href="https://www.uio.no/english/studies/programmes/mct-master/">University of Oslo</a>. I currently
+work as a platform engineer at <a href="https://nline.io/">
+    <em>n</em>Line</a> where we monitor the
+electrical grid of cities in Sub-Saharan Africa. </p>
+
+<p>Besides the formal elements, I play guitar, make playlists, watch movies, read books, write a
+bit, build collages, and other things that I'll publicize digitally one day (here are some of <a
+href="{{ site.url }}/favorites">my favorites</a>).</p>
+
+<p>Here's what I've been listening to!</p>
+
+<a href="https://jackson-spotify.vercel.app/link">
+  <img height="100" src="https://jackson-spotify.vercel.app/svg" alt="Current Spotify song"/>
+</a>
+
+<p>And now, a brief attempt at marketing.</p>
+
+<h2>Skills</h2>
+<ul>
+  <li>Python</li>
+  <li>Javascript/React</li>
+  <li>HTML/CSS/JS</li>
+  <li>Matlab</li>
+  <li>SQL</li>
+  <li>Unix/Linux/Bash</li>
+  <li>Adobe Suite</li>
+  <li>Pure Data</li>
+  <li>Ableton Live</li>
+</ul>
+
+<h2>Projects</h2>
+
+<p>See the <a href="{{ site.url }}/projects">projects</a> for some works I've completed. Or click on
+my face for some music!</p>
+
+<script src="/js/interactive_letters.js"></script>
