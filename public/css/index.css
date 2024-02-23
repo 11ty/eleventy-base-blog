@@ -262,27 +262,19 @@ h2 + .header-anchor {
 	margin: 0;
 	transition: transform 0.2s ease-out;
 	text-shadow:
-		-0.1px -0.1px 0 #000,
-		0.1px -0.1px 0 #000,
-		-0.1px 0.1px 0 #000,
-		0.1px 0.1px 0 #000;
+		-0.1px -0.1px 0 rgba(0, 0, 0, 0.5),
+		0.1px -0.1px 0 rgba(0, 0, 0, 0.5),
+		-0.1px 0.1px 0 rgba(0, 0, 0, 0.5),
+		0.1px 0.1px 0 rgba(0, 0, 0, 0.5);
 }
 
-.letter-container::before {
-	content: "";
-	display: block;
-	margin-top: -0.5px; /* Half of the border width to negate the space it occupies */
+.word {
+	display: inline-block; /* Ensures the container fits the content */
+	border-bottom: 2px solid var(--color-gray-90); /* Adjust color and thickness as needed */
+	line-height: 1; /* Adjust line height to control distance of underline from letters */
+	padding-top: 3px;
+	position: relative; /* Needed to adjust the position */
 }
-
-.letter-container::after {
-	content: "";
-	display: block;
-	margin-bottom: -0.5px; /* Half of the border width to negate the space it occupies */
-}
-
-/* .word {
-	margin-left: 0.25em;
-} */
 
 h1 {
 	display: flex; /* Use flexbox layout */
