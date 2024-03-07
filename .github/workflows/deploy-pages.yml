@@ -24,9 +24,15 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
-          path: |
-            ~/.npm
-            ./.cache
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ./.cache
+          key: ${{ runner.os }}-eleventy-fetch-cache
+
 
       - run: npm install
       - run: npm run build-ghpages
