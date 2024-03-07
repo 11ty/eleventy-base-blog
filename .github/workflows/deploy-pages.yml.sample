@@ -1,3 +1,6 @@
+# If you’d like to deploy this to GitHub pages, rename this
+# file to `deploy-pages.yml` and read the mini-tutorial on
+# https://www.11ty.dev/docs/deployment/#deploy-an-eleventy-project-to-github-pages
 name: Deploy to GitHub Pages
 
 on:
