@@ -21,13 +21,13 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Cache dependencies
+      - name: Cache npm
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
 
-      - name: Cache dependencies
+      - name: Cache Eleventy .cache
         uses: actions/cache@v3
         with:
           path: ./.cache
