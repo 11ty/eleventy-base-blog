@@ -8,7 +8,8 @@
 		<link rel="alternate" href="/eleventy-base-blog/feed/feed.xml" type="application/atom+xml" title="Eleventy Base Blog v8">
 		<link rel="alternate" href="/eleventy-base-blog/feed/feed.json" type="application/json" title="Eleventy Base Blog v8">
 		
-		<style>/* Message Box */
+		<style>.postlist { counter-reset: start-from 5 }
+/* Message Box */
 .message-box {
 	--color-message-box: #ffc;
 
@@ -307,7 +308,7 @@ h2 + .header-anchor {
 				<h2 class="visually-hidden">Top level navigation menu</h2>
 				<ul class="nav">
 					<li class="nav-item"><a href="/eleventy-base-blog/">Home</a></li>
-					<li class="nav-item"><a href="/eleventy-base-blog/blog/">Archive</a></li>
+					<li class="nav-item"><a href="/eleventy-base-blog/blog/" aria-current="page">Archive</a></li>
 					<li class="nav-item"><a href="/eleventy-base-blog/about/">About Me</a></li>
 				</ul>
 			</nav>
@@ -325,24 +326,40 @@ h2 + .header-anchor {
 </div>
 <!-- Stop deleting -->
 
-<h1 id="content-not-found" tabindex="-1">Content not found. <a class="header-anchor" href="#content-not-found">#</a></h1>
-<p>Go <a href="/eleventy-base-blog/">home</a>.</p>
-<!--
+<h1>Archive</h1>
 
-Read more: https://www.11ty.dev/docs/quicktips/not-found/
 
-This will work for both GitHub pages and Netlify:
 
-* https://help.github.com/articles/creating-a-custom-404-page-for-your-github-pages-site/
-* https://www.netlify.com/docs/redirects/#custom-404
+<ol reversed="" class="postlist">
 
--->
+	<li class="postlist-item">
+		<a href="/eleventy-base-blog/blog/fourthpost/" class="postlist-link">This is my fourth post.</a>
+		<time class="postlist-date" datetime="2018-09-30">September 2018</time>
+	</li>
+
+	<li class="postlist-item">
+		<a href="/eleventy-base-blog/blog/thirdpost/" class="postlist-link">This is my third post.</a>
+		<time class="postlist-date" datetime="2018-08-24">August 2018</time>
+	</li>
+
+	<li class="postlist-item">
+		<a href="/eleventy-base-blog/blog/secondpost/" class="postlist-link">This is my second post with a much longer title.</a>
+		<time class="postlist-date" datetime="2018-07-04">July 2018</time>
+	</li>
+
+	<li class="postlist-item">
+		<a href="/eleventy-base-blog/blog/firstpost/" class="postlist-link">This is my first post.</a>
+		<time class="postlist-date" datetime="2018-05-01">May 2018</time>
+	</li>
+
+</ol>
+
 
 
 		</main>
 
 		<footer></footer>
 
-		<!-- Current page: /eleventy-base-blog/404.html -->
+		<!-- Current page: /eleventy-base-blog/blog/ -->
 	</body>
 </html>
