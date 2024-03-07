@@ -28,7 +28,7 @@ jobs:
             ~/.npm
             ./.cache
 
-      - run: npm ci
+      - run: npm install
       - run: npm run build-ghpages
 
       - name: Deploy
