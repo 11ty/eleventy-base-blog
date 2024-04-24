@@ -54,7 +54,9 @@
 			{{ content | safe }}
 		</main>
 
-		<footer></footer>
+		<footer>
+			<p><em>Built with <a href="https://www.11ty.dev/">{{ eleventy.generator }}</a></em></p>
+		</footer>
 
 		<!-- This page `{{ page.url | htmlBaseUrl }}` was built on {% currentBuildDate %} -->
 	</body>
