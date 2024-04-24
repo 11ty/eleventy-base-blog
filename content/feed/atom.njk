@@ -18,7 +18,7 @@ eleventyNavigation:
 		<email>{{ metadata.author.email }}</email>
 	</author>
 	{%- for post in collections.posts | reverse %}
-	{% set absolutePostUrl %}{{ post.url | htmlBaseUrl(metadata.url) }}{% endset %}
+	{%- set absolutePostUrl %}{{ post.url | htmlBaseUrl(metadata.url) }}{% endset %}
 	<entry>
 		<title>{{ post.data.title }}</title>
 		<link href="{{ absolutePostUrl }}"/>
