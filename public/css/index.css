@@ -106,9 +106,18 @@ header:after {
 }
 
 .links-nextprev {
-	list-style: none;
+	display: flex;
+	justify-content: space-between;
+	gap: .5em 1em;
+	list-style: "";
 	border-top: 1px dashed var(--color-gray-20);
 	padding: 1em 0;
+}
+.links-nextprev > * {
+	flex-grow: 1;
+}
+.links-nextprev-next {
+	text-align: right;
 }
 
 table {
@@ -137,6 +146,7 @@ pre:not([class*="language-"]) {
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
+	overflow-x: auto;
 }
 code {
 	word-break: break-all;
