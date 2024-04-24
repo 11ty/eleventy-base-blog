@@ -6,9 +6,7 @@ import pluginRss from "@11ty/eleventy-plugin-rss";
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginBundle from "@11ty/eleventy-plugin-bundle";
 import pluginNavigation from "@11ty/eleventy-navigation";
-
-import pluginDrafts from "./eleventy.config.drafts.js";
-import pluginImages from "./eleventy.config.images.js";
+import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 export default async function(eleventyConfig) {
@@ -25,10 +23,6 @@ export default async function(eleventyConfig) {
 	// Watch content images for the image pipeline.
 	eleventyConfig.addWatchTarget("content/**/*.{svg,webp,png,jpeg}");
 
-	// App plugins
-	eleventyConfig.addPlugin(pluginDrafts);
-	eleventyConfig.addPlugin(pluginImages);
-
 	// Official plugins
 	eleventyConfig.addPlugin(pluginRss);
 	eleventyConfig.addPlugin(pluginSyntaxHighlight, {
@@ -38,6 +32,20 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addPlugin(pluginBundle);
 	eleventyConfig.addPlugin(HtmlBasePlugin);
 	eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
+
+	// Image optimization: https://www.11ty.dev/docs/plugins/image/#eleventy-transform
+	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+		// File extensions to process in _site folder
+		extensions: "html",
+		// Output formats for each image.
+		formats: ["avif", "webp", "auto"],
+		// widths: ["auto"],
+		defaultAttributes: {
+			// e.g. <img loading decoding> assigned on the HTML tag will override these values.
+			loading: "lazy",
+			decoding: "async",
+		}
+	});
 
 	// Filters
 	eleventyConfig.addFilter("readableDate", (dateObj, format, zone) => {
@@ -67,17 +75,13 @@ export default async function(eleventyConfig) {
 		return Math.min.apply(null, numbers);
 	});
 
-	// Return all the tags used in any collection
-	eleventyConfig.addFilter("getAllTags", collection => {
-		let tagSet = new Set();
-		for(let item of collection) {
-			(item.data.tags || []).forEach(tag => tagSet.add(tag));
-		}
-		return Array.from(tagSet);
+	// Return the keys used in an object
+	eleventyConfig.addFilter("getKeys", target => {
+		return Object.keys(target);
 	});
 
 	eleventyConfig.addFilter("filterTagList", function filterTagList(tags) {
-		return (tags || []).filter(tag => ["all", "nav", "post", "posts"].indexOf(tag) === -1);
+		return (tags || []).filter(tag => ["all", "posts"].indexOf(tag) === -1);
 	});
 
 	// Customize Markdown library settings:
@@ -96,7 +100,7 @@ export default async function(eleventyConfig) {
 
 	eleventyConfig.addShortcode("currentBuildDate", () => {
 		return (new Date()).toISOString();
-	})
+	});
 
 	// Features to make your build faster (when you need them)
 

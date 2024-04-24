@@ -1,3 +1,3 @@
 export default {
-	eleventyExcludeFromCollections: true
-}
+	layout: false,
+};

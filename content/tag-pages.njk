@@ -1,18 +1,19 @@
----
-pagination:
-  data: collections
-  size: 1
-  alias: tag
-  filter:
-    - all
-    - post
-    - posts
-    - tagList
-  addAllPagesToCollections: true
-layout: layouts/home.njk
-eleventyComputed:
-  title: Tagged “{{ tag }}”
-permalink: /tags/{{ tag | slugify }}/
+---node
+// <script>
+const pagination = {
+	data: "collections",
+	size: 1,
+	alias: "tag",
+	filter: ["all", "posts"],
+	addAllPagesToCollections: true,
+};
+
+const eleventyComputed = {
+	title: "Tagged '{{ tag }}'",
+	permalink: function(data) {
+		return `/tags/${this.slugify(data.tag)}/`;
+	}
+};
 ---
 <h1>Tagged “{{ tag }}”</h1>
 

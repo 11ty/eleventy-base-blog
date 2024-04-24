@@ -56,20 +56,20 @@ Or you can run [debug mode](https://www.11ty.dev/docs/debugging/) to see all the
 	- _0ms Total Blocking Time_
 - Local development live reload provided by [Eleventy Dev Server](https://www.11ty.dev/docs/dev-server/).
 - Content-driven [navigation menu](https://www.11ty.dev/docs/plugins/navigation/)
-- [Image optimization](https://www.11ty.dev/docs/plugins/image/) via the `{% image %}` shortcode.
+- Fully automated [Image optimization](https://www.11ty.dev/docs/plugins/image/)
 	- Zero-JavaScript output.
 	- Support for modern image formats automatically (e.g. AVIF and WebP)
+	- Processes images on-request during `--serve` for speedy local builds.
 	- Prefers `<img>` markup if possible (single image format) but switches automatically to `<picture>` for multiple image formats.
 	- Automated `<picture>` syntax markup with `srcset` and optional `sizes`
 	- Includes `width`/`height` attributes to avoid [content layout shift](https://web.dev/cls/).
 	- Includes `loading="lazy"` for native lazy loading without JavaScript.
 	- Includes [`decoding="async"`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decoding)
 	- Images can be co-located with blog post files.
-	- View the [Image plugin source code](https://github.com/11ty/eleventy-base-blog/blob/main/eleventy.config.images.js)
 - Per page CSS bundles [via `eleventy-plugin-bundle`](https://github.com/11ty/eleventy-plugin-bundle).
 - Built-in [syntax highlighter](https://www.11ty.dev/docs/plugins/syntaxhighlight/) (zero-JavaScript output).
 - Blog Posts
-	- Draft posts: use `draft: true` to mark a blog post as a draft. Drafts are **only** included during `--serve`/`--watch` and are excluded from full builds. View the [Drafts plugin source code](https://github.com/11ty/eleventy-base-blog/blob/main/eleventy.config.drafts.js).
+	- Draft posts: use `draft: true` to mark a blog post as a draft. Drafts are **only** included during `--serve`/`--watch` and are excluded from full builds. This is driven by the `eleventyExcludeFromCollections` and `permalink` computed data in the `content/blog/blog.11tydata.js` directory data file. Schema validator will show an error if non-boolean value is set in data cascade.
 	- Automated next/previous links
 	- Accessible deep links to headings
 - Generated Pages
@@ -82,9 +82,10 @@ Or you can run [debug mode](https://www.11ty.dev/docs/debugging/) to see all the
 ## Demos
 
 - [Netlify](https://eleventy-base-blog.netlify.com/)
-- [GitHub Pages](https://11ty.github.io/eleventy-base-blog/)
 - [Remix on Glitch](https://glitch.com/~11ty-eleventy-base-blog)
 - [Cloudflare Pages](https://eleventy-base-blog-d2a.pages.dev/)
+- [GitHub Pages](https://11ty.github.io/eleventy-base-blog/)
+- [Vercel](https://eleventy-base-blog-snowy.vercel.app/)
 
 ## Deploy this to your own site
 
