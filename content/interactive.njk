@@ -1,0 +1,35 @@
+---
+layout: layouts/home.njk
+numberOfLatestPostsToShow: 3
+---
+{# eleventyNavigation:
+  key: Home
+  order: 1
+  icon: home #}
+{% import "letter_macro.njk" as letterMacro %}
+
+<h1>Hi, I'm {{ letterMacro.seperated_letters("Jackson.") }}</h1>
+
+<script src="/js/interactive_letters.js"></script>
+
+{# {% set postsCount = collections.posts | length %}
+{% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
+<h1>Latest {{ latestPostsCount }} Post{% if latestPostsCount != 1 %}s{% endif %}</h1>
+
+{% set postslist = collections.posts | head(-1 * numberOfLatestPostsToShow) %}
+{% set postslistCounter = postsCount %}
+{% include "postslist.njk" %}
+
+{% set morePosts = postsCount - numberOfLatestPostsToShow %}
+{% if morePosts > 0 %}
+<p>{{ morePosts }} more post{% if morePosts != 1 %}s{% endif %} can be found in <a href="/blog/">the archive</a>.</p>
+{% endif %} #}
+
+{# List every content page in the project #}
+{#
+<ul>
+	{%- for entry in collections.all %}
+	<li><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></li>
+	{%- endfor %}
+</ul>
+#}

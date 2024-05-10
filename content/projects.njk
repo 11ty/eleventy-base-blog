@@ -7,10 +7,7 @@ eleventyNavigation:
 ---
 {% import "letter_macro.njk" as letterMacro %}
 
-<h1>{{ letterMacro.interactive_letters("Projects") }}</h1>
+<h1>Projects</h1>
 
 {% set postslist = collections.posts %}
 {% include "postslist.njk" %}
-
-<script src="/js/interactive_letters.js"></script>
-

@@ -1,0 +1,23 @@
+.letter-container {
+	display: block;
+	float: left; /* Float each letter to the left */
+	font-family: inherit;
+	color: inherit;
+	transform-origin: center center;
+	touch-action: none;
+	margin: 0;
+	transition: transform 0.2s ease-out;
+	text-shadow:
+		-0.1px -0.1px 0 rgba(0, 0, 0, 0.5),
+		0.1px -0.1px 0 rgba(0, 0, 0, 0.5),
+		-0.1px 0.1px 0 rgba(0, 0, 0, 0.5),
+		0.1px 0.1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.word {
+	display: inline-block; /* Ensures the container fits the content */
+	border-bottom: 2px solid var(--color-gray-90); /* Adjust color and thickness as needed */
+	line-height: 1; /* Adjust line height to control distance of underline from letters */
+	padding-top: 3px;
+	position: relative; /* Needed to adjust the position */
+}

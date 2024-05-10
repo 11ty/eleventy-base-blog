@@ -1,5 +1,17 @@
-{% macro interactive_letters(word) %}
-  <span class="word">
+{% macro seperated_letters(word) %}
+  <div class="word">
+    {% for letter in word %}
+      <div class="letter-container">
+        <div class="letter-wrapper">
+          <span class="letter">{{ letter }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{# {% macro seperated_letters(word) %}
+  <div class="word">
     {% for letter in word %}
       {% if letter == ' ' %}
         <span class="letter-container">&nbsp;</span>
@@ -9,5 +21,5 @@
         <span class="letter-container">{{ letter }}</span>
       {% endif %}
     {% endfor %}
-  </span>
-{% endmacro %}
+  </div>
+{% endmacro %} #}
