@@ -77,11 +77,6 @@ main :first-child {
 header {
 	border-bottom: 1px dashed var(--color-gray-20);
 }
-header:after {
-	content: "";
-	display: table;
-	clear: both;
-}
 
 .links-nextprev {
 	list-style: none;
@@ -256,4 +251,13 @@ h1 {
 	display: flex; /* Use flexbox layout */
 	flex-wrap: wrap; /* Allow wrapping if necessary */
 	gap: 0.25em; /* Optional: Add a gap between letter containers if needed */
+}
+
+.row {
+	width: 100%;
+}
+
+.nav-right {
+	margin-left: auto;
+	margin-right: 0;
 }

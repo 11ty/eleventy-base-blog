@@ -15,11 +15,15 @@
 		{% include "public/css/index.css" %}
 		{# {% include "public/css/neat.css" %} #}
 		{% endcss %}
+		{%- js %}
+		{% include "public/js/dark_toggle.js" %}
+		{% endjs %}
 
 		{#- Render the CSS bundle using Inlined CSS (for the fastest site performance in production) #}
 		<style>
 			{% getBundle "css" %}
 		</style>
+
 		{#- Renders the CSS bundle using a separate file, if you can't set CSP directive style-src: 'unsafe-inline' #}
 		{#- <link rel="stylesheet" href="{% getBundleFileUrl "css" %}"> #}
 	</head>
@@ -37,6 +41,13 @@
 							<a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
 						</li>
 					{%- endfor %}
+					<li class="nav-item nav-right">
+						<button id="dark-mode-toggle" aria-label="Toggle dark mode">
+							<span aria-hidden="true">☀️</span>
+							<span aria-hidden="true">&nbsp;/&nbsp;</span>
+							<span aria-hidden="true">🌑</span>
+						</button>
+					</li>
 				</ul>
 			</nav>
 		</header>
@@ -50,3 +61,6 @@
 		<!-- Current page: {{ page.url | htmlBaseUrl }} -->
 	</body>
 </html>
+<script>
+	{% getBundle "js" %}
+</script>
