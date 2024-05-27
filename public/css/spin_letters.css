@@ -1,0 +1,32 @@
+.word {
+    display: flex;
+    justify-content: space-between; /* Space the letters evenly */
+    margin: 0.5em;
+    text-align: center;
+    width: 100%;
+    height: 600px; /* Increased height */
+    position: relative; /* Ensure child elements align correctly */
+}
+
+.letter-container {
+    position: relative;
+    display: flex;
+    align-items: center; /* Center align items horizontally */
+    justify-content: center;
+    flex: 1; /* Allow flex-grow to fill space equally */
+}
+
+.letter-wrapper {
+    position: static;
+    display: flex;
+    align-items: center; /* Center align items horizontally within the wrapper */
+    justify-content: center;
+    height: 100%; /* Full height */
+}
+
+.letter {
+    cursor: pointer;
+    user-select: none;
+    animation-fill-mode: forwards;
+    position: relative; /* Enable relative positioning for random vertical offset */
+}
