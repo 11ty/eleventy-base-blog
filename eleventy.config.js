@@ -33,24 +33,18 @@ export default async function(eleventyConfig) {
 
 	// Official plugins
 	eleventyConfig.addPlugin(feedPlugin, {
-		files: {
-			json: "/feed/feed.json",
-			atom: "/feed/feed.xml",
-			// "rss": "/feed/rss.xml",
-		},
-		stylesheet: {
-			atom: "pretty-atom-feed.xsl",
-		},
+		outputPath: "/feed/feed.xml",
+		stylesheet: "pretty-atom-feed.xsl",
 		templateData: {
-			atom: {
-				eleventyNavigation: {
-					key: "Feed",
-					order: 3
-				}
+			eleventyNavigation: {
+				key: "Feed",
+				order: 3
 			}
 		},
-		collectionName: "posts",
-		limit: 10,
+		collection: {
+			name: "posts",
+			limit: 10,
+		},
 		metadata: {
 			language: "en",
 			title: "Blog Title",
