@@ -35,7 +35,7 @@
 	"homepage": "https://github.com/11ty/eleventy-base-blog#readme",
 	"devDependencies": {
 		"@11ty/eleventy": "3.0.0-alpha.10",
-		"@11ty/eleventy-img": "5.0.0-beta.1",
+		"@11ty/eleventy-img": "5.0.0-beta.4",
 		"@11ty/eleventy-navigation": "^0.3.5",
 		"@11ty/eleventy-plugin-rss": "^2.0.0-beta.5",
 		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
