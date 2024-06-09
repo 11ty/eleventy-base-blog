@@ -1,7 +1,7 @@
 import markdownItAnchor from "markdown-it-anchor";
 
 import { InputPathToUrlTransformPlugin, HtmlBasePlugin } from "@11ty/eleventy";
-import pluginRss from "@11ty/eleventy-plugin-rss";
+import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginNavigation from "@11ty/eleventy-navigation";
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
@@ -32,7 +32,37 @@ export default async function(eleventyConfig) {
 	// eleventyConfig.addBundle("js");
 
 	// Official plugins
-	eleventyConfig.addPlugin(pluginRss);
+	eleventyConfig.addPlugin(feedPlugin, {
+		files: {
+			json: "/feed/feed.json",
+			atom: "/feed/feed.xml",
+			// "rss": "/feed/rss.xml",
+		},
+		stylesheet: {
+			atom: "pretty-atom-feed.xsl",
+		},
+		templateData: {
+			atom: {
+				eleventyNavigation: {
+					key: "Feed",
+					order: 3
+				}
+			}
+		},
+		collectionName: "posts",
+		limit: 10,
+		metadata: {
+			language: "en",
+			title: "Blog Title",
+			subtitle: "This is a longer description about your blog.",
+			base: "https://example.com/",
+			author: {
+				name: "Your Name",
+				email: "me@example.com"
+			}
+		}
+	});
+
 	eleventyConfig.addPlugin(pluginSyntaxHighlight, {
 		preAttributes: { tabindex: 0 }
 	});
@@ -44,9 +74,12 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
 		// File extensions to process in _site folder
 		extensions: "html",
+
 		// Output formats for each image.
 		formats: ["avif", "webp", "auto"],
+
 		// widths: ["auto"],
+
 		defaultAttributes: {
 			// e.g. <img loading decoding> assigned on the HTML tag will override these values.
 			loading: "lazy",
@@ -92,6 +125,7 @@ export const config = {
 		"njk",
 		"html",
 		"liquid",
+		"11ty.js",
 	],
 
 	// Pre-process *.md files with: (default: `liquid`)
