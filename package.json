@@ -34,14 +34,14 @@
 	},
 	"homepage": "https://github.com/11ty/eleventy-base-blog#readme",
 	"devDependencies": {
-		"@11ty/eleventy": "3.0.0-alpha.10",
+		"@11ty/eleventy": "3.0.0-alpha.11",
 		"@11ty/eleventy-img": "5.0.0-beta.4",
 		"@11ty/eleventy-navigation": "^0.3.5",
-		"@11ty/eleventy-plugin-rss": "^2.0.0-beta.6",
+		"@11ty/eleventy-plugin-rss": "^2.0.0-beta.7",
 		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
 		"luxon": "^3.4.4",
 		"markdown-it-anchor": "^8.6.7",
-		"zod": "^3.23.4",
-		"zod-validation-error": "^3.2.0"
+		"zod": "^3.23.8",
+		"zod-validation-error": "^3.3.0"
 	}
 }
