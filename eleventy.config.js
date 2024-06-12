@@ -32,6 +32,14 @@ export default async function(eleventyConfig) {
 	// eleventyConfig.addBundle("js");
 
 	// Official plugins
+	eleventyConfig.addPlugin(pluginSyntaxHighlight, {
+		preAttributes: { tabindex: 0 }
+	});
+	eleventyConfig.addPlugin(pluginNavigation);
+	eleventyConfig.addPlugin(HtmlBasePlugin);
+	eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
+
+	// Atom Feed
 	eleventyConfig.addPlugin(feedPlugin, {
 		outputPath: "/feed/feed.xml",
 		stylesheet: "pretty-atom-feed.xsl",
@@ -51,18 +59,10 @@ export default async function(eleventyConfig) {
 			subtitle: "This is a longer description about your blog.",
 			base: "https://example.com/",
 			author: {
-				name: "Your Name",
-				email: "me@example.com"
+				name: "Your Name"
 			}
 		}
 	});
-
-	eleventyConfig.addPlugin(pluginSyntaxHighlight, {
-		preAttributes: { tabindex: 0 }
-	});
-	eleventyConfig.addPlugin(pluginNavigation);
-	eleventyConfig.addPlugin(HtmlBasePlugin);
-	eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
 
 	// Image optimization: https://www.11ty.dev/docs/plugins/image/#eleventy-transform
 	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
