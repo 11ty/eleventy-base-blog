@@ -86,7 +86,6 @@ Or you can run [debug mode](https://www.11ty.dev/docs/debugging/) to see all the
 - [Remix on Glitch](https://glitch.com/~11ty-eleventy-base-blog)
 - [Cloudflare Pages](https://eleventy-base-blog-d2a.pages.dev/)
 - [GitHub Pages](https://11ty.github.io/eleventy-base-blog/)
-- [Vercel](https://eleventy-base-blog-snowy.vercel.app/)
 
 ## Deploy this to your own site
 
