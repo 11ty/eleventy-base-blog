@@ -256,12 +256,12 @@ header {
 	margin-right: 1em;
 }
 
-/* Direct Links / Markdown Headers */
+/* Direct Links / Headings */
 .heading-anchor {
 	text-decoration: none;
 	font-style: normal;
 	font-size: 1em;
-	margin-left: .1em;
+	margin-left: .25em;
 }
 a[href].heading-anchor,
 a[href].heading-anchor:visited {
