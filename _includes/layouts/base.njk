@@ -32,6 +32,8 @@
 		<style>{% getBundle "css" %}</style>
 		{#- Renders the CSS bundle using a separate file, if you can't set CSP directive style-src: 'unsafe-inline' #}
 		{#- <link rel="stylesheet" href="{% getBundleFileUrl "css" %}"> #}
+
+		{%- js %}{% include "public/js/heading-anchors.js" %}{% endjs %}
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -51,7 +53,9 @@
 		</header>
 
 		<main id="skip">
-			{{ content | safe }}
+			<heading-anchors>
+				{{ content | safe }}
+			</heading-anchors>
 		</main>
 
 		<footer>
@@ -59,5 +63,6 @@
 		</footer>
 
 		<!-- This page `{{ page.url | htmlBaseUrl }}` was built on {% currentBuildDate %} -->
+		<script type="module" src="{% getBundleFileUrl "js" %}"></script>
 	</body>
 </html>

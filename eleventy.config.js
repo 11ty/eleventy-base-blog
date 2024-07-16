@@ -1,6 +1,4 @@
-import markdownItAnchor from "markdown-it-anchor";
-
-import { InputPathToUrlTransformPlugin, HtmlBasePlugin } from "@11ty/eleventy";
+import { IdAttributePlugin, InputPathToUrlTransformPlugin, HtmlBasePlugin } from "@11ty/eleventy";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import pluginNavigation from "@11ty/eleventy-navigation";
@@ -28,8 +26,8 @@ export default async function(eleventyConfig) {
 	// Per-page bundles, see https://github.com/11ty/eleventy-plugin-bundle
 	// Adds the {% css %} paired shortcode
 	eleventyConfig.addBundle("css");
-	// Do you want a {% js %} bundle shortcode too?
-	// eleventyConfig.addBundle("js");
+	// Adds the {% js %} paired shortcode
+	eleventyConfig.addBundle("js");
 
 	// Official plugins
 	eleventyConfig.addPlugin(pluginSyntaxHighlight, {
@@ -84,19 +82,26 @@ export default async function(eleventyConfig) {
 	// Filters
 	eleventyConfig.addPlugin(pluginFilters);
 
-	// Customize Markdown library settings:
-	eleventyConfig.amendLibrary("md", mdLib => {
-		mdLib.use(markdownItAnchor, {
-			permalink: markdownItAnchor.permalink.ariaHidden({
-				placement: "after",
-				class: "header-anchor",
-				symbol: "#",
-				ariaHidden: false,
-			}),
-			level: [1,2,3,4],
-			slugify: eleventyConfig.getFilter("slugify")
-		});
+	eleventyConfig.addPlugin(IdAttributePlugin, {
+		// by default we use Eleventy’s built-in `slugify` filter:
+		// slugify: eleventyConfig.getFilter("slugify"),
+		// default:
+		// selector: "h1,h2,h3,h4,h5,h6",
 	});
+
+	// Customize Markdown library settings:
+	// eleventyConfig.amendLibrary("md", mdLib => {
+	// 	mdLib.use(markdownItAnchor, {
+	// 		permalink: markdownItAnchor.permalink.ariaHidden({
+	// 			placement: "after",
+	// 			class: "header-anchor",
+	// 			symbol: "#",
+	// 			ariaHidden: false,
+	// 		}),
+	// 		level: [1,2,3,4],
+	// 		slugify: eleventyConfig.getFilter("slugify")
+	// 	});
+	// });
 
 	eleventyConfig.addShortcode("currentBuildDate", () => {
 		return (new Date()).toISOString();
