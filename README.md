@@ -81,7 +81,8 @@ Or you can run [debug mode](https://www.11ty.dev/docs/debugging/) to see all the
 
 ## Demos
 
-- [Netlify](https://eleventy-base-blog.netlify.com/)
+- [Netlify](https://eleventy-base-blog.netlify.app/)
+- [Vercel](https://demo-base-blog.11ty.dev/)
 - [GitHub Pages](https://11ty.github.io/eleventy-base-blog/)
 - [Remix on Glitch](https://glitch.com/~11ty-eleventy-base-blog)
 - [Cloudflare Pages](https://eleventy-base-blog-d2a.pages.dev/)
