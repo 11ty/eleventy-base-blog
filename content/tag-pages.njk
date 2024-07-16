@@ -1,4 +1,4 @@
----node
+---js
 // <script>
 const pagination = {
 	data: "collections",

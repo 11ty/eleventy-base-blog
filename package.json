@@ -5,12 +5,13 @@
 	"type": "module",
 	"scripts": {
 		"build": "npx @11ty/eleventy",
+		"build-nocolor": "cross-env NODE_DISABLE_COLORS=1 npx @11ty/eleventy",
 		"build-ghpages": "npx @11ty/eleventy --pathprefix=/eleventy-base-blog/",
 		"start": "npx @11ty/eleventy --serve --quiet",
 		"start-ghpages": "npx @11ty/eleventy --pathprefix=/eleventy-base-blog/ --serve --quiet",
-		"debug": "DEBUG=Eleventy* npx @11ty/eleventy",
-		"debugstart": "DEBUG=Eleventy* npx @11ty/eleventy --serve --quiet",
-		"benchmark": "DEBUG=Eleventy:Benchmark* npx @11ty/eleventy"
+		"debug": "cross-env DEBUG=Eleventy* npx @11ty/eleventy",
+		"debugstart": "cross-env DEBUG=Eleventy* npx @11ty/eleventy --serve --quiet",
+		"benchmark": "cross-env DEBUG=Eleventy:Benchmark* npx @11ty/eleventy"
 	},
 	"repository": {
 		"type": "git",
@@ -34,11 +35,12 @@
 	},
 	"homepage": "https://github.com/11ty/eleventy-base-blog#readme",
 	"devDependencies": {
-		"@11ty/eleventy": "3.0.0-alpha.13",
-		"@11ty/eleventy-img": "5.0.0-beta.4",
+		"@11ty/eleventy": "3.0.0-alpha.16",
+		"@11ty/eleventy-img": "5.0.0-beta.5",
 		"@11ty/eleventy-navigation": "^0.3.5",
 		"@11ty/eleventy-plugin-rss": "2.0.0-beta.8",
 		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+		"cross-env": "^7.0.3",
 		"luxon": "^3.4.4",
 		"markdown-it-anchor": "^8.6.7",
 		"zod": "^3.23.8",
