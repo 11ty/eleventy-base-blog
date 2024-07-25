@@ -6,6 +6,8 @@ export default {
 		"posts"
 	],
 	"layout": "layouts/post.njk",
+
+	// Draft blog posts, validate `draft` front matter
 	eleventyDataSchema: function(data) {
 		let result = z.object({
 			draft: z.boolean().or(z.undefined()),
@@ -15,6 +17,8 @@ export default {
 			throw fromZodError(result.error);
 		}
 	},
+
+	// Draft blog posts, exclude from builds and collections
 	eleventyComputed: {
 		permalink: (data) => {
 			// Always skip during non-watch/serve builds

@@ -89,20 +89,6 @@ export default async function(eleventyConfig) {
 		// selector: "h1,h2,h3,h4,h5,h6",
 	});
 
-	// Customize Markdown library settings:
-	// eleventyConfig.amendLibrary("md", mdLib => {
-	// 	mdLib.use(markdownItAnchor, {
-	// 		permalink: markdownItAnchor.permalink.ariaHidden({
-	// 			placement: "after",
-	// 			class: "header-anchor",
-	// 			symbol: "#",
-	// 			ariaHidden: false,
-	// 		}),
-	// 		level: [1,2,3,4],
-	// 		slugify: eleventyConfig.getFilter("slugify")
-	// 	});
-	// });
-
 	eleventyConfig.addShortcode("currentBuildDate", () => {
 		return (new Date()).toISOString();
 	});
