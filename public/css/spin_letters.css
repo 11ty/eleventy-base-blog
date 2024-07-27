@@ -1,3 +1,9 @@
+html {
+	margin: 0;
+	height: 100%;
+	overflow: hidden;
+}
+
 .word {
 	display: flex;
 	justify-content: space-between; /* Space the letters evenly */
@@ -17,11 +23,10 @@
 }
 
 .letter-wrapper {
-	position: static;
+	position: relative;
 	display: flex;
 	align-items: center; /* Center align items horizontally within the wrapper */
 	justify-content: center;
-	height: 100%; /* Full height */
 }
 
 .letter {
@@ -29,7 +34,9 @@
 	user-select: none;
 	animation-fill-mode: forwards;
 	position: relative; /* Enable relative positioning for random vertical offset */
-    transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+	transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+	transform-origin: center 62.5%; /* Set rotation to middle */
+	mix-blend-mode: overlay;
 }
 
 .letter.spinning {
