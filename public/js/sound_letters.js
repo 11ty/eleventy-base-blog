@@ -1,54 +1,75 @@
 import { el } from 'https://cdn.jsdelivr.net/npm/@elemaudio/core@3.2.1/+esm';
 import WebRenderer from 'https://cdn.jsdelivr.net/npm/@elemaudio/web-renderer@3.2.1/+esm';
 
-// Constants and Configurations
 const FREQ_MIN = 130.81; // C3
-const FREQ_MAX = 523.25; // C5
 const MAX_VOICES = 8;
-const ADSR_SETTINGS = { attack: 0.01, decay: 0.1, sustain: 0.7, release: 2.0 };
+const ADSR_SETTINGS = { attack: 0.005, decay: 0.1, sustain: 0.7, release: 1.5 };
 const ROTATION_SETTINGS = { maxSpeed: 720, friction: 0.95, minSpeed: 1 };
 
-// Initialize audio context and renderer
 const core = new WebRenderer();
 const ctx = new AudioContext();
 ctx.suspend();
 
-// Generate frequency scale
-const FREQUENCIES = generateScale(FREQ_MIN, 24);
-
-// Initialize data structures
 const letterMap = new Map();
 const activeVoices = new Map();
 
-// Utility Functions
-function generateScale(baseFreq, numNotes) {
-    return Array.from({ length: numNotes }, (_, i) => baseFreq * Math.pow(2, i / 12));
+let isRandomMode = false;
+let fixedNotes;
+
+const NOTES_PER_OCTAVE = 12;
+const OCTAVES = 2;
+const letterCount = document.querySelectorAll('.letter').length;
+
+function generateUniqueFrequencies() {
+    const allNotes = Array.from({ length: NOTES_PER_OCTAVE * OCTAVES }, (_, i) => i);
+    const frequencies = new Set();
+
+    while (frequencies.size < letterCount) {
+        const index = Math.floor(Math.random() * allNotes.length);
+        const note = allNotes[index];
+        const frequency = FREQ_MIN * Math.pow(2, note / NOTES_PER_OCTAVE);
+        frequencies.add(frequency);
+        allNotes.splice(index, 1);
+    }
+
+    return Array.from(frequencies).sort((a, b) => a - b);
 }
+
+const FREQUENCIES = generateUniqueFrequencies();
 
 function getRandomInRange(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-// Audio Rendering Functions
 function renderPianoVoice({ key, freq, gate, velocity }) {
     const smoothGate = el.smooth(0.005, el.const({ key: `${key}:smoothGate`, value: gate }));
     const { attack, decay, sustain, release } = ADSR_SETTINGS;
     const env = el.adsr(attack, decay, sustain, release, smoothGate);
 
-    const osc1 = el.cycle(el.mul(freq, getRandomInRange(0.99, 0.999)));
+    const detune = el.add(
+        el.mul(el.noise(), 0.1),
+        el.mul(el.cycle(0.1), 0.2)
+    );
+
+    const osc1 = el.cycle(el.mul(freq, el.add(1, el.mul(detune, 0.001))));
     const osc2 = el.cycle(freq);
-    const osc3 = el.cycle(el.mul(freq, getRandomInRange(1.001, 1.01)));
-    const oscMix = el.add(el.mul(osc1, 0.33), el.mul(osc2, 0.33), el.mul(osc3, 0.34));
+    const osc3 = el.cycle(el.mul(freq, el.add(1, el.mul(detune, -0.001))));
 
-    const saturated = el.tanh(el.mul(oscMix, 1.2));
-    const cutoff = el.add(el.mul(env, 2000), 100);
-    const filtered = el.lowpass(cutoff, 0.7, saturated);
+    const oscMix = el.add(
+        el.mul(osc1, 0.33),
+        el.mul(osc2, 0.34),
+        el.mul(osc3, 0.33)
+    );
 
-    const highpassed = el.highpass(100, 0.7, filtered);
-    const eqed = el.peak(800, -3, 1, highpassed);
-    const output = el.mul(eqed, env, el.const({ key: `${key}:velocity`, value: velocity }));
+    const saturated = el.tanh(el.mul(oscMix, 1.5));
+    const cutoff = el.add(el.mul(env, 3000), 100);
+    const resonance = el.add(0.5, el.mul(env, 0.3));
+    const filtered = el.svf({ mode: 'lowpass' }, cutoff, resonance, saturated);
 
-    return el.mul(output, 0.5); // Master volume adjustment
+    const highpassed = el.highpass(80, 0.7, filtered);
+    const output = el.mul(highpassed, env, el.const({ key: `${key}:velocity`, value: velocity }));
+
+    return el.mul(output, 0.4);
 }
 
 function allocateVoice(key) {
@@ -56,9 +77,20 @@ function allocateVoice(key) {
         const oldestKey = Array.from(activeVoices.keys())[0];
         releaseVoice(oldestKey);
     }
-    const freqIndex = Math.floor(Math.random() * FREQUENCIES.length);
-    const freq = FREQUENCIES[freqIndex];
-    const velocity = 0.8 + Math.random() * 0.2;
+
+    let freqIndex, freq;
+    if (isRandomMode) {
+        freqIndex = Math.floor(Math.random() * FREQUENCIES.length);
+        freq = FREQUENCIES[freqIndex];
+    } else {
+        if (!fixedNotes) {
+            fixedNotes = FREQUENCIES.map(() => Math.floor(Math.random() * FREQUENCIES.length));
+        }
+        freqIndex = fixedNotes[letterMap.get(key).index];
+        freq = FREQUENCIES[freqIndex];
+    }
+
+    const velocity = 0.7 + Math.random() * 0.25;
     const voice = renderPianoVoice({ key, freq, gate: 1, velocity });
     activeVoices.set(key, { voice, freq, velocity });
     return freqIndex / FREQUENCIES.length;
@@ -92,7 +124,6 @@ function renderActiveVoices() {
     }
 }
 
-// Visual Effects Functions
 function applyRotation(element, normalizedFreq) {
     element.isPressed = true;
     element.classList.add('spinning');
@@ -125,7 +156,6 @@ function applyRotation(element, normalizedFreq) {
     requestAnimationFrame(step);
 }
 
-// Event Handling Functions
 const handleInteraction = async (element, isPressed) => {
     const key = element.textContent.toLowerCase();
     if (isPressed && !element.isPressed) {
@@ -138,12 +168,11 @@ const handleInteraction = async (element, isPressed) => {
     renderActiveVoices();
 };
 
-// Initialization
-document.querySelectorAll('.letter').forEach(element => {
+document.querySelectorAll('.letter').forEach((element, index) => {
     const key = element.textContent.toLowerCase();
     element.isPressed = false;
     element.rotation = parseFloat(element.dataset.rotation) || 0;
-    letterMap.set(key, { element });
+    letterMap.set(key, { element, index });
 
     element.addEventListener('mousedown', () => handleInteraction(element, true));
     element.addEventListener('mouseup', () => handleInteraction(element, false));
