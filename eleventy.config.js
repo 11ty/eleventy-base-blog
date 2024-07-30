@@ -11,14 +11,14 @@ const pluginDrafts = require("./eleventy.config.drafts.js");
 const pluginImages = require("./eleventy.config.images.js");
 
 /** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
-module.exports = function(eleventyConfig) {
+module.exports = function (eleventyConfig) {
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig.addPassthroughCopy({
 		"./public/": "/",
 	});
-	eleventyConfig.addPassthroughCopy("js");
-	eleventyConfig.addPassthroughCopy("css");
+	eleventyConfig.addPassthroughCopy({ "css": "css" });
+	eleventyConfig.addPassthroughCopy({ "js": "js" });
 	eleventyConfig.addPassthroughCopy("_headers");
 
 	// Run Eleventy when these files change:
