@@ -106,19 +106,22 @@ function releaseVoice(key) {
 
 function renderActiveVoices() {
     const currentTime = Date.now();
-    const outputs = Array.from(activeVoices.entries())
-        .filter(([key, voice]) => {
-            if (voice.releaseStart && currentTime - voice.releaseStart > 2000) {
-                activeVoices.delete(key);
-                return false;
-            }
-            return true;
-        })
-        .map(([_, voice]) => voice.voice);
+    const outputs = [];
+
+    for (const [key, voice] of activeVoices.entries()) {
+        if (voice.releaseStart && currentTime - voice.releaseStart > ADSR_SETTINGS.release * 1000) {
+            activeVoices.delete(key);
+        } else {
+            outputs.push(voice.voice);
+        }
+    }
 
     if (outputs.length > 0) {
         const combinedOutput = el.add(...outputs);
-        core.render(combinedOutput, combinedOutput);
+        const gainReduction = el.div(1, el.sqrt(el.const({ key: 'voiceCount', value: outputs.length })));
+        const limitedOutput = el.tanh(el.mul(combinedOutput, gainReduction, 0.7));
+
+        core.render(limitedOutput, limitedOutput);
     } else {
         core.render(el.const({ value: 0 }), el.const({ value: 0 }));
     }
