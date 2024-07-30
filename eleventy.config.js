@@ -10,7 +10,8 @@ const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 const pluginDrafts = require("./eleventy.config.drafts.js");
 const pluginImages = require("./eleventy.config.images.js");
 
-module.exports = function (eleventyConfig) {
+/** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
+module.exports = function(eleventyConfig) {
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig.addPassthroughCopy({
@@ -92,6 +93,10 @@ module.exports = function (eleventyConfig) {
 			slugify: eleventyConfig.getFilter("slugify")
 		});
 	});
+
+	eleventyConfig.addShortcode("currentBuildDate", () => {
+		return (new Date()).toISOString();
+	})
 
 	// Features to make your build faster (when you need them)
 
