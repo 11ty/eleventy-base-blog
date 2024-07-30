@@ -35,5 +35,8 @@
   "dependencies": {
     "@elemaudio/core": "^3.2.1",
     "@elemaudio/web-renderer": "^3.2.3"
-  }
+  },
+  "trustedDependencies": [
+    "sharp"
+  ]
 }
