@@ -10,6 +10,8 @@ const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
 const pluginDrafts = require("./eleventy.config.drafts.js");
 const pluginImages = require("./eleventy.config.images.js");
 
+const { getSVGPathForLetter } = require('./public/js/sound_letters/svg-converter.js');
+
 /** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
 module.exports = function (eleventyConfig) {
 	// Copy the contents of the `public` folder to the output folder
@@ -19,6 +21,8 @@ module.exports = function (eleventyConfig) {
 	});
 	eleventyConfig.addPassthroughCopy({ "css": "css" });
 	eleventyConfig.addPassthroughCopy({ "js": "js" });
+	eleventyConfig.addJavaScriptFunction("getSVGPathForLetter", getSVGPathForLetter);
+	eleventyConfig.addNunjucksGlobal("getSVGPathForLetter", getSVGPathForLetter);
 
 	// Run Eleventy when these files change:
 	// https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets

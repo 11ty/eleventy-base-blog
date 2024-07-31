@@ -36,12 +36,14 @@ function generateUniqueFrequencies() {
 }
 
 const FREQUENCIES = generateUniqueFrequencies();
+const letterFrequencies = new Map();
+initializeFrequencies();
 
 function getRandomInRange(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-function renderPianoVoice({ key, freq, gate, velocity }) {
+function renderSynthVoice({ key, freq, gate, velocity }) {
     const smoothGate = el.smooth(0.005, el.const({ key: `${key}:smoothGate`, value: gate }));
     const { attack, decay, sustain, release } = ADSR_SETTINGS;
     const env = el.adsr(attack, decay, sustain, release, smoothGate);
@@ -72,34 +74,31 @@ function renderPianoVoice({ key, freq, gate, velocity }) {
     return el.mul(output, 0.4);
 }
 
+function initializeFrequencies() {
+    const letters = Array.from(document.querySelectorAll('.letter')).map(el => el.textContent.toLowerCase());
+    letters.forEach((letter, index) => {
+        letterFrequencies.set(letter, FREQUENCIES[index % FREQUENCIES.length]);
+    });
+}
+
 function allocateVoice(key) {
     if (activeVoices.size >= MAX_VOICES) {
         const oldestKey = Array.from(activeVoices.keys())[0];
         releaseVoice(oldestKey);
     }
 
-    let freqIndex, freq;
-    if (isRandomMode) {
-        freqIndex = Math.floor(Math.random() * FREQUENCIES.length);
-        freq = FREQUENCIES[freqIndex];
-    } else {
-        if (!fixedNotes) {
-            fixedNotes = FREQUENCIES.map(() => Math.floor(Math.random() * FREQUENCIES.length));
-        }
-        freqIndex = fixedNotes[letterMap.get(key).index];
-        freq = FREQUENCIES[freqIndex];
-    }
-
+    const freq = letterFrequencies.get(key.toLowerCase());
     const velocity = 0.7 + Math.random() * 0.25;
-    const voice = renderPianoVoice({ key, freq, gate: 1, velocity });
+    const voice = renderSynthVoice({ key, freq, gate: 1, velocity });
     activeVoices.set(key, { voice, freq, velocity });
-    return freqIndex / FREQUENCIES.length;
+
+    return freq / FREQ_MIN;
 }
 
 function releaseVoice(key) {
     if (activeVoices.has(key)) {
         const { freq, velocity } = activeVoices.get(key);
-        const voice = renderPianoVoice({ key, freq, gate: 0, velocity });
+        const voice = renderSynthVoice({ key, freq, gate: 0, velocity });
         activeVoices.set(key, { voice, releaseStart: Date.now() });
     }
 }
@@ -128,6 +127,7 @@ function renderActiveVoices() {
 }
 
 function applyRotation(element, normalizedFreq) {
+    console.log(`Applying rotation to letter: ${element.textContent}, normalizedFreq: ${normalizedFreq}`);
     element.isPressed = true;
     element.classList.add('spinning');
     const { maxSpeed, friction, minSpeed } = ROTATION_SETTINGS;
