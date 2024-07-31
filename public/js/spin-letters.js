@@ -77,13 +77,14 @@ letterContainers.forEach((container, index) => {
     const height = getRandomHeight();
     const fontSize = getRandomFontSize();
     const rotation = getRandomRotate();
+    const zIndex = 1000 - fontSize; // Inverse relationship
 
     Object.assign(letterWrapper.style, {
         top: `${height / 2}px`
     });
     Object.assign(letter.style, {
         fontSize: `${fontSize}px`,
-        lineHeight: `${fontSize}px`,
+        zIndex: zIndex,
         textAlign: 'center',
         transform: `rotate(${rotation}deg)`,
         transition: 'none', // Ensure no transition is applied
