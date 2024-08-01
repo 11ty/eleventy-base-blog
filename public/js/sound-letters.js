@@ -32,17 +32,35 @@ class SoundLetters {
             element.addEventListener('mouseleave', () => {
                 if (element.isPressed) this.handleInteraction(element, false);
             });
+
+            // New touch events
+            element.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                this.handleInteraction(element, true);
+            });
+            element.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                this.handleInteraction(element, false);
+            });
+            element.addEventListener('touchcancel', (e) => {
+                e.preventDefault();
+                if (element.isPressed) this.handleInteraction(element, false);
+            });
         });
 
         document.addEventListener('keydown', event => this.handleKeyDown(event));
         document.addEventListener('keyup', event => this.handleKeyUp(event));
+
+        // Initialize audio on first user interaction (works for both click and touch)
         document.addEventListener('click', () => this.initializeAudio(), { once: true });
+        document.addEventListener('touchstart', () => this.initializeAudio(), { once: true });
     }
 
     async handleInteraction(element, isPressed) {
         await this.initializeAudio();
         const key = element.textContent.toLowerCase();
         if (isPressed && !element.isPressed) {
+            element.isPressed = true;
             const normalizedFreq = this.voiceManager.allocateVoice(key);
             this.rotationManager.applyRotation(element, normalizedFreq);
         } else if (!isPressed && element.isPressed) {

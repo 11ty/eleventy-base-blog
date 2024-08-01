@@ -1,5 +1,5 @@
-const wordElement = document.querySelector('.word');
-const letterContainers = wordElement.querySelectorAll('.letter-container');
+const wordElement = document.querySelector(".word");
+const letterContainers = wordElement.querySelectorAll(".letter-container");
 
 const parentWidth = wordElement.offsetWidth;
 const numLetters = letterContainers.length;
@@ -57,22 +57,27 @@ function generateColors(numLetters) {
     const baseHue = Math.random() * 360;
     const palette = generateColorPalette(baseHue, numLetters);
 
-    return palette.map(color => {
+    return palette.map((color) => {
         const rgb = hexToRgb(color);
-        const accent = rgb.map(c => Math.min(255, c + 30));
+        const accent = rgb.map((c) => Math.min(255, c + 30));
         return {
             primary: color,
-            accent: rgbToHex(...accent)
+            accent: rgbToHex(...accent),
         };
     });
 }
 
-
 const colors = generateColors(numLetters);
+// const tallLetters = new Set(['b', 'd', 'f', 'h', 'k', 'l', 't', 'i']);
+// const dipLetters = new Set(['q', 'p', 'g', 'y']);
+// const uniqueLetters = new Set(['j'])
 
 letterContainers.forEach((container, index) => {
-    const letterWrapper = container.querySelector('.letter-wrapper');
-    const letter = container.querySelector('.letter');
+    const letterWrapper = container.querySelector(".letter-wrapper");
+    const letter = container.querySelector(".letter");
+    const rand = Math.random();
+    letter.style.setProperty("--random-delay", `${rand}s`);
+    letter.style.setProperty("--random-size", rand * 100);
 
     const height = getRandomHeight();
     const fontSize = getRandomFontSize();
@@ -80,14 +85,13 @@ letterContainers.forEach((container, index) => {
     const zIndex = 1000 - fontSize; // Inverse relationship
 
     Object.assign(letterWrapper.style, {
-        top: `${height / 2}px`
+        top: `${height / 2}px`,
     });
     Object.assign(letter.style, {
-        fontSize: `${fontSize}px`,
         zIndex: zIndex,
-        textAlign: 'center',
+        textAlign: "center",
         transform: `rotate(${rotation}deg)`,
-        transition: 'none', // Ensure no transition is applied
+        transition: "none", // Ensure no transition is applied
         color: colors[index].primary,
     });
 
@@ -96,31 +100,15 @@ letterContainers.forEach((container, index) => {
 
     Object.assign(container.style, {
         width: `${fixedWidth}px`,
-        display: 'inline-block',
-        verticalAlign: 'top',
-        marginLeft: index > 0 ? '0px' : ''
+        display: "inline-block",
+        verticalAlign: "top",
+        marginLeft: index > 0 ? "0px" : "",
     });
-
-    // Set initial opacity to 0
-    letter.style.opacity = '0';
-
-    // Generate a random delay between 0 and 3 seconds
-    const delay = Math.random() * 1000;
-
-    // Use setTimeout to trigger the fade-in effect
-    setTimeout(() => {
-        letter.style.transition = 'opacity 0.3s ease-in';
-        letter.style.opacity = '1';
-    }, delay);
 });
 
 // Helper functions
-function getRandomFontSize() {
-    return Math.floor(Math.random() * 512) + 36;
-}
-
 function getRandomHeight() {
-    return Math.floor(Math.random() * (window.innerHeight / 2)) + 16;
+    return Math.floor(Math.random() * (window.innerHeight / 1.5));
 }
 
 function getRandomRotate() {
