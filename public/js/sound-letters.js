@@ -27,7 +27,12 @@ class SoundLetters {
 
     addEventListeners() {
         document.querySelectorAll('.letter').forEach(element => {
-            element.addEventListener('mousedown', () => this.handleInteraction(element, true));
+            element.addEventListener('mousedown', (e) => {
+                // Only respond to left-clicks
+                if (e.button === 0) {
+                    this.handleInteraction(element, true);
+                }
+            });
             element.addEventListener('mouseup', () => this.handleInteraction(element, false));
             element.addEventListener('mouseleave', () => {
                 if (element.isPressed) this.handleInteraction(element, false);

@@ -76,5 +76,13 @@ html {
 	/* Rotation based effects */
 	transform: rotate3d(0, 0, 1, calc(var(--rotation, 0) * 1deg));
 	font-variation-settings: "wght" var(--font-weight, 400);
-	transition: font-variation-settings 0.3s ease;
+    transition: font-variation-settings 0.3s ease;
+	/* transition: font-variation-settings 0.3s ease; */
+	/* will-change: transform, font-variation-settings; */
+	/* contain: layout paint; */
+
+
+	/* transform: rotate3d(0, 0, 1, calc(var(--rotation, 0) * 1deg)) scale3d(var(--scale, 1), var(--scale, 1), 1);
+	transition: transform 0.3s ease;
+	will-change: transform; */
 }

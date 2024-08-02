@@ -44,10 +44,13 @@ export class RotationManager {
 
             const normalizedSpeed = Math.abs(data.angularVelocity) / this.rotationSettings.maxSpeed;
             const fontWeight = Math.max(400, Math.min(700, 400 + normalizedSpeed * 300));
+            // const scale = 1 + (normalizedSpeed * 0.2); // Adjust 0.2 to control the maximum scale
 
             data.rotation += data.angularVelocity * deltaTime;
             element.style.setProperty('--rotation', data.rotation);
             element.style.setProperty('--font-weight', fontWeight);
+            // element.style.setProperty('--scale', scale);
+
         });
 
         if (this.rotatingElements.size > 0) {
