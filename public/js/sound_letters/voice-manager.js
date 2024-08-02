@@ -26,7 +26,7 @@ export class VoiceManager {
         if (this.activeVoices.has(key)) {
             const { freq, velocity } = this.activeVoices.get(key);
             const voice = this.audioEngine.renderSynthVoice({ key, freq, gate: 0, velocity });
-            this.activeVoices.set(key, { voice, releaseStart: Date.now() });
+            this.activeVoices.set(key, { voice, freq, velocity, releaseStart: Date.now() });
         }
     }
 
