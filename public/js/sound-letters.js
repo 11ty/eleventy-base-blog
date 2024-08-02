@@ -60,16 +60,14 @@ class SoundLetters {
         await this.initializeAudio();
         const key = element.textContent.toLowerCase();
         if (isPressed && !element.isPressed) {
-            element.isPressed = true;
             const normalizedFreq = this.voiceManager.allocateVoice(key);
             this.rotationManager.applyRotation(element, normalizedFreq);
-        } else if (!isPressed && element.isPressed) {
+        } else if (!isPressed) {
             this.voiceManager.releaseVoice(key);
             this.rotationManager.stopRotation(element);
         }
         this.voiceManager.renderActiveVoices();
     }
-
 
     handleKeyDown(event) {
         const letter = this.letterMap.get(event.key);

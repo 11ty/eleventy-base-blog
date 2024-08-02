@@ -80,23 +80,18 @@ letterContainers.forEach((container, index) => {
     letter.style.setProperty("--random-size", rand * 100);
 
     const height = getRandomHeight();
-    const fontSize = getRandomFontSize();
     const rotation = getRandomRotate();
-    const zIndex = 1000 - fontSize; // Inverse relationship
 
     Object.assign(letterWrapper.style, {
         top: `${height / 2}px`,
     });
     Object.assign(letter.style, {
-        zIndex: zIndex,
         textAlign: "center",
-        transform: `rotate(${rotation}deg)`,
-        transition: "none", // Ensure no transition is applied
         color: colors[index].primary,
     });
 
-    // Store the rotation in a data attribute
-    letter.dataset.rotation = rotation;
+    letter.style.setProperty('--rotation', rotation);
+    letter.style.setProperty('--font-weight', '400');
 
     Object.assign(container.style, {
         width: `${fixedWidth}px`,
@@ -105,6 +100,7 @@ letterContainers.forEach((container, index) => {
         marginLeft: index > 0 ? "0px" : "",
     });
 });
+
 
 // Helper functions
 function getRandomHeight() {

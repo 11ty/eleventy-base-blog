@@ -4,41 +4,57 @@ import { AUDIO_CONFIG } from './config.js';
 export class RotationManager {
     constructor() {
         this.rotationSettings = AUDIO_CONFIG.ROTATION_SETTINGS;
-        this.animationFrames = new Map();
+        this.rotatingElements = new Map();
+        this.animationFrame = null;
     }
 
     applyRotation(element, normalizedFreq) {
-        if (this.animationFrames.has(element)) {
-            cancelAnimationFrame(this.animationFrames.get(element));
-        }
-
-        element.isPressed = true;
-        element.classList.add('spinning');
         const { maxSpeed, friction, minSpeed } = this.rotationSettings;
         const rotationSpeed = normalizedFreq * maxSpeed;
         const spinDirection = Math.random() < 0.5 ? 1 : -1;
 
-        let angularVelocity = rotationSpeed * spinDirection;
-        let lastTimestamp = performance.now();
+        const existingRotation = parseFloat(element.style.getPropertyValue('--rotation')) || 0;
 
-        const animate = (timestamp) => {
-            const deltaTime = (timestamp - lastTimestamp) / 1000;
-            lastTimestamp = timestamp;
+        const rotationData = {
+            angularVelocity: rotationSpeed * spinDirection,
+            rotation: existingRotation,
+        };
 
-            if (!element.isPressed && Math.abs(angularVelocity) < minSpeed) {
+        this.rotatingElements.set(element, rotationData);
+        element.classList.add('spinning');
+        element.isPressed = true;
+
+        if (!this.animationFrame) {
+            this.animationFrame = requestAnimationFrame(this.updateRotations.bind(this));
+        }
+    }
+
+    updateRotations(timestamp) {
+        this.rotatingElements.forEach((data, element) => {
+            if (!element.isPressed && Math.abs(data.angularVelocity) < this.rotationSettings.minSpeed) {
                 element.classList.remove('spinning');
-                this.animationFrames.delete(element);
+                this.rotatingElements.delete(element);
                 return;
             }
 
-            angularVelocity *= element.isPressed ? 1 : Math.pow(friction, deltaTime * 60);
-            element.rotation = (element.rotation || 0) + angularVelocity * deltaTime;
-            element.style.transform = `rotate(${element.rotation}deg)`;
+            const deltaTime = (timestamp - (data.lastTimestamp || timestamp)) / 1000;
+            data.lastTimestamp = timestamp;
 
-            this.animationFrames.set(element, requestAnimationFrame(animate));
-        };
+            data.angularVelocity *= element.isPressed ? 1 : Math.pow(this.rotationSettings.friction, deltaTime * 60);
 
-        this.animationFrames.set(element, requestAnimationFrame(animate));
+            const normalizedSpeed = Math.abs(data.angularVelocity) / this.rotationSettings.maxSpeed;
+            const fontWeight = Math.max(400, Math.min(700, 400 + normalizedSpeed * 300));
+
+            data.rotation += data.angularVelocity * deltaTime;
+            element.style.setProperty('--rotation', data.rotation);
+            element.style.setProperty('--font-weight', fontWeight);
+        });
+
+        if (this.rotatingElements.size > 0) {
+            this.animationFrame = requestAnimationFrame(this.updateRotations.bind(this));
+        } else {
+            this.animationFrame = null;
+        }
     }
 
     stopRotation(element) {
@@ -46,7 +62,13 @@ export class RotationManager {
     }
 
     cleanup() {
-        this.animationFrames.forEach(frameId => cancelAnimationFrame(frameId));
-        this.animationFrames.clear();
+        this.rotatingElements.forEach((data, element) => {
+            element.style.removeProperty('--rotation');
+            element.style.removeProperty('--font-weight');
+        });
+        if (this.animationFrame) {
+            cancelAnimationFrame(this.animationFrame);
+        }
+        this.rotatingElements.clear();
     }
 }
