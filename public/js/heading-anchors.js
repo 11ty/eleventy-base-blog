@@ -11,6 +11,7 @@ class HeadingAnchors extends HTMLElement {
 		this.headings.forEach((heading) => {
 			if(!heading.querySelector("a.direct-link") || heading.hasAttribute("data-heading-anchors-optout")) {
 				heading.append(this.anchor(heading));
+				heading.setAttribute("tabindex", "-1");
 			}
 		});
 	}
