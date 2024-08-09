@@ -85,8 +85,7 @@ export default async function(eleventyConfig) {
 	eleventyConfig.addPlugin(IdAttributePlugin, {
 		// by default we use Eleventy’s built-in `slugify` filter:
 		// slugify: eleventyConfig.getFilter("slugify"),
-		// default:
-		// selector: "h1,h2,h3,h4,h5,h6",
+		// selector: "h1,h2,h3,h4,h5,h6", // default
 	});
 
 	eleventyConfig.addShortcode("currentBuildDate", () => {

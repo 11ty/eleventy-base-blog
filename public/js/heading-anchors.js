@@ -20,17 +20,18 @@ class HeadingAnchors extends HTMLElement {
 }
 /* For headings that already have links */
 :is(h1, h2, h3, h4, h5, h6):has(a[href]:not(.heading-anchor)):is(:hover, :focus-within) .heading-anchor:after {
-	content: "#";
-	content: "#" / "";
+	opacity: 1;
 }
 .heading-anchor:focus:after,
 .heading-anchor:hover:after {
-	content: "#";
-	content: "#" / "";
+	opacity: 1;
 }
 .heading-anchor:after {
+	content: "#";
+	content: "#" / "";
 	margin-left: .25em;
 	color: #aaa;
+	opacity: 0;
 }`;
 
 	constructor() {
@@ -70,7 +71,6 @@ class HeadingAnchors extends HTMLElement {
 
 	getAnchorElement(heading) {
 		let anchor = document.createElement("a");
-		anchor.setAttribute("data-pagefind-ignore", "");
 		anchor.href = `#${heading.id}`;
 		anchor.classList.add("heading-anchor");
 		return anchor;
