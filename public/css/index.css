@@ -256,26 +256,3 @@ header {
 	margin-right: 1em;
 }
 
-/* Direct Links / Headings */
-.heading-anchor {
-	text-decoration: none;
-	font-style: normal;
-	font-size: 1em;
-	margin-left: .25em;
-}
-a[href].heading-anchor,
-a[href].heading-anchor:visited {
-	color: transparent;
-}
-a[href].heading-anchor:focus,
-a[href].heading-anchor:hover {
-	text-decoration: underline;
-}
-a[href].heading-anchor:focus,
-:hover > a[href].heading-anchor {
-	color: #aaa;
-}
-
-h2 + .heading-anchor {
-	font-size: 1.5em;
-}
