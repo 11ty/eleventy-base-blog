@@ -34,32 +34,8 @@ html {
 	user-select: none;
 	position: relative; /* Enable relative positioning for random vertical offset */
 	transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
-	/* Set rotation to middle */
-	transform-origin: center 62.5%;
 	mix-blend-mode: overlay;
-	/* line-height: 80%; */
 
-	/* Hack to reduce clickable area */
-	/* line-height: 80%; */
-	/* overflow: clip; */
-	/* width: -moz-fit-content;
-	width: -webkit-fit-content; */
-}
-
-.letter.spinning {
-	transition: none;
-}
-
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
-.letter {
 	/* Fade in */
 	opacity: 0;
 	animation: fadeIn 0.3s ease-in forwards;
@@ -76,13 +52,18 @@ html {
 	/* Rotation based effects */
 	transform: rotate3d(0, 0, 1, calc(var(--rotation, 0) * 1deg));
 	font-variation-settings: "wght" var(--font-weight, 400);
-    transition: font-variation-settings 0.3s ease;
-	/* transition: font-variation-settings 0.3s ease; */
-	/* will-change: transform, font-variation-settings; */
-	/* contain: layout paint; */
+	will-change: transform, font-variation-settings;
+}
 
+.letter.spinning {
+	transition: none;
+}
 
-	/* transform: rotate3d(0, 0, 1, calc(var(--rotation, 0) * 1deg)) scale3d(var(--scale, 1), var(--scale, 1), 1);
-	transition: transform 0.3s ease;
-	will-change: transform; */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }

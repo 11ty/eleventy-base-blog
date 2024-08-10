@@ -1,4 +1,3 @@
-// RotationManager.js
 import { AUDIO_CONFIG } from './config.js';
 
 export class RotationManager {
@@ -12,15 +11,13 @@ export class RotationManager {
         const { maxSpeed, friction, minSpeed } = this.rotationSettings;
         const rotationSpeed = normalizedFreq * maxSpeed;
         const spinDirection = Math.random() < 0.5 ? 1 : -1;
-
         const existingRotation = parseFloat(element.style.getPropertyValue('--rotation')) || 0;
 
-        const rotationData = {
+        this.rotatingElements.set(element, {
             angularVelocity: rotationSpeed * spinDirection,
             rotation: existingRotation,
-        };
+        });
 
-        this.rotatingElements.set(element, rotationData);
         element.classList.add('spinning');
         element.isPressed = true;
 
@@ -44,13 +41,10 @@ export class RotationManager {
 
             const normalizedSpeed = Math.abs(data.angularVelocity) / this.rotationSettings.maxSpeed;
             const fontWeight = Math.max(400, Math.min(700, 400 + normalizedSpeed * 300));
-            // const scale = 1 + (normalizedSpeed * 0.2); // Adjust 0.2 to control the maximum scale
 
             data.rotation += data.angularVelocity * deltaTime;
-            element.style.setProperty('--rotation', data.rotation);
             element.style.setProperty('--font-weight', fontWeight);
-            // element.style.setProperty('--scale', scale);
-
+            element.style.setProperty('--rotation', data.rotation);
         });
 
         if (this.rotatingElements.size > 0) {

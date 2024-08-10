@@ -273,17 +273,59 @@ h2 + .header-anchor {
 	font-weight: normal;
 	font-style: normal;
 }
+@font-face {
+	font-family: "Whirlybats";
+	src: url("/fonts/Whirlybats.ttf") format("truetype");
+}
+@font-face {
+	font-family: "WhirlyBirdie";
+	src: url("/fonts/WhirlyBirdieVariable.ttf") format("truetype");
+	/* font-weight: 200; */
+	font-variation-settings:
+		"wght" 75,
+		"wdth" 75;
+}
+@font-face {
+	font-family: "Switzer";
+	src: url("/fonts/Switzer-Variable.woff2") format("woff2");
+	font-weight: 500;
+	/* font-variation-settings: "wght" 400; */
+}
+@font-face {
+	font-family: "Rag";
+	src:
+		url("/fonts/Rag-Regular.woff2") format("woff2"),
+		url("/fonts/Rag-Italic.woff2") format("woff2"),
+		url("/fonts/Rag-Bold.woff2") format("woff2"),
+		url("/fonts/Rag-BoldItalic.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal italic;
+	font-display: swap;
+}
+
+.wb-icon {
+	font-family: "Whirlybats";
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	font-feature-settings: "liga";
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+}
 
 :root {
-	border-top: none !important;
-	--font-family: "Folio", -apple-system, system-ui, sans-serif;
+	--font-family: "Rag", -apple-system, system-ui, sans-serif;
 }
 
 h1,
 h2,
 h3,
 .letter {
-	font-family: "Chivo";
+	font-family: "Switzer";
 }
 
 h1 {

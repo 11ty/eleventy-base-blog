@@ -76,6 +76,7 @@ letterContainers.forEach((container, index) => {
     const letterWrapper = container.querySelector(".letter-wrapper");
     const letter = container.querySelector(".letter");
     const rand = Math.random();
+
     letter.style.setProperty("--random-delay", `${rand}s`);
     letter.style.setProperty("--random-size", rand * 100);
 
