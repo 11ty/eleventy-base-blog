@@ -2,5 +2,4 @@ _site/
 _resources/
 node_modules/
 package-lock.json
-bun.lockb
 .cache

@@ -86,9 +86,24 @@ letterContainers.forEach((container, index) => {
     Object.assign(letterWrapper.style, {
         top: `${height / 2}px`,
     });
+
+    // Helper function to darken a color
+    function getDarkerColor(hex, factor) {
+        const rgb = hexToRgb(hex);
+        const darkerRgb = rgb.map(c => Math.max(0, Math.floor(c - c * factor)));
+        return `rgb(${darkerRgb.join(',')})`;
+    }
+
+    const primaryColor = colors[index].primary;
+    // const darkColor = getDarkerColor(primaryColor, 0.3);
+
     Object.assign(letter.style, {
         textAlign: "center",
-        color: colors[index].primary,
+        color:  colors[index].accent,
+        WebkitTextStroke: `1px ${ colors[index].primary}`,
+        textStroke: `1px ${ colors[index].primary}`,
+        paintOrder: "stroke fill"
+
     });
 
     letter.style.setProperty('--rotation', rotation);

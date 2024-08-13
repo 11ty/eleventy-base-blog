@@ -1,19 +1,19 @@
-const { DateTime } = require("luxon");
-const markdownItAnchor = require("markdown-it-anchor");
-
-const pluginRss = require("@11ty/eleventy-plugin-rss");
-const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const pluginBundle = require("@11ty/eleventy-plugin-bundle");
-const pluginNavigation = require("@11ty/eleventy-navigation");
-const { EleventyHtmlBasePlugin } = require("@11ty/eleventy");
-
-const pluginDrafts = require("./eleventy.config.drafts.js");
-const pluginImages = require("./eleventy.config.images.js");
-
-const { getSVGPathForLetter } = require('./public/js/sound_letters/svg-converter.js');
-
 /** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
-module.exports = function (eleventyConfig) {
+module.exports = async function (eleventyConfig) {
+	const { DateTime } = await import("luxon");
+	const { default: markdownItAnchor } = await import("markdown-it-anchor");
+
+	const { default: pluginRss } = await import("@11ty/eleventy-plugin-rss");
+	const { default: pluginSyntaxHighlight } = await import("@11ty/eleventy-plugin-syntaxhighlight");
+	const { default: pluginBundle } = await import("@11ty/eleventy-plugin-bundle");
+	const { default: pluginNavigation } = await import("@11ty/eleventy-navigation");
+	const { EleventyHtmlBasePlugin } = await import("@11ty/eleventy");
+
+	const { default: pluginDrafts } = await import("./eleventy.config.drafts.js");
+	const { default: pluginImages } = await import("./eleventy.config.images.js");
+
+	const { getSVGPathForLetter } = await import('./public/js/sound_letters/svg-converter.js');
+
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig.addPassthroughCopy({

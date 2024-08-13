@@ -342,3 +342,11 @@ h1 {
 	margin-left: auto;
 	margin-right: 0;
 }
+
+/* Dark mode toggle styles */
+#dark-mode-toggle {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 1em;
+}

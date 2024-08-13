@@ -1,8 +1,15 @@
-const [toggleButton, root] = [document.getElementById('dark-mode-toggle'), document.documentElement];
+// Toggle dark/light mode and save
+const toggle = document.getElementById('dark-mode-toggle');
+const root = document.documentElement;
 
-root.style.colorScheme = localStorage.getItem('color-scheme') ?? 'light';
+const setTheme = isDark => {
+    root.style.colorScheme = isDark ? 'dark' : 'light';
+    toggle.textContent = isDark ? '🌞' : '🌚';
+    localStorage.setItem('color-scheme', isDark ? 'dark' : 'light');
+};
 
-toggleButton.addEventListener('click', () => {
-    root.style.colorScheme = root.style.colorScheme === 'light' ? 'dark' : 'light';
-    localStorage.setItem('color-scheme', root.style.colorScheme);
-});
+const storedTheme = localStorage.getItem('color-scheme');
+setTheme(storedTheme ? storedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+toggle.style.display = 'block';
+toggle.onclick = () => setTheme(root.style.colorScheme !== 'dark');

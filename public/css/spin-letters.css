@@ -12,6 +12,7 @@ html {
 	width: 100%;
 	height: 100%; /* Increased height */
 	position: relative; /* Ensure child elements align correctly */
+	z-index: 0;
 }
 
 .letter-container {
