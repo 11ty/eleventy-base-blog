@@ -10,6 +10,7 @@ tag:
 category: video
 author: jackson
 description: An introduction to a video series on re-contextualization in film and music.
+emoji: 📽️
 ---
 
 Almost two years later, I've continued to contribute to this growing catalog of "music videos" and thought it might be time to jump back in with more discussion of a select few films, the music I chose for them and the nuance in-between. Unintentionally, I've continued to watch, enjoy and incorporate films without color. Maybe it's the nostalgia for a time unknown, or just that there are a lot of good movies spread over the years. Since the series has been steadily growing, I think it's about time to discuss another two with the theme of color in mind.

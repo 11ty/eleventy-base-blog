@@ -12,6 +12,7 @@ tag:
 category: major
 author: jackson
 description: "Teleconferencing in spatial audio with the help of Jitsi Meet and Web Audio"
+emoji: 🪐
 ---
 
 # Meet in Space

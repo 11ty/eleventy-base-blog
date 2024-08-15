@@ -3,6 +3,7 @@ const toggle = document.getElementById('dark-mode-toggle');
 const root = document.documentElement;
 
 const setTheme = isDark => {
+    root.classList.toggle('dark-mode', isDark);
     root.style.colorScheme = isDark ? 'dark' : 'light';
     toggle.textContent = isDark ? '🌞' : '🌚';
     localStorage.setItem('color-scheme', isDark ? 'dark' : 'light');

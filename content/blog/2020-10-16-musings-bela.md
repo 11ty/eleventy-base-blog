@@ -5,16 +5,16 @@ image: /img/musings-tables_small.webp
 headerImage: true
 projects: true
 tag:
-    - bela
-    - interactive
-    - eeg
-    - pure-data
-    - python
-    - sonification
+  - bela
+  - interactive
+  - eeg
+  - pure-data
+  - python
+  - sonification
 category: audio
 author: jackson
 description: "A tale of accelerometers, knobs, an EEG and the attempt to tame sound with my mind."
-draft: true
+emoji: 🧠
 ---
 
 In an effort to explore the wild world of interactive music systems, I decided to work with a [portable EEG reader](https://choosemuse.com/) and a [Bela](https://bela.io/) coupled with an accelerometer and potentiometers. Little did I know how much of a challenge it would be to join both software and hardware within an interactive package.
@@ -30,10 +30,12 @@ In addition to my personal interest in finding an artistic meeting point between
 The first of these was [Alvin Lucier's](https://en.wikipedia.org/wiki/Alvin_Lucier) "Music for Solo Performer" (1965) which was a landmark piece not only for its use of an EEG but sonification generally. Lucier had mapped the voltage potential from his electrodes into low-frequency tones that were able to excite percussive instruments in front of him.
 
 <figure>
-    <div class="iframe-wrapper">
-        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/bIPU2ynqy2Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <figcaption>Alvin Lucier's "Music for Solo Performer" (1965)</figcaption>
+    <lite-youtube videoid="bIPU2ynqy2Y" style="background-image: url('https://i.ytimg.com/vi/bIPU2ynqy2Y/hqdefault.jpg');">
+        <a href="https://youtube.com/watch?v=bIPU2ynqy2Y" class="lty-playbtn" title="Alvin Lucier's Music for Solo Performer (1965)">
+            <span class="lyt-visually-hidden">Alvin Lucier's Music for Solo Performer (1965)</span>
+        </a>
+    </lite-youtube>
+    <figcaption>lvin Lucier's Music for Solo Performer (1965)</figcaption>
 </figure>
 
 The second performance that offered insights into using EEG's in a sonic environment was Ouzounian et al.'s Music for Sleeping & Waking Minds (2011-2012). In their piece, they asked a group of participants to wear EEG sensors as they spent a night in a collective slumber. Over the course of the night, their brain waves (in passing through the various oscillatory states of sleep) were represented in sound and light.
@@ -53,20 +55,20 @@ However, in all of these examples, it's not obvious what the sensor data is actu
 
 Two articles held my interest during the time I spent conceptualizing and designing my system, the first from Birnbaum et al. In their article Towards a Dimension Space for Musical Devices, the authors lay out a visual representation for describing aspects of IMS (Birnbaum et al., 2005). They identify 7-axes that might characterize new interactive music systems and, in parallel, provide some representative space of which to locate an author's proposal for their own IMS.
 
--   Required Expertise
--   Musical Control
--   Feedback Modalities
--   Degrees of Freedom
--   Inter-actors
--   Distribution in Space
--   Role of Sound
+- Required Expertise
+- Musical Control
+- Feedback Modalities
+- Degrees of Freedom
+- Inter-actors
+- Distribution in Space
+- Role of Sound
 
 These principles were helpful as a means of comparing my proposed instrument against others but also for a class of features to focus on as I developed it. For Musings with Bela, this is how we might visualize its capacity as an instrument:
 
-{% include "figure.njk"
-    src: "/img/musings-dim_space.png"
-    width="560px"
-    caption: "Musings with Bela's dimension space"
+{% figure
+    "/img/musings-dim_space.png",
+    "Musings with Bela's dimension space",
+    "560px"
 %}
 
 The second paper, A Framework for the Evaluation of Digital Musical Instruments by O'Modhrain takes ups a similar issue with the absence of well defined lenses through which we can consider, criticize and explain a musical instrument (O'Modhrain, 2011). O'Modhrain suggest that taking the perspective of not only a musician or designer when building an IMS, but also that of an audience member or even a manufacturer. These novel perspectives force an author to consider their instrument from angles that are not typically confronted until after the instrument has been built. In both articles, it is clear that building a musical interface is a project whose treatment must be considered with others in mind.
@@ -94,23 +96,26 @@ Nevertheless, the device's specs were quite impressive with 4 electrodes recordi
 
 ## Interpolating between tables with an accelerometer
 
-{% include "figure.njk"
-    src: "/img/musings-tables.webp" width="420px"
-    caption: "Sliding between different tables"
+{% figure
+    "/img/musings-tables.webp",
+    "Sliding between different tables",
+    "420px"
 %}
 
 At the core of my system was a method for interpolating between short audio grains. Audio files were read into an array of 1024 samples and these arrays were then interpolated using the external [iemmatrix](). More typical methods of reading through arrays would be to step through each index and read the sample, apply whatever operation you wanted and then store it. In my case, however, I wanted to tie the accelerometer to degree each sound file is interpolated into one another (via arrays) which makes it challenge to read through these arrays sequentially when the sample rate of change needs to be very fast. iemmatrix instead, allows for operations to take place on the array as a whole (like [numpy vectorization](https://www.geeksforgeeks.org/vectorization-in-python/)) meaning this is a much more efficient method of morphing between these arrays.
 
-{% include "figure.njk"
-    src: "/img/musings-intrp.png" width="560px"
-    caption: "A shot of the main matrix operation sub-patch"
+{% figure
+    "/img/musings-intrp.png",
+    "A shot of the main matrix operation sub-patch",
+    "560px"
 %}
 
 What's cool about this is that working with sound files as tables allows you to do some non-linear transformations like interpolating between a sound and it's reverse sequence.
 
-{% include "figure.njk"
-    src: "/img/musings-reverse.webp" width="420px"
-    caption: "Morphing between a sound bite and its flipped image"
+{% figure
+    "/img/musings-reverse.webp",
+    "Morphing between a sound bite and its flipped image",
+    "420px"
 %}
 
 Upon reflection, another alternative would be to get two readings, do the matrix operations, and slide between them with a [line] object. As I was looking into this, this is an external (list-abs) that allows for linear interpolation between lists. However, this might be a slightly more costly object to use - perhaps a combination of both techniques would have worked best.
@@ -123,9 +128,9 @@ Finally, the last piece to my glorious IMS puzzle, the Muse! As I mentioned, thi
 
 Another major piece of working with the Muse was actually testing to see the behavior of the electrode readings: if they were consistent, their fluctuations, and whether or not I would be able to reliably reduce the noise and relative intensity. I made a sub-patch to test for this reason, allowing me to record and playback samples from the Muse even without its connection.
 
-{% include "figure.njk"
-    src: "/img/musings-eeg.webp"
-    caption: "Data from the Muse"
+{% figure
+    "/img/musings-eeg.webp",
+    "Data from the Muse"
 %}
 
 </figure>
@@ -134,20 +139,24 @@ Musings with Bela takes this EEG stream and modulate the amplitude of the read t
 
 ## Reflections
 
-Building an IMS is a whirlwind of an experience and one that is especially difficult to achieve in two weeks. Working with hardware and software turned out to double the time I expected any individual task would take. However, I feel like I had successfully built an interesting system that touched on my history in cognitive science and applied it within this an acousmatic environment.
+Building an IMS is a whirlwind of an experience and one that is especially difficult to achieve in two weeks. Working with hardware and software turned out to double the time I expected any individual task would take. However, I feel like I had successfully built an interesting system that touched on my history with cognitive science and applied within an acousmatic environment.
 
 Here is my short, final performance for MCT4045
 
 <figure>
-    <div class="iframe-wrapper pb-169">
-        <iframe src="https://www.youtube-nocookie.com/embed/gEq9EnWrApc?start=901" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+    <lite-youtube videoid="gEq9EnWrApc" style="background-image: url('https://i.ytimg.com/vi/gEq9EnWrApc/maxresdefault.jpg');">
+        <a href="https://youtube.com/watch?v=gEq9EnWrApc?start=901" class="lty-playbtn" title="Musings with Bela Performance">
+            <span class="lyt-visually-hidden">Musings with Bela Performance</span>
+        </a>
+    </lite-youtube>
     <figcaption>Musings with Bela</figcaption>
 </figure>
 
 And my final presentation can be found below as well
 
+<figure>
 <iframe src="https://slides.com/jacksongoode/musings-bela/embed" width="800" height="450" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+</figure>
 
 ## References
 

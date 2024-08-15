@@ -4,13 +4,14 @@ date: 2024-05-01
 headerImage: false
 projects: true
 tag:
-    - spatial-audio
-    - psychoacoustics
-    - performance
-    - audio
+  - spatial-audio
+  - psychoacoustics
+  - performance
+  - audio
 category: major
 author: jackson
 description: "A sonic installation exploring live networked media for Sound Pedro 2024"
+emoji: 💥
 ---
 
 # Sound Pedro 2024
@@ -21,9 +22,9 @@ This year I presented a sonic installation at Sound Pedro alongside a cohort of 
 
 In 2021, prior to moving to Long Beach, I was first introduced to the cast of wacky sound artists that regularly filled San Pedro each year. For those unacquainted with the south coast of LA, San Pedro is a sleepy blue-collar town perched right off the massive twin ports of LA and Long Beach. I would have never ended up in that town had an up-end for a co-worker of a friend who liked to quote all a shit-ton of speakers and wire up an array. Now that's my kind of stuff.
 
-{% include "figure.njk"
-    src: "/assets/videos/tape.mp4"
-    caption: "Playing the sound of tape, unspooled between chairs and concrete"
+{% figure
+    "/assets/videos/tape.mp4",
+    "Playing the sound of tape, unspooled between chairs and concrete"
 %}
 
 That's my time at Oslo at school for an esoteric degree in music technology. I had always wanted to put up my own sound insulation. The idea of occupying some permanent sonic space that people might pass through and observe thought was genuinely so cool. When I saw dozens and dozens of weirdos scattered around the Angels Gate Cultural Center I was beaming.
@@ -38,18 +39,18 @@ All the code is open-source - [check it out here](https://github.com/jacksongood
 
 For the installation, I wanted to go as big as I could under my strict budget of $60. After some extensive Facebook marketplace sleuthing, I found a five-channel home speaker setup with an amplifier. I spent a few more hours than I should, reprograming the script and getting everything to work in a five-channel array (all programmed in Python - yes, you heard that's right. An a-sync real-time multi-channel installation in Python - clearly the best language for this use-case).
 
-{% include "figure.njk"
-    src: "/assets/videos/pad.mp4"
-    caption: "My spot"
+{% figure
+    "/assets/videos/pad.mp4",
+    "My spot"
 %}
 
 The hours preparing before Sound Pedro were just as frantic as it was the first time arriving on that defunct naval base. I spent the past night dusting off speakers, cutting wire, frantically coding and adding catches for robustness and so the speakers wouldn't accidentally explode. Yet, there was very little at home to give an impression of the concrete cave I would be in.
 
 I was happy when my friends quietly appeared in the stream of visitors.
 
-{% include "figure.njk"
-    src: "/assets/videos/surprise.jpg"
-    caption: "Me surprised"
+{% figure
+    "/assets/videos/surprise.jpg",
+    "Me, surprised"
 %}
 
 ## After the noise
@@ -58,7 +59,7 @@ Like with a lot of art projects, you spend far more time invested, perfecting, t
 
 With some continued routing woes, I wasn't able to project the colorful display of video thumbnails as I intended, so I used my laptop's display instead. Folks passing by were excited, confused, disturbed, entertained, and generally interested, since there is very little visual indication of all of the many simultaneous streams of audio that were booming off the semi-circular apartment I was squatting in for the evening.
 
-{% include "figure.njk"
-    src: "/assets/videos/ongoing.mp4"
-    caption: "A quick clip - sadly the drones of the surrounding performances did just that :)"
+{% figure
+    "/assets/videos/ongoing.mp4",
+    "A quick clip - sadly the drones of the surrounding performances did just that :)"
 %}

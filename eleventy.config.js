@@ -21,6 +21,11 @@ module.exports = async function (eleventyConfig) {
 	});
 	eleventyConfig.addPassthroughCopy({ "css": "css" });
 	eleventyConfig.addPassthroughCopy({ "js": "js" });
+	eleventyConfig.addPassthroughCopy({
+		"node_modules/lite-youtube-embed/src/lite-yt-embed.css": "css/lite-yt-embed.css",
+		"node_modules/lite-youtube-embed/src/lite-yt-embed.js": "js/lite-yt-embed.js"
+	});
+
 	eleventyConfig.addJavaScriptFunction("getSVGPathForLetter", getSVGPathForLetter);
 	eleventyConfig.addNunjucksGlobal("getSVGPathForLetter", getSVGPathForLetter);
 
@@ -98,9 +103,28 @@ module.exports = async function (eleventyConfig) {
 		});
 	});
 
+	// Shortcodes
 	eleventyConfig.addShortcode("currentBuildDate", () => {
 		return (new Date()).toISOString();
 	})
+
+	eleventyConfig.addShortcode("figure", function (src, caption, width = '100%') {
+		const extension = src.split('.').pop().toLowerCase();
+		const isVideo = ['mp4', 'webm', 'ogg'].includes(extension);
+
+		let mediaElement = '';
+		if (isVideo) {
+			mediaElement = `<video src="${src}" width="${width}" controls>Your browser does not support the video tag.</video>`;
+		} else {
+			mediaElement = `<img src="${src}" width="${width}" alt="${caption}" />`;
+		}
+
+		return `<figure>
+		  ${mediaElement}
+		  <figcaption>${caption}</figcaption>
+		</figure>`;
+	});
+
 
 	// Features to make your build faster (when you need them)
 

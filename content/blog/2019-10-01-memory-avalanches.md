@@ -8,7 +8,7 @@ tag:
   - mct
 ---
 
-{% include "figure.njk" src: "https://dazedimg-dazedgroup.netdna-ssl.com/999/0-73-999-666/azure/dazed-prod/1170/3/1173475.jpg" caption: "The Avalanches in the early 2000's" %}
+{% figure "https://dazedimg-dazedgroup.netdna-ssl.com/999/0-73-999-666/azure/dazed-prod/1170/3/1173475.jpg", "The Avalanches in the early 2000's" %}
 
 For many, music leaves some of the deepest impressions we have during our lifetime. One's favorite song might often trigger a flashback, with a sudden return to those past moments they shared with the sound. These returns are accompanied with a flood of detailed sensory information that spread across our senses in what might be called an _episodic memory_. As we can appreciate in these moments, our memories are wrapped in complex, multi-modal associations that are encoded within our hippocampus, thalamus, amygdala, and various areas of our cortex. Thus, the act of recalling episodic memories stimulates these neural pathways just as they were activated when we first consolidated the memory. Björn Vickhoff explains the process wonderfully in his _A Perspective Theory of Music Perception and Emotion_,
 

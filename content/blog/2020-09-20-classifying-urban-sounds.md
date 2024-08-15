@@ -13,6 +13,7 @@ tag:
 category: audio
 author: jackson
 description: "This experiment explores augmenting the UrbanSound8K database to test a well performing CNN architecture in a multi-label, multi-class scenario"
+emoji: 🌆
 ---
 
 # Environmental Sound Classification over Concurrent Samples

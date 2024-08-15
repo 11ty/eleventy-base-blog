@@ -5,15 +5,16 @@ image: /img/distance.png
 headerImage: false
 projects: true
 tag:
-    - max
-    - sonification
-    - breathing
-    - hci
-    - meditation
-    - stress-relief
+  - max
+  - sonification
+  - breathing
+  - hci
+  - meditation
+  - stress-relief
 category: audio
 author: jackson
 description: "I developed a system to follow and sonify the pace of breath, with an emphasis on the tenants of biofeedback, to serve as a responsive system for stress relief"
+emoji: 🧘
 ---
 
 ## Rationale
@@ -35,27 +36,27 @@ Most of these apps transmit their sensor data over a UDP connection using the OS
 
 To work around this, I wrote a python script that acted as a node to receive, format the stream into proper OSC messages, and finally, send the data locally to a specified port within Max. The script operated by receiving a row of data, splitting the list of data points into an array, and then sending each index of the array as a pair with a specified OSC message. I used the messages “/x”, “/y”, and “/z” as shorthand for the x, y, z, acceleration data. Once this was passed into Max, the data was able to be handled the same way as any other OSC message.
 
-{% include "figure.njk"
-    src: "/img/breathing-code.png"
-    caption: "Sample of the code used to transport the messages into Max"
+{% figure
+    "/img/breathing-code.png",
+    "Sample of the code used to transport the messages into Max"
 %}
 
 After some initial testing of various sensors and positions during recording, I found that the acceleration value for the y-axis was the most reliable source of information for tracking respiratory motion. Because of the placement of the phone, none of the other sensors render any useful information. The only other sensor that appeared to follow the same information was the gyroscope, but the sensor upon inspection looked like a transformation of the acceleration data. In the first trial recording set of breathing, I was able to find that this sensor’s y-axis extracted recognizable oscillations of the rise and fall of my stomach. However, because the movements were quite small, the noise of the sensor clouded what was, in reality, a smooth envelope of motion.
 
 Reading the CSV data into Max was achieved by loading each line of the CSV as a text file from which I could use a [metro] object to iterate through the [coll] dictionary that stored the sensor data ([I stole this bit of Max data](https://cycling74.com/forums/importing-from-excel-csv-questions/)). From Max, I could visualize the data stream easily using a [multislider] window. I then set out to smooth this data through a variety of techniques. I found that a reliable method of smoothing the noisy data was to create a buffer of the last x number of samples (with [zl.stream]) and then output the mean ([mean]) of that sliding window. The larger the number of samples, the smoother the data, yet this stunts some of the local dynamics within the stream and creates latency. After exploring further I found a 3rd party object [dot.denoise.sliding] that includes better logic for excluding outliers within streams.
 
-{% include "figure.njk"
-    src: "/img/breathing-noisey.png"
-    width="20px"
-    caption: "Before and after de-noising the stream"
+{% figure
+    "/img/breathing-noisey.png",
+    "Before and after de-noising the stream",
+    "20px"
 %}
 
 This returns to an observation I noticed when looking at sensor data. I noticed that one of the gyroscope sensors also was repeating in a rhythmic pattern, but much faster and pronounced than breathing should be. I realized that these were pronounced fulgurations of my heartbeat and that these impulses were actually affecting the accelerometer sensor data I was analyzing from the y-axis.
 
-{% include "figure.njk"
-    src: "/img/breathing-gyro.png"
-    width="600px"
-    caption: "Notice the fast paced impulses from the gyroscope sensor"
+{% figure
+    "/img/breathing-gyro.png",
+    "Notice the fast paced impulses from the gyroscope sensor",
+    "600px"
 %}
 
 Once the oscillations were smoothed, the next step was identifying local minimums and maximums of each breath. Again, the dot library had a nifty object to find local max/mins by checking for changes in sign (+/-) from a previous data point to the next. This would have worked nicely if the data rose and fell with continuity. But due to the noise, there were a number of places near the peak or trough of the oscillations where even a smoothed data point might change the sign of the differences between the current and previous point.
@@ -64,10 +65,10 @@ I tried number of techniques to suppress the improper max/mins that would appear
 
 I further enhanced this solution by making the distance dynamically shift by an average of the distance between the last five maxes and mins.
 
-{% include "figure.njk"
-    src: "/img/breathing-distance.png"
-    width="540px"
-    caption: "Gating the frequent max/mins"
+{% figure
+    "/img/breathing-distance.png",
+    "Gating the frequent max/mins",
+    "540px"
 %}
 
 Finally, the last piece of data that is inferred from identifying the local max/mins of each breath is the average time between each inhale and exhale. This is calculated as a metric of respiratory rate consistency which is the difference between the last period between a max/min and the average of these last 10 periods. This value is then scaled and used to attenuate a sound clip of wind chimes that enter when the consistency value is low. Thus, the wind chimes should emerge as a result of a restful cycle of breath and provide positive feedback to the user. In addition to the wind chime samples, there is a three-oscillator drone instrument was driven by the noisy data from the x and z-axis accelerometer streams. This drone adds a subtle resonance to the bells and provides some ambient feedback of the motion of the breath. This is achieved by scaling the smoothed acceleration data from the y-axis and modulating the amplitude.

@@ -9,6 +9,7 @@ tag:
     - soundtrack
 author: jackson
 description: An introduction to a video series on re-contextualization in film and music.
+emoji: 📽️
 ---
 
 Film has always been a big part of my life, as entertainment, education, and artistic inspiration. Towards the end of high school my taste in all things artistic broadened past the "indie" titles often found on the shelves of Urban Outfitters (forgive me) directly into the obscure. While diving into the archives of cult cinema, midnight movies and the like was entertaining on its own for the shock and awe, it was like the thrill of driving for the first time but unaware of the vistas you're passing by. Unfortunately, it took me a lot of movies to get a taste for the landscape of cinema and even now I have plenty of room to grow.
