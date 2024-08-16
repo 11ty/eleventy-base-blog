@@ -204,11 +204,11 @@ header {
 	}
 	25% {
 		filter: saturate(50%);
-		transform: scale(0.9);
+		transform: scale(0.8);
 	}
 	75% {
 		filter: saturate(150%);
-		transform: scale(1.1);
+		transform: scale(1.2);
 	}
 }
 .postlist-date {
@@ -400,14 +400,11 @@ h1 {
 	font-size: 1em;
 }
 
-figcaption {
-	color: var(--color-gray-20);
-}
-
-figure {
-	text-align: center;
-}
-
 figure > * {
 	max-width: 100%;
+}
+
+figcaption {
+	color: var(--color-gray-20);
+	text-align: center;
 }

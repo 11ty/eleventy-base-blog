@@ -1,7 +1,7 @@
 {
   "name": "jackson.gd",
   "version": "1.0.0",
-  "description": "Jackson's website",
+  "description": "Jackson's cool website",
   "scripts": {
     "build": "bunx @11ty/eleventy",
     "start": "bunx @11ty/eleventy --serve --quiet",
@@ -14,9 +14,9 @@
     "url": "git://github.com/jacksongoode/jackson.gd.git"
   },
   "author": {
-    "name": "Zach Leatherman",
-    "email": "zachleatherman@gmail.com",
-    "url": "https://zachleat.com/"
+    "name": "Jackson Goode & Zach Leatherman",
+    "email": "jacksongoode@proton.me",
+    "url": "https://jackson.gd/"
   },
   "license": "MIT",
   "engines": {

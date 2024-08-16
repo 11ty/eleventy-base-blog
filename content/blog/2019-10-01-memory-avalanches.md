@@ -6,9 +6,11 @@ tag:
   - music cognition
   - memory
   - mct
+emoji: 🌼
+description: "An essay exploring the intersection between sampling and nostalgia in The Avalanches"
 ---
 
-{% figure "https://dazedimg-dazedgroup.netdna-ssl.com/999/0-73-999-666/azure/dazed-prod/1170/3/1173475.jpg", "The Avalanches in the early 2000's" %}
+{% figure "/img/avalanches.webp", "The Avalanches in the early 2000's" %}
 
 For many, music leaves some of the deepest impressions we have during our lifetime. One's favorite song might often trigger a flashback, with a sudden return to those past moments they shared with the sound. These returns are accompanied with a flood of detailed sensory information that spread across our senses in what might be called an _episodic memory_. As we can appreciate in these moments, our memories are wrapped in complex, multi-modal associations that are encoded within our hippocampus, thalamus, amygdala, and various areas of our cortex. Thus, the act of recalling episodic memories stimulates these neural pathways just as they were activated when we first consolidated the memory. Björn Vickhoff explains the process wonderfully in his _A Perspective Theory of Music Perception and Emotion_,
 
@@ -16,21 +18,11 @@ For many, music leaves some of the deepest impressions we have during our lifeti
 
 Something as simple as the almost tangible link between the smell of freshly baked cookies and one's grandmother is a product of the widely encoded information integrated upon each of our experiences, especially those experienced with strong emotion or personal meaning. Stefan Koelch describes this musicogenic meaning of musical "relations comprise memory representations… as well as associations with regard to an individual's most personal inner experiences" (Koelch, 2011). I would like to explore this phenomenon through the lens of music cognition, focusing chiefly on how our modalities contribute to an experience of music that can transport us through memory and nostalgia.
 
-<figure>
-    <div class="iframe-wrapper pb-169">
-        <iframe src="https://www.youtube-nocookie.com/embed/MFEZiMyfSYI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <figcaption>Every Sample From The Avalanches' Since I Left You</figcaption>
-</figure>
+{% figure "https://youtube.com/watch?v=MFEZiMyfSYI", "Every Sample From The Avalanches' Since I Left You" %}
 
 The Avalanches' _Since I Left You_ is an album composed as a collage of thousands (~3500) of samples of records, movies, tv shows, and advertisements before it. This genre of music takes many names, but aligns within the traditions of plunderphonics. For The Avalanches, the absence of original musical material makes their record absolutely drenched in cue, reference, and signposts from the past. Their employment of appropriation, while frowned upon by musical history as a whole, allows their music to reach into the past and re-contextualize the samples they use within new frames of reference. While one could write an entire essay on these transformations alone, the effect of this method of production provides a massive launchpad from which we can dive into memory and nostalgia, both personal and cultural. However, the effect of this experience is, incredibly, a product of only our listening; how, then, would our experience change once we integrate a visual element such as that of an accompanying video?
 
-<figure class="text-align">
-    <div class="iframe-wrapper pb-169">
-        <iframe src="https://www.youtube-nocookie.com/embed/3VN93T7m0-U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    <figcaption>The Was, Soda_Jerk</figcaption>
-</figure>
+{% figure "https://youtube.com/watch?v=3VN93T7m0-U", "The Was, Soda_Jerk" %}
 
 For the release of their second album, _Wildflower,_ The Avalanches collaborated with video artist Soda_Jerk to produce a music video well suited for plunderphonics. "The Was" is an audiovisual piece that mimics the stylistic composition of The Avalanches' audio production in visual form. Set to a mix of songs from the album, "The Was" samples from films, music videos, TV and cartoons of the past in an effort to visualize the sonic collage of the past The Avalanches managed to build. The multi-sensory experience of enjoying "The Was" is a journey through the cultural iconography of the past and, as such, 1) directs the listener to marry the sound of \_Wildflower\* to the visual media of the past, 2) invites them to revisit memories of these audiovisual relics and the atmospheres of sentiment that are evoked, and 3) forms new meaningful associations between these samples and their personal memories, neurally and semantically.
 

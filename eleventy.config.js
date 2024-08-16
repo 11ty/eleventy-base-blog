@@ -109,21 +109,36 @@ module.exports = async function (eleventyConfig) {
 	})
 
 	eleventyConfig.addShortcode("figure", function (src, caption, width = '100%') {
-		const extension = src.split('.').pop().toLowerCase();
-		const isVideo = ['mp4', 'webm', 'ogg'].includes(extension);
+		const getMediaElement = () => {
+			if (src.includes('youtube.com') || src.includes('youtu.be')) {
+				const [baseUrl, params] = src.split('?');
+				const videoId = baseUrl.split('v=')[1] || baseUrl.split('/').pop();
+				const youtubeParams = params ? `params="${params}"` : '';
 
-		let mediaElement = '';
-		if (isVideo) {
-			mediaElement = `<video src="${src}" width="${width}" controls>Your browser does not support the video tag.</video>`;
-		} else {
-			mediaElement = `<img src="${src}" width="${width}" alt="${caption}" />`;
-		}
+				return `
+					<lite-youtube videoid="${videoId}" ${youtubeParams} style="background-image: url('https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg');" title="${caption}">
+						<a href="${src}" class="lty-playbtn" title="${caption}">
+							<span class="lyt-visually-hidden">${caption}</span>
+						</a>
+					</lite-youtube>`;
+			}
+
+			const extension = src.split('.').pop().toLowerCase();
+			if (['mp4', 'webm', 'ogg'].includes(extension)) {
+				return `<video src="${src}" width="${width}" controls>Your browser does not support the video tag.</video>`;
+			}
+
+			return `<img src="${src}" width="${width}" alt="${caption}" />`;
+		};
 
 		return `<figure>
-		  ${mediaElement}
-		  <figcaption>${caption}</figcaption>
+			${getMediaElement()}
+			<figcaption>${caption}</figcaption>
 		</figure>`;
 	});
+
+
+
 
 
 	// Features to make your build faster (when you need them)
