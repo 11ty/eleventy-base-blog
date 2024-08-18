@@ -30,7 +30,6 @@ class HeadingAnchors extends HTMLElement {
 	content: "#";
 	content: "#" / "";
 	margin-left: .25em;
-	color: #aaa;
 	opacity: 0;
 }`;
 
