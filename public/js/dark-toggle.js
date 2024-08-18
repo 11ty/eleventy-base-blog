@@ -12,5 +12,4 @@ const setTheme = isDark => {
 const storedTheme = localStorage.getItem('color-scheme');
 setTheme(storedTheme ? storedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
 
-toggle.style.display = 'inline-block';
 toggle.onclick = () => setTheme(root.style.colorScheme !== 'dark');

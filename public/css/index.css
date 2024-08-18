@@ -517,13 +517,18 @@ blockquote {
 	/* Talk bubble movement */
 	.side-header {
 		--item-top: 12px;
+		--item-rot: 0deg;
 		--nav-item-height: 32px;
 	}
 
 	.talk-bubble,
 	.nav-toggle {
 		transform: translateY(calc(var(--item-top) - 12px));
-		transition: transform 0.3s ease;
+		transition: all 0.3s ease;
+	}
+
+	.nav-toggle {
+		transform: translateY(calc(var(--item-top) - 12px)) rotate(var(--item-rot));
 	}
 
 	.side-header:has(.nav-item:nth-child(1):hover) {
@@ -531,11 +536,14 @@ blockquote {
 	}
 	.side-header:has(.nav-item:nth-child(2):hover) {
 		--item-top: calc(12px + 1 * var(--nav-item-height));
+		--item-rot: -15deg;
 	}
 	.side-header:has(.nav-item:nth-child(3):hover) {
 		--item-top: calc(12px + 2 * var(--nav-item-height));
+		--item-rot: 15deg;
 	}
 	.side-header:has(.nav-item:nth-child(4):hover) {
 		--item-top: calc(12px + 3 * var(--nav-item-height));
+		--item-rot: -15deg;
 	}
 }
