@@ -79,7 +79,20 @@ main :first-child {
 }
 
 header {
-	border-bottom: 1px dashed var(--color-gray-20);
+	position: relative;
+}
+
+:root {
+	--wave-width: 30px;
+	--wave-height: 10px;
+}
+
+.wave-divider {
+	width: 100%;
+	height: var(--wave-height);
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='10'%3E%3Cpath d='M0 5q15-5 30 0t30 0' stroke='lightgray' fill='none' stroke-width='1.5'/%3E%3C/svg%3E")
+		repeat-x bottom;
+	background-size: var(--wave-width) var(--wave-height);
 }
 
 .links-nextprev {
@@ -146,6 +159,7 @@ header {
 .nav-item {
 	display: inline-block;
 	margin-right: 1em;
+	padding-bottom: 0.5em;
 }
 .nav-item a[href]:not(:hover) {
 	text-decoration: none;
@@ -236,7 +250,8 @@ header {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	max-width: calc(100% - 3em);
+	/* BUG - This needs to be set to the width of the postlist-item */
+	max-width: calc(100% - 12em);
 }
 .postlist-item-active .postlist-link {
 	font-weight: bold;
@@ -294,41 +309,41 @@ h2 + .header-anchor {
 /* Starting custom */
 @font-face {
 	font-family: "Sans Serif Shaded";
-	src: url("/fonts/SansSerifShaded.ttf");
+	src: url("/font/SansSerifShaded.ttf");
 	font-weight: normal;
 	font-style: normal;
 }
 @font-face {
 	font-family: "Bonbance";
-	src: url("/fonts/Bonbance-BoldCondensed.woff2") format("woff2");
+	src: url("/font/Bonbance-BoldCondensed.woff2") format("woff2");
 	font-weight: normal;
 	font-style: normal;
 }
 @font-face {
 	font-family: "AntiqueSerie";
-	src: url("/fonts/AntiqueSerie-Regular.woff2") format("woff2");
+	src: url("/font/AntiqueSerie-Regular.woff2") format("woff2");
 	font-weight: normal;
 	font-style: normal;
 }
 @font-face {
 	font-family: "Anybody";
-	src: url("/fonts/Anybody-VariableFont_wdth,wght.ttf") format("ttf");
+	src: url("/font/Anybody-VariableFont_wdth,wght.ttf") format("ttf");
 	font-weight: normal;
 	font-style: normal;
 }
 @font-face {
 	font-family: "Folio";
-	src: url("/fonts/Folio-Std-Light.woff") format("woff");
+	src: url("/font/Folio-Std-Light.woff") format("woff");
 	font-weight: normal;
 	font-style: normal;
 }
 @font-face {
 	font-family: "Whirlybats";
-	src: url("/fonts/Whirlybats.ttf") format("truetype");
+	src: url("/font/Whirlybats.ttf") format("truetype");
 }
 @font-face {
 	font-family: "WhirlyBirdie";
-	src: url("/fonts/WhirlyBirdieVariable.ttf") format("truetype");
+	src: url("/font/WhirlyBirdieVariable.ttf") format("truetype");
 	/* font-weight: 200; */
 	font-variation-settings:
 		"wght" 75,
@@ -336,17 +351,17 @@ h2 + .header-anchor {
 }
 @font-face {
 	font-family: "Switzer";
-	src: url("/fonts/Switzer-Variable.woff2") format("woff2");
+	src: url("/font/Switzer-Variable.woff2") format("woff2");
 	font-weight: 500;
 	/* font-variation-settings: "wght" 400; */
 }
 @font-face {
 	font-family: "Rag";
 	src:
-		url("/fonts/Rag-Regular.woff2") format("woff2"),
-		url("/fonts/Rag-Italic.woff2") format("woff2"),
-		url("/fonts/Rag-Bold.woff2") format("woff2"),
-		url("/fonts/Rag-BoldItalic.woff2") format("woff2");
+		url("/font/Rag-Regular.woff2") format("woff2"),
+		url("/font/Rag-Italic.woff2") format("woff2"),
+		url("/font/Rag-Bold.woff2") format("woff2"),
+		url("/font/Rag-BoldItalic.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal italic;
 	font-display: swap;
@@ -378,18 +393,29 @@ h3,
 }
 
 h1 {
-	display: flex; /* Use flexbox layout */
-	flex-wrap: wrap; /* Allow wrapping if necessary */
-	gap: 0.25em; /* Optional: Add a gap between letter containers if needed */
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25em;
 }
 
-.row {
+header {
+	gap: unset;
+}
+
+nav {
+	padding-bottom: 0.5em;
 	width: 100%;
+	align-items: baseline;
+	display: flex;
 }
 
 .nav-right {
 	margin-left: auto;
 	margin-right: 0;
+}
+
+.nav-toggle {
+	margin-left: auto;
 }
 
 /* Dark mode toggle styles */
@@ -407,4 +433,109 @@ figure > * {
 figcaption {
 	color: var(--color-gray-20);
 	text-align: center;
+}
+
+blockquote {
+	padding-left: 1em;
+	border-left: 2px solid var(--color-gray-90);
+}
+
+/* Talk bubble */
+.talk-bubble {
+	position: absolute;
+	top: 12px;
+	left: 0px;
+	width: calc(100% - 48px);
+	background: var(--color-gray-90);
+	border-radius: 5px;
+	padding: 1em;
+	z-index: -1;
+}
+
+.talk-bubble:after {
+	content: "";
+	position: absolute;
+	right: -7.5px;
+	top: 50%;
+	border: 7.5px solid transparent;
+	border-left-color: var(--color-gray-90);
+	border-right: 0;
+	margin-top: -7.5px;
+}
+
+/* Custom header */
+@media (min-width: 840px) {
+	body {
+		display: flex;
+		justify-content: center;
+		max-width: none;
+		padding: 0;
+	}
+
+	.content-wrapper {
+		display: flex;
+		max-width: calc(40em + 200px + 1rem);
+		width: 100%;
+	}
+
+	.side-header {
+		position: sticky;
+		top: 0;
+		height: 100vh;
+		width: 200px;
+		overflow-y: auto;
+		align-items: start;
+		justify-content: end;
+	}
+
+	.side-header .nav {
+		flex-direction: column;
+		align-items: end;
+	}
+
+	nav {
+		width: unset;
+	}
+
+	main {
+		flex: 1;
+		max-width: 40em;
+		padding: 1rem;
+	}
+
+	.wave-divider {
+		width: var(--wave-height);
+		height: 150px;
+		background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='60'%3E%3Cpath d='M5 0q-5 15 0 30t0 30' stroke='lightgray' fill='none' stroke-width='1.5'/%3E%3C/svg%3E")
+			repeat-y right;
+		background-size: var(--wave-height) var(--wave-width);
+		margin-left: 1em;
+		color: green;
+		stroke: green;
+	}
+
+	/* Talk bubble movement */
+	.side-header {
+		--item-top: 12px;
+		--nav-item-height: 32px;
+	}
+
+	.talk-bubble,
+	.nav-toggle {
+		transform: translateY(calc(var(--item-top) - 12px));
+		transition: transform 0.3s ease;
+	}
+
+	.side-header:has(.nav-item:nth-child(1):hover) {
+		--item-top: calc(12px + 0 * var(--nav-item-height));
+	}
+	.side-header:has(.nav-item:nth-child(2):hover) {
+		--item-top: calc(12px + 1 * var(--nav-item-height));
+	}
+	.side-header:has(.nav-item:nth-child(3):hover) {
+		--item-top: calc(12px + 2 * var(--nav-item-height));
+	}
+	.side-header:has(.nav-item:nth-child(4):hover) {
+		--item-top: calc(12px + 3 * var(--nav-item-height));
+	}
 }
