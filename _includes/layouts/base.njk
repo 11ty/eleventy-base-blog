@@ -37,18 +37,42 @@
 				{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
 				<nav>
 					<h2 class="visually-hidden">Top level navigation menu</h2>
-					<ul class="nav">
-						{%- for entry in collections.all | eleventyNavigation %}
-							<li class="nav-item">
-								<a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
-							</li>
-						{%- endfor %}
-					</ul>
-					<div class="nav-toggle">
-						<button id="dark-mode-toggle" aria-label="Toggle dark mode">🐸</button>
+					<div class="talk-bubble">
+						<div class="nav-phrase">
+							{% if navPhrase %}
+								{% set navItems = collections.all | eleventyNavigation %}
+								{% set filteredItems = [] %}
+								{% for item in navItems %}
+									{% if item.url != page.url %}
+										{% set filteredItems = (filteredItems.push(item), filteredItems) %}
+									{% endif %}
+								{% endfor %}
+								{% set itemList %}
+								{% for item in filteredItems %}
+									<a href="{{ item.url }}">{{ item.title | lower }}</a>
+									{% if not loop.last %}
+										{% if loop.revindex0 == 1 %} or {% else %},{% endif %}
+									{% endif %}
+								{% endfor %}
+								{% endset %}
+								<span>{{ navPhrase | replace("{}", itemList | trim) | safe }}</span>
+							{% endif %}
+						</div>
+						<div class="nav-toggle">
+							<button id="dark-mode-toggle" aria-label="Toggle dark mode">🐸</button>
+						</div>
 					</div>
-					<div class="talk-bubble"></div>
+					<div class="side-nav">
+						<ul class="nav-list">
+							{%- for entry in collections.all | eleventyNavigation %}
+								<li class="nav-item">
+									<a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
+								</li>
+							{%- endfor %}
+						</ul>
+					</div>
 				</nav>
+
 				{# <div class="wave-divider"></div> #}
 			</header>
 

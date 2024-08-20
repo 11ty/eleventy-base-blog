@@ -12,6 +12,7 @@ category: major
 author: jackson
 description: "A sonic installation exploring live networked media for Sound Pedro 2024"
 emoji: 💥
+navPhrase: "Sound can be cool and distressing - there's also {}?"
 ---
 
 # Sound Pedro 2024
