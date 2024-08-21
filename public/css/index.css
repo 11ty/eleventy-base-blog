@@ -612,9 +612,9 @@ header {
 body {
 	color: CanvasText;
 	background-color: Canvas;
-	transition:
+	/* transition:
 		color 0.1s,
-		background-color 0.1s;
+		background-color 0.1s; */
 }
 
 #dark-mode-toggle {
