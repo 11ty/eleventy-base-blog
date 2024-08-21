@@ -19,14 +19,29 @@
 		{% include "public/js/dark-toggle.js" %}
 		{% endjs %}
 
+		<script>
+			(function () {
+				function getColorPreference() {
+					if (localStorage.getItem('color-scheme')) {
+						return localStorage.getItem('color-scheme');
+					}
+					return window
+						.matchMedia('(prefers-color-scheme: dark)')
+						.matches
+							? 'dark'
+							: 'light';
+				}
+				document
+					.documentElement
+					.setAttribute('data-theme', getColorPreference());
+			})();
+		</script>
+
 		{#- Render the CSS bundle using Inlined CSS (for the fastest site performance in production) #}
 		<style>
 			{% getBundle "css" %}
 		</style>
 
-		<style>
-			@import url('https://fonts.googleapis.com/css2?family=Anybody:ital,wght@0,100..900;1,100..900&family=Archivo:ital,wght@0,100..900;1,100..900&family=Chivo:ital,wght@0,100..900;1,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Rubik:ital,wght@0,300..900;1,300..900&family=Syne:wght@400..800&display=swap');
-		</style>
 		{#- Renders the CSS bundle using a separate file, if you can't set CSP directive style-src: 'unsafe-inline' #}
 		{#- <link rel="stylesheet" href="{% getBundleFileUrl "css" %}"> #}
 	</head>
@@ -58,9 +73,10 @@
 								<span>{{ navPhrase | replace("{}", itemList | trim) | safe }}</span>
 							{% endif %}
 						</div>
-						<div class="nav-toggle">
-							<button id="dark-mode-toggle" aria-label="Toggle dark mode">🐸</button>
-						</div>
+						<form method="post"  id="theme-form" class="nav-toggle">
+							<input type="checkbox" id="dark-mode-toggle" name="theme" value="dark" aria-label="Toggle dark mode">
+							<label for="dark-mode-toggle"></label>
+						</form>
 					</div>
 					<div class="side-nav">
 						<ul class="nav-list">

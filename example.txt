@@ -1,0 +1,159 @@
+:root {
+    &:has(input[name="color-scheme"][value="light dark"]:checked) {
+      color-scheme: light dark;
+    }
+    &:has(input[name="color-scheme"][value="light"]:checked) {
+      color-scheme: light;
+    }
+    &:has(input[name="color-scheme"][value="dark"]:checked) {
+      color-scheme: dark;
+    }
+  }
+  
+  body {
+    color: CanvasText;
+    background-color: Canvas;
+  
+    transition: color 0.4s, background-color 0.4s;
+  }
+  
+  @layer reset {
+    *,
+    *:after,
+    *:before {
+      box-sizing: border-box;
+    }
+  
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  
+    ul[class] {
+      list-style: none;
+    }
+  
+    label {
+      cursor: pointer;
+      max-width: max-content;
+      user-select: none;
+    }
+  }
+  
+  @layer baselayout {
+    html {
+      margin: auto;
+      line-height: 1.5;
+      font-size: 24px;
+      font-family: "Syne", sans-serif;
+      height: 100%;
+      background: white;
+    }
+  
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      min-height: 100dvh;
+      padding: 2em;
+      display: grid;
+      place-content: center;
+    }
+  
+    footer {
+      text-align: center;
+      font-style: italic;
+      margin-top: 2rem;
+    }
+  
+    h1,
+    h2,
+    summary {
+      font-family: "Anybody", sans-serif;
+  
+      text-decoration: underline;
+      text-decoration-color: hsl(156deg 100% 50% / 50%);
+      text-decoration-thickness: 0.2rem;
+      text-decoration-style: wavy;
+      text-decoration-skip-ink: none;
+    }
+  
+    h2 {
+      margin: 2em 0 0.5em 0;
+      text-wrap: balance;
+    }
+  
+    a {
+      color: inherit;
+    }
+  
+    button,
+    input,
+    textarea {
+      font-family: inherit;
+      font-size: inherit;
+    }
+  }
+  
+  @layer components {
+    @layer button {
+      button {
+        padding: 0.2em 0.4em;
+        border-width: 2px;
+        border-radius: 0.25em;
+        text-transform: uppercase;
+      }
+    }
+  }
+  
+  @layer utilities {
+    .float-right {
+      float: right;
+      margin-left: 0.5em;
+    }
+    .float-left {
+      float: left;
+      margin-right: 0.5em;
+    }
+    *:has(> .float-right, > .float-left) {
+      display: flow-root;
+    }
+  
+    .row {
+      display: flex;
+      flex-direction: row;
+    }
+  
+    .column {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .gap {
+      gap: 1rem;
+    }
+  
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+  }
+
+  ---
+
+
+
+<div class="row gap">
+<label><input name="color-scheme" type="radio" value="light dark" checked> light dark</label>
+<label><input name="color-scheme" type="radio" value="light"> light</label>
+<label><input name="color-scheme" type="radio" value="dark"> dark</label>
+</div>
+

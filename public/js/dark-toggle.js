@@ -1,15 +1,29 @@
-// Toggle dark/light mode and save
-const toggle = document.getElementById('dark-mode-toggle');
-const root = document.documentElement;
+// Minimal JS for handling user preference
+(function () {
+    const toggle = document.getElementById('dark-mode-toggle');
+    const root = document.documentElement;
 
-const setTheme = isDark => {
-    root.classList.toggle('dark-mode', isDark);
-    root.style.colorScheme = isDark ? 'dark' : 'light';
-    toggle.textContent = isDark ? '🐸' : '🐓';
-    localStorage.setItem('color-scheme', isDark ? 'dark' : 'light');
-};
+    function setTheme(isDark) {
+        root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        toggle.checked = isDark;
+        localStorage.setItem('color-scheme', isDark ? 'dark' : 'light');
+    }
 
-const storedTheme = localStorage.getItem('color-scheme');
-setTheme(storedTheme ? storedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+    toggle.addEventListener('change', () => setTheme(toggle.checked));
 
-toggle.onclick = () => setTheme(root.style.colorScheme !== 'dark');
+    // Set initial state
+    setTheme(root.getAttribute('data-theme') === 'dark');
+
+    // const form = document.getElementById('theme-form');
+    // Handle form submission (for no-JS fallback)
+    // form.addEventListener('submit', (e) => {
+    //     e.preventDefault();
+    //     const formData = new FormData(form);
+    //     fetch('/set-theme', {
+    //         method: 'POST',
+    //         body: formData
+    //     }).then(() => {
+    //         location.reload();
+    //     });
+    // });
+})();
