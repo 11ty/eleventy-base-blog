@@ -42,23 +42,21 @@ class SoundLetters {
             element.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 this.handleInteraction(element, true);
-            });
+            }, { passive: true });
             element.addEventListener('touchend', (e) => {
                 e.preventDefault();
                 this.handleInteraction(element, false);
-            });
+            }, { passive: true });
             element.addEventListener('touchcancel', (e) => {
                 e.preventDefault();
                 if (element.isPressed) this.handleInteraction(element, false);
-            });
+            }, { passive: true });
         });
 
         document.addEventListener('keydown', event => this.handleKeyDown(event));
         document.addEventListener('keyup', event => this.handleKeyUp(event));
 
         // Initialize audio on first user interaction (works for both click and touch)
-        document.addEventListener('click', () => this.initializeAudio(), { once: true });
-        document.addEventListener('touchstart', () => this.initializeAudio(), { once: true });
     }
 
     async handleInteraction(element, isPressed) {

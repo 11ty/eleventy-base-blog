@@ -13,29 +13,10 @@
 		{#- Add the contents of a file to the bundle #}
 		{%- css %}
 		{% include "public/css/index.css" %}
-		{# {% include "public/css/neat.css" %} #}
 		{% endcss %}
 		{%- js %}
 		{% include "public/js/dark-toggle.js" %}
 		{% endjs %}
-
-		<script>
-			(function () {
-				function getColorPreference() {
-					if (localStorage.getItem('color-scheme')) {
-						return localStorage.getItem('color-scheme');
-					}
-					return window
-						.matchMedia('(prefers-color-scheme: dark)')
-						.matches
-							? 'dark'
-							: 'light';
-				}
-				document
-					.documentElement
-					.setAttribute('data-theme', getColorPreference());
-			})();
-		</script>
 
 		{#- Render the CSS bundle using Inlined CSS (for the fastest site performance in production) #}
 		<style>

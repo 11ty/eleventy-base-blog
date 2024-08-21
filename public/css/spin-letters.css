@@ -6,13 +6,16 @@ html {
 
 .word {
 	display: flex;
-	justify-content: space-between; /* Space the letters evenly */
-	margin: 0.5em;
+	justify-content: space-between;
 	text-align: center;
 	width: 100%;
-	height: 100%; /* Increased height */
-	position: relative; /* Ensure child elements align correctly */
+	height: 100%;
+	position: relative;
 	z-index: 0;
+	/* Prevent highlight */
+	user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
 }
 
 .letter-container {
