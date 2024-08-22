@@ -268,3 +268,9 @@ a[href].header-anchor:focus,
 h2 + .header-anchor {
 	font-size: 1.5em;
 }
+
+/* prevents picture tags produced by eleventy-img from overflowing their column */
+picture > img {
+	max-width: 100%;
+	height: auto;
+}
