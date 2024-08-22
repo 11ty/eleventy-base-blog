@@ -13,6 +13,7 @@ permalink: /feed/feed.json
 		"name": "{{ metadata.author.name }}",
 		"url": "{{ metadata.author.url }}"
 	},
+{#	"favicon": "{{ metadata.origin }}/favicon.ico",#}
 	"items": [
 		{%- for post in collections.posts | reverse %}
 		{%- set absolutePostUrl = post.url | htmlBaseUrl(metadata.url) %}
@@ -20,7 +21,7 @@ permalink: /feed/feed.json
 			"id": "{{ absolutePostUrl }}",
 			"url": "{{ absolutePostUrl }}",
 			"title": "{{ post.data.title }}",
-			{% if post.data.description %}"summary": "{{ post.data.description }}",{% endif %}
+			{% if post.data.description -%}"summary": "{{ post.data.description }}",{%- endif %}
 			"content_html": {% if post.templateContent %}{{ post.templateContent | transformWithHtmlBase(absolutePostUrl, post.url) | dump | safe }}{% else %}""{% endif %},
 			"date_published": "{{ post.date | dateToRfc3339 }}"
 		}

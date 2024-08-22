@@ -16,11 +16,13 @@ permalink: /feed/feed.xml
 	</author>
 	{%- for post in collections.posts | reverse %}
 	{% set absolutePostUrl %}{{ post.url | htmlBaseUrl(metadata.url) }}{% endset %}
+{#	<generator version="{{ eleventy.version }}">{{ eleventy.generator }}</generator>#}
 	<entry>
 		<title>{{ post.data.title }}</title>
 		<link href="{{ absolutePostUrl }}"/>
 		<updated>{{ post.date | dateToRfc3339 }}</updated>
 		<id>{{ absolutePostUrl }}</id>
+		{% if post.data.description -%}<summary>{{ post.data.description }}</summary>{%- endif %}
 		<content type="html">{{ post.templateContent | transformWithHtmlBase(absolutePostUrl, post.url) }}</content>
 	</entry>
 	{%- endfor %}
