@@ -8,6 +8,7 @@ export class AudioEngine {
 
     constructor() {
         this.core = new WebRenderer();
+        this.ctx = new AudioContext();
         this.ctx.suspend();
         this.initializePromise = null;
         this.isInitialized = false;
