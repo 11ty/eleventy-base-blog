@@ -31,7 +31,7 @@ function sendMessageToWorker(message) {
     const animalParam = isDarkMode ? 'frog' : 'chicken';
 
     chatBubble.textContent = '';
-    const eventSource = new EventSource(`${baseUrl}/?message=${encodeURIComponent(message)}&animal=${animalParam}`);
+    const eventSource = new EventSource(`${baseUrl}/ai?message=${encodeURIComponent(message)}&animal=${animalParam}`);
 
     eventSource.onmessage = (event) => {
         const data = event.data;
