@@ -16,6 +16,7 @@
 		{% endcss %}
 		{%- js %}
 		{% include "public/js/dark-toggle.js" %}
+		{% include "public/js/chat-interface.js" %}
 		{% endjs %}
 
 		{#- Render the CSS bundle using Inlined CSS (for the fastest site performance in production) #}
@@ -84,62 +85,4 @@
 </html>
 <script defer>
 	{% getBundle "js" %}
-</script>
-<script>
-	const chatBubble = document.getElementById('chatBubble');
-	const originalContent = chatBubble.dataset.originalContent;
-	let isInputMode = false;
-
-	chatBubble.addEventListener('click', function () {
-		if (!isInputMode) {
-			isInputMode = true;
-			chatBubble.innerHTML = '<input type="text" id="chatInput" placeholder="Type your message...">';
-			document
-				.getElementById('chatInput')
-				.focus();
-		}
-	});
-
-	document.addEventListener('keypress', function (e) {
-		if (e.key === 'Enter' && isInputMode) {
-			const input = document.getElementById('chatInput');
-			const message = input.value;
-			if (message) {
-				chatBubble.innerHTML = 'Processing...';
-				sendMessageToWorker(message);
-			}
-		}
-	});
-
-	function sendMessageToWorker(message) {
-		chatBubble.textContent = '';
-		const eventSource = new EventSource(`/?talk=${encodeURIComponent(message)}`);
-
-		eventSource.onmessage = (event) => {
-			const data = event.data;
-			if (data !== '[DONE]') {
-				try {
-					const parsed = JSON.parse(data);
-					if (parsed.response) {
-						chatBubble.textContent += parsed.response;
-					}
-				} catch (error) {
-					console.error('Error parsing JSON:', error);
-					chatBubble.textContent += data;
-				}
-			} else {
-				eventSource.close();
-				isInputMode = false;
-			}
-		};
-
-		eventSource.onerror = (error) => {
-			console.error('EventSource failed:', error);
-			eventSource.close();
-			isInputMode = false;
-			if (!chatBubble.textContent) {
-				chatBubble.textContent = originalContent;
-			}
-		};
-	}
 </script>
