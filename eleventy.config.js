@@ -21,10 +21,6 @@ module.exports = async function (eleventyConfig) {
 	});
 	eleventyConfig.addPassthroughCopy({ "css": "css" });
 	eleventyConfig.addPassthroughCopy({ "js": "js" });
-	eleventyConfig.addPassthroughCopy({
-		"node_modules/lite-youtube-embed/src/lite-yt-embed.css": "css/lite-yt-embed.css",
-		"node_modules/lite-youtube-embed/src/lite-yt-embed.js": "js/lite-yt-embed.js"
-	});
 
 	eleventyConfig.addJavaScriptFunction("getSVGPathForLetter", getSVGPathForLetter);
 	eleventyConfig.addNunjucksGlobal("getSVGPathForLetter", getSVGPathForLetter);

@@ -26,14 +26,14 @@ The Avalanches' _Since I Left You_ is an album composed as a collage of thousand
 
 For the release of their second album, _Wildflower,_ The Avalanches collaborated with video artist Soda_Jerk to produce a music video well suited for plunderphonics. "The Was" is an audiovisual piece that mimics the stylistic composition of The Avalanches' audio production in visual form. Set to a mix of songs from the album, "The Was" samples from films, music videos, TV and cartoons of the past in an effort to visualize the sonic collage of the past The Avalanches managed to build. The multi-sensory experience of enjoying "The Was" is a journey through the cultural iconography of the past and, as such, 1) directs the listener to marry the sound of \_Wildflower\* to the visual media of the past, 2) invites them to revisit memories of these audiovisual relics and the atmospheres of sentiment that are evoked, and 3) forms new meaningful associations between these samples and their personal memories, neurally and semantically.
 
-<figure class="float-right ml-1">
+<figure>
     <img width="300" height="300" src="https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/43/b3/7e/43b37e75-6027-0d59-5f76-5a68219c82e3/source/600x600bb.jpg">
     <figcaption>Wildflower, The Avalanches</figcaption>
 </figure>
 
 Like their past works, _Wildflower_ uses found sound and sonic elements from unauthored music evoke a sense of nostalgia for a period across which their samples are spread. 16 years after the release of their seminal album, _Since I Left You_, The Avalanches made a return to the music scene with a new record, that continued their re-contextualization of sound that might be a little more in touch with today. While the album consists primarily of found and sampled sound, some tracks feature collaborations with contemporary artists that contribute new vocal or instrumental material. When one listens to _Wildflower_, they can hear the vintage quality of these samples, many of which have been lifted from wax. Mixing and mastering techniques and styles emblematic of their respective decade imbue these samples with their recording period, even as they have been chopped, processed, and reoriented within a new mix. Listening to "Sunshine" or "Harmony" one can hear vocal and string arrangements of the late 60's, early 70's with that characteristic lush quality diminished high end, reminding one of the easy-listening, blue-eyed soul period of the era. It might bring to mind the Summer of Love and a collection of artists (The Mamas and Papas, The Beach Boys, The Monkees etc.) that saturated the era.
 
-<figure class="float-left mr-1">
+<figure>
     <img width="400" src="https://images.squarespace-cdn.com/content/561c0052e4b0faa1a2071248/1486512095702-AMS4W285ORMY5M71KOF8/00864-Summer-of-Love-1967-Travels-with-Gloria-travelswithgloria.wordpress.com-pic.jpg?format=1500w&content-type=image%2Fjpeg">
     <figcaption>The Summer of Love, <a href="https://www.visitfishermanswharf.com/events/summeroflove">Fisherman's Wharf</a></figcaption>
 </figure>

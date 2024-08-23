@@ -83,7 +83,7 @@ You can find the code [here](https://github.com/jacksongoode/breathingthroughmax
 
 <figure>
     <div class="iframe-wrapper pb-169">
-        <iframe src="https://drive.google.com/file/d/1G64dQ5iub0O7MClNNkbH5ktVX5hHf0e8/preview" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen alt="A demo of the system"></iframe>
+        <iframe src="https://drive.google.com/file/d/1G64dQ5iub0O7MClNNkbH5ktVX5hHf0e8/preview" frameborder="0"  allowfullscreen alt="A demo of the system"></iframe>
     </div>
     <figcaption>A demo of the system using pre-recorded data</figcaption>
 </figure>

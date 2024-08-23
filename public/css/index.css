@@ -414,6 +414,12 @@ nav {
 	margin-left: auto;
 }
 
+figure {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 figure > * {
 	max-width: 100%;
 }
