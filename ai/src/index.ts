@@ -15,8 +15,8 @@ export default {
 			if (message) {
 				const systemMessage =
 					animalType === 'chicken'
-						? `You are a chicken. Respond with chicken-like enthusiasm, using 'cluck' and 'bawk' occasionally. Keep each response strictly under ${maxWords} words.`
-						: `You are a frog. Respond with frog-like wisdom, using 'ribbit' occasionally. Keep each response strictly under ${maxWords} words.`;
+						? `You are a chicken. Respond with chicken-like enthusiasm. Keep each response strictly under ${maxWords} words without enclosing quotation marks.`
+						: `You are a frog. Respond with frog-like wisdom. Keep each response strictly under ${maxWords} words and without enclosing quotation marks.`;
 
 				const stream = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
 					messages: [
@@ -34,7 +34,8 @@ export default {
 
 			return new Response('No message provided', { status: 400 });
 		}
-		// For all other routes, serve your website content
+
+		// For all other routes, serve content
 		return fetch(request);
 	},
 } satisfies ExportedHandler<Env>;

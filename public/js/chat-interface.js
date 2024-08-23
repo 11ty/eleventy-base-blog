@@ -29,11 +29,18 @@ document.addEventListener('keypress', function (e) {
 function sendMessageToWorker(message) {
     const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
     const animalParam = isDarkMode ? 'frog' : 'chicken';
+    const waitText = isDarkMode ? 'Ribbit' : 'Cluck';
+    chatBubble.textContent = waitText;
+    chatBubble.classList.add('waiting');
 
-    chatBubble.textContent = '';
     const eventSource = new EventSource(`${baseUrl}/ai?message=${encodeURIComponent(message)}&animal=${animalParam}`);
 
     eventSource.onmessage = (event) => {
+        if (chatBubble.classList.contains('waiting')) {
+            chatBubble.textContent = '';
+            chatBubble.classList.remove('waiting');
+        }
+
         const data = event.data;
         if (data !== '[DONE]') {
             try {
