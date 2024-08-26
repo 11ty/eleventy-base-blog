@@ -256,3 +256,7 @@ header {
 	margin-right: 1em;
 }
 
+/* Anchor links color */
+a[href]:is(:link, :visited).heading-a {
+	color: #aaa;
+}

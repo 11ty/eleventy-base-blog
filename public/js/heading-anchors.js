@@ -1,5 +1,5 @@
 // Thank you to https://github.com/daviddarnes/heading-anchors
-// Thank you to https://amberwilson.co.uk/blog/are-your-anchor-links-accessible/#what-are-anchor-links-exactly%3F
+// Thank you to https://amberwilson.co.uk/blog/are-your-anchor-links-accessible/
 
 class HeadingAnchors extends HTMLElement {
 	static register(tagName) {
@@ -8,38 +8,69 @@ class HeadingAnchors extends HTMLElement {
 		}
 	}
 
+	static attributes = {
+		exclude: "data-heading-anchors-exclude"
+	};
+
+	static classes = {
+		anchor: "heading-a",
+		heading: "heading-a-h", // only used for nested method
+	}
+
 	static defaultSelector = "h2,h3,h4";
 
 	static featureTest() {
-		return "replaceSync" in CSSStyleSheet.prototype;
+		return ;
 	}
 
 	static css = `
-.heading-anchor {
+.${HeadingAnchors.classes.anchor} {
 	text-decoration: none;
-}
-/* For headings that already have links */
-:is(h1, h2, h3, h4, h5, h6):has(a[href]:not(.heading-anchor)):is(:hover, :focus-within) .heading-anchor:after {
-	opacity: 1;
-}
-.heading-anchor:focus:after,
-.heading-anchor:hover:after {
-	opacity: 1;
-}
-.heading-anchor:after {
-	content: "#";
-	content: "#" / "";
-	margin-left: .25em;
-	color: #aaa;
+	font-weight: 400;
 	opacity: 0;
+	transition: opacity .15s;
+	padding-left: .25em;
+	padding-right: .25em;
+}
+/* nested */
+:is(h1,h2,h3,h4,h5,h6):is(:focus, :hover) .${HeadingAnchors.classes.anchor},
+/* sibling */
+:is(h1,h2,h3,h4,h5,h6) + .${HeadingAnchors.classes.anchor}:is(:focus, :hover),
+:is(h1,h2,h3,h4,h5,h6):is(:focus,:hover) + .${HeadingAnchors.classes.anchor} {
+	opacity: 1;
+}
+@supports not (anchor-name: none) {
+	.${HeadingAnchors.classes.heading} {
+		position: relative;
+	}
+	.${HeadingAnchors.classes.anchor} {
+		position: absolute;
+		left: 0;
+		transform: translateX(-100%);
+	}
+}
+@supports (anchor-name: none) {
+	.${HeadingAnchors.classes.anchor} {
+		position: absolute;
+		right: anchor(left);
+		top: anchor(top);
+	}
 }`;
 
+	get supportsTest() {
+		return "replaceSync" in CSSStyleSheet.prototype;
+	}
+
+	get supportsAnchorPosition() {
+		return CSS.supports("anchor-name: none");
+	}
+
 	constructor() {
-		if (!HeadingAnchors.featureTest()) {
+		super();
+
+		if(!this.supportsTest) {
 			return;
 		}
-
-		super();
 
 		let sheet = new CSSStyleSheet();
 		sheet.replaceSync(HeadingAnchors.css);
@@ -47,22 +78,27 @@ class HeadingAnchors extends HTMLElement {
 	}
 
 	connectedCallback() {
-		if (!HeadingAnchors.featureTest()) {
+		if (!this.supportsTest) {
 			return;
 		}
 
-		this.headings.forEach((heading) => {
-			if(!heading.hasAttribute("data-heading-anchors-optout")) {
+		this.headings.forEach((heading, index) => {
+			if(!heading.hasAttribute(HeadingAnchors.attributes.exclude)) {
 				let anchor = this.getAnchorElement(heading);
-				if(heading.querySelector(":scope a[href]")) {
-					// Fallback if the heading already has a link
-					anchor.setAttribute("aria-label", `Jump to section: ${heading.textContent}`);
-					heading.appendChild(anchor);
+
+				// Prefers anchor position approach for better accessibility
+				// https://amberwilson.co.uk/blog/are-your-anchor-links-accessible/
+				if(this.supportsAnchorPosition) {
+					let anchorName = `--h-a_${index}`;
+					heading.style.anchorName = anchorName;
+					anchor.style.positionAnchor = anchorName;
+
+					let fontSize = parseInt(getComputedStyle(heading).getPropertyValue("font-size"), 10);
+					anchor.style.fontSize = `${(fontSize / 16).toFixed(3)}em`;
+
+					heading.after(anchor);
 				} else {
-					// entire heading is a link
-					for(let child of heading.childNodes) {
-						anchor.appendChild(child);
-					}
+					heading.classList.add(HeadingAnchors.classes.heading);
 					heading.appendChild(anchor);
 				}
 			}
@@ -72,7 +108,13 @@ class HeadingAnchors extends HTMLElement {
 	getAnchorElement(heading) {
 		let anchor = document.createElement("a");
 		anchor.href = `#${heading.id}`;
-		anchor.classList.add("heading-anchor");
+		anchor.classList.add(HeadingAnchors.classes.anchor);
+		if(this.supportsAnchorPosition) {
+			anchor.innerHTML = `<span class="visually-hidden">Jump to section titled: ${heading.textContent}</span><span aria-hidden="true">#</span>`;
+		} else {
+			anchor.innerHTML = `<span aria-hidden="true">#</span>`;
+		}
+
 		return anchor;
 	}
 
