@@ -353,7 +353,7 @@ h2 + .header-anchor {
 	font-family: "Switzer";
 	src: url("/font/Switzer-Variable.woff2") format("woff2");
 	font-weight: 500;
-	font-display: swap;
+	font-display: optional;
 	/* font-variation-settings: "wght" 400; */
 }
 @font-face {
@@ -365,7 +365,7 @@ h2 + .header-anchor {
 		url("/font/Rag-BoldItalic.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal italic;
-	font-display: swap;
+	font-display: optional;
 }
 
 .wb-icon {

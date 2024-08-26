@@ -109,3 +109,7 @@ compatibility_flags = ["nodejs_compat"]
 
 [ai]
 binding = "AI"
+
+[[kv_namespaces]]
+binding = "chatlog"
+id = "4bf4de5dc3284791a88eac00a088848d"
