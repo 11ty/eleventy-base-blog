@@ -9,12 +9,13 @@ class HeadingAnchors extends HTMLElement {
 	}
 
 	static attributes = {
-		exclude: "data-heading-anchors-exclude"
+		exclude: "data-ha-exclude",
+		content: "data-ha-text"
 	}
 
 	static classes = {
-		anchor: "heading-a",
-		heading: "heading-a-h", // only used for nested method
+		anchor: "ha",
+		heading: "ha-h", // only used for nested method
 	}
 
 	static defaultSelector = "h2,h3,h4,h5,h6";
@@ -101,14 +102,20 @@ class HeadingAnchors extends HTMLElement {
 		});
 	}
 
+	getText(heading) {
+		return heading.getAttribute(HeadingAnchors.attributes.content) || "#";
+	}
+
 	getAnchorElement(heading) {
 		let anchor = document.createElement("a");
 		anchor.href = `#${heading.id}`;
 		anchor.classList.add(HeadingAnchors.classes.anchor);
+
+		let text = this.getText(heading);
 		if(this.supportsAnchorPosition) {
-			anchor.innerHTML = `<span class="visually-hidden">Jump to section titled: ${heading.textContent}</span><span aria-hidden="true">#</span>`;
+			anchor.innerHTML = `<span class="visually-hidden">Jump to section titled: ${heading.textContent}</span><span aria-hidden="true">${text}</span>`;
 		} else {
-			anchor.innerHTML = `<span aria-hidden="true">#</span>`;
+			anchor.innerHTML = `<span aria-hidden="true">${text}</span>`;
 		}
 
 		return anchor;

@@ -257,6 +257,6 @@ header {
 }
 
 /* Anchor links color */
-a[href]:is(:link, :visited).heading-a {
+a[href]:is(:link, :visited).ha {
 	color: #aaa;
 }
