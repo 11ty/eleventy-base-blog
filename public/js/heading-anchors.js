@@ -10,7 +10,7 @@ class HeadingAnchors extends HTMLElement {
 
 	static attributes = {
 		exclude: "data-heading-anchors-exclude"
-	};
+	}
 
 	static classes = {
 		anchor: "heading-a",
@@ -25,6 +25,7 @@ class HeadingAnchors extends HTMLElement {
 
 	static css = `
 .${HeadingAnchors.classes.anchor} {
+	position: absolute;
 	text-decoration: none;
 	font-weight: 400;
 	opacity: 0;
@@ -44,14 +45,12 @@ class HeadingAnchors extends HTMLElement {
 		position: relative;
 	}
 	.${HeadingAnchors.classes.anchor} {
-		position: absolute;
 		left: 0;
 		transform: translateX(-100%);
 	}
 }
 @supports (anchor-name: none) {
 	.${HeadingAnchors.classes.anchor} {
-		position: absolute;
 		right: anchor(left);
 		top: anchor(top);
 	}
@@ -89,12 +88,12 @@ class HeadingAnchors extends HTMLElement {
 				// Prefers anchor position approach for better accessibility
 				// https://amberwilson.co.uk/blog/are-your-anchor-links-accessible/
 				if(this.supportsAnchorPosition) {
-					let anchorName = `--h-a_${index}`;
+					let anchorName = `--ha_${index}`;
 					heading.style.anchorName = anchorName;
 					anchor.style.positionAnchor = anchorName;
 
 					let fontSize = parseInt(getComputedStyle(heading).getPropertyValue("font-size"), 10);
-					anchor.style.fontSize = `${(fontSize / 16).toFixed(3)}em`;
+					anchor.style.fontSize = `${fontSize / 16}em`;
 
 					heading.after(anchor);
 				} else {
