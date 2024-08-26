@@ -33,10 +33,10 @@ class HeadingAnchors extends HTMLElement {
 	padding-right: .25em;
 }
 /* nested */
-:is(h1,h2,h3,h4,h5,h6):is(:focus, :hover) .${HeadingAnchors.classes.anchor},
+:is(h1,h2,h3,h4,h5,h6):is(:focus-within, :hover) .${HeadingAnchors.classes.anchor},
 /* sibling */
-:is(h1,h2,h3,h4,h5,h6) + .${HeadingAnchors.classes.anchor}:is(:focus, :hover),
-:is(h1,h2,h3,h4,h5,h6):is(:focus,:hover) + .${HeadingAnchors.classes.anchor} {
+:is(h1,h2,h3,h4,h5,h6) + .${HeadingAnchors.classes.anchor}:is(:focus-within, :hover),
+:is(h1,h2,h3,h4,h5,h6):is(:focus-within, :hover) + .${HeadingAnchors.classes.anchor} {
 	opacity: 1;
 }
 @supports not (anchor-name: none) {
