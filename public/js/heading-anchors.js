@@ -17,7 +17,7 @@ class HeadingAnchors extends HTMLElement {
 		heading: "heading-a-h", // only used for nested method
 	}
 
-	static defaultSelector = "h2,h3,h4";
+	static defaultSelector = "h2,h3,h4,h5,h6";
 
 	static featureTest() {
 		return ;
@@ -33,6 +33,7 @@ class HeadingAnchors extends HTMLElement {
 	padding-left: .25em;
 	padding-right: .25em;
 }
+
 /* nested */
 :is(h1,h2,h3,h4,h5,h6):is(:focus-within, :hover) .${HeadingAnchors.classes.anchor},
 /* sibling */
@@ -40,18 +41,14 @@ class HeadingAnchors extends HTMLElement {
 :is(h1,h2,h3,h4,h5,h6):is(:focus-within, :hover) + .${HeadingAnchors.classes.anchor} {
 	opacity: 1;
 }
-@supports not (anchor-name: none) {
-	.${HeadingAnchors.classes.heading} {
-		position: relative;
-	}
-	.${HeadingAnchors.classes.anchor} {
-		left: 0;
-		transform: translateX(-100%);
-	}
-}
 @supports (anchor-name: none) {
+	/* purely for anchoring */
+	.${HeadingAnchors.classes.heading}:after {
+		content: "";
+		anchor-name: var(--ha_anchor);
+	}
 	.${HeadingAnchors.classes.anchor} {
-		right: anchor(left);
+		left: anchor(right);
 		top: anchor(top);
 	}
 }`;
@@ -89,15 +86,15 @@ class HeadingAnchors extends HTMLElement {
 				// https://amberwilson.co.uk/blog/are-your-anchor-links-accessible/
 				if(this.supportsAnchorPosition) {
 					let anchorName = `--ha_${index}`;
-					heading.style.anchorName = anchorName;
+					heading.style.setProperty("--ha_anchor", anchorName);
 					anchor.style.positionAnchor = anchorName;
 
 					let fontSize = parseInt(getComputedStyle(heading).getPropertyValue("font-size"), 10);
 					anchor.style.fontSize = `${fontSize / 16}em`;
 
+					heading.classList.add(HeadingAnchors.classes.heading);
 					heading.after(anchor);
 				} else {
-					heading.classList.add(HeadingAnchors.classes.heading);
 					heading.appendChild(anchor);
 				}
 			}
