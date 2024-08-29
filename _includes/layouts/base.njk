@@ -33,7 +33,7 @@
 		{#- Renders the CSS bundle using a separate file, if you can't set CSP directive style-src: 'unsafe-inline' #}
 		{#- <link rel="stylesheet" href="{% getBundleFileUrl "css" %}"> #}
 
-		{%- js %}{% include "public/js/heading-anchors.js" %}{% endjs %}
+		{%- js %}{% include "node_modules/@zachleat/heading-anchors/heading-anchors.js" %}{% endjs %}
 	</head>
 	<body>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
