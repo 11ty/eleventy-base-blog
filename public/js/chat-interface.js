@@ -3,29 +3,6 @@ const isDevelopment =
 	window.location.hostname === "127.0.0.1";
 const baseUrl = isDevelopment ? "http://localhost:8090" : "";
 
-const chatBubble = document.getElementById("chatBubble");
-const originalContent = chatBubble.dataset.originalContent;
-let isInputMode = false;
-
-chatBubble.addEventListener("click", function () {
-	if (!isInputMode) {
-		isInputMode = true;
-		chatBubble.innerHTML =
-			'<input type="text" id="chatInput" placeholder="What do you want to know?">';
-		document.getElementById("chatInput").focus();
-	}
-});
-
-document.addEventListener("keypress", function (e) {
-	if (e.key === "Enter" && isInputMode) {
-		const input = document.getElementById("chatInput");
-		if (input.value.trim()) {
-			chatBubble.innerHTML = "Processing...";
-			sendMessageToWorker(input.value.trim());
-		}
-	}
-});
-
 // Generate a random user ID if not already stored
 function getUserId() {
 	let userId = localStorage.getItem("userId");
@@ -56,13 +33,80 @@ function sendMessageToWorker(message) {
 		.catch((error) => {
 			console.error("Fetch error:", error);
 			updateChatBubble("Sorry, something went wrong.");
-		})
-		.finally(() => {
-			isInputMode = false;
 		});
 }
 
 function updateChatBubble(text, isWaiting = false) {
+	const chatBubble = document.getElementById("chatBubble");
 	chatBubble.textContent = text;
 	chatBubble.classList.toggle("waiting", isWaiting);
+
+	// Add this line to make the chat bubble clickable again after receiving a response
+	if (!isWaiting) {
+		chatBubble.classList.add("clickable");
+	}
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+	const chatTrigger = document.getElementById("chat-trigger");
+	const talkBubble = document.querySelector(".talk-bubble");
+	const mainContent = document.querySelector("main");
+	const chatBubble = document.getElementById("chatBubble");
+	let originalContent = chatBubble.innerHTML;
+
+	function activateChatInterface() {
+		chatBubble.innerHTML = `
+			<form id="chat-form">
+				<input type="text" id="user-input" placeholder="Type your message...">
+				<button type="submit" style="display:none;">Send</button>
+			</form>
+		`;
+		document.getElementById("user-input").focus();
+
+		document
+			.getElementById("chat-form")
+			.addEventListener("submit", function (e) {
+				e.preventDefault();
+				const userInput = document.getElementById("user-input");
+				if (userInput.value.trim() !== "") {
+					sendMessageToWorker(userInput.value.trim());
+					userInput.value = "";
+				}
+			});
+	}
+
+	function handleChatTrigger() {
+		talkBubble.classList.toggle("chat-active");
+		mainContent.classList.toggle("chat-active");
+
+		if (talkBubble.classList.contains("chat-active")) {
+			activateChatInterface();
+		} else {
+			chatBubble.innerHTML = originalContent;
+		}
+	}
+
+	chatTrigger.addEventListener("click", handleChatTrigger);
+
+	// Modify this event listener to handle clicks on the chat bubble
+	chatBubble.addEventListener("click", function () {
+		if (
+			window.innerWidth < 840 &&
+			!talkBubble.classList.contains("chat-active")
+		) {
+			handleChatTrigger();
+		} else if (chatBubble.classList.contains("clickable")) {
+			activateChatInterface();
+			chatBubble.classList.remove("clickable");
+		}
+	});
+
+	// Handle window resize
+	window.addEventListener("resize", function () {
+		if (window.innerWidth >= 840) {
+			if (!talkBubble.classList.contains("chat-active")) {
+				chatBubble.innerHTML = originalContent;
+			}
+		}
+	});
+});

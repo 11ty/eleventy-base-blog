@@ -9,14 +9,14 @@ export default {
 
 		if (url.pathname === '/ai') {
 			const { message, animal = 'frog', userId = 'anonymous' } = Object.fromEntries(url.searchParams);
-			const maxTokens = 50;
+			const maxTokens = 30;
 			const maxWords = Math.round((maxTokens * 3) / 4);
 
 			if (!message) {
 				return jsonResponse({ error: 'No message provided' }, 400);
 			}
 
-			const systemMessage = `You are a ${animal === 'chicken' ? 'chicken. Respond with chicken-like enthusiasm' : 'frog. Respond with frog-like wisdom'}. Keep each response strictly under ${maxWords} words without enclosing quotation marks.`;
+			const systemMessage = `You are a ${animal === 'chicken' ? 'chicken. Respond with chicken-like enthusiasm' : 'frog. Respond with frog-like wisdom'}. Keep each response strictly under ${maxWords} words without enclosing quotation marks. Do not exceed ${maxWords} words.`;
 
 			try {
 				const chatHistory = await getChatHistory(env.chatlog, animal, userId);
@@ -24,7 +24,7 @@ export default {
 
 				const aiResponse = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
 					messages: [{ role: 'system', content: systemMessage }, ...messages],
-					max_tokens: maxTokens,
+					max_tokens: maxTokens + 10,
 				});
 
 				const responseText = extractResponseText(aiResponse);

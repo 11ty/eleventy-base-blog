@@ -242,7 +242,7 @@ nav {
 	position: relative;
 }
 
-.postlist-item:has(.postlist-link:hover) .postlist-date::after {
+.postlist-item .postlist-date::after {
 	content: attr(data-tooltip);
 	padding-left: 1em;
 	position: absolute;
@@ -250,9 +250,19 @@ nav {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	/* BUG - This needs to be set to the width of the postlist-item */
 	max-width: calc(100% - 12em);
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity 0.3s ease,
+		visibility 0.3s ease;
 }
+
+.postlist-item:has(.postlist-link:hover) .postlist-date::after {
+	opacity: 1;
+	visibility: visible;
+}
+
 .postlist-item-active .postlist-link {
 	font-weight: bold;
 }
@@ -424,6 +434,11 @@ figure > * {
 	max-width: 100%;
 }
 
+.side-header:has(.talk-bubble.chat-active) {
+	--item-top: 12px;
+	--item-rot: 0deg;
+}
+
 figcaption {
 	color: var(--color-gray-20);
 	text-align: center;
@@ -472,7 +487,8 @@ blockquote {
 	flex-direction: column;
 	padding-inline-start: 0;
 	width: 100%;
-	text-align: center;
+	text-align: right;
+	padding-right: 1em;
 }
 
 .nav-phrase {
@@ -531,7 +547,6 @@ header {
 		top: 0;
 		height: 100vh;
 		width: 200px;
-		overflow-y: auto;
 		align-items: start;
 		justify-content: end;
 	}
@@ -597,6 +612,34 @@ header {
 	.side-header:has(.nav-item:nth-child(4):hover) {
 		--item-top: calc(12px + 3 * var(--nav-item-height));
 		--item-rot: -15deg;
+	}
+	.side-header:has(.nav-item:nth-child(5):hover) {
+		--item-top: calc(12px + 4 * var(--nav-item-height));
+		--item-rot: 15deg;
+	}
+
+	#chat-trigger {
+		cursor: pointer;
+		transition: all 0.3s ease;
+	}
+
+	.talk-bubble {
+		position: absolute;
+		transition: all 0.3s ease;
+		transform: translateY(calc(var(--item-top) - 12px));
+	}
+
+	.talk-bubble.chat-active {
+		left: calc(50% + 200px);
+		width: calc(640px - 200px);
+	}
+
+	.talk-bubble.chat-active > * {
+		display: block;
+	}
+
+	main.chat-active {
+		margin-top: 3em;
 	}
 }
 
@@ -669,22 +712,33 @@ body {
 }
 
 /* AI chat related */
-#chatInput {
+#user-input {
 	background: none;
 	border: none;
 	font-family: inherit;
 	font-size: inherit;
 	color: inherit;
-	padding: 0;
-	margin: 0;
 	width: 100%;
 	outline: none;
 }
 
-#chatInput::placeholder,
+#user-input::placeholder,
 .waiting {
 	color: var(--color-gray-50);
 	opacity: 0.7;
+}
+
+/* Add these new styles */
+#chat-form {
+	width: 100%;
+}
+
+#chat-form button {
+	display: none;
+}
+
+.talk-bubble.chat-active {
+	padding: 0.125em;
 }
 
 @keyframes ellipsis {

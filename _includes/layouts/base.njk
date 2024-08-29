@@ -54,6 +54,8 @@
 								{% endfor %}
 								{% endset %}
 								<span>{{ navPhrase | replace("{}", itemList | trim) | safe }}</span>
+							{% else %}
+								Welcome!
 							{% endif %}
 						</div>
 						<form method="post"  id="theme-form" class="nav-toggle">
@@ -63,6 +65,7 @@
 					</div>
 					<div class="side-nav">
 						<ul class="nav-list">
+							<li id="chat-trigger" class="nav-item">Welcome!</li>
 							{%- for entry in collections.all | eleventyNavigation %}
 								<li class="nav-item">
 									<a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
