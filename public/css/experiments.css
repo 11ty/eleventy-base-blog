@@ -1,0 +1,26 @@
+:root {
+	--wave-width: 30px;
+	--wave-height: 10px;
+}
+
+.wave-divider {
+	width: 100%;
+	height: var(--wave-height);
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='10'%3E%3Cpath d='M0 5q15-5 30 0t30 0' stroke='lightgray' fill='none' stroke-width='1.5'/%3E%3C/svg%3E")
+		repeat-x bottom;
+	background-size: var(--wave-width) var(--wave-height);
+}
+
+.wb-icon {
+	display: inline-block;
+	font-family: "Whirlybats";
+	font-style: normal;
+	font-weight: normal;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	font-feature-settings: "liga";
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+}

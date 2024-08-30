@@ -19,7 +19,7 @@ function sendMessageToWorker(message) {
 	const animalParam = isDarkMode ? "frog" : "chicken";
 	const waitText = isDarkMode ? "Ribbit" : "Cluck";
 
-	updateChatBubble(waitText, true);
+	updateNavPhrase(waitText, true);
 
 	const userId = getUserId();
 
@@ -28,34 +28,34 @@ function sendMessageToWorker(message) {
 	)
 		.then((response) => response.json())
 		.then((data) => {
-			updateChatBubble(data.response || `Error: ${data.error}`);
+			updateNavPhrase(data.response || `Error: ${data.error}`);
 		})
 		.catch((error) => {
 			console.error("Fetch error:", error);
-			updateChatBubble("Sorry, something went wrong.");
+			updateNavPhrase("Sorry, something went wrong.");
 		});
 }
 
-function updateChatBubble(text, isWaiting = false) {
-	const chatBubble = document.getElementById("chatBubble");
-	chatBubble.textContent = text;
-	chatBubble.classList.toggle("waiting", isWaiting);
+function updateNavPhrase(text, isWaiting = false) {
+	const navPhrase = document.getElementById("navPhrase");
+	navPhrase.textContent = text;
+	navPhrase.classList.toggle("waiting", isWaiting);
 
 	// Add this line to make the chat bubble clickable again after receiving a response
 	if (!isWaiting) {
-		chatBubble.classList.add("clickable");
+		navPhrase.classList.add("clickable");
 	}
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-	const chatTrigger = document.getElementById("chat-trigger");
-	const talkBubble = document.querySelector(".talk-bubble");
+	const chatTrigger = document.getElementById("chat-toggle");
+	const talkBubble = document.querySelector(".nav-bubble");
 	const mainContent = document.querySelector("main");
-	const chatBubble = document.getElementById("chatBubble");
-	let originalContent = chatBubble.innerHTML;
+	const navPhrase = document.getElementById("navPhrase");
+	let originalContent = navPhrase.innerHTML;
 
 	function activateChatInterface() {
-		chatBubble.innerHTML = `
+		navPhrase.innerHTML = `
 			<form id="chat-form">
 				<input type="text" id="user-input" placeholder="Type your message...">
 				<button type="submit" style="display:none;">Send</button>
@@ -82,22 +82,22 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (talkBubble.classList.contains("chat-active")) {
 			activateChatInterface();
 		} else {
-			chatBubble.innerHTML = originalContent;
+			navPhrase.innerHTML = originalContent;
 		}
 	}
 
 	chatTrigger.addEventListener("click", handleChatTrigger);
 
 	// Modify this event listener to handle clicks on the chat bubble
-	chatBubble.addEventListener("click", function () {
+	navPhrase.addEventListener("click", function () {
 		if (
 			window.innerWidth < 840 &&
 			!talkBubble.classList.contains("chat-active")
 		) {
 			handleChatTrigger();
-		} else if (chatBubble.classList.contains("clickable")) {
+		} else if (navPhrase.classList.contains("clickable")) {
 			activateChatInterface();
-			chatBubble.classList.remove("clickable");
+			navPhrase.classList.remove("clickable");
 		}
 	});
 
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	window.addEventListener("resize", function () {
 		if (window.innerWidth >= 840) {
 			if (!talkBubble.classList.contains("chat-active")) {
-				chatBubble.innerHTML = originalContent;
+				navPhrase.innerHTML = originalContent;
 			}
 		}
 	});

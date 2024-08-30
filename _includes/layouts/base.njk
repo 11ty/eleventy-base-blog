@@ -15,28 +15,27 @@
 		{%- css %}
 		{% include "public/css/index.css" %}
 		{% endcss %}
+Ï
 		{%- js %}
-		{% include "public/js/dark-toggle.js" %}
+		{% include "public/js/theme-toggle.js" %}
 		{% include "public/js/chat-interface.js" %}
 		{% endjs %}
 
 		{#- Render the CSS bundle using Inlined CSS (for the fastest site performance in production) #}
-		<style>
-			{% getBundle "css" %}
-		</style>
-
+		<style>{% getBundle "css" %}</style>
 		{#- Renders the CSS bundle using a separate file, if you can't set CSP directive style-src: 'unsafe-inline' #}
 		{#- <link rel="stylesheet" href="{% getBundleFileUrl "css" %}"> #}
 	</head>
 	<body>
+		<div class="noise-container"></div>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
-		<div class="content-wrapper">
-			<header class="side-header">
+		<div class="layout-wrapper">
+			<header class="site-header">
 				{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
 				<nav>
 					<h2 class="visually-hidden">Top level navigation menu</h2>
-					<div class="talk-bubble" >
-						<div id="chatBubble" class="nav-phrase" data-original-content="{% if navPhrase and itemList %}{{ navPhrase | replace("{}", itemList | trim) | safe }}{% else %}Welcome{% endif %}">
+					<div class="nav-bubble" >
+						<div id="navPhrase" class="nav-phrase" data-original-content="{% if navPhrase and itemList %}{{ navPhrase | replace("{}", itemList | trim) | safe }}{% else %}Welcome{% endif %}">
 							{% if navPhrase %}
 								{% set navItems = collections.all | eleventyNavigation %}
 								{% set filteredItems = [] %}
@@ -58,14 +57,14 @@
 								Welcome!
 							{% endif %}
 						</div>
-						<form method="post"  id="theme-form" class="nav-toggle">
+						<form method="post"  id="theme-form" class="theme-toggle">
 							<input type="checkbox" id="dark-mode-toggle" name="theme" value="dark" aria-label="Toggle dark mode">
 							<label for="dark-mode-toggle"></label>
 						</form>
 					</div>
 					<div class="side-nav">
 						<ul class="nav-list">
-							<li id="chat-trigger" class="nav-item">Welcome!</li>
+							<li id="chat-toggle" class="nav-item">Welcome!</li>
 							{%- for entry in collections.all | eleventyNavigation %}
 								<li class="nav-item">
 									<a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
