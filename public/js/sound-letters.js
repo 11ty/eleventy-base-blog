@@ -51,7 +51,7 @@ class SoundLetters {
 					e.preventDefault();
 					this.handleInteraction(element, true);
 				},
-				{ passive: true },
+				{ passive: false },
 			);
 			element.addEventListener(
 				"touchend",
@@ -59,7 +59,7 @@ class SoundLetters {
 					e.preventDefault();
 					this.handleInteraction(element, false);
 				},
-				{ passive: true },
+				{ passive: false },
 			);
 			element.addEventListener(
 				"touchcancel",
@@ -67,7 +67,7 @@ class SoundLetters {
 					e.preventDefault();
 					if (element.isPressed) this.handleInteraction(element, false);
 				},
-				{ passive: true },
+				{ passive: false },
 			);
 		});
 
