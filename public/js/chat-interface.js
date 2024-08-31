@@ -54,6 +54,16 @@ document.addEventListener("DOMContentLoaded", function () {
 	const navPhrase = document.getElementById("navPhrase");
 	let originalContent = navPhrase.innerHTML;
 
+	const chatReset = document.getElementById("chat-reset");
+
+	function resetChatInterface() {
+		navPhrase.innerHTML = originalContent;
+		talkBubble.classList.remove("chat-active");
+		mainContent.classList.remove("chat-active");
+	}
+
+	chatReset.addEventListener("click", resetChatInterface);
+
 	function activateChatInterface() {
 		navPhrase.innerHTML = `
 			<form id="chat-form">
