@@ -46,12 +46,12 @@
 /* Global stylesheet */
 html,
 body {
+	overflow-x: hidden;
+	width: 100%;
 	padding: 0;
-	font-family: var(--font-family);
 	background-color: Canvas;
 	color: CanvasText;
-	width: 100%;
-	overflow-x: hidden;
+	font-family: var(--font-family);
 }
 body {
 	/* transition:
@@ -68,6 +68,7 @@ body {
 	display: flex;
 	width: 100%;
 	max-width: calc(40em + 200px + 1rem);
+	height: 100vh;
 }
 
 main {
@@ -570,12 +571,12 @@ header {
 /* Chat reset */
 .chat-reset {
 	display: none;
-	background: none;
-	border: none;
-	cursor: pointer;
-	font-size: 1em;
 	padding: 0;
+	border: none;
 	margin-left: 0.25em;
+	background: none;
+	font-size: 1em;
+	cursor: pointer;
 }
 
 .nav-bubble.chat-active .chat-reset {
