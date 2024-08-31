@@ -44,20 +44,14 @@
 }
 
 /* Global stylesheet */
-* {
-	box-sizing: border-box;
-}
-
 html,
 body {
 	padding: 0;
-	margin: 0 auto;
 	font-family: var(--font-family);
 	background-color: Canvas;
 	color: CanvasText;
-}
-html {
-	overflow-y: scroll;
+	width: 100%;
+	overflow-x: hidden;
 }
 body {
 	/* transition:
