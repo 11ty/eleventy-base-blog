@@ -53,6 +53,8 @@ body {
 	padding: 0;
 	margin: 0 auto;
 	font-family: var(--font-family);
+	background-color: Canvas;
+	color: CanvasText;
 }
 html {
 	overflow-y: scroll;
@@ -61,12 +63,11 @@ body {
 	/* transition:
 		color 0.1s,
 		background-color 0.1s; */
+	/* background-color: Canvas;
+		color: CanvasText; */
 	display: flex;
 	justify-content: center;
 	max-width: none;
-	padding: 0;
-	background-color: Canvas;
-	color: CanvasText;
 }
 
 .layout-wrapper {
@@ -572,6 +573,21 @@ header {
 	text-align: left;
 }
 
+/* Chat reset */
+.chat-reset {
+	display: none;
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 1em;
+	padding: 0;
+	margin-left: 0.25em;
+}
+
+.nav-bubble.chat-active .chat-reset {
+	display: inline-block;
+}
+
 /* For mobile view */
 @media (max-width: 839px) {
 	/* Switch side nav off */
@@ -620,18 +636,4 @@ header {
 		position: relative;
 		left: initial;
 	}
-}
-
-.chat-reset {
-	display: none;
-	background: none;
-	border: none;
-	cursor: pointer;
-	font-size: 1em;
-	padding: 0;
-	margin-left: 0.25em;
-}
-
-.nav-bubble.chat-active .chat-reset {
-	display: inline-block;
 }

@@ -1,3 +1,5 @@
+// const lightningCSS = require("@11tyrocks/eleventy-plugin-lightningcss");
+
 /** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
 module.exports = async function (eleventyConfig) {
 	const { DateTime } = await import("luxon");
@@ -12,24 +14,22 @@ module.exports = async function (eleventyConfig) {
 	const { default: pluginDrafts } = await import("./eleventy.config.drafts.js");
 	const { default: pluginImages } = await import("./eleventy.config.images.js");
 
-	const { getSVGPathForLetter } = await import('./public/js/sound_letters/svg-converter.js');
+	// const getSVGPathForLetter = await import('./public/js/sound_letters/svg-converter.js');
 
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig.addPassthroughCopy({
 		"./public/": "/",
 	});
-	eleventyConfig.addPassthroughCopy({ "css": "css" });
-	eleventyConfig.addPassthroughCopy({ "js": "js" });
 
-	eleventyConfig.addJavaScriptFunction("getSVGPathForLetter", getSVGPathForLetter);
-	eleventyConfig.addNunjucksGlobal("getSVGPathForLetter", getSVGPathForLetter);
+	// eleventyConfig.addJavaScriptFunction("getSVGPathForLetter", getSVGPathForLetter);
+	// eleventyConfig.addNunjucksGlobal("getSVGPathForLetter", getSVGPathForLetter);
 
 	// Run Eleventy when these files change:
 	// https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
 
 	// Watch content images for the image pipeline.
-	eleventyConfig.addWatchTarget("content/**/*.{svg,webp,png,jpeg,css}");
+	eleventyConfig.addWatchTarget("content/**/*.{svg,webp,png,jpeg}");
 
 	// App plugins
 	eleventyConfig.addPlugin(pluginDrafts);
@@ -43,6 +43,15 @@ module.exports = async function (eleventyConfig) {
 	eleventyConfig.addPlugin(pluginNavigation);
 	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
 	eleventyConfig.addPlugin(pluginBundle);
+
+	// // LightningCSS plugin
+	// eleventyConfig.addPlugin(lightningCSS, {
+	// 	minify: true,
+	// 	// Add any other lightningCSS options you need
+	// });
+
+	// Watch CSS files for changes
+	eleventyConfig.addWatchTarget("public/css/**/*.css");
 
 	// Filters
 	eleventyConfig.addFilter("readableDate", (dateObj, format, zone) => {
