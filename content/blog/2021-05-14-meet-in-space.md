@@ -4,11 +4,11 @@ date: 2021-05-18
 headerImage: false
 projects: true
 tag:
-    - spatial-audio
-    - video-conferencing
-    - psychoacoustics
-    - jitsi-meet
-    - masters-thesis
+  - spatial-audio
+  - video-conferencing
+  - psychoacoustics
+  - jitsi-meet
+  - masters-thesis
 category: major
 author: jackson
 description: "Teleconferencing in spatial audio with the help of Jitsi Meet and Web Audio"
@@ -29,9 +29,9 @@ This project treads new ground in exploring how localized audio can be conceptua
 
 But is often a tiring affair...
 
--   "Zoom" fatigue
--   Reduced dimensionality
--   Poor and inconsistent quality
+- "Zoom" fatigue
+- Reduced dimensionality
+- Poor and inconsistent quality
 
 Teleconferencing has become apart of many of our daily rituals, either a result of the COVID epidemic or the rapid digitization of communication. However, most of us have experienced some symptom of fatigue as a result of our extended use of the system. Latency, network reliability, visual and audio fidelity can all contribute to a fatiguing experience, but software can also play a major role.
 
@@ -39,20 +39,20 @@ Teleconferencing has become apart of many of our daily rituals, either a result 
 
 My take:
 
--   Don't reinvent the wheel - instead focus on one critical component
--   How can the treatment of audio bring us to the goal of telepresence, and closer to realistic conversations
+- Don't reinvent the wheel - instead focus on one critical component
+- How can the treatment of audio bring us to the goal of telepresence, and closer to realistic conversations
 
 There is a striking lack of realism in our video meetings, especially in how our voices are conveyed through digital exchange. This project is guided by the principles of telepresence, or the goal of conveying our sensory interactions in high fidelity, as we would in a face-to-face interaction. Every acoustic interaction we experience is spatial so aren't our digital interactions?
 
 ## Replicating Face-to-face Interactions
 
--   Spatial model, spatial audio
-    -   Visual-aural coherency
-    -   Binaural audio
--   Benefits from the literature
-    -   Lateralizing audio can improve intelligibility
-    -   Disentangle double-talk
-    -   And more: reduce cognitive load, improve comprehension, and is generally more favorable
+- Spatial model, spatial audio
+  - Visual-aural coherency
+  - Binaural audio
+- Benefits from the literature
+  - Lateralizing audio can improve intelligibility
+  - Disentangle double-talk
+  - And more: reduce cognitive load, improve comprehension, and is generally more favorable
 
 There are many issues that ought to be addressed in the field from a software and user experience perspective. Given that audio appears the most critical medium in task oriented communication, I chose to work on integrating spatial audio within a teleconferencing system. Spatial audio within telecommunication has a number of cool benefits and has not yet been integrated within a standard video conferencing platform.
 
@@ -64,16 +64,16 @@ To achieve spatial audio, the only current possibility for high-fidelity reprodu
 
 ## Implementation
 
--   Capturing participants' audio streams (WebRTC)
--   Head-related transfer functions via PannerNode
--   Dynamic processing of participants
+- Capturing participants' audio streams (WebRTC)
+- Head-related transfer functions via PannerNode
+- Dynamic processing of participants
 
 With this, I integrated dynamic, toggle-able, spatial audio for each participant audio stream in a meeting. The voices of the participants appear coherent with the video streams as participants appear and disappear.
 
 <figure>
-    <div class="iframe-wrapper pb-169">
-        <iframe title="vimeo-player" src="https://player.vimeo.com/video/548286337?h=e82ab81d30&title=0&byline=0&portrait=0" frameborder="0" allowfullscreen></iframe>
-    </div>
+    <lite-vimeo videoid="548286337" style="background-image: url('https://i.vimeocdn.com/video/810965406.webp?mw=1920&mh=1080&q=70'); aspect-ratio: 16/9;">
+        <div class="ltv-playbtn"></div>
+    </lite-vimeo>
     <figcaption><a href="https://vimeo.com/548286337">Demo of Meet in Space</a></figcaption>
 </figure>
 
@@ -83,10 +83,10 @@ After a technical evaluation of the system suggested its ability to scale at lea
 
 There was support for four hypothesis of perceived metrics:
 
--   Decreased cognitive effort
--   Increased social presence
--   Increased vocal intelligibility
--   Increase in opinion score
+- Decreased cognitive effort
+- Increased social presence
+- Increased vocal intelligibility
+- Increase in opinion score
 
 ## And the future?
 

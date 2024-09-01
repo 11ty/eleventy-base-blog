@@ -26,7 +26,7 @@ Without motion, La Jetée strips an additional layer of dimensionality from the 
 I wanted to capture this collection of fleeting moments that appear transcendental as the protagonist is transported away from the destroyed world to live in this borrowed past.
 
 <figure>
-    <lite-vimeo videoid="716660835" style="background-image: url('https://i.vimeocdn.com/video/716660835.webp?mw=1370&mh=1000&q=70'); aspect-ratio: 1.37/1;">
+    <lite-vimeo videoid="716660835" style="background-image: url('https://i.vimeocdn.com/video/716660835.webp?mw=1920&mh=1080&q=70'); aspect-ratio: 16/9;">
         <div class="ltv-playbtn"></div>
     </lite-vimeo>
     <figcaption><cite>La Jetée</cite></figcaption>

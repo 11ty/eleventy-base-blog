@@ -120,13 +120,6 @@ h1 {
 p:last-child {
 	margin-bottom: 0;
 }
-p {
-	line-height: 1.5;
-}
-
-li {
-	line-height: 1.5;
-}
 
 .links-nextprev {
 	padding: 1em 0;
@@ -527,14 +520,14 @@ header {
 /* Chat bubble related */
 #user-input {
 	width: 100%;
+	/* Mozilla? */
+	padding: 0;
 	border: none;
 	background: none;
 	color: inherit;
 	font-family: inherit;
 	font-size: inherit;
 	outline: none;
-	/* Mozilla? */
-	padding: 0;
 }
 
 #user-input::placeholder,
