@@ -571,7 +571,6 @@ header {
 /* Chat reset */
 .chat-reset {
 	position: relative;
-	top: 2px;
 	display: none;
 	padding: 0 0.5em;
 	border: none;

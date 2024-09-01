@@ -1,11 +1,12 @@
 .word {
-	display: flex;
-	justify-content: space-between;
-	text-align: center;
-	width: 100%;
-	height: 100%;
 	position: relative;
 	z-index: 0;
+	display: flex;
+	justify-content: space-between;
+	overflow-x: clip;
+	width: 100%;
+	height: 100%;
+	text-align: center;
 	/* Prevent highlight */
 	user-select: none;
 	-webkit-touch-callout: none;
@@ -15,29 +16,21 @@
 .letter-container {
 	position: relative;
 	display: flex;
-	align-items: center; /* Center align items horizontally */
-	justify-content: center;
 	flex: 1; /* Allow flex-grow to fill space equally */
+	justify-content: center;
+	align-items: center; /* Center align items horizontally */
 }
 
 .letter-wrapper {
 	position: relative;
 	display: flex;
-	align-items: center; /* Center align items horizontally within the wrapper */
 	justify-content: center;
+	align-items: center; /* Center align items horizontally within the wrapper */
 }
 
 .letter {
-	cursor: pointer;
-	user-select: none;
 	position: relative; /* Enable relative positioning for random vertical offset */
-	transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
-	mix-blend-mode: overlay;
-
-	/* Fade in */
-	opacity: 0;
-	animation: fadeIn 0.3s ease-in forwards;
-	animation-delay: var(--random-delay);
+	z-index: calc(1000 - var(--random-size));
 
 	/* Size and placement */
 	font-size: clamp(
@@ -45,7 +38,15 @@
 		calc(32px + (var(--random-size) * (50vw - 32px)) / 100),
 		512px
 	);
-	z-index: calc(1000 - var(--random-size));
+	cursor: pointer;
+	user-select: none;
+	transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+	mix-blend-mode: overlay;
+
+	/* Fade in */
+	opacity: 0;
+	animation: fadeIn 0.3s ease-in forwards;
+	animation-delay: var(--random-delay);
 
 	/* Rotation based effects */
 	transform: rotate3d(0, 0, 1, calc(var(--rotation, 0) * 1deg));
