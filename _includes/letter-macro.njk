@@ -1,23 +1,9 @@
 {% macro seperated_letters(word) %}
   <div class="word">
     {% for letter in word %}
-      {% set index = loop.index0 %}
-      {% set random_height = range(0, window.innerHeight / 1.5) | random | round %}
-      {% set random_rotation = range(0, 360) | random %}
-      {% set random_size = range(0, 100) | random %}
-      {% set random_delay = (range(0, 100) | random) / 100 %}
-      {% set random_color = "#" + (range(0, 16777215) | random | int | toString(16)).slice(0, 6) %}
-      {% set random_accent_color = "#" + (range(0, 16777215) | random | int | toString(16)).slice(0, 6) %}
-      <div class="letter-container" style="
-        --random-height-{{index}}: {{random_height}};
-        --random-rotation-{{index}}: {{random_rotation}};
-        --random-size-{{index}}: {{random_size}};
-        --random-color-{{index}}: {{random_color}};
-        --random-accent-color-{{index}}: {{random_accent_color}};">
+      <div class="letter-container">
         <div class="letter-wrapper">
-          <div class="letter" style="--random-delay: {{random_delay}}s;">
-            {{ letter }}
-          </div>
+          <div class="letter">{{ letter }}</div>
         </div>
       </div>
     {% endfor %}

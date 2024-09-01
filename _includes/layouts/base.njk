@@ -28,13 +28,15 @@
 		{#- <link rel="stylesheet" href="{% getBundleFileUrl "css" %}"> #}
 	</head>
 	<body>
+		<div class="noise-container"></div>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 		<div class="layout-wrapper">
 			<header class="site-header">
 				{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
 				<nav>
 					<h2 class="visually-hidden">Top level navigation menu</h2>
-					<div class="nav-bubble" >
+					<div class="nav-bubble">
+						<button id="chat-reset" class="chat-reset" aria-label="Reset chat">↩</button>
 						<div id="navPhrase" class="nav-phrase" data-original-content="{% if navPhrase and itemList %}{{ navPhrase | replace("{}", itemList | trim) | safe }}{% else %}Welcome{% endif %}">
 							{% if navPhrase %}
 								{% set navItems = collections.all | eleventyNavigation %}
@@ -57,7 +59,6 @@
 								Welcome!
 							{% endif %}
 						</div>
-						<button id="chat-reset" class="chat-reset" aria-label="Reset chat">⟲</button>
 						<form method="post"  id="theme-form" class="theme-toggle">
 							<input type="checkbox" id="dark-mode-toggle" name="theme" value="dark" aria-label="Toggle dark mode">
 							<label for="dark-mode-toggle"></label>

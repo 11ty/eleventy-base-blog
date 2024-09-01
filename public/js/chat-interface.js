@@ -99,7 +99,13 @@ document.addEventListener("DOMContentLoaded", function () {
 	chatTrigger.addEventListener("click", handleChatTrigger);
 
 	// Modify this event listener to handle clicks on the chat bubble
-	navPhrase.addEventListener("click", function () {
+	navPhrase.addEventListener("click", function (event) {
+		// Check if the clicked element is a link
+		if (event.target.tagName.toLowerCase() === "a") {
+			// If it's a link, let the default action happen (follow the link)
+			return;
+		}
+
 		if (
 			window.innerWidth < 840 &&
 			!talkBubble.classList.contains("chat-active")
