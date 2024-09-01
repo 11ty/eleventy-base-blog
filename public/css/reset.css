@@ -9,7 +9,7 @@
 }
 * {
 	line-height: calc(1em + 0.5rem);
-	/* margin: 0; */
+	margin: 0;
 }
 body {
 	-webkit-font-smoothing: antialiased;
@@ -36,6 +36,7 @@ h4,
 h5,
 h6 {
 	overflow-wrap: break-word;
+	margin: revert;
 }
 #root,
 #__next {
