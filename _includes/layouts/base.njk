@@ -17,6 +17,11 @@
 		{% include "public/css/index.css" %}
 		{% endcss %}
 
+		{# Include YouTube embed CSS only for post layouts #}
+		{% if layout == "layouts/post.njk" %}
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.2/src/lite-yt-embed.css">
+		{% endif %}
+
 		{%- js %}
 		{% include "public/js/theme-toggle.js" %}
 		{% include "public/js/chat-interface.js" %}
@@ -91,3 +96,8 @@
 <script defer>
 	{% getBundle "js" %}
 </script>
+
+{% if layout == "layouts/post.njk" %}
+<script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.3/src/lite-yt-embed.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/lite-vimeo-embed/+esm" defer></script>
+{% endif %}

@@ -4,9 +4,9 @@ date: 2023-02-16
 image: /img/markdown.jpg
 headerImage: false
 tag:
-    - film
-    - memory
-    - soundtrack
+  - film
+  - memory
+  - soundtrack
 category: video
 author: jackson
 description: An introduction to a video series on re-contextualization in film and music.
@@ -26,13 +26,13 @@ Without motion, La Jetée strips an additional layer of dimensionality from the 
 I wanted to capture this collection of fleeting moments that appear transcendental as the protagonist is transported away from the destroyed world to live in this borrowed past.
 
 <figure>
-    <div class="iframe-wrapper pb-137">
-        <iframe title="vimeo-player" src="https://player.vimeo.com/video/716660835?h=b763739fa3?h=4a1c9e404d&title=0&byline=0&portrait=0" frameborder="0" allowfullscreen></iframe>
-    </div>
+    <lite-vimeo videoid="716660835" style="background-image: url('https://i.vimeocdn.com/video/716660835.webp?mw=1370&mh=1000&q=70'); aspect-ratio: 1.37/1;">
+        <div class="ltv-playbtn"></div>
+    </lite-vimeo>
     <figcaption><cite>La Jetée</cite></figcaption>
 </figure>
 
-The track I chose is a theme from the 1975 Italian film L'Uomo Dagli Occhiali A Specchio, La Notte Muore, that is at once captures a wistful longing and melancholy. It felt right for this most hopeful of sequences in La Jetée. Of primary interest was attempting to restore the momentum of motion that is absent through music. By tieing each frame to every eighth of the soundtrack I was hoping to rebuild the pace and continuity of the scene. I also chose to layer frames upon one another as divisions over time, creating a sense that each photo from the scene might've existed at any time or even simultaneously. The passage culminates in the three frames from the final scene whereafter we finally experience motion and emergence of color - a kind of post-mortem decoupling from the medium as we knew it. In that moment, a mix of blue and rose, fills the skin of the woman on the bed.
+The track I chose is a theme from the 1975 Italian film L'Uomo Dagli Occhiali A Specchio, La Notte Muore, that captures a wistful longing and melancholy. It felt right for this most hopeful of sequences in La Jetée. My main goal was to restore the sense of momentum through music. By tieing each frame with every eighth of the soundtrack, I aimed to rebuild the pace and continuity of the scene. I also decided to overlay frames on top of each other as temporal divisions, creating a feeling that each photo from the scene could have existed at any time or even simultaneously. The sequence reaches its peak with the three frames from the final scene, where we finally witness motion and the emergence of color - a sort of posthumous detachment from the familiar medium. In that moment, a blend of blue and rose fills the skin of the woman on the bed.
 
 ## Il Sorpasso
 

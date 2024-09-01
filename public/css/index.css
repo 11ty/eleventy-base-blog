@@ -49,7 +49,6 @@
 /* Global stylesheet */
 html,
 body {
-	overflow-x: hidden;
 	width: 100%;
 	padding: 0;
 	background-color: Canvas;
@@ -343,14 +342,9 @@ h2 + .header-anchor {
 }
 
 /* Starting custom */
-figure {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
 figure > * {
 	max-width: 100%;
+	margin: 0 auto;
 }
 
 figcaption {

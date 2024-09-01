@@ -4,9 +4,9 @@ date: 2020-10-23
 image: /img/markdown.jpg
 headerImage: false
 tag:
-    - film
-    - memory
-    - soundtrack
+  - film
+  - memory
+  - soundtrack
 author: jackson
 description: An introduction to a video series on re-contextualization in film and music.
 emoji: 📽️
@@ -25,9 +25,9 @@ I hope to continue making these shorts both for satisfying ideas I've had in the
 ## _Funeral Parade of Roses_
 
 <figure>
-    <div class="iframe-wrapper pb-137">
-        <iframe title="vimeo-player" src="https://player.vimeo.com/video/457926908?h=4a1c9e404d&title=0&byline=0&portrait=0" frameborder="0" allowfullscreen></iframe>
-    </div>
+    <lite-vimeo videoid="457926908" style="background-image: url('https://i.vimeocdn.com/video/810965406.webp?mw=1370&mh=1000&q=70'); aspect-ratio: 1.37/1;">
+        <div class="ltv-playbtn"></div>
+    </lite-vimeo>
     <figcaption><cite>Funeral Parade of Roses</cite></figcaption>
 </figure>
 
@@ -40,9 +40,9 @@ For Roses, I ended up landing on a an artist I had been introduced to by the dir
 ## _Suspiria_
 
 <figure>
-    <div class="iframe-wrapper pb-235">
-    <iframe title="vimeo-player" src="https://player.vimeo.com/video/471716567?h=33439aee12&title=0&byline=0&portrait=0" frameborder="0" allowfullscreen></iframe>
-    </div>
+    <lite-vimeo videoid="471716567" style="background-image: url('https://i.vimeocdn.com/video/810965406.webp?mw=2350&mh=1000&q=70'); aspect-ratio: 2.35/1;">
+        <div class="ltv-playbtn"></div>
+    </lite-vimeo>
     <figcaption><cite>Suspiria</cite></figcaption>
 </figure>
 
