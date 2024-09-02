@@ -14,7 +14,7 @@ Besides the formal elements, I play guitar, make playlists, watch movies, read b
 
 Here's what I've been listening to!
 
-<a href="https://jackson-spotify.vercel.app/link">
+<a class="spotify-widget" href="https://jackson-spotify.vercel.app/link">
   <img height="100" src="https://jackson-spotify.vercel.app/svg" alt="Current Spotify song"/>
 </a>
 

@@ -12,7 +12,21 @@
 	--syntax-tab-size: 2;
 	--noise-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
 	--noise-opacity: 0.2;
+	/* Josh Comeau shadows */
+	--shadow-color: 0deg 0% 0%;
+	--shadow-elevation-low: 0px 0.2px 0.2px hsl(var(--shadow-color) / 0.16),
+		0.1px 0.8px 0.8px -3px hsl(var(--shadow-color) / 0.13);
+	--shadow-elevation-medium: 0px 0.2px 0.2px hsl(var(--shadow-color) / 0.15),
+		0.1px 1px 1.1px -1.5px hsl(var(--shadow-color) / 0.13),
+		0.3px 4.2px 4.4px -3px hsl(var(--shadow-color) / 0.11);
+	--shadow-elevation-high: 0px 0.2px 0.2px hsl(var(--shadow-color) / 0.14),
+		0.1px 1.3px 1.4px -0.6px hsl(var(--shadow-color) / 0.13),
+		0.2px 2.8px 2.9px -1.2px hsl(var(--shadow-color) / 0.12),
+		0.5px 5.7px 6px -1.8px hsl(var(--shadow-color) / 0.11),
+		0.9px 10.9px 11.5px -2.4px hsl(var(--shadow-color) / 0.11),
+		1.5px 19.3px 20.3px -3px hsl(var(--shadow-color) / 0.1);
 }
+
 :root[data-theme="dark"] {
 	color-scheme: dark;
 	--color-bg: black;
@@ -73,14 +87,14 @@ body {
 .layout-wrapper {
 	display: flex;
 	width: 100%;
-	max-width: calc(40em + 200px + 1rem);
+	max-width: calc(40em + 200px + 2em);
 	height: 100vh;
 }
 
 main {
 	width: 100%;
 	max-width: 40em;
-	padding: 1rem;
+	padding: 1em 2em;
 	transition: margin 0.3s ease; /* Smooth transition for margin change in chat-active state */
 
 	& :first-child {
@@ -90,6 +104,11 @@ main {
 	&:where(.chat-active) {
 		margin-top: 3em;
 	}
+}
+
+/* Add soft corners to images */
+img {
+	border-radius: 0.5em;
 }
 
 /* Typography */
@@ -372,7 +391,7 @@ blockquote {
 	background: ButtonFace;
 	transition: all 0.3s ease;
 	transform: translateY(calc(var(--item-top) - 12px));
-	border-radius: 5px;
+	border-radius: 0.25em;
 
 	&:after {
 		content: "";
@@ -412,7 +431,7 @@ header {
 	align-items: start;
 	width: 200px;
 	height: 100vh;
-	padding: 1em;
+	padding: 1em 2em;
 
 	&:not(:has(+ .chat-active)) {
 		&:has(.nav-item:nth-child(n):hover) {
@@ -575,6 +594,14 @@ header {
 	cursor: pointer;
 }
 
+/* Add shadow to nav bubble */
+.nav-bubble {
+	box-shadow: var(--shadow-elevation-low);
+}
+.nav-bubble.chat-active {
+	box-shadow: var(--shadow-elevation-medium);
+}
+
 .nav-bubble.chat-active .chat-reset {
 	display: inline-block;
 }
@@ -649,4 +676,10 @@ header {
 	background-repeat: repeat;
 	pointer-events: none;
 	opacity: var(--noise-opacity);
+}
+
+/* Spotify widget */
+.spotify-widget img {
+	border-radius: 0.5em;
+	box-shadow: var(--shadow-elevation-medium);
 }

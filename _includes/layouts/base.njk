@@ -37,38 +37,9 @@
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 		<div class="layout-wrapper">
 			<header class="site-header">
-				{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
 				<nav>
 					<h2 class="visually-hidden">Top level navigation menu</h2>
-					<div class="nav-bubble">
-						<button id="chat-reset" class="chat-reset" aria-label="Reset chat">↺</button>
-						<div id="navPhrase" class="nav-phrase" data-original-content="{% if navPhrase and itemList %}{{ navPhrase | replace("{}", itemList | trim) | safe }}{% else %}Welcome{% endif %}">
-							{% if navPhrase %}
-								{% set navItems = collections.all | eleventyNavigation %}
-								{% set filteredItems = [] %}
-								{% for item in navItems %}
-									{% if item.url != page.url %}
-										{% set filteredItems = (filteredItems.push(item), filteredItems) %}
-									{% endif %}
-								{% endfor %}
-								{% set itemList %}
-								{% for item in filteredItems %}
-									<a href="{{ item.url }}">{{ item.title | lower }}</a>
-									{% if not loop.last %}
-										{% if loop.revindex0 == 1 %} or {% else %},{% endif %}
-									{% endif %}
-								{% endfor %}
-								{% endset %}
-								<span>{{ navPhrase | replace("{}", itemList | trim) | safe }}</span>
-							{% else %}
-								Welcome!
-							{% endif %}
-						</div>
-						<form method="post"  id="theme-form" class="theme-toggle">
-							<input type="checkbox" id="dark-mode-toggle" name="theme" value="dark" aria-label="Toggle dark mode">
-							<label for="dark-mode-toggle"></label>
-						</form>
-					</div>
+					{% include "components/nav-bubble.njk" %}
 					<div class="side-nav">
 						<ul class="nav-list">
 							<li id="chat-toggle" class="nav-item">Welcome!</li>

@@ -116,13 +116,4 @@ document.addEventListener("DOMContentLoaded", function () {
 			navPhrase.classList.remove("clickable");
 		}
 	});
-
-	// Handle window resize
-	window.addEventListener("resize", function () {
-		if (window.innerWidth >= 840) {
-			if (!talkBubble.classList.contains("chat-active")) {
-				navPhrase.innerHTML = originalContent;
-			}
-		}
-	});
 });
