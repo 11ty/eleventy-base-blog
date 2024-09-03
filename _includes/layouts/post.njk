@@ -2,36 +2,40 @@
 layout: layouts/base.njk
 ---
 
-<h1>{{ title }}</h1>
+<div class="progress-bar"></div>
 
-<ul class="post-metadata">
-	<li>
-		<time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
-	</li>
-	{%- for tag in tags | filterTagList %}
-		{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-		<li>
-			<a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>
-			{%- if not loop.last %}, {% endif %}
-		</li>
-	{%- endfor %}
-</ul>
+<article class="post">
+  <h1>{{ title }}</h1>
 
-{{ content | safe }}
+  <ul class="post-metadata">
+    <li>
+      <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+    </li>
+    {%- for tag in tags | filterTagList %}
+      {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+      <li>
+        <a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>
+        {%- if not loop.last %}, {% endif %}
+      </li>
+    {%- endfor %}
+  </ul>
 
-{%- if collections.posts %}
-	{%- set previousPost = collections.posts | getPreviousCollectionItem %}
-	{%- set nextPost = collections.posts | getNextCollectionItem %}
-	{%- if nextPost or previousPost %}
-		<ul class="links-nextprev">
-			{%- if previousPost %}
-				<li>Previous: <a href="{{ previousPost.url }}">{{ previousPost.data.title }}</a>
-				</li>
-			{% endif %}
-			{%- if nextPost %}
-				<li>Next: <a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a>
-				</li>
-			{% endif %}
-		</ul>
-	{%- endif %}
-{%- endif %}
+  {{ content | safe }}
+
+  {%- if collections.posts %}
+    {%- set previousPost = collections.posts | getPreviousCollectionItem %}
+    {%- set nextPost = collections.posts | getNextCollectionItem %}
+    {%- if nextPost or previousPost %}
+      <ul class="links-nextprev">
+        {%- if previousPost %}
+          <li>Previous: <a href="{{ previousPost.url }}">{{ previousPost.data.title }}</a>
+          </li>
+        {% endif %}
+        {%- if nextPost %}
+          <li>Next: <a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a>
+          </li>
+        {% endif %}
+      </ul>
+    {%- endif %}
+  {%- endif %}
+</article>
