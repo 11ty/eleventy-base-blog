@@ -24,12 +24,7 @@ I hope to continue making these shorts both for satisfying ideas I've had in the
 
 ## _Funeral Parade of Roses_
 
-<figure>
-    <lite-vimeo videoid="457926908" style="background-image: url('https://i.vimeocdn.com/video/810965406.webp?mw=1370&mh=1000&q=70'); aspect-ratio: 1.37/1;">
-        <div class="ltv-playbtn"></div>
-    </lite-vimeo>
-    <figcaption><cite>Funeral Parade of Roses</cite></figcaption>
-</figure>
+{% figure "https://vimeo.com/457926908", "Funeral Parade of Roses", "1.37/1" %}
 
 One of my favorite films that I've seen over the last few years, and beyond that, is the first feature length film by art-house director Toshio Matsumoto. The film was firmly situated in the [Japanese New Wave](https://en.wikipedia.org/wiki/Japanese_New_Wave) led by the Art Theatre Guild production company. To say that _Funeral Parade of Roses_ is unlike most films is an understatement. Without giving too much away, Roses follows the life of Peter, a young transvestite (or more likely transgender, in a modern context) through the underground gay scene of 1960's Tokyo.
 
@@ -39,12 +34,7 @@ For Roses, I ended up landing on a an artist I had been introduced to by the dir
 
 ## _Suspiria_
 
-<figure>
-    <lite-vimeo videoid="471716567" style="background-image: url('https://i.vimeocdn.com/video/810965406.webp?mw=2350&mh=1000&q=70'); aspect-ratio: 2.35/1;">
-        <div class="ltv-playbtn"></div>
-    </lite-vimeo>
-    <figcaption><cite>Suspiria</cite></figcaption>
-</figure>
+{% figure "https://vimeo.com/471716567", "Suspiria", "2.35/1" %}
 
 _Suspiria_ was a film that I had wanted to see for a while. An Italian film with an American lead actress and casting from both Italy and Germany, it was quite an ambitious project and one where many of the actors simply spoke in their native language to be overdubbed. But besides the logistics, _Suspiria_ is known as a staple of the euro-horror genre.
 

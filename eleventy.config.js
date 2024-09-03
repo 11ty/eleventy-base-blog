@@ -125,7 +125,7 @@ module.exports = async function (eleventyConfig) {
 
 	eleventyConfig.addShortcode(
 		"figure",
-		function (src, caption, width = "100%") {
+		function (src, caption, aspectRatio = "16/9") {
 			if (src.includes("youtube.com") || src.includes("youtu.be")) {
 				const url = new URL(src);
 				const videoId =
@@ -141,14 +141,22 @@ module.exports = async function (eleventyConfig) {
 				</lite-youtube>
 				<figcaption>${caption}</figcaption>
 			</figure>`;
+			} else if (src.includes("vimeo.com")) {
+				const videoId = src.split("/").pop();
+				return `<figure>
+				<lite-vimeo videoid="${videoId}" style="aspect-ratio: ${aspectRatio};">
+					<div class="ltv-playbtn"></div>
+				</lite-vimeo>
+				<figcaption>${caption}</figcaption>
+			</figure>`;
+			} else {
+				const isVideo = /\.(mp4|webm|ogg)$/i.test(src);
+				const element = isVideo
+					? `<video src="${src}" style="aspect-ratio: ${aspectRatio};" controls>Your browser does not support the video tag.</video>`
+					: `<img src="${src}" style="aspect-ratio: ${aspectRatio};" alt="${caption}" />`;
+
+				return `<figure>${element}<figcaption>${caption}</figcaption></figure>`;
 			}
-
-			const isVideo = /\.(mp4|webm|ogg)$/i.test(src);
-			const element = isVideo
-				? `<video src="${src}" width="${width}" controls>Your browser does not support the video tag.</video>`
-				: `<img src="${src}" width="${width}" alt="${caption}" />`;
-
-			return `<figure>${element}<figcaption>${caption}</figcaption></figure>`;
 		},
 	);
 

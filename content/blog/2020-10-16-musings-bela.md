@@ -29,22 +29,11 @@ In addition to my personal interest in finding an artistic meeting point between
 
 The first of these was [Alvin Lucier's](https://en.wikipedia.org/wiki/Alvin_Lucier) "Music for Solo Performer" (1965) which was a landmark piece not only for its use of an EEG but sonification generally. Lucier had mapped the voltage potential from his electrodes into low-frequency tones that were able to excite percussive instruments in front of him.
 
-<figure>
-    <lite-youtube videoid="bIPU2ynqy2Y" style="background-image: url('https://i.ytimg.com/vi/bIPU2ynqy2Y/hqdefault.jpg');" title="Alvin Lucier's Music for Solo Performer (1965)">
-        <a href="https://youtube.com/watch?v=bIPU2ynqy2Y" class="lty-playbtn" title="Alvin Lucier's Music for Solo Performer (1965)">
-            <span class="lyt-visually-hidden">Alvin Lucier's Music for Solo Performer (1965)</span>
-        </a>
-    </lite-youtube>
-</figure>
+{% figure "https://youtube.com/watch?v=bIPU2ynqy2Y", "Alvin Lucier's Music for Solo Performer (1965)" %}
 
 The second performance that offered insights into using EEG's in a sonic environment was Ouzounian et al.'s Music for Sleeping & Waking Minds (2011-2012). In their piece, they asked a group of participants to wear EEG sensors as they spent a night in a collective slumber. Over the course of the night, their brain waves (in passing through the various oscillatory states of sleep) were represented in sound and light.
 
-<figure>
-    <div class="iframe-wrapper">
-        <iframe src="https://player.vimeo.com/video/30261043?byline=0&portrait=0" width="560" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-    <figcaption>Participants sleeping for Music for Sleeping & Waking Minds (2011-2012)</figcaption>
-</figure>
+{% figure "https://vimeo.com/30261043", "Participants sleeping for Music for Sleeping & Waking Minds (2011-2012)" %}
 
 In addition to these, there were a number of other interesting takes on EEG sonification such as [MoodMixer](http://graceleslie.com/MoodMixer) (Leslie and Mullen, 2011), a collaborative installation where two participants navigate a shared musical space via EEG as represented by a 2D visual space. Another implementation comes from the [Multimodal Brain Orchestra](https://www.researchgate.net/publication/209435991_Disembodied_and_Collaborative_Musical_Interaction_in_the_Multimodal_Brain_Orchestra) (Le Grouz et al., 2010), a collection of musicians whose sheet music was generated on the spot as a product from a reading of their collective cognitive response. And recently, [Chris Chafe](https://www.youtube.com/watch?v=n0T2uB-GLc8) worked on sonification of seizure data recorded from EEGs, providing an illumination of hidden neural activity.
 
