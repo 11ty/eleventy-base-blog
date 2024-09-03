@@ -21,7 +21,7 @@
         {% else %}
             {% set itemList = collections.all | eleventyNavigation %}
             {% for item in itemList %}
-                <a href="{{ item.url }}" style="text-decoration: none;">{{ item.title }}</a>{% if not loop.last %}&nbsp;-&nbsp;{% endif %}
+                <a href="{{ item.url }}" style="text-decoration: none;">{{ item.title }}</a>{% if not loop.last %} •{%endif%}
             {% endfor %}
         {% endif %}
     </div>

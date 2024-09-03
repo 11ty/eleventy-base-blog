@@ -107,7 +107,8 @@ main {
 }
 
 /* Add soft corners to images */
-img {
+img,
+video {
 	border-radius: 0.5em;
 }
 
@@ -143,6 +144,7 @@ p:last-child {
 .links-nextprev {
 	padding: 1em 0;
 	border-top: 1px dashed var(--color-gray-20);
+	margin-top: 1em;
 	list-style: none;
 }
 
@@ -363,6 +365,7 @@ figure > * {
 }
 
 figcaption {
+	margin-top: 0.5em;
 	color: var(--color-gray-20);
 	text-align: center;
 }
@@ -476,7 +479,7 @@ header {
 }
 
 .side-nav {
-	display: inherit;
+	display: flex;
 }
 
 .theme-toggle {
@@ -614,7 +617,7 @@ header {
 	}
 	/* Mobile */
 	.nav-phrase {
-		display: inherit;
+		display: inline-block;
 	}
 
 	body {

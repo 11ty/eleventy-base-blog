@@ -20,7 +20,7 @@ module.exports = async function (eleventyConfig) {
 	const { default: pluginDrafts } = await import("./eleventy.config.drafts.js");
 	const { default: pluginImages } = await import("./eleventy.config.images.js");
 
-	// const getSVGPathForLetter = await import('./public/js/sound_letters/svg-converter.js');
+	// const getSVGPathForLetter = await import('./public/js/sound-letters/svg-converter.js');
 
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`

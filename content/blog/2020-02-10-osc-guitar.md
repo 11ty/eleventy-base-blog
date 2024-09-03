@@ -51,12 +51,7 @@ Two mechanisms were created to trigger a bang from a strum using the phone. The 
 
 Unfortunately, one of the first issues I recognized was the latency that appeared from communicating over the local network. The latency was also inconsistent as well as the message rate that was being received (not to mention messages dropped). There were some moments where the speed and response of the OSC messages was incredibly fast and at other times inoperably slow. Because of this, a good portion of my time was spent finding threshold values and averages that catered to the message rate and latency. There is also the issue of this configuration being device dependent. Different smartphones will likely have different sensor hardware, sensor names, ranges, rates, etc. so this patch is certain to need some configuring in each case. The initial goal of this project was to build the app in Pd and afterwards "simply and easily" port it over to the [MobMuPlat](https://danieliglesia.com/mobmuplat/) application for Android and iOS. However, this app does not appear to read the necessary sensor data natively and there do not appear to be alternatives in hosting Pd patches on Android. For the time being, this patch will have to be hosted on a remote computer and receive OSC messages from a device connected to the same network.
 
-<figure>
-    <div class="iframe-wrapper pb-169">
-        <iframe src="https://drive.google.com/file/d/1QV9hIkVoMbOr3DCNpR-IlDPX7_Y8l3zE/preview" frameborder="0" allowfullscreen="true" alt="Video demo of the OSC functionality"></iframe>
-    </div>
-    <figcaption>Video demo of the OSC functionality - credit: Thomas Anda</figcaption>
-</figure>
+{% figure "vid/osc-guitar.mp4", "Video demo of the OSC functionality - credit: Thomas Anda" %}
 
 The audio within the video was recorded internally (oddly the pops only appeared after video editing - my computer was struggling with that fabulous transition).
 

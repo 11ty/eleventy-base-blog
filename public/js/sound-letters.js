@@ -1,8 +1,8 @@
 // SoundLetters.js
-import { AudioEngine } from "./sound_letters/audio-engine.js";
-import { FrequencyManager } from "./sound_letters/frequency-manager.js";
-import { VoiceManager } from "./sound_letters/voice-manager.js";
-import { RotationManager } from "./sound_letters/rotation-manager.js";
+import { AudioEngine } from "./sound-letters/audio-engine.js";
+import { FrequencyManager } from "./sound-letters/frequency-manager.js";
+import { VoiceManager } from "./sound-letters/voice-manager.js";
+import { RotationManager } from "./sound-letters/rotation-manager.js";
 
 class SoundLetters {
 	constructor() {
