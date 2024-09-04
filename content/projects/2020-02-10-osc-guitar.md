@@ -61,12 +61,12 @@ My project's code can be found [here](https://github.com/jacksongoode/osc-guitar
 
 ## Works Cited
 
-Iglesia, Daniel. _Monkeyswarm/MobMuPlat_. 2013. 2020. GitHub, <https://github.com/monkeyswarm/MobMuPlat>.
+{% cite "Iglesia, Daniel", 2020, "Monkeyswarm/MobMuPlat", "https://github.com/monkeyswarm/MobMuPlat" %}
 
-_MobMuPlat - Mobile Music Platform_. <https://danieliglesia.com/mobmuplat/>. Accessed 7 Feb. 2020.
+{% cite "MobMuPlat", 2020, "Mobile Music Platform", "https://danieliglesia.com/mobmuplat/" %}
 
-_Plucked String Digital Waveguide Model_. <https://ccrma.stanford.edu/realsimple/waveguideintro/>. Accessed 7 Feb. 2020.
+{% cite "CCRMA", 2020, "Plucked String Digital Waveguide Model", "https://ccrma.stanford.edu/realsimple/waveguideintro/" %}
 
-_SensorApps/Sensors2OSC_. 2014. SensorApps, 2020. GitHub, <https://github.com/SensorApps/Sensors2OSC>.
+{% cite "SensorApps", 2020, "SensorApps/Sensors2OSC", "https://github.com/SensorApps/Sensors2OSC" %}
 
-_Sensors2OSC - Sensors2_. <https://sensors2.org/osc/>. Accessed 7 Feb. 2020.
+{% cite "Sensors2", 2020, "Sensors2OSC", "https://sensors2.org/osc/" %}

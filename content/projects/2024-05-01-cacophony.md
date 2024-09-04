@@ -2,13 +2,11 @@
 title: "Sound Pedro 2024: Cacophony"
 date: 2024-05-01
 headerImage: false
-projects: true
 tag:
   - spatial-audio
   - psychoacoustics
   - performance
   - audio
-category: major
 author: jackson
 description: "A sonic installation exploring live networked media for Sound Pedro 2024"
 emoji: 💥

@@ -88,10 +88,10 @@ You can find the code [here](https://github.com/jacksongoode/breathingthroughmax
     <figcaption>A demo of the system using pre-recorded data</figcaption>
 </figure>
 
-# Works Cited
+## Works Cited
 
-_Breathing in Music: Measuring and Marking Time – Finn Upham_. <https://finnupham.com/2016/10/17/breathing-in-music-making-time-in-music-2016/>. Accessed 27 May 2020.
+{% cite "Upham, Finn", 2016, "Breathing in Music: Measuring and Marking Time", "https://finnupham.com/2016/10/17/breathing-in-music-making-time-in-music-2016/" %}
 
-Siwiak, Diana, et al. _Catch Your Breath - Musical Biofeedback for Breathing Regulation_. Audio Engineering Society, 2009. www.aes.org, <http://www.aes.org/e-lib/online/browse.cfm?elib=15065>.
+{% cite "Siwiak, Diana, et al.", 2009, "Catch Your Breath - Musical Biofeedback for Breathing Regulation", "http://www.aes.org/e-lib/online/browse.cfm?elib=15065" %}
 
-Sutarto, Auditya Purwandini, et al. ‘Resonant Breathing Biofeedback Training for Stress Reduction Among Manufacturing Operators’. _International Journal of Occupational Safety and Ergonomics_, vol. 18, no. 4, Taylor & Francis, Jan. 2012, pp. 549–61. _Taylor and Francis+NEJM_, doi:10.1080/10803548.2012.11076959.
+{% cite "Sutarto, Auditya Purwandini, et al.", 2012, "Resonant Breathing Biofeedback Training for Stress Reduction Among Manufacturing Operators", "https://doi.org/10.1080/10803548.2012.11076959" %}

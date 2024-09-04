@@ -11,7 +11,7 @@ layout: layouts/base.njk
     <li>
       <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
     </li>
-    {%- for tag in tags | filterTagList %}
+    {%- for tag in tags %}
       {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
       <li>
         <a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>
@@ -22,9 +22,10 @@ layout: layouts/base.njk
 
   {{ content | safe }}
 
-  {%- if collections.posts %}
-    {%- set previousPost = collections.posts | getPreviousCollectionItem %}
-    {%- set nextPost = collections.posts | getNextCollectionItem %}
+  {%- if collections.posts or collections.projects %}
+    {%- set collection = collections.posts if tags.includes("posts") else collections.projects %}
+    {%- set previousPost = collection | getPreviousCollectionItem %}
+    {%- set nextPost = collection | getNextCollectionItem %}
     {%- if nextPost or previousPost %}
       <ul class="links-nextprev">
         {%- if previousPost %}

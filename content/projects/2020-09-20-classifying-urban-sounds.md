@@ -5,11 +5,11 @@ image: /img/markdown.jpg
 headerImage: false
 projects: true
 tag:
-    - machine learning
-    - urbansound8k
-    - neural network
-    - cnn
-    - classification
+  - machine learning
+  - urbansound8k
+  - neural network
+  - cnn
+  - classification
 category: audio
 author: jackson
 description: "This experiment explores augmenting the UrbanSound8K database to test a well performing CNN architecture in a multi-label, multi-class scenario"
@@ -134,20 +134,20 @@ Code and instructions for setting up this project can be found [here](https://gi
 
 ## References
 
-1. Abdoli, S., Cardinal, P., & Koerich, A. L. (2019). End-to-End Environmental Sound Classification using a 1D Convolutional Neural Network. ArXiv:1904.08990 [Cs, Stat]. <http://arxiv.org/abs/1904.08990>
+{% cite "Abdoli, S., Cardinal, P., & Koerich, A. L.", 2019, "End-to-End Environmental Sound Classification using a 1D Convolutional Neural Network", "http://arxiv.org/abs/1904.08990" %}
 
-2. Mushtaq, Z., & Su, S.-F. (2020). Environmental sound classification using a regularized deep convolutional neural network with data augmentation. Applied Acoustics, 167, 107389. <https://doi.org/10.1016/j.apacoust.2020.107389>
+{% cite "Mushtaq, Z., & Su, S.-F.", 2020, "Environmental sound classification using a regularized deep convolutional neural network with data augmentation", "https://doi.org/10.1016/j.apacoust.2020.107389" %}
 
-3. Piczak, K. J. (2020). Karolpiczak/ESC-50 [Python]. <https://github.com/karolpiczak/ESC-50> (Original work published 2015)
+{% cite "Piczak, K. J.", 2020, "Karolpiczak/ESC-50", "https://github.com/karolpiczak/ESC-50" %}
 
-4. Piczak, K. J. (2015a). Environmental sound classification with convolutional neural networks. 2015 IEEE 25th International Workshop on Machine Learning for Signal Processing (MLSP), 1–6. <https://doi.org/10.1109/MLSP.2015.7324337>
+{% cite "Piczak, K. J.", 2015, "Environmental sound classification with convolutional neural networks", "https://doi.org/10.1109/MLSP.2015.7324337" %}
 
-5. Piczak, K. J. (2015b). ESC: Dataset for Environmental Sound Classification. Proceedings of the 23rd ACM International Conference on Multimedia, 1015–1018. <https://doi.org/10.1145/2733373.2806390>
+{% cite "Piczak, K. J.", 2015, "ESC: Dataset for Environmental Sound Classification", "https://doi.org/10.1145/2733373.2806390" %}
 
-6. Saeed, A. (n.d.). Urban Sound Classification, Part 2. Retrieved 18 September 2020, from <http://aqibsaeed.github.io/2016-09-24-urban-sound-classification-part-2/>
+{% cite "Saeed, A.", 2020, "Urban Sound Classification, Part 2", "http://aqibsaeed.github.io/2016-09-24-urban-sound-classification-part-2/" %}
 
-7. Aaqib. (2020). Aqibsaeed/Urban-Sound-Classification [Jupyter Notebook]. <https://github.com/aqibsaeed/Urban-Sound-Classification> (Original work published 2016)
+{% cite "Aaqib", 2020, "Aqibsaeed/Urban-Sound-Classification", "https://github.com/aqibsaeed/Urban-Sound-Classification" %}
 
-8. Su, Y., Zhang, K., Wang, J., & Madani, K. (2019). Environment Sound Classification Using a Two-Stream CNN Based on Decision-Level Fusion. Sensors, 19(7), 1733. <https://doi.org/10.3390/s19071733>
+{% cite "Su, Y., Zhang, K., Wang, J., & Madani, K.", 2019, "Environment Sound Classification Using a Two-Stream CNN Based on Decision-Level Fusion", "https://doi.org/10.3390/s19071733" %}
 
-9. UrbanSound8K. (n.d.). Urban Sound Datasets. Retrieved 23 August 2020, from <https://urbansounddataset.weebly.com/urbansound8k.html>
+{% cite "UrbanSound8K", 2020, "Urban Sound Datasets", "https://urbansounddataset.weebly.com/urbansound8k.html" %}

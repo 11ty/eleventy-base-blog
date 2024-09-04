@@ -27,18 +27,15 @@
 		1.5px 19.3px 20.3px -3px hsl(var(--shadow-color) / 0.1);
 }
 
-:root[data-theme="dark"] {
+/* Both for system and user preference */
+:root[data-theme="dark"],
+.dark-mode {
 	color-scheme: dark;
 	--color-bg: black;
 	--color-gray-20: #cccccc;
 	--color-gray-50: #808080;
 	--color-gray-90: #1a1a1a;
 	--noise-opacity: 0.1;
-}
-.dark-mode {
-	--color-gray-20: #cccccc;
-	--color-gray-50: #808080;
-	--color-gray-90: #1a1a1a;
 }
 
 @font-face {
@@ -106,24 +103,14 @@ main {
 	}
 }
 
-/* Add soft corners to images */
-img,
-video {
-	border-radius: 0.5em;
-}
-
 /* Typography */
 h1,
 h2,
 h3,
 .letter {
 	font-family: "Switzer";
-}
-
-h1 {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.25em;
+	text-wrap: balance;
+	width: fit-content;
 }
 
 /* https://www.a11yproject.com/posts/how-to-hide-content/ */
@@ -215,6 +202,8 @@ nav {
 	list-style: none;
 	padding: 0;
 }
+
+/* Each item in a po */
 .postlist-item {
 	position: relative;
 	display: flex;
@@ -222,35 +211,60 @@ nav {
 	align-items: baseline;
 	padding-left: 1.5em; /* Add left padding to make room for the arrow */
 	margin-bottom: 1em;
-}
-.postlist-item::before {
-	content: "\2192"; /* Default to arrow */
-	position: absolute;
-	top: 0.2em;
-	left: 0;
-	margin-right: 0.5em;
-	color: var(--color-gray-20);
-	transition: all 0.5s ease-out;
-	filter: saturate(100%);
-	transform: scale(1);
-}
-.postlist-item[data-emoji]::before {
-	content: attr(data-emoji);
-}
-.postlist-item::before {
-	transition: all 0.5s ease-out;
-}
-.postlist-item:hover::before,
-.postlist-item:focus-within::before {
-	animation: pulseSat 2s linear infinite;
+
+	&::before {
+		content: "\2192"; /* Default to arrow */
+		position: absolute;
+		top: 0.2em;
+		left: 0;
+		margin-right: 0.5em;
+		color: var(--color-gray-20);
+		transition: all 0.5s ease-out;
+		filter: saturate(100%);
+		transform: scale(1);
+	}
+
+	&[data-emoji]::before {
+		content: attr(data-emoji);
+	}
+
+	&:hover::before,
+	&:focus-within::before {
+		animation: pulseSat 2s linear infinite;
+	}
+
+	&:not(:hover)::before {
+		animation: none;
+		filter: saturate(100%);
+		transform: scale(1);
+	}
+
+	.postlist-date::after {
+		content: attr(data-tooltip);
+		position: absolute;
+		overflow: hidden;
+		max-width: calc(100% - 12em);
+		padding-left: 1em;
+		color: var(--color-gray-20);
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		opacity: 0;
+		visibility: hidden;
+		transition:
+			opacity 0.3s ease,
+			visibility 0.3s ease;
+	}
+
+	&:has(.postlist-link:hover) .postlist-date::after {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	&-active .postlist-link {
+		font-weight: bold;
+	}
 }
 
-.postlist-item:not(:hover)::before {
-	animation: none;
-	filter: saturate(100%);
-	transform: scale(1);
-	transition: all 0.5s ease-out;
-}
 @keyframes pulseSat {
 	0%,
 	50%,
@@ -279,34 +293,6 @@ nav {
 	text-underline-position: from-font;
 	text-underline-offset: 0;
 	text-decoration-thickness: 1px;
-}
-.postlist-item {
-	position: relative;
-}
-
-.postlist-item .postlist-date::after {
-	content: attr(data-tooltip);
-	position: absolute;
-	overflow: hidden;
-	max-width: calc(100% - 12em);
-	padding-left: 1em;
-	color: var(--color-gray-20);
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	opacity: 0;
-	visibility: hidden;
-	transition:
-		opacity 0.3s ease,
-		visibility 0.3s ease;
-}
-
-.postlist-item:has(.postlist-link:hover) .postlist-date::after {
-	opacity: 1;
-	visibility: visible;
-}
-
-.postlist-item-active .postlist-link {
-	font-weight: bold;
 }
 
 /* Tags */
@@ -358,10 +344,16 @@ h2 + .header-anchor {
 	font-size: 1.5em;
 }
 
-/* Starting custom */
+/* Figures */
 figure > * {
 	max-width: 100%;
 	margin: 0 auto;
+}
+
+/* All images & videos should be in a figure */
+figure :first-child {
+	border-radius: 0.5em;
+	box-shadow: var(--shadow-elevation-medium);
 }
 
 figcaption {
@@ -406,25 +398,17 @@ blockquote {
 		margin-top: -7.5px;
 		border-left-color: ButtonFace;
 	}
-}
 
-/* Only do nav switch on wide screens */
-@media (min-width: 840px) {
-	.nav-bubble {
-		&:where(.chat-active) {
-			left: calc(50% + 200px);
-			width: calc(640px - 200px);
-		}
-
-		&:where(.chat-active) > * {
-			display: block;
-		}
+	/* Reset position when chat is active */
+	&:where(.chat-active) {
+		transform: none;
 	}
 }
 
 /* Talk bubble movement */
 header {
-	--item-top: 12px;
+	/* We need to add 1 to the active item to account for the first item */
+	--item-top: calc(12px + var(--nav-item-active, 1) * var(--nav-item-height));
 	--item-rot: 0deg;
 	--nav-item-height: 32px;
 
@@ -461,9 +445,10 @@ header {
 }
 
 .side-nav {
+	display: flex;
 	justify-content: center;
 	width: 100%;
-	margin-right: 2.25em;
+	padding-right: 2.25em;
 }
 
 .nav-list {
@@ -476,10 +461,6 @@ header {
 	text-align: right;
 	list-style: none;
 	padding-inline-start: 0;
-}
-
-.side-nav {
-	display: flex;
 }
 
 .theme-toggle {
@@ -609,6 +590,22 @@ header {
 	display: inline-block;
 }
 
+/* Only do nav switch on wide screens */
+@media (min-width: 840px) {
+	.nav-bubble {
+		&:where(.chat-active) {
+			/* left: calc(50% + 200px); */
+			left: calc(200px + 1em);
+			/* width: calc(640px - 200px); */
+			width: calc(640px - 4em - 2.25em);
+		}
+
+		&:where(.chat-active) > * {
+			display: block;
+		}
+	}
+}
+
 /* For mobile view */
 @media (max-width: 839px) {
 	/* Switch side nav off */
@@ -656,6 +653,7 @@ header {
 	.nav-bubble {
 		position: relative;
 		left: initial;
+		transform: none; /* Reset the transform */
 	}
 }
 
@@ -706,9 +704,9 @@ header {
 	}
 
 	html::-webkit-scrollbar {
+		display: none; /* Chrome, Safari, and Opera */
 		width: 0;
 		height: 0;
-		display: none; /* Chrome, Safari, and Opera */
 	}
 
 	.progress-bar {
@@ -722,4 +720,14 @@ header {
 			transform: scaleY(1);
 		}
 	}
+}
+
+.citation {
+	margin-bottom: 1em;
+	padding-left: 2em;
+	text-indent: -2em;
+}
+
+.citation p {
+	margin: 0;
 }

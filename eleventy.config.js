@@ -160,6 +160,10 @@ module.exports = async function (eleventyConfig) {
 		},
 	);
 
+	eleventyConfig.addShortcode("cite", function (author, year, title, url) {
+		return `<p class="citation">${author}. (${year}). <em>${title}</em>. Retrieved from <a href="${url}">${url}</a></p>`;
+	});
+
 	// Features to make your build faster (when you need them)
 
 	// If your passthrough copy gets heavy and cumbersome, add this line

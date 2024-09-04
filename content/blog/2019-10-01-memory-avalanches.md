@@ -48,22 +48,22 @@ The conversation that exists when watching "The Was" connects the information we
 
 _Wildflower_ and "The Was" exemplify the power of re-contextualization as an apparatus of art making and the cognitive mechanisms able to form and reform rich personal memories. Experienced as a single modality, music provides more than enough sensory information (especially for musicians) that can drive us back to the moments and sentiments we've shared with the sound over our life. But once we add a secondary sensory experience, one as stimulating as video, we face a cross-modal event. Music videos and audiovisual projects alike arrange complex and disruptive encounters that seek to reorder and enhance the multimedia experience through our own involvement in the assimilation of audio/visual stimuli and sentimentality.
 
-#### Works Cited
+## Works Cited
 
-Davies, John Booth. _The Psychology of Music_. Stanford University Press, 1978.
+{% cite "Davies, John Booth", 1978, "The Psychology of Music", "" %}
 
-Groussard, Mathilde, et al. "When Music and Long-Term Memory Interact: Effects of Musical Expertise on Functional and Structural Plasticity in the Hippocampus." _PLOS ONE_, vol. 5, no. 10, Oct. 2010, p. e13225. _PLoS Journals_, doi:10.1371/journal.pone.0013225.
+{% cite "Groussard, Mathilde, et al.", 2010, "When Music and Long-Term Memory Interact: Effects of Musical Expertise on Functional and Structural Plasticity in the Hippocampus", "https://doi.org/10.1371/journal.pone.0013225" %}
 
-Koelsch, Stefan. "Toward a Neural Basis of Music Perception – A Review and Updated Model." _Frontiers in Psychology_, vol. 2, 2011. _Frontiers_, doi:10.3389/fpsyg.2011.00110.
+{% cite "Koelsch, Stefan", 2011, "Toward a Neural Basis of Music Perception – A Review and Updated Model", "https://doi.org/10.3389/fpsyg.2011.00110" %}
 
-Koelsch, Stefan. "Towards a Neural Basis of Processing Musical Semantics." _Physics of Life Reviews_, vol. 8, no. 2, June 2011, pp. 89–105. _ScienceDirect_, doi:10.1016/j.plrev.2011.04.004.
+{% cite "Koelsch, Stefan", 2011, "Towards a Neural Basis of Processing Musical Semantics", "https://doi.org/10.1016/j.plrev.2011.04.004" %}
 
-_Since I Left You_. Elektra / Wea, 2001.
+{% cite "Elektra / Wea", 2001, "Since I Left You", "" %}
 
-Snyder, Bob. _Music and Memory: An Introduction_. MIT Press, 2001.
+{% cite "Snyder, Bob", 2001, "Music and Memory: An Introduction", "" %}
 
-_The Was (2016)_. _YouTube_, <https://www.youtube.com/watch?v=3VN93T7m0-U>. Accessed 4 Oct. 2019.
+{% cite "YouTube", 2016, "The Was", "https://www.youtube.com/watch?v=3VN93T7m0-U" %}
 
-Vickhoff, Björn. _A Perspective Theory of Music Perception and Emotion_. 2008. _gupea.ub.gu.se_, <https://gupea.ub.gu.se/handle/2077/9604>.
+{% cite "Vickhoff, Björn", 2008, "A Perspective Theory of Music Perception and Emotion", "https://gupea.ub.gu.se/handle/2077/9604" %}
 
-_Wildflower_. Astralwerks, 8 July 2016.
+{% cite "Astralwerks", 2016, "Wildflower", "" %}

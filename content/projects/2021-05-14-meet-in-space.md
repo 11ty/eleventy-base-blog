@@ -15,11 +15,9 @@ description: "Teleconferencing in spatial audio with the help of Jitsi Meet and 
 emoji: 🪐
 ---
 
-# Meet in Space
+# Meet in Space: Video Conferencing in Spatial Audio
 
-## Video Conferencing in Spatial Audio
-
-### Abstract
+## Abstract
 
 Digital communications technologies have developed at an increasingly rapid pace, with the COVID-19 pandemic accelerating its recent adoption. This shift over the last few decades has seen a mass migration online, where utilities like video conferencing software have become essential to entire industries and institutions. Yet, there are clear limitations with this new digital work space - most of which exist from the nuance of natural communication. My master's thesis for the Music, Communications and Technology program at the University of Oslo and Norwegian University of Science and Technology proposes the integration of binaural spatialized audio within a web-based video conferencing platform for small-group, distributed conversations. The proposed system builds upon findings on the benefits of spatial audio in video conferencing platforms and is guided by the tenets of telepresence. The developed implementation is based on Jitsi Meet, a robust open-source conferencing system. It localizes participant’s voices through sound spatialization methods provided by the Web Audio API, a modern library in JavaScript for complex audio manipulation on the web.
 
@@ -70,18 +68,13 @@ To achieve spatial audio, the only current possibility for high-fidelity reprodu
 
 With this, I integrated dynamic, toggle-able, spatial audio for each participant audio stream in a meeting. The voices of the participants appear coherent with the video streams as participants appear and disappear.
 
-<figure>
-    <lite-vimeo videoid="548286337" style="background-image: url('https://i.vimeocdn.com/video/810965406.webp?mw=1920&mh=1080&q=70'); aspect-ratio: 16/9;">
-        <div class="ltv-playbtn"></div>
-    </lite-vimeo>
-    <figcaption><a href="https://vimeo.com/548286337">Demo of Meet in Space</a></figcaption>
-</figure>
+{% figure "https://vimeo.com/548286337", "Demo of Meet in Space", "16/9" %}
 
 ## Validating with a User Study
 
 After a technical evaluation of the system suggested its ability to scale at least to 5 concurrent participants, I ran a user study consisting of students from MCT as well as other's who were experienced with conferencing on a daily basis. The experiment consisted of a brief conversation among 4 users, with and without spatial audio. The results, while preliminary, were promising and appear to support previous findings in the literature.
 
-There was support for four hypothesis of perceived metrics:
+There was support for four hypotheses of perceived metrics:
 
 - Decreased cognitive effort
 - Increased social presence
