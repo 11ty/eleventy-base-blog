@@ -597,7 +597,7 @@ header {
 	.nav-bubble {
 		&:where(.chat-active) {
 			/* left: calc(50% + 200px); */
-			left: calc(200px + 1em);
+			left: calc(200px);
 			/* width: calc(640px - 200px); */
 			width: calc(640px - 4em - 2.25em);
 		}
