@@ -24,13 +24,13 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0-beta.1",
-    "@11ty/eleventy-img": "^3.1.8",
+    "@11ty/eleventy-img": "^4.0.2",
     "@11ty/eleventy-navigation": "^0.3.5",
-    "@11ty/eleventy-plugin-bundle": "^1.0.5",
-    "@11ty/eleventy-plugin-rss": "^1.2.0",
+    "@11ty/eleventy-plugin-bundle": "^2.0.2",
+    "@11ty/eleventy-plugin-rss": "^2.0.2",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "luxon": "^3.5.0",
-    "markdown-it-anchor": "^8.6.7"
+    "markdown-it-anchor": "^9.1.0"
   },
   "dependencies": {
     "@11tyrocks/eleventy-plugin-lightningcss": "^1.4.0",
