@@ -345,11 +345,13 @@ h2 + .header-anchor {
 }
 
 /* Figures */
+figure {
+	margin: 1em 0;
+}
 figure > * {
 	max-width: 100%;
 	margin: 0 auto;
 }
-
 /* All images & videos should be in a figure */
 figure :first-child {
 	border-radius: 0.5em;
