@@ -1,8 +1,3 @@
-const isDevelopment =
-	window.location.hostname === "localhost" ||
-	window.location.hostname === "127.0.0.1";
-const baseUrl = isDevelopment ? "http://localhost:8090" : "";
-
 // Generate a random user ID if not already stored
 function getUserId() {
 	let userId = localStorage.getItem("userId");
@@ -14,6 +9,11 @@ function getUserId() {
 }
 
 function sendMessageToWorker(message) {
+	const isDevelopment =
+		window.location.hostname === "localhost" ||
+		window.location.hostname === "127.0.0.1";
+	const baseUrl = isDevelopment ? "http://localhost:8090" : "";
+
 	const isDarkMode =
 		document.documentElement.getAttribute("data-theme") === "dark";
 	const animalParam = isDarkMode ? "frog" : "chicken";
@@ -67,22 +67,70 @@ document.addEventListener("DOMContentLoaded", function () {
 	function activateChatInterface() {
 		navPhrase.innerHTML = `
 			<form id="chat-form">
-				<input type="text" id="user-input" placeholder="Type your message...">
+				<input type="text" id="user-input" placeholder="Type your message or search...">
 				<button type="submit" style="display:none;">Send</button>
 			</form>
+			<div id="search-results"></div>
 		`;
-		document.getElementById("user-input").focus();
+		const userInput = document.getElementById("user-input");
+		userInput.focus();
+
+		const searchResults = document.getElementById("search-results");
+		let pagefind;
+
+		userInput.addEventListener("input", async function () {
+			if (!pagefind) {
+				pagefind = await import("/pagefind/pagefind.js");
+				await pagefind.options({
+					element: "#search-results",
+					excerptLength: 15,
+					highlightParam: "highlight",
+				});
+				await pagefind.init();
+			}
+
+			const query = userInput.value.trim();
+			if (query.length > 2) {
+				const search = await pagefind.search(query);
+				const results = await Promise.all(search.results.map((r) => r.data()));
+
+				if (results.length > 0) {
+					searchResults.innerHTML = results
+						.map(
+							(result) => `
+							<a href="${result.url}" class="search-result">
+								<div class="search-result-title">${result.meta.title || "Untitled"}</div>
+								<p>${result.excerpt}</p>
+							</a>
+						`,
+						)
+						.join("");
+					talkBubble.classList.add("chat-active");
+				} else {
+					searchResults.innerHTML = "";
+				}
+			} else {
+				searchResults.innerHTML = "";
+			}
+		});
 
 		document
 			.getElementById("chat-form")
 			.addEventListener("submit", function (e) {
 				e.preventDefault();
-				const userInput = document.getElementById("user-input");
 				if (userInput.value.trim() !== "") {
 					sendMessageToWorker(userInput.value.trim());
 					userInput.value = "";
+					searchResults.innerHTML = "";
 				}
 			});
+
+		// Add event listener for escape key to reset chat interface
+		userInput.addEventListener("keydown", function (e) {
+			if (e.key === "Escape") {
+				resetChatInterface();
+			}
+		});
 	}
 
 	function handleChatTrigger() {

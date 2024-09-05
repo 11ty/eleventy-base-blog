@@ -2,6 +2,7 @@
 
 /** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
 module.exports = async function (eleventyConfig) {
+	const pagefind = await import("pagefind");
 	const { DateTime } = await import("luxon");
 	const { default: markdownItAnchor } = await import("markdown-it-anchor");
 
@@ -26,6 +27,7 @@ module.exports = async function (eleventyConfig) {
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig.addPassthroughCopy({
 		"./public/": "/",
+		"_site/pagefind": "pagefind",
 	});
 
 	// eleventyConfig.addJavaScriptFunction("getSVGPathForLetter", getSVGPathForLetter);
@@ -171,6 +173,29 @@ module.exports = async function (eleventyConfig) {
 	// https://www.11ty.dev/docs/copy/#emulate-passthrough-copy-during-serve
 
 	// eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
+
+	eleventyConfig.on("eleventy.after", async () => {
+		process.stdout.write("Running Pagefind...");
+		try {
+			const { index } = await pagefind.createIndex({
+				rootSelector: "main",
+				forceLanguage: "en",
+				verbose: false,
+			});
+			await index.addDirectory({
+				path: "_site",
+			});
+			await index.writeFiles({
+				outputPath: "_site/pagefind",
+			});
+			process.stdout.write(" indexing complete.\n");
+		} catch (error) {
+			console.error("Pagefind error:", error);
+		} finally {
+			await pagefind.close();
+		}
+	});
+	eleventyConfig.addPassthroughCopy("_site/pagefind");
 
 	return {
 		// Control which files Eleventy will process

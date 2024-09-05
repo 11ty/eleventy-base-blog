@@ -397,11 +397,9 @@ blockquote {
 	&:after {
 		content: "";
 		position: absolute;
-		top: 50%;
 		right: -7.5px;
 		border: 7.5px solid transparent;
 		border-right: 0;
-		margin-top: -7.5px;
 		border-left-color: ButtonFace;
 	}
 
@@ -425,6 +423,7 @@ header {
 	width: 200px;
 	height: 100vh;
 	padding: 1em;
+	z-index: 1; /* Ensure the header is above other elements */
 
 	&:not(:has(+ .chat-active)) {
 		&:has(.nav-item:nth-child(n):hover) {
@@ -473,6 +472,7 @@ header {
 	position: relative;
 	right: -2em;
 	margin-left: auto;
+	align-self: flex-start;
 }
 
 .nav-bubble,
@@ -582,6 +582,7 @@ header {
 	background: none;
 	color: gray;
 	cursor: pointer;
+	align-self: flex-start;
 }
 
 /* Add shadow to nav bubble */
@@ -728,6 +729,7 @@ header {
 	}
 }
 
+/* Citation */
 .citation {
 	padding-left: 2em;
 	margin-bottom: 1em;
@@ -735,5 +737,43 @@ header {
 }
 
 .citation p {
+	margin: 0;
+}
+
+/* Search results */
+#search-results {
+	overflow-y: auto;
+	max-height: 50vh;
+}
+#search-results:has(.search-result) {
+	border-top: 1px solid var(--color-gray-90);
+}
+
+.search-result {
+	--border-width: 0px;
+	display: block;
+	padding: 0.5em 1em;
+	border-bottom: 1px solid var(--color-gray-90);
+	text-decoration: none;
+	color: inherit;
+	background: linear-gradient(var(--color-gray-50), var(--color-gray-50))
+		left/var(--border-width) 100% no-repeat;
+	transition: 0.3s ease;
+	transition-property: background-size, background-color;
+}
+
+.search-result:hover {
+	--border-width: 3px;
+	background-color: var(--color-gray-90);
+}
+
+.search-result a {
+	color: var(--color-gray-20);
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.search-result p {
+	color: var(--color-gray-50);
 	margin: 0;
 }

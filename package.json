@@ -35,6 +35,7 @@
   "dependencies": {
     "@11tyrocks/eleventy-plugin-lightningcss": "^1.4.0",
     "@elemaudio/core": "^3.2.1",
-    "@elemaudio/web-renderer": "^3.2.3"
+    "@elemaudio/web-renderer": "^3.2.3",
+    "pagefind": "^1.1.1"
   }
 }
