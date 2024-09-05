@@ -37,6 +37,10 @@
 
 
 /* Global stylesheet */
+@view-transition {
+	navigation: auto;
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -227,6 +231,7 @@ header {
 	text-underline-offset: 0;
 	text-decoration-thickness: 1px;
 }
+
 .postlist-item-active .postlist-link {
 	font-weight: bold;
 }
