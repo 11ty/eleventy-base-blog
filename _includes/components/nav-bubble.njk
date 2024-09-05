@@ -20,9 +20,7 @@
             <span>{{ navPhrase | replace("{}", itemList | trim) | safe }}</span>
         {% else %}
             {% set itemList = collections.all | eleventyNavigation %}
-            {% for item in itemList %}
-                <a href="{{ item.url }}" style="text-decoration: none;">{{ item.title }}</a>{% if not loop.last %} •{%endif%}
-            {% endfor %}
+            {% for item in itemList %}<a href="{{ item.url }}" style="text-decoration: none;">{{ item.title }}</a>{% if not loop.last %}&emsp;{% endif %}{% endfor %}
         {% endif %}
     </div>
     <form method="post" id="theme-form" class="theme-toggle">

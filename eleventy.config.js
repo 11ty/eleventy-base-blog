@@ -153,7 +153,7 @@ module.exports = async function (eleventyConfig) {
 				const isVideo = /\.(mp4|webm|ogg)$/i.test(src);
 				const element = isVideo
 					? `<video src="${src}" style="aspect-ratio: ${aspectRatio};" controls>Your browser does not support the video tag.</video>`
-					: `<img src="${src}" style="aspect-ratio: ${aspectRatio};" alt="${caption}" />`;
+					: `<img src="/img/${src}" style="aspect-ratio: ${aspectRatio};" alt="${caption}" />`;
 
 				return `<figure>${element}<figcaption>${caption}</figcaption></figure>`;
 			}

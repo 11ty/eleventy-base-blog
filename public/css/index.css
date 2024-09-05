@@ -354,7 +354,7 @@ figure > * {
 }
 /* All images & videos should be in a figure */
 figure :first-child {
-	border-radius: 0.5em;
+	border-radius: 0.25em;
 	box-shadow: var(--shadow-elevation-medium);
 }
 
@@ -412,7 +412,7 @@ header {
 	/* We need to add 1 to the active item to account for the first item */
 	--item-top: calc(12px + var(--nav-item-active, 1) * var(--nav-item-height));
 	--item-rot: 0deg;
-	--nav-item-height: 32px;
+	--nav-item-height: 36px;
 
 	position: sticky;
 	top: 0;
@@ -683,7 +683,7 @@ header {
 
 /* Spotify widget */
 .spotify-widget img {
-	border-radius: 0.5em;
+	border-radius: 0.25em;
 	box-shadow: var(--shadow-elevation-medium);
 }
 

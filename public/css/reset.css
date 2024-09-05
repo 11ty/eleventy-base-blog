@@ -8,7 +8,7 @@
 	box-sizing: border-box;
 }
 * {
-	line-height: calc(1em + 0.5rem);
+	line-height: calc(1em + 0.725rem);
 	margin: 0;
 }
 body {
