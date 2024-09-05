@@ -22,7 +22,7 @@
 		#}
 
 		{#- Add an arbitrary string to the bundle #}
-		{%- css %}* { box-sizing: border-box; }{% endcss %}
+		{%- css %}/* This is an arbitrary CSS string added to the bundle */{% endcss %}
 		{#- Add the contents of a file to the bundle #}
 		{%- css %}{% include "public/css/index.css" %}{% endcss %}
 		{#- Or add from node_modules #}
