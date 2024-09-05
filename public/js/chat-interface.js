@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	function activateChatInterface() {
 		navPhrase.innerHTML = `
 			<form id="chat-form">
-				<input type="text" id="user-input" placeholder="Type your message or search...">
+				<input type="text" id="user-input" placeholder="Search... or say hi?">
 				<button type="submit" style="display:none;">Send</button>
 			</form>
 			<div id="search-results"></div>

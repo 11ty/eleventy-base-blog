@@ -25,6 +25,7 @@
 		0.5px 5.7px 6px -1.8px hsl(var(--shadow-color) / 0.11),
 		0.9px 10.9px 11.5px -2.4px hsl(var(--shadow-color) / 0.11),
 		1.5px 19.3px 20.3px -3px hsl(var(--shadow-color) / 0.1);
+	--nav-height: 4em; /* Default height to lower for header*/
 }
 
 /* Both for system and user preference */
@@ -183,11 +184,7 @@ code {
 /* Nav */
 nav {
 	position: relative;
-	display: flex;
-	align-items: baseline;
 	width: 100%;
-	padding: 0;
-	margin: 0;
 	list-style: none;
 }
 .nav-item {
@@ -388,18 +385,31 @@ blockquote {
 	align-items: center;
 	width: calc(100% - 2.5em);
 	padding: 0.25em;
+	border: 1px solid var(--color-gray-90);
 	margin: 0;
 	background: ButtonFace;
 	transition: all 0.3s ease;
 	transform: translateY(calc(var(--item-top) - 12px));
 	border-radius: 0.25em;
 
+	&:before,
 	&:after {
 		content: "";
 		position: absolute;
+		top: 10px;
 		right: -7.5px;
-		border: 7.5px solid transparent;
+		width: 0;
+		height: 0;
+		border: 8px solid transparent;
 		border-right: 0;
+	}
+
+	&:before {
+		right: -9px;
+		border-left-color: var(--color-gray-90);
+	}
+
+	&:after {
 		border-left-color: ButtonFace;
 	}
 
@@ -417,13 +427,13 @@ header {
 	--nav-item-height: 36px;
 
 	position: sticky;
+	z-index: 1; /* Ensure the header is above other elements */
 	top: 0;
 	justify-content: end;
 	align-items: start;
 	width: 200px;
 	height: 100vh;
 	padding: 1em;
-	z-index: 1; /* Ensure the header is above other elements */
 
 	&:not(:has(+ .chat-active)) {
 		&:has(.nav-item:nth-child(n):hover) {
@@ -470,9 +480,9 @@ header {
 
 .theme-toggle {
 	position: relative;
-	right: -2em;
-	margin-left: auto;
+	right: -2.25em;
 	align-self: flex-start;
+	margin-left: auto;
 }
 
 .nav-bubble,
@@ -577,12 +587,12 @@ header {
 .chat-reset {
 	position: relative;
 	display: none;
+	align-self: flex-start;
 	padding: 0 0.5em;
 	border: none;
 	background: none;
 	color: gray;
 	cursor: pointer;
-	align-self: flex-start;
 }
 
 /* Add shadow to nav bubble */
@@ -636,18 +646,13 @@ header {
 	}
 	main {
 		max-width: initial;
-
-		&:where(.chat-active) {
-			margin-top: 0;
-		}
+		margin-top: var(--nav-height);
 	}
 
 	header {
-		position: relative;
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		width: initial;
+		position: absolute;
+		width: 100%;
+		max-width: 640px;
 		height: initial;
 		padding-bottom: 0;
 		gap: 1em 0.5em;
@@ -747,6 +752,7 @@ header {
 }
 #search-results:has(.search-result) {
 	border-top: 1px solid var(--color-gray-90);
+	margin-top: 0.25em;
 }
 
 .search-result {
@@ -754,10 +760,10 @@ header {
 	display: block;
 	padding: 0.5em 1em;
 	border-bottom: 1px solid var(--color-gray-90);
-	text-decoration: none;
-	color: inherit;
 	background: linear-gradient(var(--color-gray-50), var(--color-gray-50))
 		left/var(--border-width) 100% no-repeat;
+	color: inherit;
+	text-decoration: none;
 	transition: 0.3s ease;
 	transition-property: background-size, background-color;
 }
@@ -769,11 +775,11 @@ header {
 
 .search-result a {
 	color: var(--color-gray-20);
-	text-decoration: none;
 	font-weight: bold;
+	text-decoration: none;
 }
 
 .search-result p {
-	color: var(--color-gray-50);
 	margin: 0;
+	color: var(--color-gray-50);
 }
