@@ -35,15 +35,15 @@
 	},
 	"homepage": "https://github.com/11ty/eleventy-base-blog#readme",
 	"devDependencies": {
-		"@11ty/eleventy": "^3.0.0-beta.1",
+		"@11ty/eleventy": "3.0.0-alpha.19",
 		"@11ty/eleventy-img": "5.0.0-beta.9",
 		"@11ty/eleventy-navigation": "^0.3.5",
 		"@11ty/eleventy-plugin-rss": "^2.0.2",
 		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
 		"cross-env": "^7.0.3",
-		"luxon": "^3.4.4",
+		"luxon": "^3.5.0",
 		"zod": "^3.23.8",
-		"zod-validation-error": "^3.3.0"
+		"zod-validation-error": "^3.3.1"
 	},
 	"dependencies": {
 		"@zachleat/heading-anchors": "^1.0.1"
