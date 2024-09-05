@@ -79,7 +79,7 @@ Parameters that were previously provided by Saeed needed to be adjusted consider
 
 Another major change concerned the end of the network, where predictions and evaluations are made on the training data. The final dense layer was set to the softmax activation function which was [inappropriate for a non-exclusive multi-label scenario](https://glassboxmedicine.com/2019/05/26/classification-sigmoid-vs-softmax/). The softmax function outputs probabilities for classes that sum to one, making it impossible for multiple classes to reach a binary activation. In this case, sigmoid offers probability distributions that are unconstrained, enabling multiple classes to reach binary classification.
 
-{% figure "https://miro.medium.com/max/1268/1*-fADiyqSH9AHPPO7VB4XaQ.png", "Applications of softmax vs. sigmoid - [Credit to Ashis Parajuli](https://medium.com/aidevnepal/for-sigmoid-funcion-f7a5da78fec2)" %}
+{% figure "https://miro.medium.com/max/1268/1*-fADiyqSH9AHPPO7VB4XaQ.png", "Applications of softmax vs. sigmoid - Credit to Ashis Parajuli" %}
 
 In parallel, the loss function needed to be changed from categorical cross entropy to binary cross-entropy for this binary data.
 
