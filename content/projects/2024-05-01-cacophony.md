@@ -41,7 +41,7 @@ The hours preparing before Sound Pedro were just as frantic as it was the first 
 
 I was happy when my friends quietly appeared in the stream of visitors.
 
-{% figure "/vid/surprise.jpg", "Me, surprised" %}
+{% figure "surprise.jpg", "Me, surprised" %}
 
 ## After the noise
 

@@ -37,7 +37,7 @@ Most of these apps transmit their sensor data over a UDP connection using the OS
 To work around this, I wrote a python script that acted as a node to receive, format the stream into proper OSC messages, and finally, send the data locally to a specified port within Max. The script operated by receiving a row of data, splitting the list of data points into an array, and then sending each index of the array as a pair with a specified OSC message. I used the messages “/x”, “/y”, and “/z” as shorthand for the x, y, z, acceleration data. Once this was passed into Max, the data was able to be handled the same way as any other OSC message.
 
 {% figure
-    "/img/breathing-code.png",
+    "breathing-code.png",
     "Sample of the code used to transport the messages into Max"
 %}
 
@@ -46,7 +46,7 @@ After some initial testing of various sensors and positions during recording, I 
 Reading the CSV data into Max was achieved by loading each line of the CSV as a text file from which I could use a [metro] object to iterate through the [coll] dictionary that stored the sensor data ([I stole this bit of Max data](https://cycling74.com/forums/importing-from-excel-csv-questions/)). From Max, I could visualize the data stream easily using a [multislider] window. I then set out to smooth this data through a variety of techniques. I found that a reliable method of smoothing the noisy data was to create a buffer of the last x number of samples (with [zl.stream]) and then output the mean ([mean]) of that sliding window. The larger the number of samples, the smoother the data, yet this stunts some of the local dynamics within the stream and creates latency. After exploring further I found a 3rd party object [dot.denoise.sliding] that includes better logic for excluding outliers within streams.
 
 {% figure
-    "/img/breathing-noisey.png",
+    "breathing-noisey.png",
     "Before and after de-noising the stream",
     "20px"
 %}
@@ -54,7 +54,7 @@ Reading the CSV data into Max was achieved by loading each line of the CSV as a 
 This returns to an observation I noticed when looking at sensor data. I noticed that one of the gyroscope sensors also was repeating in a rhythmic pattern, but much faster and pronounced than breathing should be. I realized that these were pronounced fulgurations of my heartbeat and that these impulses were actually affecting the accelerometer sensor data I was analyzing from the y-axis.
 
 {% figure
-    "/img/breathing-gyro.png",
+    "breathing-gyro.png",
     "Notice the fast paced impulses from the gyroscope sensor",
     "600px"
 %}
@@ -66,7 +66,7 @@ I tried number of techniques to suppress the improper max/mins that would appear
 I further enhanced this solution by making the distance dynamically shift by an average of the distance between the last five maxes and mins.
 
 {% figure
-    "/img/breathing-distance.png",
+    "breathing-distance.png",
     "Gating the frequent max/mins",
     "540px"
 %}
