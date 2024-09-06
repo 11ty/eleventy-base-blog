@@ -93,14 +93,14 @@ main {
 	width: 100%;
 	max-width: 40em;
 	padding: 1em;
-	transition: margin 0.3s ease; /* Smooth transition for margin change in chat-active state */
 
 	& :first-child {
 		margin-top: 0;
 	}
 
+	/* Add a smargin for when chat bubble is absolute */
 	&:where(.chat-active) {
-		margin-top: 3em;
+		margin-top: 2em;
 	}
 }
 
@@ -589,6 +589,7 @@ header {
 	box-shadow: var(--shadow-elevation-low);
 }
 .nav-bubble.chat-active {
+	position: absolute;
 	box-shadow: var(--shadow-elevation-medium);
 }
 
@@ -607,7 +608,7 @@ header {
 		}
 
 		&:where(.chat-active) > * {
-			display: block;
+			display: inline-block;
 		}
 	}
 }
@@ -618,6 +619,7 @@ header {
 	.side-nav {
 		display: none;
 	}
+
 	/* Mobile */
 	.nav-phrase {
 		display: inline-block;
@@ -629,17 +631,18 @@ header {
 		padding: 0;
 		margin: 0 auto;
 	}
+
 	.layout-wrapper {
 		display: initial;
 		max-width: initial;
 	}
+
 	main {
 		max-width: initial;
-		margin-top: var(--nav-height);
 	}
 
 	header {
-		position: absolute;
+		position: relative;
 		width: 100%;
 		max-width: 640px;
 		height: initial;
