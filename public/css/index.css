@@ -43,7 +43,7 @@
 	font-family: "Switzer";
 	src: url("/font/Switzer-Variable.woff2") format("woff2");
 	font-weight: 500;
-	font-display: optional;
+	font-display: swap;
 	/* font-variation-settings: "wght" 400; */
 }
 @font-face {
@@ -55,7 +55,7 @@
 		url("/font/Rag-Italic.woff2") format("woff2"),
 		url("/font/Rag-Bold.woff2") format("woff2"),
 		url("/font/Rag-BoldItalic.woff2") format("woff2");
-	font-display: optional;
+	font-display: swap;
 }
 
 /* Global stylesheet */
@@ -388,7 +388,7 @@ blockquote {
 	border: 1px solid var(--color-gray-90);
 	margin: 0;
 	background: ButtonFace;
-	transition: all 0.3s ease;
+	transition: transform 0.3s ease;
 	transform: translateY(calc(var(--item-top) - 12px));
 	border-radius: 0.25em;
 
@@ -423,7 +423,6 @@ blockquote {
 header {
 	/* We need to add 1 to the active item to account for the first item */
 	--item-top: calc(12px + var(--nav-item-active, 1) * var(--nav-item-height));
-	--item-rot: 0deg;
 	--nav-item-height: 36px;
 
 	position: sticky;
@@ -439,7 +438,6 @@ header {
 		&:has(.nav-item:nth-child(n):hover) {
 			--n: var(--n);
 			--item-top: calc(12px + (var(--n) - 1) * var(--nav-item-height));
-			--item-rot: calc((var(--n) % 2 * 2 - 1) * 15deg);
 		}
 		&:has(.nav-item:nth-child(1):hover) {
 			--n: 1;
@@ -483,20 +481,11 @@ header {
 	right: -2.25em;
 	align-self: flex-start;
 	margin-left: auto;
-}
-
-.nav-bubble,
-.theme-toggle {
-	transition: all 0.3s ease;
-}
-
-.theme-toggle {
-	transform: rotate(var(--item-rot));
+	transition: transform 0.3s ease;
 }
 
 #chat-toggle {
 	cursor: pointer;
-	transition: all 0.3s ease;
 }
 
 /* Dark mode toggle styles */
