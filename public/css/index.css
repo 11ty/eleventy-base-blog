@@ -41,9 +41,10 @@
 
 @font-face {
 	font-family: "Switzer";
-	src: url("/font/Switzer-Variable.woff2") format("woff2");
+	src: url("/font/Switzer-Variable-S.woff2") format("woff2");
 	font-weight: 500;
 	font-display: swap;
+	unicode-range: U+0020-007F;
 	/* font-variation-settings: "wght" 400; */
 }
 @font-face {
@@ -51,11 +52,12 @@
 	font-style: normal italic;
 	font-weight: 400;
 	src:
-		url("/font/Rag-Regular.woff2") format("woff2"),
+		url("/font/Rag-Regular-S.woff2") format("woff2"),
 		url("/font/Rag-Italic.woff2") format("woff2"),
 		url("/font/Rag-Bold.woff2") format("woff2"),
 		url("/font/Rag-BoldItalic.woff2") format("woff2");
 	font-display: swap;
+	unicode-range: U+0020-007F;
 }
 
 /* Global stylesheet */
@@ -98,9 +100,9 @@ main {
 		margin-top: 0;
 	}
 
-	/* Add a smargin for when chat bubble is absolute */
+	/* Add a margin for when chat bubble is absolute */
 	&:where(.chat-active) {
-		margin-top: 2em;
+		margin-top: 3em;
 	}
 }
 
@@ -639,6 +641,13 @@ header {
 
 	main {
 		max-width: initial;
+
+		/* Add a margin for when chat bubble is absolute */
+		/* Right now we have header relative with 1em top margin */
+		/* TODO: There's definitely some better way to handle this */
+		&:where(.chat-active) {
+			margin-top: 2em;
+		}
 	}
 
 	header {
