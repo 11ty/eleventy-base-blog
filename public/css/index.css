@@ -59,9 +59,6 @@
 }
 
 /* Global stylesheet */
-html {
-	overflow-x: hidden;
-}
 html,
 body {
 	width: 100%;
@@ -70,6 +67,7 @@ body {
 	background-color: transparent;
 	color: CanvasText;
 	font-family: var(--font-family);
+	overflow-x: hidden;
 }
 body {
 	/* transition:
