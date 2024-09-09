@@ -7,7 +7,8 @@
     "start": "bunx @11ty/eleventy --serve --quiet",
     "debug": "DEBUG=Eleventy* bunx @11ty/eleventy",
     "debugstart": "DEBUG=Eleventy* bunx @11ty/eleventy --serve --quiet",
-    "benchmark": "DEBUG=Eleventy:Benchmark* bunx @11ty/eleventy"
+    "benchmark": "DEBUG=Eleventy:Benchmark* bunx @11ty/eleventy",
+    "cloudflare": "pipx install fonttools && bunx @11ty/eleventy"
   },
   "repository": {
     "type": "git",
