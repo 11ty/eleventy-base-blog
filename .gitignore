@@ -3,3 +3,4 @@ _site/
 _resources/
 node_modules/
 package-lock.json
+public/font/*.subset.*

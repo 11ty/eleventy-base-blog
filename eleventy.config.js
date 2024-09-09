@@ -27,7 +27,7 @@ module.exports = async function (eleventyConfig) {
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig.addPassthroughCopy({
 		"./public/": "/",
-		"_site/pagefind": "pagefind",
+		"/_site/pagefind": "pagefind",
 	});
 
 	// eleventyConfig.addJavaScriptFunction("getSVGPathForLetter", getSVGPathForLetter);
@@ -63,7 +63,6 @@ module.exports = async function (eleventyConfig) {
 				"./public/font/Rag-Bold.woff2",
 				"./public/font/Rag-BoldItalic.woff2",
 			],
-			dist: "./_site/font/",
 			// enabled: process.env.ELEVENTY_ENV !== 'production'
 		},
 	);
@@ -180,7 +179,7 @@ module.exports = async function (eleventyConfig) {
 				const imgSrc = isUrl ? src : `/img/${src}`;
 				const element = isVideo
 					? `<video src="${src}" style="aspect-ratio: ${aspectRatio};" controls>Your browser does not support the video tag.</video>`
-					: `<img src="${imgSrc}" alt="${caption}" />`;
+					: `<img src="${imgSrc}" alt="${caption}" loading="lazy" decoding="async" />`;
 
 				return `<figure>${element}<figcaption>${caption}</figcaption></figure>`;
 			}
@@ -228,7 +227,6 @@ module.exports = async function (eleventyConfig) {
 			await pagefind.close();
 		}
 	});
-	eleventyConfig.addPassthroughCopy("_site/pagefind");
 
 	return {
 		// Control which files Eleventy will process
