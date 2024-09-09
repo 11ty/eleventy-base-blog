@@ -41,7 +41,7 @@
 
 @font-face {
 	font-weight: 500;
-	src: url("/font/subset/Switzer-Variable.subset.woff2") format("woff2");
+	src: url("font/Switzer-Variable.subset.woff2") format("woff2");
 	font-family: "Switzer";
 	font-display: swap;
 	/* font-variation-settings: "wght" 400; */
@@ -50,10 +50,10 @@
 	font-style: normal italic;
 	font-weight: 400;
 	src:
-		url("/font/subset/Rag-Regular.subset.woff2") format("woff2"),
-		url("/font/subset/Rag-Italic.subset.woff2") format("woff2"),
-		url("/font/subset/Rag-Bold.subset.woff2") format("woff2"),
-		url("/font/subset/Rag-BoldItalic.subset.woff2") format("woff2");
+		url("font/Rag-Regular.subset.woff2") format("woff2"),
+		url("font/Rag-Italic.subset.woff2") format("woff2"),
+		url("font/Rag-Bold.subset.woff2") format("woff2"),
+		url("font/Rag-BoldItalic.subset.woff2") format("woff2");
 	font-family: "Rag";
 	font-display: swap;
 }

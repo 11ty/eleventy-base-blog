@@ -63,7 +63,7 @@ module.exports = async function (eleventyConfig) {
 				"./public/font/Rag-Bold.woff2",
 				"./public/font/Rag-BoldItalic.woff2",
 			],
-			dist: "./public/font/subset",
+			dist: "./_site/font/",
 			// enabled: process.env.ELEVENTY_ENV !== 'production'
 		},
 	);
