@@ -13,8 +13,6 @@ emoji: 💥
 navPhrase: "Sound can be cool and distressing - there's also {}?"
 ---
 
-# Sound Pedro 2024
-
 This year I presented a sonic installation at Sound Pedro alongside a cohort of other artists presenting wacky and experimental audio works. Initially, I thought it would just make sense to write up a technical overview of my piece but the whole experience and very existence of Sound Pedro made me think it would be interesting to tell a story alongside the technical details.
 
 ## A little context
