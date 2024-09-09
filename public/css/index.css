@@ -58,7 +58,10 @@
 	font-display: swap;
 }
 
-/* Global stylesheet */
+/* Only set the overflow to the root */
+html {
+	overflow-x: hidden;
+}
 html,
 body {
 	width: 100%;
@@ -67,14 +70,8 @@ body {
 	background-color: transparent;
 	color: CanvasText;
 	font-family: var(--font-family);
-	overflow-x: hidden;
 }
 body {
-	/* transition:
-		color 0.1s,
-		background-color 0.1s; */
-	/* background-color: Canvas;
-		color: CanvasText; */
 	display: flex;
 	justify-content: center;
 	max-width: none;
