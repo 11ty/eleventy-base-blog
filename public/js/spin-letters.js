@@ -1,128 +1,104 @@
 const wordElement = document.querySelector(".word");
-const letterContainers = wordElement.querySelectorAll(".letter-container");
+const letterWrappers = wordElement.querySelectorAll(".letter-wrapper");
 
 const parentWidth = wordElement.offsetWidth;
-const numLetters = letterContainers.length;
+const parentHeight = wordElement.offsetHeight;
+const minGap = parentHeight * 0.75;
+const letterHeights = [];
+
+const numLetters = letterWrappers.length;
 const fixedWidth = parentWidth / (numLetters + 1);
 
-function hslToRgb(h, s, l) {
-    let r, g, b;
+const hslToRgb = (h, s, l) => {
+	const hue2rgb = (p, q, t) => {
+		if (t < 0) t += 1;
+		if (t > 1) t -= 1;
+		return t < 1 / 6
+			? p + (q - p) * 6 * t
+			: t < 1 / 2
+				? q
+				: t < 2 / 3
+					? p + (q - p) * (2 / 3 - t) * 6
+					: p;
+	};
+	const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+	const p = 2 * l - q;
+	return [h + 1 / 3, h, h - 1 / 3].map((t) =>
+		Math.round(hue2rgb(p, q, t) * 255),
+	);
+};
 
-    if (s === 0) {
-        r = g = b = l;
-    } else {
-        const hue2rgb = (p, q, t) => {
-            if (t < 0) t += 1;
-            if (t > 1) t -= 1;
-            if (t < 1 / 6) return p + (q - p) * 6 * t;
-            if (t < 1 / 2) return q;
-            if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-            return p;
-        };
+const rgbToHex = (r, g, b) =>
+	"#" + [r, g, b].map((x) => x.toString(16).padStart(2, "0")).join("");
 
-        const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-        const p = 2 * l - q;
-        r = hue2rgb(p, q, h + 1 / 3);
-        g = hue2rgb(p, q, h);
-        b = hue2rgb(p, q, h - 1 / 3);
-    }
+const generateColors = (numLetters) => {
+	const baseHue = Math.random();
+	return Array(numLetters)
+		.fill()
+		.map((_, i) => {
+			const [r, g, b] = hslToRgb((baseHue + i / numLetters) % 1, 0.4, 0.5);
+			const accent = [r, g, b].map((c) => Math.min(255, c + 30));
+			return {
+				primary: rgbToHex(r, g, b),
+				accent: rgbToHex(...accent),
+			};
+		});
+};
 
-    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+function getRandomHeight(index) {
+	const maxHeight = parentHeight;
+	let height = Math.floor(Math.random() * maxHeight);
+
+	if (index > 0) {
+		const prevHeight = letterHeights[index - 1];
+
+		if (Math.abs(height - prevHeight) < minGap) {
+			// Adjust height
+			if (height > prevHeight) {
+				height = Math.min(prevHeight + minGap, maxHeight);
+			} else {
+				height = Math.max(prevHeight - minGap, 0);
+			}
+		}
+	}
+
+	letterHeights.push(height);
+	return height;
 }
 
-function rgbToHex(r, g, b) {
-    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-}
-
-function hexToRgb(hex) {
-    const bigint = parseInt(hex.slice(1), 16);
-    return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
-}
-
-function generateColorPalette(baseHue, numColors = 5) {
-    const palette = [];
-    const saturation = 0.4;
-    const lightness = 0.5;
-
-    for (let i = 0; i < numColors; i++) {
-        const hue = (baseHue + i * (360 / numColors)) % 360;
-        const [r, g, b] = hslToRgb(hue / 360, saturation, lightness);
-        palette.push(rgbToHex(r, g, b));
-    }
-
-    return palette;
-}
-
-function generateColors(numLetters) {
-    const baseHue = Math.random() * 360;
-    const palette = generateColorPalette(baseHue, numLetters);
-
-    return palette.map((color) => {
-        const rgb = hexToRgb(color);
-        const accent = rgb.map((c) => Math.min(255, c + 30));
-        return {
-            primary: color,
-            accent: rgbToHex(...accent),
-        };
-    });
-}
+const getRandomRotate = () => Math.floor(Math.random() * 360);
 
 const colors = generateColors(numLetters);
-// const tallLetters = new Set(['b', 'd', 'f', 'h', 'k', 'l', 't', 'i']);
-// const dipLetters = new Set(['q', 'p', 'g', 'y']);
-// const uniqueLetters = new Set(['j'])
 
-letterContainers.forEach((container, index) => {
-    const letterWrapper = container.querySelector(".letter-wrapper");
-    const letter = container.querySelector(".letter");
-    const rand = Math.random();
+letterWrappers.forEach((wrapper, index) => {
+	const letter = wrapper.querySelector(".letter");
+	const rand = Math.random();
 
-    letter.style.setProperty("--random-delay", `${rand}s`);
-    letter.style.setProperty("--random-size", rand * 100);
+	letter.style.setProperty("--random-delay", `${rand}s`);
+	letter.style.setProperty("--random-size", rand * 100);
 
-    const height = getRandomHeight();
-    const rotation = getRandomRotate();
+	const height = getRandomHeight(index);
+	const rotation = getRandomRotate();
 
-    Object.assign(letterWrapper.style, {
-        top: `${height / 2}px`,
-    });
+	Object.assign(wrapper.style, {
+		top: `${height / 2}px`,
+	});
 
-    // Helper function to darken a color
-    function getDarkerColor(hex, factor) {
-        const rgb = hexToRgb(hex);
-        const darkerRgb = rgb.map(c => Math.max(0, Math.floor(c - c * factor)));
-        return `rgb(${darkerRgb.join(',')})`;
-    }
+	Object.assign(letter.style, {
+		textAlign: "center",
+		color: colors[index].accent,
+		WebkitTextStroke: `1px ${colors[index].primary}`,
+		textStroke: `1px ${colors[index].primary}`,
+		paintOrder: "stroke fill",
+	});
 
-    const primaryColor = colors[index].primary;
-    // const darkColor = getDarkerColor(primaryColor, 0.3);
+	letter.style.setProperty("--rotation", rotation);
+	letter.style.setProperty("--font-weight", "400");
 
-    Object.assign(letter.style, {
-        textAlign: "center",
-        color:  colors[index].accent,
-        WebkitTextStroke: `1px ${ colors[index].primary}`,
-        textStroke: `1px ${ colors[index].primary}`,
-        paintOrder: "stroke fill"
-
-    });
-
-    letter.style.setProperty('--rotation', rotation);
-    letter.style.setProperty('--font-weight', '400');
-
-    Object.assign(container.style, {
-        width: `${fixedWidth}px`,
-        display: "inline-block",
-        verticalAlign: "top",
-        marginLeft: index > 0 ? "0px" : "",
-    });
+	Object.assign(wrapper.style, {
+		width: `${fixedWidth}px`,
+		display: "inline-block",
+		verticalAlign: "top",
+		marginLeft: index > 0 ? "0px" : "",
+	});
 });
-
-
-// Helper functions
-function getRandomHeight() {
-    return Math.floor(Math.random() * (window.innerHeight / 1.5));
-}
-
-function getRandomRotate() {
-    return Math.floor(Math.random() * 360);
-}

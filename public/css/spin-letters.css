@@ -4,7 +4,7 @@
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
-	max-height: 100vh;
+	height: 600px;
 	text-align: center;
 	/* Prevent highlight */
 	user-select: none;
@@ -12,30 +12,24 @@
 	-webkit-user-select: none;
 }
 
-.letter-container {
-	position: relative;
-	display: flex;
-	flex: 1; /* Allow flex-grow to fill space equally */
-	justify-content: center;
-	align-items: center; /* Center align items horizontally */
-}
-
 .letter-wrapper {
+	height: 0; /* We don't want height */
 	position: relative;
 	display: flex;
+	flex: 1;
 	justify-content: center;
 	align-items: center; /* Center align items horizontally within the wrapper */
 }
 
 .letter {
-	position: relative; /* Enable relative positioning for random vertical offset */
+	position: absolute; /* Enable relative positioning for random vertical offset */
 	z-index: calc(1000 - var(--random-size));
 
 	/* Size and placement */
 	font-size: clamp(
-		32px,
+		4em,
 		calc(32px + (var(--random-size) * (50vw - 32px)) / 100),
-		512px
+		384px
 	);
 	cursor: pointer;
 	user-select: none;

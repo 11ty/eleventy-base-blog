@@ -41,10 +41,9 @@
 
 @font-face {
 	font-family: "Switzer";
-	src: url("/font/Switzer-Variable-S.woff2") format("woff2");
+	src: url("/font/Switzer-Variable.subset.woff2") format("woff2");
 	font-weight: 500;
 	font-display: swap;
-	unicode-range: U+0020-007F;
 	/* font-variation-settings: "wght" 400; */
 }
 @font-face {
@@ -52,12 +51,11 @@
 	font-style: normal italic;
 	font-weight: 400;
 	src:
-		url("/font/Rag-Regular-S.woff2") format("woff2"),
-		url("/font/Rag-Italic.woff2") format("woff2"),
-		url("/font/Rag-Bold.woff2") format("woff2"),
-		url("/font/Rag-BoldItalic.woff2") format("woff2");
+		url("/font/Rag-Regular.subset.woff2") format("woff2"),
+		url("/font/Rag-Italic.subset.woff2") format("woff2"),
+		url("/font/Rag-Bold.subset.woff2") format("woff2"),
+		url("/font/Rag-BoldItalic.subset.woff2") format("woff2");
 	font-display: swap;
-	unicode-range: U+0020-007F;
 }
 
 /* Global stylesheet */
@@ -783,4 +781,24 @@ header {
 .search-result p {
 	margin: 0;
 	color: var(--color-gray-50);
+}
+
+/* Post gradient title */
+.gradient-underline {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 10vh;
+	z-index: -1;
+	pointer-events: none;
+}
+
+.gradient-underline::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }

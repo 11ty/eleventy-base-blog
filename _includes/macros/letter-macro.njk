@@ -1,10 +1,8 @@
 {% macro seperated_letters(word) %}
   <div class="word">
     {% for letter in word %}
-      <div class="letter-container">
-        <div class="letter-wrapper">
-          <div class="letter">{{ letter }}</div>
-        </div>
+      <div class="letter-wrapper">
+        <div class="letter">{{ letter }}</div>
       </div>
     {% endfor %}
   </div>

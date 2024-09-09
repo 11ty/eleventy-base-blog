@@ -52,11 +52,30 @@ module.exports = async function (eleventyConfig) {
 	eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
 	eleventyConfig.addPlugin(pluginBundle);
 
-	// // LightningCSS plugin
-	// eleventyConfig.addPlugin(lightningCSS, {
-	// 	minify: true,
-	// 	// Add any other lightningCSS options you need
-	// });
+	// Auto font subsetting
+	eleventyConfig.addPlugin(
+		require("@photogabble/eleventy-plugin-font-subsetting"),
+		{
+			srcFiles: [
+				"./public/font/base/Switzer-Variable.woff2",
+				"./public/font/base/Rag-Regular.woff2",
+				"./public/font/base/Rag-Italic.woff2",
+				"./public/font/base/Rag-Bold.woff2",
+				"./public/font/base/Rag-BoldItalic.woff2",
+			],
+			dist: "./public/font",
+			// enabled: process.env.ELEVENTY_ENV !== 'production'
+		},
+	);
+
+	eleventyConfig.addFilter("cssmin", function (code) {
+		let { code: minifiedCode } = lightningcss.transform({
+			code: Buffer.from(code),
+			minify: true,
+			sourceMap: false,
+		});
+		return minifiedCode.toString();
+	});
 
 	// Watch CSS files for changes
 	eleventyConfig.addWatchTarget("public/css/**/*.css");
@@ -153,9 +172,11 @@ module.exports = async function (eleventyConfig) {
 			</figure>`;
 			} else {
 				const isVideo = /\.(mp4|webm|ogg)$/i.test(src);
+				const isUrl = /^https?:\/\//i.test(src);
+				const imgSrc = isUrl ? src : `/img/${src}`;
 				const element = isVideo
 					? `<video src="${src}" style="aspect-ratio: ${aspectRatio};" controls>Your browser does not support the video tag.</video>`
-					: `<img src="/img/${src}" style="aspect-ratio: ${aspectRatio};" alt="${caption}" />`;
+					: `<img src="${imgSrc}" alt="${caption}" />`;
 
 				return `<figure>${element}<figcaption>${caption}</figcaption></figure>`;
 			}

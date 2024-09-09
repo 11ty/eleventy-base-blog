@@ -30,12 +30,13 @@
     "@11ty/eleventy-plugin-rss": "^2.0.2",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "luxon": "^3.5.0",
-    "markdown-it-anchor": "^9.1.0"
+    "markdown-it-anchor": "^9.2.0"
   },
   "dependencies": {
     "@11tyrocks/eleventy-plugin-lightningcss": "^1.4.0",
     "@elemaudio/core": "^3.2.1",
     "@elemaudio/web-renderer": "^3.2.3",
+    "@photogabble/eleventy-plugin-font-subsetting": "^1.0.0",
     "pagefind": "^1.1.1"
   }
 }
