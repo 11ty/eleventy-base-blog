@@ -1,29 +1,32 @@
 .word {
-	position: relative;
-	z-index: 0;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
 	display: flex;
+	z-index: 0;
+	position: relative;
 	justify-content: space-between;
 	width: 100%;
-	height: 600px;
+	height: 50vh;
 	text-align: center;
 	/* Prevent highlight */
 	user-select: none;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
 }
 
 .letter-wrapper {
-	height: 0; /* We don't want height */
-	position: relative;
 	display: flex;
+	position: relative;
 	flex: 1;
-	justify-content: center;
 	align-items: center; /* Center align items horizontally within the wrapper */
+	justify-content: center;
+	height: 0; /* We don't want height */
 }
 
 .letter {
-	position: absolute; /* Enable relative positioning for random vertical offset */
 	z-index: calc(1000 - var(--random-size));
+	position: absolute; /* Enable relative positioning for random vertical offset */
+
+	/* Rotation based effects */
+	transform: rotate3d(0, 0, 1, calc(var(--rotation, 0) * 1deg));
 
 	/* Size and placement */
 	font-size: clamp(
@@ -31,20 +34,17 @@
 		calc(32px + (var(--random-size) * (50vw - 32px)) / 100),
 		384px
 	);
-	cursor: pointer;
-	user-select: none;
-	transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+	font-variation-settings: "wght" var(--font-weight, 400);
+	animation: fadeIn 0.3s ease-in forwards;
+	animation-delay: var(--random-delay);
 	mix-blend-mode: overlay;
+	cursor: pointer;
 
 	/* Fade in */
 	opacity: 0;
-	animation: fadeIn 0.3s ease-in forwards;
-	animation-delay: var(--random-delay);
-
-	/* Rotation based effects */
-	transform: rotate3d(0, 0, 1, calc(var(--rotation, 0) * 1deg));
-	font-variation-settings: "wght" var(--font-weight, 400);
+	transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
 	will-change: transform, font-variation-settings;
+	user-select: none;
 }
 
 .letter.spinning {
@@ -58,4 +58,13 @@
 	to {
 		opacity: 1;
 	}
+}
+
+.card {
+	position: relative;
+	padding: 1em;
+	border: 1px solid var(--color-gray-90);
+	border-radius: 0.25em;
+	background-color: color-mix(in srgb, Canvas 90%, transparent);
+	box-shadow: var(--shadow-elevation-medium);
 }
