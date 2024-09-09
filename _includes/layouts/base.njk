@@ -7,8 +7,8 @@
 		<meta name="description" content="{{ description or metadata.description }}">
 		<meta name="generator" content="{{ metadata.generator }}">
 
-		<link rel="preload" as="font" href="/font/Switzer-Variable.subset.woff2" crossorigin>
-		<link rel="preload" as="font" href="/font/Rag-Regular.subset.woff2" crossorigin>
+		<link rel="preload" as="font" href="/font/subset/Switzer-Variable.subset.woff2" crossorigin>
+		<link rel="preload" as="font" href="/font/subset/Rag-Regular.subset.woff2" crossorigin>
 
 		{#- Atom and JSON feeds included by default #}
 		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
@@ -22,6 +22,7 @@
 		{# Include YouTube embed CSS only for post layouts #}
 		{% if layout == "layouts/post.njk" %}
 			{% include "public/css/prism.css" %}
+			{% include "node_modules/lite-youtube-embed/src/lite-yt-embed.css" %}
 		{% endif %}
 
 		{# CSS for spin letters only on index #}
@@ -33,15 +34,23 @@
 		{%- js %}
 		{% include "public/js/theme-toggle.js" %}
 		{% include "public/js/chat-interface.js" %}
+
+		{% if layout == "layouts/post.njk" %}
+			{# Light embeds for YouTube & Vimeo #}
+			{% include "node_modules/lite-youtube-embed/src/lite-yt-embed.js" %}
+			{% include "node_modules/lite-vimeo-embed/lite-vimeo-embed.js" %}
+		{% endif %}
 		{% endjs %}
 
 		{#- Render the CSS bundle using Inlined CSS (for the fastest site performance in production) #}
 		<style>
 			{% getBundle "css" %}
 		</style>
+
 		{#- Renders the CSS bundle using a separate file, if you can't set CSP directive style-src: 'unsafe-inline' #}
 		{#- <link rel="stylesheet" href="{% getBundleFileUrl "css" %}"> #}
 	</head>
+
 	<body style="--nav-item-active: {{ eleventyNavigation.order | default(1) }};">
 		<div class="noise-container"></div>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
@@ -77,8 +86,3 @@
 <script defer>
 	{% getBundle "js" %}
 </script>
-
-{% if layout == "layouts/post.njk" %}
-	<script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.3/src/lite-yt-embed.js"></script>
-	<script type="module" src="https://cdn.jsdelivr.net/npm/lite-vimeo-embed/+esm" defer></script>
-{% endif %}

@@ -30,7 +30,7 @@
 
 	/* Size and placement */
 	font-size: clamp(
-		4em,
+		4rem,
 		calc(32px + (var(--random-size) * (50vw - 32px)) / 100),
 		384px
 	);
@@ -62,9 +62,9 @@
 
 .card {
 	position: relative;
-	padding: 1em;
+	padding: 1rem;
 	border: 1px solid var(--color-gray-90);
-	border-radius: 0.25em;
+	border-radius: 0.25rem;
 	background-color: color-mix(in srgb, Canvas 90%, transparent);
 	box-shadow: var(--shadow-elevation-medium);
 }

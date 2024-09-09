@@ -52,6 +52,6 @@ function applyTitleUnderline(titleElement, color) {
   titleElement.style.borderImage = gradientColor;
   titleElement.style.borderImageSlice = 1;
   titleElement.style.borderBottom = '2px solid';
-  titleElement.style.paddingBottom = '0.2em';
+  titleElement.style.paddingBottom = '0.2rem';
 }
 

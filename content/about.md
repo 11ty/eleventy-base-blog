@@ -6,6 +6,7 @@ eleventyNavigation:
   icon: user
 navPhrase: "Boring stuff, why don't you explore {}?"
 ---
+
 # About Me
 
 My name is Jackson. I was born in Charlotte, NC and studied at Occidental College in Los Angeles, CA where I graduated with a degree in cognitive science. I've completed a master's degree in music, communications and technology at the [University of Oslo](https://www.uio.no/english/studies/programmes/mct-master/). I currently work as a platform engineer at [nLine](https://nline.io/) where we evaluate improvements to the electrical grid of cities in Sub-Saharan Africa.
@@ -20,17 +21,21 @@ Here's what I've been listening to!
 
 And now, a brief attempt at marketing.
 
+## CV
+
+[Here's my online CV](/cv)
+
 ## Skills
 
 - Python
-- Terraform
-- SQL
 - HTML/CSS/JS
+- SQL
+- Terraform
 - Unix/Linux/Bash
 - Adobe Suite
-- Pure Data
 - Ableton Live
+- Pure Data
 
 ## Projects
 
-See the [projects]({{ site.url }}/projects) for some works I've completed or click on my name for some music!
+See the [projects]({{ site.url }}/projects) to check out some of the works I've completed or click on my name for some music!

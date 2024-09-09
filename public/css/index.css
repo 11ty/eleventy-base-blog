@@ -24,7 +24,7 @@
 		0.5px 5.7px 6px -1.8px hsl(var(--shadow-color) / 0.11),
 		0.9px 10.9px 11.5px -2.4px hsl(var(--shadow-color) / 0.11),
 		1.5px 19.3px 20.3px -3px hsl(var(--shadow-color) / 0.1);
-	--nav-height: 4em; /* Default height to lower for header*/
+	--nav-height: 4rem; /* Default height to lower for header*/
 	color-scheme: light dark;
 }
 
@@ -41,7 +41,7 @@
 
 @font-face {
 	font-weight: 500;
-	src: url("/font/Switzer-Variable.subset.woff2") format("woff2");
+	src: url("/font/subset/Switzer-Variable.subset.woff2") format("woff2");
 	font-family: "Switzer";
 	font-display: swap;
 	/* font-variation-settings: "wght" 400; */
@@ -50,10 +50,10 @@
 	font-style: normal italic;
 	font-weight: 400;
 	src:
-		url("/font/Rag-Regular.subset.woff2") format("woff2"),
-		url("/font/Rag-Italic.subset.woff2") format("woff2"),
-		url("/font/Rag-Bold.subset.woff2") format("woff2"),
-		url("/font/Rag-BoldItalic.subset.woff2") format("woff2");
+		url("/font/subset/Rag-Regular.subset.woff2") format("woff2"),
+		url("/font/subset/Rag-Italic.subset.woff2") format("woff2"),
+		url("/font/subset/Rag-Bold.subset.woff2") format("woff2"),
+		url("/font/subset/Rag-BoldItalic.subset.woff2") format("woff2");
 	font-family: "Rag";
 	font-display: swap;
 }
@@ -83,14 +83,14 @@ body {
 .layout-wrapper {
 	display: flex;
 	width: 100%;
-	max-width: calc(40em + 200px + 2em);
+	max-width: calc(40rem + 200px + 2rem);
 	min-height: 100vh;
 }
 
 main {
 	width: 100%;
-	max-width: 40em;
-	padding: 1em;
+	max-width: 40rem;
+	padding: 1rem;
 
 	& :first-child {
 		margin-top: 0;
@@ -98,11 +98,18 @@ main {
 
 	/* Add a margin for when chat bubble is absolute */
 	&:where(.chat-active) {
-		margin-top: 3em;
+		margin-top: 3rem;
 	}
 }
 
 /* Typography */
+h1,
+h2,
+h3 {
+	margin-top: 1.5rem;
+	margin-bottom: 1rem;
+}
+
 h1,
 h2,
 h3,
@@ -128,22 +135,22 @@ p:last-child {
 }
 
 .links-nextprev {
-	margin-top: 1em;
-	padding: 1em 0;
+	margin-top: 1rem;
+	padding: 1rem 0;
 	border-top: 1px dashed var(--color-gray-20);
 	list-style: none;
 }
 
 table {
-	margin: 1em 0;
+	margin: 1rem 0;
 }
 table td,
 table th {
-	padding-right: 1em;
+	padding-right: 1rem;
 }
 
 pre {
-	border-radius: 0.25em;
+	border-radius: 0.25rem;
 	box-shadow: var(--shadow-elevation-low);
 }
 pre,
@@ -155,7 +162,7 @@ pre:not([class*="language-"]) {
 	-o-tab-size: var(--syntax-tab-size);
 	-webkit-hyphens: none;
 	-ms-hyphens: none;
-	margin: 0.5em 0;
+	margin: 0.5rem 0;
 	line-height: 1.375; /* 22px /16 */
 	hyphens: none;
 	direction: ltr;
@@ -171,9 +178,9 @@ code {
 
 /* Header */
 .home-link {
-	margin-right: 2em;
+	margin-right: 2rem;
 	font-weight: 700;
-	font-size: 1em; /* 16px /16 */
+	font-size: 1rem; /* 16px /16 */
 }
 .home-link:link:not(:hover) {
 	text-decoration: none;
@@ -187,7 +194,7 @@ nav {
 }
 .nav-item {
 	display: inline-block;
-	padding: 0.25em 0;
+	padding: 0.25rem 0;
 }
 .nav-item a[href]:not(:hover) {
 	text-decoration: none;
@@ -208,14 +215,14 @@ nav {
 	position: relative;
 	flex-wrap: wrap;
 	align-items: baseline;
-	margin-bottom: 1em;
-	padding-left: 1.5em; /* Add left padding to make room for the arrow */
+	margin-bottom: 1rem;
+	padding-left: 1.5rem; /* Add left padding to make room for the arrow */
 
 	&::before {
 		position: absolute;
-		top: 0.2em;
+		top: 0.2rem;
 		left: 0;
-		margin-right: 0.5em;
+		margin-right: 0.5rem;
 		transform: scale(1);
 		content: "\2192"; /* Default to arrow */
 		color: var(--color-gray-20);
@@ -241,8 +248,8 @@ nav {
 	.postlist-date::after {
 		visibility: hidden;
 		position: absolute;
-		max-width: calc(100% - 12em);
-		padding-left: 1em;
+		max-width: calc(100% - 12rem);
+		padding-left: 1rem;
 		overflow: hidden;
 		content: attr(data-tooltip);
 		color: var(--color-gray-20);
@@ -282,13 +289,13 @@ nav {
 }
 .postlist-date {
 	color: var(--color-gray-20);
-	font-size: 0.8125em; /* 13px /16 */
+	font-size: 0.8125rem; /* 13px /16 */
 	word-spacing: -0.5px;
 }
 .postlist-link {
 	flex-basis: 100%;
 	font-weight: 700;
-	font-size: 1.1875em; /* 19px /16 */
+	font-size: 1.1875rem; /* 19px /16 */
 	text-decoration-thickness: 1px;
 	text-underline-position: from-font;
 	text-underline-offset: 0;
@@ -312,18 +319,17 @@ nav {
 	flex-wrap: wrap;
 	margin: 0;
 	padding: 0;
-	gap: 0.5em;
+	gap: 0.5rem;
 	list-style: none;
 }
 .post-metadata time {
-	margin-right: 1em;
+	margin-right: 1rem;
 }
 
 /* Direct Links / Markdown Headers */
 .header-anchor {
-	margin-left: 0.1em;
+	margin-left: 0.1rem;
 	font-style: normal;
-	font-size: 1em;
 	text-decoration: none;
 }
 a[href].header-anchor,
@@ -340,12 +346,12 @@ a[href].header-anchor:focus,
 }
 
 h2 + .header-anchor {
-	font-size: 1.5em;
+	font-size: 1.5rem;
 }
 
 /* Figures */
 figure {
-	margin: 1em 0;
+	margin: 1rem 0;
 }
 figure > * {
 	max-width: 100%;
@@ -353,18 +359,18 @@ figure > * {
 }
 /* All images & videos should be in a figure */
 figure :first-child {
-	border-radius: 0.25em;
+	border-radius: 0.25rem;
 	box-shadow: var(--shadow-elevation-low);
 }
 
 figcaption {
-	margin-top: 0.5em;
+	margin-top: 0.5rem;
 	color: var(--color-gray-20);
 	text-align: center;
 }
 
 blockquote {
-	padding-left: 1em;
+	padding-left: 1rem;
 	border-left: 2px solid ButtonFace;
 }
 
@@ -372,7 +378,7 @@ blockquote {
 .nav-phrase {
 	display: none;
 	width: 100%;
-	padding: 0 0.5em;
+	padding: 0 0.5rem;
 	cursor: text;
 }
 
@@ -381,12 +387,12 @@ blockquote {
 	position: absolute;
 	align-items: center;
 	justify-content: space-between;
-	width: calc(100% - 2.5em);
+	width: calc(100% - 2.5rem);
 	margin: 0;
-	padding: 0.25em;
+	padding: 0.25rem;
 	transform: translateY(calc(var(--item-top) - 12px));
 	border: 1px solid var(--color-gray-90);
-	border-radius: 0.25em;
+	border-radius: 0.25rem;
 	background: ButtonFace;
 	transition: transform 0.3s ease;
 
@@ -430,7 +436,7 @@ header {
 	justify-content: end;
 	width: 200px;
 	height: 100vh;
-	padding: 1em;
+	padding: 1rem;
 
 	&:not(:has(+ .chat-active)) {
 		&:has(.nav-item:nth-child(n):hover) {
@@ -459,7 +465,7 @@ header {
 	display: flex;
 	justify-content: center;
 	width: 100%;
-	padding-right: 2em;
+	padding-right: 2rem;
 }
 
 .nav-list {
@@ -468,7 +474,7 @@ header {
 	flex-direction: column;
 	width: 100%;
 	margin: 0;
-	padding-right: 1em;
+	padding-right: 1rem;
 	padding-inline-start: 0;
 	list-style: none;
 	text-align: right;
@@ -476,7 +482,7 @@ header {
 
 .theme-toggle {
 	position: relative;
-	right: -2.25em;
+	right: -2.25rem;
 	align-self: flex-start;
 	margin-left: auto;
 	transition: transform 0.3s ease;
@@ -494,7 +500,7 @@ header {
 #dark-mode-toggle + label {
 	border: none;
 	background: none;
-	font-size: 1em;
+	font-size: 1rem;
 	cursor: pointer;
 }
 
@@ -564,7 +570,7 @@ header {
 
 .waiting::after {
 	display: inline-block;
-	width: 1em;
+	width: 1rem;
 	content: ".";
 	text-align: left;
 	animation: ellipsis 1s infinite;
@@ -575,7 +581,7 @@ header {
 	display: none;
 	position: relative;
 	align-self: flex-start;
-	padding: 0 0.5em;
+	padding: 0 0.5rem;
 	border: none;
 	background: none;
 	color: gray;
@@ -602,7 +608,7 @@ header {
 			/* left: calc(50% + 200px); */
 			/* width: calc(640px - 200px); */
 			left: calc(200px);
-			width: calc(640px - 4.5em);
+			width: calc(640px - 4.5rem);
 		}
 
 		&:where(.chat-active) > * {
@@ -625,7 +631,7 @@ header {
 
 	body {
 		justify-content: inherit;
-		max-width: 40em;
+		max-width: 40rem;
 		margin: 0 auto;
 		padding: 0;
 	}
@@ -639,10 +645,10 @@ header {
 		max-width: initial;
 
 		/* Add a margin for when chat bubble is absolute */
-		/* Right now we have header relative with 1em top margin */
+		/* Right now we have header relative with 1rem top margin */
 		/* TODO: There's definitely some better way to handle this */
 		&:where(.chat-active) {
-			margin-top: 2em;
+			margin-top: 2rem;
 		}
 	}
 
@@ -652,7 +658,7 @@ header {
 		max-width: 640px;
 		height: initial;
 		padding-bottom: 0;
-		gap: 1em 0.5em;
+		gap: 1rem 0.5rem;
 	}
 
 	nav {
@@ -690,7 +696,7 @@ header {
 
 /* Spotify widget */
 .spotify-widget img {
-	border-radius: 0.25em;
+	border-radius: 0.25rem;
 	box-shadow: var(--shadow-elevation-low);
 }
 
@@ -699,7 +705,7 @@ header {
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 0.5em;
+	width: 0.5rem;
 	height: 100vh;
 	transform: scaleY(0);
 	transform-origin: 0 0;
@@ -733,9 +739,9 @@ header {
 
 /* Citation */
 .citation {
-	margin-bottom: 1em;
-	padding-left: 2em;
-	text-indent: -2em;
+	margin-bottom: 1rem;
+	padding-left: 2rem;
+	text-indent: -2rem;
 }
 
 .citation p {
@@ -748,14 +754,14 @@ header {
 	overflow-y: auto;
 }
 #search-results:has(.search-result) {
-	margin-top: 0.25em;
+	margin-top: 0.25rem;
 	border-top: 1px solid var(--color-gray-90);
 }
 
 .search-result {
 	--border-width: 0px;
 	display: block;
-	padding: 0.5em 1em;
+	padding: 0.5rem 1rem;
 	border-bottom: 1px solid var(--color-gray-90);
 	background: linear-gradient(var(--color-gray-50), var(--color-gray-50))
 		left/var(--border-width) 100% no-repeat;

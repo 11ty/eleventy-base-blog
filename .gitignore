@@ -1,5 +1,6 @@
+.cache
 _site/
 _resources/
 node_modules/
 package-lock.json
-.cache
+public/font/subset

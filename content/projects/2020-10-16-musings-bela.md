@@ -117,27 +117,27 @@ Here is my short, final performance for MCT4045
 And my final presentation can be found below as well
 
 <figure>
-<iframe src="https://slides.com/jacksongoode/musings-bela/embed" width="800" height="450" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <iframe loading="lazy" src="https://slides.com/jacksongoode/musings-bela/embed" width="800" height="450" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </figure>
 
 ## References
 
-Birnbaum, David, et al. _Towards a Dimension Space for Musical Devices_. 2005.
+{% cite "Birnbaum, D., et al.", 2005, "Towards a Dimension Space for Musical Devices", "" %}
 
-Fan, Yuan-Yi, and F. Myles Sciotto. 'BioSync: An Informed Participatory Interface for Audience Dynamics and Audiovisual Content Co-Creation Using Mobile PPG and EEG.' _NIME_, 2013, pp. 248--251.
+{% cite "Fan, Y.-Y., & Sciotto, F. M.", 2013, "BioSync: An Informed Participatory Interface for Audience Dynamics and Audiovisual Content Co-Creation Using Mobile PPG and EEG", "NIME, pp. 248--251" %}
 
-Hamano, Takayuki, et al. 'Generating an Integrated Musical Expression with a Brain-Computer Interface.' _NIME_, 2013, pp. 49--54.
+{% cite "Hamano, T., et al.", 2013, "Generating an Integrated Musical Expression with a Brain-Computer Interface", "NIME, pp. 49--54" %}
 
-Le Groux, Sylvain, et al. 'Disembodied and Collaborative Musical Interaction in the Multimodal Brain Orchestra.' _NIME_, 2010, pp. 309--314.
+{% cite "Le Groux, S., et al.", 2010, "Disembodied and Collaborative Musical Interaction in the Multimodal Brain Orchestra", "NIME, pp. 309--314" %}
 
-Leslie, Grace, and Tim R. Mullen. 'MoodMixer: EEG-Based Collaborative Sonification.' _NIME_, Citeseer, 2011, pp. 296--299.
+{% cite "Leslie, G., & Mullen, T. R.", 2011, "MoodMixer: EEG-Based Collaborative Sonification", "NIME, pp. 296--299" %}
 
-O'Modhrain, Sile. 'A Framework for the Evaluation of Digital Musical Instruments'. _Computer Music Journal_, vol. 35, Mar. 2011, pp. 28--42. _ResearchGate_, doi:[10.1162/COMJ_a_00038](https://doi.org/10.1162/COMJ_a_00038).
+{% cite "O'Modhrain, S.", 2011, "A Framework for the Evaluation of Digital Musical Instruments", "Computer Music Journal, vol. 35, Mar. 2011, pp. 28--42" %}
 
-Ouzounian, Gascia, et al. 'To Be inside Someone Else's Dream: On Music for Sleeping & Waking Minds'. _New Interfaces for Musical Expression (NIME 2012)_, 2012, pp. 1--6.
+{% cite "Ouzounian, G., et al.", 2012, "To Be inside Someone Else's Dream: On Music for Sleeping & Waking Minds", "New Interfaces for Musical Expression (NIME 2012), pp. 1--6" %}
 
-Parvizi, Josef, et al. 'Detecting Silent Seizures by Their Sound'. _Epilepsia_, vol. 59, no. 4, 2018, pp. 877--84. _Wiley Online Library_, doi:[10.1111/epi.14043](https://doi.org/10.1111/epi.14043).
+{% cite "Parvizi, J., et al.", 2018, "Detecting Silent Seizures by Their Sound", "Epilepsia, vol. 59, no. 4, pp. 877--84" %}
 
-Straebel, Volker, and Wilm Thoben. 'Alvin Lucier's Music for Solo Performer: Experimental Music beyond Sonification'. _Organised Sound_, vol. 19, no. 1, Cambridge University Press, Apr. 2014, pp. 17--29. _Cambridge University Press_, doi:[10.1017/S135577181300037X](https://doi.org/10.1017/S135577181300037X).
+{% cite "Straebel, V., & Thoben, W.", 2014, "Alvin Lucier's Music for Solo Performer: Experimental Music beyond Sonification", "Organised Sound, vol. 19, no. 1, pp. 17--29" %}
 
-Wu, Dan, et al. 'Scale-Free Brain Quartet: Artistic Filtering of Multi-Channel Brainwave Music'. _PloS One_, vol. 8, no. 5, 2013, p. e64046. _PubMed_, doi:[10.1371/journal.pone.0064046](https://doi.org/10.1371/journal.pone.0064046).
+{% cite "Wu, D., et al.", 2013, "Scale-Free Brain Quartet: Artistic Filtering of Multi-Channel Brainwave Music", "PloS One, vol. 8, no. 5, p. e64046" %}

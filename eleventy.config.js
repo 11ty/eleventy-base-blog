@@ -57,13 +57,13 @@ module.exports = async function (eleventyConfig) {
 		require("@photogabble/eleventy-plugin-font-subsetting"),
 		{
 			srcFiles: [
-				"./public/font/base/Switzer-Variable.woff2",
-				"./public/font/base/Rag-Regular.woff2",
-				"./public/font/base/Rag-Italic.woff2",
-				"./public/font/base/Rag-Bold.woff2",
-				"./public/font/base/Rag-BoldItalic.woff2",
+				"./public/font/Switzer-Variable.woff2",
+				"./public/font/Rag-Regular.woff2",
+				"./public/font/Rag-Italic.woff2",
+				"./public/font/Rag-Bold.woff2",
+				"./public/font/Rag-BoldItalic.woff2",
 			],
-			dist: "./public/font",
+			dist: "./public/font/subset",
 			// enabled: process.env.ELEVENTY_ENV !== 'production'
 		},
 	);
@@ -147,15 +147,19 @@ module.exports = async function (eleventyConfig) {
 	eleventyConfig.addShortcode(
 		"figure",
 		function (src, caption, aspectRatio = "16/9") {
-			if (src.includes("youtube.com") || src.includes("youtu.be")) {
-				const url = new URL(src);
-				const videoId =
-					url.searchParams.get("v") || url.pathname.split("/").pop();
-				url.searchParams.delete("v");
-				const params = url.searchParams.toString();
+			if (src.includes("youtube.com")) {
+				let [, queryString] = src.split("watch?");
+				let [videoIdPart, ...otherParts] = queryString.split("?");
+				let videoId = videoIdPart.split("=")[1];
+				let otherParams = otherParts.join("&");
 
 				return `<figure>
-				<lite-youtube videoid="${videoId}" ${params ? `params="${params}"` : ""}>
+				<lite-youtube
+					videoid="${videoId}"
+					style="background-image: url('https://i.ytimg.com/vi/${videoId}/hqdefault.jpg');"
+					${otherParams ? `params="${otherParams}"` : ""}
+					data-title="${caption}"
+					>
 					<button type="button" class="lty-playbtn">
 						<span class="lyt-visually-hidden">${caption}</span>
 					</button>
@@ -184,7 +188,15 @@ module.exports = async function (eleventyConfig) {
 	);
 
 	eleventyConfig.addShortcode("cite", function (author, year, title, url) {
-		return `<p class="citation">${author}. (${year}). <em>${title}</em>. Retrieved from <a href="${url}">${url}</a></p>`;
+		const citation = `<p class="citation">${author}. (${year}). <em>${title}</em>`;
+		const urlPattern = /^(https?:\/\/[^\s$.?#].[^\s]*)$/i;
+
+		if (url && urlPattern.test(url)) {
+			return `${citation}. Retrieved from <a href="${url}">${url}</a></p>`;
+		} else if (url) {
+			return `${citation}. ${url}</p>`;
+		}
+		return `${citation}</p>`;
 	});
 
 	// Features to make your build faster (when you need them)
