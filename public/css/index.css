@@ -693,6 +693,7 @@ header {
 
 /* Spotify widget */
 .spotify-widget img {
+	display: inline-block;
 	border-radius: 0.25rem;
 	box-shadow: var(--shadow-elevation-low);
 }
