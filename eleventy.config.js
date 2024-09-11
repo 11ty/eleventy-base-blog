@@ -12,8 +12,7 @@ export default async function(eleventyConfig) {
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig
 		.addPassthroughCopy({
-			"./public/": "/",
-			"./node_modules/prismjs/themes/prism-okaidia.css": "/css/prism-okaidia.css"
+			"./public/": "/"
 		})
 		.addPassthroughCopy("./content/feed/pretty-atom-feed.xsl");
 
@@ -25,9 +24,13 @@ export default async function(eleventyConfig) {
 
 	// Per-page bundles, see https://github.com/11ty/eleventy-plugin-bundle
 	// Adds the {% css %} paired shortcode
-	eleventyConfig.addBundle("css");
+	eleventyConfig.addBundle("css", {
+		toFileDirectory: "dist",
+	});
 	// Adds the {% js %} paired shortcode
-	eleventyConfig.addBundle("js");
+	eleventyConfig.addBundle("js", {
+		toFileDirectory: "dist",
+	});
 
 	// Official plugins
 	eleventyConfig.addPlugin(pluginSyntaxHighlight, {
