@@ -1,4 +1,5 @@
 // const lightningCSS = require("@11tyrocks/eleventy-plugin-lightningcss");
+const { createCanvas } = require("canvas");
 
 /** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
 module.exports = async function (eleventyConfig) {
@@ -122,6 +123,39 @@ module.exports = async function (eleventyConfig) {
 		return (tags || []).filter(
 			(tag) => ["all", "nav", "post", "posts"].indexOf(tag) === -1,
 		);
+	});
+
+	// Emoji color border
+	eleventyConfig.addFilter("getEmojiColor", function (emoji) {
+		if (!emoji) return "#f0f0f0";
+
+		const canvas = createCanvas(16, 16);
+		const ctx = canvas.getContext("2d");
+
+		ctx.textDrawingMode = "glyph";
+		ctx.font = "bold 16px Arial";
+		ctx.textAlign = "center";
+		ctx.textBaseline = "middle";
+		ctx.fillText(emoji, 8, 8);
+
+		const imageData = ctx.getImageData(0, 0, 16, 16).data;
+		let r = 0,
+			g = 0,
+			b = 0,
+			count = 0;
+
+		for (let i = 0; i < imageData.length; i += 4) {
+			if (imageData[i + 3] > 0) {
+				r += imageData[i];
+				g += imageData[i + 1];
+				b += imageData[i + 2];
+				count++;
+			}
+		}
+
+		return count
+			? `rgb(${Math.round(r / count)},${Math.round(g / count)},${Math.round(b / count)})`
+			: "#f0f0f0";
 	});
 
 	// Customize Markdown library settings:

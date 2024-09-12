@@ -5,8 +5,7 @@ layout: layouts/base.njk
 <div class="progress-bar"></div>
 
 <article class="post">
-  {# <h1 id="post-title">{{ title }}&ensp;{{ emoji }}</h1> #}
-  <h1 id="post-title" data-emoji="{{ emoji }}">
+  <h1 id="post-title" style="--emoji-color: {{ emoji | getEmojiColor }}">
     {{ title }}&ensp;{{ emoji }}
   </h1>
 
@@ -43,5 +42,3 @@ layout: layouts/base.njk
     {%- endif %}
   {%- endif %}
 </article>
-
-<script src="/js/emoji-color.js"></script>

@@ -38,6 +38,8 @@
     "@elemaudio/core": "^3.2.1",
     "@elemaudio/web-renderer": "^3.2.3",
     "@photogabble/eleventy-plugin-font-subsetting": "^1.0.0",
+    "canvas": "^3.0.0-rc2",
+    "emoji-palette": "^0.0.3",
     "lite-vimeo-embed": "^0.3.0",
     "lite-youtube-embed": "^0.3.3",
     "pagefind": "^1.1.1"
