@@ -9,28 +9,68 @@ export default {
 
 		if (url.pathname === '/ai') {
 			const { message, animal = 'frog', userId = 'anonymous' } = Object.fromEntries(url.searchParams);
-			const maxTokens = 30;
-			const maxWords = Math.round((maxTokens * 3) / 4);
+			const maxTokens = 50;
+			const maxWords = Math.round(maxTokens * 0.75);
 
-			if (!message) {
-				return jsonResponse({ error: 'No message provided' }, 400);
-			}
+			if (!message) return jsonResponse({ error: 'No message provided' }, 400);
 
 			const systemMessage = `You are a ${animal === 'chicken' ? 'chicken. Respond with chicken-like enthusiasm' : 'frog. Respond with frog-like wisdom'}. Keep each response strictly under ${maxWords} words without enclosing quotation marks. Do not exceed ${maxWords} words.`;
 
 			try {
-				const chatHistory = await getChatHistory(env.chatlog, animal, userId);
-				const messages = updateChatHistory(chatHistory, message, 1000);
+				const messages = await getUpdatedChatHistory(env.chatlog, animal, userId, message, 1000);
 
-				const aiResponse = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+				const stream = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
 					messages: [{ role: 'system', content: systemMessage }, ...messages],
-					max_tokens: maxTokens + 10,
+					max_tokens: maxTokens,
+					stream: true,
 				});
 
-				const responseText = extractResponseText(aiResponse);
-				await saveChatHistory(env.chatlog, animal, userId, [...messages, { role: 'assistant', content: responseText }]);
+				let fullResponse = '';
+				let buffer = '';
+				const processedStream = new TransformStream({
+					transform(chunk, controller) {
+						const text = new TextDecoder().decode(chunk);
+						buffer += text;
 
-				return jsonResponse({ response: responseText });
+						let endIndex;
+						while ((endIndex = buffer.indexOf('\n')) !== -1) {
+							const line = buffer.slice(0, endIndex);
+							buffer = buffer.slice(endIndex + 1);
+
+							if (line.startsWith('data: ')) {
+								try {
+									const jsonStr = line.slice(5).trim();
+									if (jsonStr === '[DONE]') {
+										controller.enqueue(new TextEncoder().encode('data: [DONE]\n\n'));
+										return;
+									}
+									const parsed = JSON.parse(jsonStr);
+									if (parsed.response) {
+										fullResponse += parsed.response;
+										controller.enqueue(new TextEncoder().encode(`data: ${JSON.stringify({ response: parsed.response })}\n\n`));
+									}
+								} catch (error) {
+									console.log(error);
+									// If parsing fails, we'll wait for more data
+									buffer = line + '\n' + buffer;
+									break;
+								}
+							}
+						}
+					},
+					flush(controller) {
+						const updatedMessages = [...messages, { role: 'assistant', content: fullResponse }];
+						saveChatHistory(env.chatlog, animal, userId, updatedMessages).catch(console.error);
+					},
+				});
+
+				return new Response(stream.pipeThrough(processedStream), {
+					headers: {
+						'Content-Type': 'text/event-stream',
+						'Cache-Control': 'no-cache',
+						Connection: 'keep-alive',
+					},
+				});
 			} catch (error) {
 				console.error('API error:', error);
 				return jsonResponse({ error: 'AI processing failed' }, 500);
@@ -41,14 +81,19 @@ export default {
 	},
 };
 
-async function getChatHistory(chatlog: KVNamespace, animal: string, userId: string): Promise<any[]> {
-	const history = await chatlog.get(`${animal}:${userId}`);
-	return history ? JSON.parse(history) : [];
+async function getUpdatedChatHistory(
+	chatlog: KVNamespace,
+	animal: string,
+	userId: string,
+	message: string,
+	maxWords: number,
+): Promise<any[]> {
+	const history = JSON.parse((await chatlog.get(`${animal}:${userId}`)) || '[]');
+	return truncateHistory([...history, { role: 'user', content: message }], maxWords);
 }
 
-function updateChatHistory(history: any[], message: string, maxWords: number): any[] {
-	const updatedHistory = [...history, { role: 'user', content: message }];
-	return truncateHistory(updatedHistory, maxWords);
+async function saveChatHistory(chatlog: KVNamespace, animal: string, userId: string, messages: any[]): Promise<void> {
+	await chatlog.put(`${animal}:${userId}`, JSON.stringify(messages));
 }
 
 function truncateHistory(messages: any[], maxWords: number): any[] {
@@ -64,14 +109,6 @@ function truncateHistory(messages: any[], maxWords: number): any[] {
 			return false;
 		})
 		.reverse();
-}
-
-async function saveChatHistory(chatlog: KVNamespace, animal: string, userId: string, messages: any[]): Promise<void> {
-	await chatlog.put(`${animal}:${userId}`, JSON.stringify(messages));
-}
-
-function extractResponseText(aiResponse: any): string {
-	return typeof aiResponse === 'string' ? aiResponse : aiResponse.response || JSON.stringify(aiResponse);
 }
 
 function jsonResponse(data: object, status: number = 200): Response {
