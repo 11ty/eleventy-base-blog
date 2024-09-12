@@ -801,7 +801,7 @@ header {
 	background-color: var(--emoji-color);
 
 	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='10'%3E%3Cpath d='M0 5q15-5 30 0t30 0' stroke='white' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"),
-		linear-gradient(to right, transparent, black 25%, black 75%, transparent);
+		linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 	mask-composite: intersect;
 	mask-repeat: repeat-x;
 	mask-size:
@@ -809,7 +809,7 @@ header {
 		100% 100%;
 
 	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='10'%3E%3Cpath d='M0 5q15-5 30 0t30 0' stroke='white' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"),
-		linear-gradient(to right, transparent, black 25%, black 75%, transparent);
+		linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 	-webkit-mask-composite: source-in;
 	-webkit-mask-repeat: repeat-x;
 	-webkit-mask-size:
