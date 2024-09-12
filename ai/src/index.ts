@@ -9,6 +9,8 @@ export default {
 
 		if (url.pathname === '/ai') {
 			const { message, animal = 'frog', userId = 'anonymous' } = Object.fromEntries(url.searchParams);
+			console.log(userId, message);
+
 			const maxTokens = 50;
 			const maxWords = Math.round(maxTokens * 0.75);
 

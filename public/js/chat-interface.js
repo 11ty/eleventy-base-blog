@@ -33,16 +33,19 @@ function sendMessageToWorker(message) {
 			let accumulatedResponse = "";
 
 			function readStream() {
-				reader.read().then(({ done, value }) => {
+				let buffer = "";
+				reader.read().then(function processText({ done, value }) {
 					if (done) {
 						updateNavPhrase(accumulatedResponse, false);
 						return;
 					}
 
-					const chunk = new TextDecoder().decode(value);
-					const lines = chunk.split("\n");
+					buffer += new TextDecoder().decode(value);
+					let newlineIndex;
+					while ((newlineIndex = buffer.indexOf("\n")) !== -1) {
+						const line = buffer.slice(0, newlineIndex);
+						buffer = buffer.slice(newlineIndex + 1);
 
-					lines.forEach((line) => {
 						if (line.startsWith("data: ")) {
 							try {
 								const jsonStr = line.slice(5).trim();
@@ -56,12 +59,13 @@ function sendMessageToWorker(message) {
 									updateNavPhrase(accumulatedResponse, false);
 								}
 							} catch (error) {
-								console.warn("Error parsing JSON:", error);
+								buffer = line + "\n" + buffer;
+								break;
 							}
 						}
-					});
+					}
 
-					readStream();
+					return reader.read().then(processText);
 				});
 			}
 
