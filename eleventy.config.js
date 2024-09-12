@@ -153,9 +153,14 @@ module.exports = async function (eleventyConfig) {
 			}
 		}
 
-		return count
-			? `rgb(${Math.round(r / count)},${Math.round(g / count)},${Math.round(b / count)})`
-			: "#f0f0f0";
+		if (count) {
+			r = Math.round(r / count);
+			g = Math.round(g / count);
+			b = Math.round(b / count);
+			return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
+		}
+
+		return "#f0f0f0";
 	});
 
 	// Customize Markdown library settings:
