@@ -402,7 +402,7 @@ figure :first-child {
 
 figcaption {
 	margin-top: 0.5rem;
-	color: var(--color-gray-20);
+	color: var(--color-gray-50);
 	text-align: center;
 }
 
