@@ -1,5 +1,5 @@
 ---
-title: "Toward a Telepresence of Sound: Video Conferencing in Spatial Audio"
+title: "Meet in Space: Video Conferencing in Spatial Audio"
 date: 2021-05-18
 headerImage: false
 projects: true
@@ -15,9 +15,7 @@ description: "Teleconferencing in spatial audio with the help of Jitsi Meet and 
 emoji: 🪐
 ---
 
-# Meet in Space: Video Conferencing in Spatial Audio
-
-## Abstract
+## Toward a Telepresence of Sound
 
 Digital communications technologies have developed at an increasingly rapid pace, with the COVID-19 pandemic accelerating its recent adoption. This shift over the last few decades has seen a mass migration online, where utilities like video conferencing software have become essential to entire industries and institutions. Yet, there are clear limitations with this new digital work space - most of which exist from the nuance of natural communication. My master's thesis for the Music, Communications and Technology program at the University of Oslo and Norwegian University of Science and Technology proposes the integration of binaural spatialized audio within a web-based video conferencing platform for small-group, distributed conversations. The proposed system builds upon findings on the benefits of spatial audio in video conferencing platforms and is guided by the tenets of telepresence. The developed implementation is based on Jitsi Meet, a robust open-source conferencing system. It localizes participant’s voices through sound spatialization methods provided by the Web Audio API, a modern library in JavaScript for complex audio manipulation on the web.
 

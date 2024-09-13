@@ -90,12 +90,23 @@ async function getUpdatedChatHistory(
 	message: string,
 	maxWords: number,
 ): Promise<any[]> {
-	const history = JSON.parse((await chatlog.get(`${animal}:${userId}`)) || '[]');
-	return truncateHistory([...history, { role: 'user', content: message }], maxWords);
+	try {
+		const history = JSON.parse((await chatlog.get(`${animal}:${userId}`)) || '[]');
+		console.log(`Retrieved chat history for ${animal}:${userId}:`, history);
+		return truncateHistory([...history, { role: 'user', content: message }], maxWords);
+	} catch (error) {
+		console.error(`Failed to retrieve chat history for ${animal}:${userId}:`, error);
+		return [{ role: 'user', content: message }];
+	}
 }
 
 async function saveChatHistory(chatlog: KVNamespace, animal: string, userId: string, messages: any[]): Promise<void> {
-	await chatlog.put(`${animal}:${userId}`, JSON.stringify(messages));
+	try {
+		await chatlog.put(`${animal}:${userId}`, JSON.stringify(messages));
+		console.log(`Chat history saved for ${animal}:${userId}`);
+	} catch (error) {
+		console.error(`Failed to save chat history for ${animal}:${userId}:`, error);
+	}
 }
 
 function truncateHistory(messages: any[], maxWords: number): any[] {

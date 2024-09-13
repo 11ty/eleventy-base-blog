@@ -2,12 +2,13 @@
 layout: layouts/base.njk
 ---
 
+{% set emojiColor = emoji | getEmojiColor %}
+
 <div class="progress-bar"></div>
 
 <article class="post">
   <h1 id="post-title">
     {{ title }}&ensp;{{ emoji }}
-    <div class="wave-divider" style="--emoji-color: {{ emoji | getEmojiColor }};"></div>
   </h1>
 
   <ul class="post-metadata">
@@ -23,23 +24,38 @@ layout: layouts/base.njk
     {%- endfor %}
   </ul>
 
+  <div class="wave-divider-container">
+    <div class="wave-divider" style="--emoji-color: {{ emojiColor }};"></div>
+  </div>
+
   {{ content | safe }}
 
-  {%- if collections.posts or collections.projects %}
-    {%- set collection = collections.posts if tags.includes("posts") else collections.projects %}
-    {%- set previousPost = collection | getPreviousCollectionItem %}
-    {%- set nextPost = collection | getNextCollectionItem %}
-    {%- if nextPost or previousPost %}
-      <ul class="links-nextprev">
-        {%- if previousPost %}
-          <li>Previous: <a href="{{ previousPost.url }}">{{ previousPost.data.title }}</a>
-          </li>
-        {% endif %}
-        {%- if nextPost %}
-          <li>Next: <a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a>
-          </li>
-        {% endif %}
-      </ul>
-    {%- endif %}
+  <div class="wave-divider-container">
+    <div class="wave-divider" style="--emoji-color: {{ emojiColor }};"></div>
+  </div>
+
+{%- if collections.posts or collections.projects %}
+  {%- set collection = collections.posts if tags.includes("posts") else collections.projects %}
+  {%- set previousPost = collection | getPreviousCollectionItem %}
+  {%- set nextPost = collection | getNextCollectionItem %}
+  {%- if nextPost or previousPost %}
+    <nav class="post-nav">
+      {%- if previousPost %}
+        <a href="{{ previousPost.url }}" class="post-nav-prev">
+          <span class="post-nav-arrow">←</span>
+          <span class="post-nav-title">{{ previousPost.data.title }}</span>
+        </a>
+      {%- endif %}
+      {%- if previousPost and nextPost %}
+        <span class="post-nav-divider">•</span>
+      {%- endif %}
+      {%- if nextPost %}
+        <a href="{{ nextPost.url }}" class="post-nav-next">
+          <span class="post-nav-title">{{ nextPost.data.title }}</span>
+          <span class="post-nav-arrow">→</span>
+        </a>
+      {%- endif %}
+    </nav>
   {%- endif %}
+{%- endif %}
 </article>

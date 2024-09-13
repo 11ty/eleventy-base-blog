@@ -89,7 +89,9 @@ main {
 	max-width: 40rem;
 	padding: 1rem;
 
-	& :first-child {
+	& h1:first-child,
+	& h2:first-child,
+	& h3:first-child {
 		margin-top: 0;
 	}
 
@@ -131,11 +133,49 @@ p:last-child {
 	margin-bottom: 0;
 }
 
-.links-nextprev {
+/* Post navigation */
+.post-nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 	margin-top: 1rem;
-	padding: 1rem 0;
-	border-top: 1px dashed var(--color-gray-20);
-	list-style: none;
+}
+
+.post-nav a {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: var(--color-gray-20);
+	max-width: 100%;
+}
+
+.post-nav:has(.post-nav-prev):has(.post-nav-next) a {
+	max-width: calc(50% - 1rem);
+}
+
+.post-nav-prev {
+	margin-right: auto;
+}
+
+.post-nav-next {
+	margin-left: auto;
+}
+
+.post-nav-title {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.post-nav-arrow {
+	flex-shrink: 0;
+	padding: 0 0.25rem;
+}
+
+.post-nav-divider {
+	padding: 0 0.5rem;
+	color: var(--color-gray-50);
 }
 
 table {
@@ -785,38 +825,70 @@ header {
 	color: var(--color-gray-50);
 }
 
+/* Wave divider */
+#post-title {
+	margin-bottom: 0.5rem;
+}
+
 :root {
 	--wave-width: 30px;
 	--wave-height: 10px;
 }
 
-/* Wave divider */
 .wave-divider {
 	width: 100%;
 	height: var(--wave-height);
-	/* background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='10'%3E%3Cpath d='M0 5q15-5 30 0t30 0' stroke='lightgray' fill='none' stroke-width='1.5'/%3E%3C/svg%3E")
-		repeat-x bottom; */
-	background-size: var(--wave-width) var(--wave-height);
-	margin-bottom: 1rem;
+	margin: 2rem 0;
+	/* margin-top: 0.3rem;
+	margin-bottom: 1rem; */
 	background-color: var(--emoji-color);
 
-	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='10'%3E%3Cpath d='M0 5q15-5 30 0t30 0' stroke='white' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"),
-		linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-	mask-composite: intersect;
-	mask-repeat: repeat-x;
+	/* Wave mask */
+	--wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='10'%3E%3Cpath d='M0 5q15-5 30 0t30 0' stroke='white' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+
+	/* Fade-out mask */
+	--fade-mask: linear-gradient(
+		to right,
+		transparent,
+		black 15%,
+		black 85%,
+		transparent
+	);
+
+	/* Combine masks */
+	mask-image: var(--wave-mask), var(--fade-mask);
 	mask-size:
 		var(--wave-width) var(--wave-height),
 		100% 100%;
+	mask-repeat: repeat-x, no-repeat;
+	mask-composite: intersect;
 
-	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='10'%3E%3Cpath d='M0 5q15-5 30 0t30 0' stroke='white' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"),
-		linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-	-webkit-mask-composite: source-in;
-	-webkit-mask-repeat: repeat-x;
+	/* For webkit browsers */
+	-webkit-mask-image: var(--wave-mask), var(--fade-mask);
 	-webkit-mask-size:
 		var(--wave-width) var(--wave-height),
 		100% 100%;
+	-webkit-mask-repeat: repeat-x, no-repeat;
+	-webkit-mask-composite: source-in;
+
+	animation: wave-animation 5s linear infinite;
 }
 
-#post-title {
-	margin-bottom: 0;
+@keyframes wave-animation {
+	0% {
+		mask-position:
+			0 0,
+			0 0;
+		-webkit-mask-position:
+			0 0,
+			0 0;
+	}
+	100% {
+		mask-position:
+			var(--wave-width) 0,
+			0 0;
+		-webkit-mask-position:
+			var(--wave-width) 0,
+			0 0;
+	}
 }

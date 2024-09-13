@@ -1,11 +1,11 @@
 // const lightningCSS = require("@11tyrocks/eleventy-plugin-lightningcss");
-const { createCanvas } = require("canvas");
 
 /** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
 module.exports = async function (eleventyConfig) {
 	const pagefind = await import("pagefind");
 	const { DateTime } = await import("luxon");
 	const { default: markdownItAnchor } = await import("markdown-it-anchor");
+	const { createCanvas } = await import("canvas");
 
 	const { default: pluginRss } = await import("@11ty/eleventy-plugin-rss");
 	const { default: pluginSyntaxHighlight } = await import(
