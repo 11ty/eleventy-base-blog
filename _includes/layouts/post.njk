@@ -24,15 +24,11 @@ layout: layouts/base.njk
     {%- endfor %}
   </ul>
 
-  <div class="wave-divider-container">
-    <div class="wave-divider" style="--emoji-color: {{ emojiColor }};"></div>
-  </div>
+  <div class="wave-divider" style="--emoji-color: {{ emojiColor }};"></div>
 
   {{ content | safe }}
 
-  <div class="wave-divider-container">
-    <div class="wave-divider" style="--emoji-color: {{ emojiColor }};"></div>
-  </div>
+  <div class="wave-divider" style="--emoji-color: {{ emojiColor }};"></div>
 
 {%- if collections.posts or collections.projects %}
   {%- set collection = collections.posts if tags.includes("posts") else collections.projects %}

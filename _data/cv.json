@@ -1,0 +1,140 @@
+{
+	"header": {
+		"name": "Jackson Goode",
+		"tagline": "Technology through humanism"
+	},
+	"about": "Platform engineer with expertise in scaling analysis for distributed systems, audio programming, and human-computer interaction. Master's graduate from the University of Oslo focused on communications technology and its intersection with audio. Interested in how technology can afford new perspectives in media and communications. Currently working as a platform engineer at nLine, monitoring the electrical grid of cities in Sub-Saharan Africa.",
+	"contact": [
+		{
+			"type": "email",
+			"value": "mail",
+			"url": "mailto:wave@jackson.gd"
+		},
+		{
+			"type": "website",
+			"value": "web",
+			"url": "https://jackson.gd"
+		},
+		{
+			"type": "github",
+			"value": "github",
+			"url": "https://github.com/jacksongoode"
+		},
+		{
+			"type": "linkedin",
+			"value": "linkedin",
+			"url": "https://linkedin.com/in/jacksongoode"
+		}
+	],
+	"experience": [
+		{
+			"title": "Software Engineer",
+			"company": "nLine",
+			"location": "Berkeley, California, United States",
+			"start_year": "2021",
+			"start_date": "October 2021",
+			"end_date": "Present",
+			"duration": "3 years",
+			"description": "Lead engineer architecting and implementing scalable solutions for real-time monitoring of electrical grid reliability across Sub-Saharan Africa.",
+			"responsibilities": [
+				"Develop and maintain infrastructure for real-time data monitoring, processing massive, real-time datasets from thousands of sensors using Spark",
+				"Design and implement custom Grafana plugins and programmatically deploy dashboards across multiple country deployments using Terraform",
+				"Architect a comprehensive library for distributed data processing and analysis in PySpark, enabling scalable ingestion, processing, and visualization of grid reliability data",
+				"Co-design and maintain company blog and website with modern web development frameworks"
+			]
+		},
+		{
+			"title": "Graduate Researcher",
+			"company": "University of Oslo (UiO)",
+			"location": "Oslo, Norway",
+			"start_year": "2019",
+			"start_date": "September 2019",
+			"end_date": "May 2021",
+			"duration": "1 year 9 months",
+			"description": "Led software development for various academic projects.",
+			"responsibilities": [
+				"Developed Python analysis toolkit for academic journal metadata extraction and analysis",
+				"Assisted in archival and analysis of musical composition recordings",
+				"Built React website for music technology guides and resources",
+				"Maintained official blog for master's program"
+			]
+		},
+		{
+			"title": "Data Analyst",
+			"company": "Exactly Business Data",
+			"location": "Pasadena, CA",
+			"start_year": "2018",
+			"start_date": "August 2018",
+			"end_date": "May 2019",
+			"duration": "10 months",
+			"description": "Involved in retrieval and analysis of corporate and lead data, and improving in-house software.",
+			"responsibilities": [
+				"Retrieved, compiled, and enriched corporate data for clients' marketing teams",
+				"Built Python functions for batch data enrichment",
+				"Designed UI for programs, product forms, and marketing material",
+				"Assisted in implementing marketing strategies for seed-round funding campaign"
+			]
+		}
+	],
+	"education": [
+		{
+			"degree": "MPhil - Music, Communication, and Technology",
+			"institution": "University of Oslo",
+			"location": "Oslo, Norway",
+			"start_year": "2019",
+			"start_date": "September 2019",
+			"end_date": "May 2021"
+		},
+		{
+			"degree": "BA - Cognitive Science, Neuroscience",
+			"institution": "Occidental College",
+			"location": "Los Angeles, CA",
+			"start_year": "2014",
+			"start_date": "August 2014",
+			"end_date": "December 2017"
+		}
+	],
+	"projects": [
+		{
+			"name": "Cacophony",
+			"tech": "Python, Multi-channel routing, FFmpeg",
+			"description": "Developed an immersive sound installation for Sound Pedro 2024, exploring the overwhelming nature of consumptive media platforms. Created a real-time, multi-channel audio system that streams in random clips from YouTube videos in real-time.",
+			"url": "https://github.com/jacksongoode/cacophony/"
+		},
+		{
+			"name": "Meet in Space",
+			"tech": "JavaScript, React, WebRTC",
+			"description": "A deployment of binaural, spatial audio in Jitsi Meet, an enterprise-level conferencing platform. My master's thesis project for MCT at the University of Oslo.",
+			"url": "https://github.com/jacksongoode/meet-in-space"
+		},
+		{
+			"name": "Soniweb",
+			"tech": "Pure Data & Python",
+			"description": "Sonification of web packet origins in real-time through Pure Data and Python",
+			"url": "https://github.com/jacksongoode/soniweb"
+		},
+		{
+			"name": "NIME Proceedings Analyzer",
+			"tech": "Python",
+			"description": "A toolkit for bibliometric meta-data extraction and text analysis over 20 years of an academic journal",
+			"url": "https://github.com/jacksongoode/NIME-proceedings-analyzer"
+		}
+	],
+	"skills": [
+		"Python",
+		"JavaScript",
+		"Terraform",
+		"HTML/CSS",
+		"Rust",
+		"React",
+		"SQL",
+		"Unix/BASH",
+		"Adobe Suite",
+		"Git/GitHub",
+		"Docker",
+		"Spark",
+		"Grafana",
+		"PySpark",
+		"Pure Data"
+	]
+}

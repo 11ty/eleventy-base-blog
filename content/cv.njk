@@ -5,54 +5,95 @@ navPhrase: "Welcome to my CV! Here's a glimpse of my professional journey."
 ---
 <link href="/css/cv.css" rel="stylesheet">
 
-<h2>Experience</h2>
+<section class="cv-header">
+    <h1>{{ cv.header.name }}</h1>
+    <p class="cv-tagline">{{ cv.header.tagline }}</p>
+</section>
 
-<details>
-    <summary>
-        <div class="job-title">Software Engineer</div>
-        <div class="job-details">
-            <span>nLine</span>
-            <span>Oct 2021 - Present · 3 yrs</span>
-        </div>
-        <p class="job-location">Berkeley, California, United States</p>
-        <p class="job-summary">Developing infrastructure for real-time grid monitoring and data analysis.</p>
-    </summary>
-    <ul>
-        <li>Develop and maintain infrastructure services for real-time data monitoring and analysis across thousands of sensors in cities and rural communities, improving electrical grid reliability</li>
-        <li>Created and maintain an open-source plugin for Grafana, enhancing data visualization capabilities</li>
-        <li>Designed and implemented a sophisticated data analysis pipeline incorporating advanced Python concepts such as memoization, caching, and partial analysis</li>
-        <li>Co-design and maintain the company website and blog, overseeing content creation and publishing processes</li>
-        <li>Collaborate with cross-functional teams to optimize data collection, processing, and presentation for improved decision-making in grid management</li>
-    </ul>
-</details>
+<section class="cv-about-contact">
+    <div class="cv-about">
+        <p>{{ cv.about }}</p>
+    </div>
+    <div class="cv-contact">
+        <ul class="contact-list">
+            {% for item in cv.contact %}
+            <li><a href="{{ item.url }}">{{ item.value }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
 
-<details>
-    <summary>
-        <div class="job-title">Graduate Researcher</div>
-        <div class="job-details">
-            <span>University of Oslo (UiO)</span>
-            <span>Sep 2019 - May 2021 · 1 yr 9 mos</span>
-        </div>
-        <p class="job-location">Oslo, Norway</p>
-        <p class="job-summary">Conducted research in music technology and data analysis.</p>
-    </summary>
-    <ul>
-        <li>Developed a comprehensive Python analysis toolkit to extract and analyze 20 years of metadata and text from an academic journal, resulting in a published paper</li>
-        <li>Led the archival and analysis project of all recorded instances of a specific musical composition, focusing on tempo analysis and creating insightful visualizations</li>
-        <li>Designed and built a React-based website for music technology guides and resources, significantly improving accessibility of information for students and researchers</li>
-        <li>Maintained the official blog for the master's program, enhancing communication and engagement within the academic community</li>
-    </ul>
-</details>
+<div class="wave-divider" style="--emoji-color: lightgray;"></div>
 
-<details>
-    <summary>
-        <div class="job-title">Data Analyst</div>
-        <div class="job-details">
-            <span>Exactly Business Data</span>
-            <span>Aug 2018 - May 2019 · 10 mos</span>
+<section class="cv-section">
+    <h2>Experience</h2>
+    <div class="timeline">
+        {% for job in cv.experience %}
+        <div class="timeline-item">
+            <h3 class="item-title">{{ job.title }} · {{ job.company }}</h3>
+            <div class="item-details">
+                {{ job.start_date }} → {{ job.end_date }}
+                {% if job.duration %} ({{ job.duration }}){% endif %}
+            </div>
+            <div class="item-location">{{ job.location }}</div>
+            <details>
+                <summary>{{ job.description }}</summary>
+                <ul>
+                    {% for responsibility in job.responsibilities %}
+                    <li>{{ responsibility }}</li>
+                    {% endfor %}
+                </ul>
+            </details>
         </div>
-        <p class="job-location">Pasadena, CA</p>
-        <p class="job-summary">Analyzed corporate data and developed Python functions for data enrichment.</p>
-    </summary>
-    <p>Conducted corporate data analysis and developed Python functions for data enrichment, supporting marketing teams and contributing to seed-round funding strategies.</p>
-</details>
+        {% endfor %}
+    </div>
+    <div class="skills-container">
+        <ul class="skills-list">
+            {% for skill in cv.skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+<div class="wave-divider" style="--emoji-color: lightgray;"></div>
+
+<section class="cv-section">
+    <h2>Education</h2>
+    <div class="timeline">
+        {% for edu in cv.education %}
+        <div class="timeline-item">
+            <h3 class="item-title">{{ edu.degree }}</h3>
+            <div class="item-details">{{ edu.institution }} · {{ edu.start_date }} - {{ edu.end_date }}</div>
+            <div class="item-location">{{ edu.location }}</div>
+            {% if edu.summary %}
+            <div class="item-summary">{{ edu.summary }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<div class="wave-divider" style="--emoji-color: lightgray;"></div>
+
+<section class="cv-section projects-skills">
+    <div class="projects-container">
+        <h2>Selected Projects</h2>
+        <div class="timeline">
+            {% for project in cv.projects %}
+            <div class="timeline-item">
+                <h3 class="item-title">
+                    {% if project.url %}
+                        <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.name }}</a>
+                    {% else %}
+                        {{ project.name }}
+                    {% endif %}
+                </h3>
+                <div class="item-details">{{ project.tech }}</div>
+                <p>{{ project.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</section>

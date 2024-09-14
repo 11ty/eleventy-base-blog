@@ -9,7 +9,7 @@ navPhrase: "Boring stuff, why don't you explore {}?"
 
 # About Me
 
-My name is Jackson. I was born in Charlotte, NC and studied at Occidental College in Los Angeles, CA where I graduated with a degree in cognitive science. I've completed a master's degree in music, communications and technology at the [University of Oslo](https://www.uio.no/english/studies/programmes/mct-master/). I currently work as a platform engineer at [nLine](https://nline.io/) where we evaluate improvements to the electrical grid of cities in Sub-Saharan Africa.
+My name is Jackson. I was born in Charlotte, NC and studied at Occidental College in Los Angeles, CA where I graduated with a degree in cognitive science. I've completed a master's degree in music, communications and technology at the [University of Oslo](https://www.uio.no/english/studies/programmes/mct-master/). I currently work as a platform engineer at [nLine](https://nline.io/) where we evaluate improvements to the energy grid of cities in Sub-Saharan Africa.
 
 Besides the formal elements, I play guitar, make playlists, watch movies, read books, write a bit, build collages, and other things that I'll publicize digitally one day (here are some of [my favorites]({{ site.url }}/favorites)).
 
@@ -24,17 +24,6 @@ And now, a brief attempt at marketing.
 ## CV
 
 [Here's my online CV](/cv)
-
-## Skills
-
-- Python
-- HTML/CSS/JS
-- SQL
-- Terraform
-- Unix/Linux/Bash
-- Adobe Suite
-- Ableton Live
-- Pure Data
 
 ## Projects
 
