@@ -3,7 +3,7 @@ layout: layouts/home.njk
 title: "Curriculum Vitae"
 navPhrase: "Welcome to my CV! Here's a glimpse of my professional journey."
 ---
-{% include "css/cv.css" %}
+{% css %}{% include "public/css/cv.css" %}{% endcss %}
 
 <section class="cv-header">
     <h1>{{ cv.header.name }}</h1>
