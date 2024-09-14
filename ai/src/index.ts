@@ -11,15 +11,15 @@ export default {
 			const { message, animal = 'frog', userId = 'anonymous' } = Object.fromEntries(url.searchParams);
 			console.log(userId, message);
 
-			const maxTokens = 50;
+			const maxTokens = 300;
 			const maxWords = Math.round(maxTokens * 0.75);
 
 			if (!message) return jsonResponse({ error: 'No message provided' }, 400);
 
-			const systemMessage = `You are a ${animal === 'chicken' ? 'chicken. Respond with chicken-like enthusiasm' : 'frog. Respond with frog-like wisdom'}. Keep each response strictly under ${maxWords} words without enclosing quotation marks. Do not exceed ${maxWords} words.`;
+			const systemMessage = `You are a chatbot embedded in a webpage.You act as a ${animal === 'chicken' ? 'chicken. Respond with rooster-like enthusiasm' : 'frog. Respond with frog-like wisdom'}. Keep each response strictly under ${maxWords} words without enclosing quotation marks. Do not exceed ${maxWords} words.`;
 
 			try {
-				const messages = await getUpdatedChatHistory(env.chatlog, animal, userId, message, 1000);
+				const messages = await getUpdatedChatHistory(env.chatlog, animal, userId, message, 5000);
 
 				const stream = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
 					messages: [{ role: 'system', content: systemMessage }, ...messages],

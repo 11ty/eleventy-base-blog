@@ -21,8 +21,14 @@ function sendMessageToWorker(message) {
 
 	updateNavPhrase(isDarkMode ? "Ribbit" : "Cluck", true);
 
+	// Get the body content
+	const bodyContent = document.body.innerText;
+
+	// Prepare the message with the body content
+	const fullMessage = `Current page content:\n${bodyContent}\n\nUser message: ${message}`;
+
 	fetch(
-		`${baseUrl}/ai?message=${encodeURIComponent(message)}&animal=${animalParam}&userId=${getUserId()}`,
+		`${baseUrl}/ai?message=${encodeURIComponent(fullMessage)}&animal=${animalParam}&userId=${getUserId()}`,
 	)
 		.then((response) => {
 			if (!response.ok)
