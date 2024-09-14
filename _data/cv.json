@@ -128,13 +128,12 @@
 		"Rust",
 		"React",
 		"SQL",
-		"Unix/BASH",
-		"Adobe Suite",
-		"Git/GitHub",
+		"Linux/Unix",
+		"Bash/Fish/Shell",
+		"Git",
 		"Docker",
-		"Spark",
 		"Grafana",
-		"PySpark",
+		"Spark/PySpark",
 		"Pure Data"
 	]
 }
