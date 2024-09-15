@@ -44,7 +44,15 @@
 	opacity: 0;
 	transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
 	will-change: transform, font-variation-settings;
+	
+	/* No select */
 	user-select: none;
+	touch-action: manipulation; /* Changed from 'none' to allow scrolling */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10 and IE 11 */
+	-moz-user-select: none; /* Firefox */
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
 .letter.spinning {
