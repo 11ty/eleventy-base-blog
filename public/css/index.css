@@ -59,6 +59,9 @@
 }
 
 /* Only set the overflow to the root */
+html {
+	contain: paint;
+}
 html,
 body {
 	max-width: 100%;
@@ -67,7 +70,6 @@ body {
 	background-color: transparent;
 	color: CanvasText;
 	font-family: var(--font-family);
-	contain: paint;
 }
 
 body {
