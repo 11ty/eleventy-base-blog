@@ -60,28 +60,36 @@
 
 /* Only set the overflow to the root */
 html {
-	overflow-x: hidden;
+	overflow-x: hidden; /* or auto */
 }
 html,
 body {
-	width: 100%;
+	max-width: 100%;
 	padding: 0;
 	background-color: Canvas;
 	background-color: transparent;
 	color: CanvasText;
 	font-family: var(--font-family);
 }
+
 body {
 	display: flex;
-	justify-content: center;
-	max-width: none;
-}
-
-.layout-wrapper {
-	display: flex;
+	flex-direction: row;
+	min-height: 100vh;
 	width: 100%;
 	max-width: calc(40rem + 200px + 2rem);
-	min-height: 100vh;
+	margin: 0 auto;
+	padding: 0 1rem;
+}
+
+.site-header {
+	position: sticky;
+	top: 0;
+	align-self: flex-start;
+	width: 200px;
+	height: 100vh;
+	flex-shrink: 0;
+	padding: 1rem;
 }
 
 main {
@@ -467,10 +475,10 @@ header {
 	--nav-item-height: 36px;
 	z-index: 1; /* Ensure the header is above other elements */
 
-	position: sticky;
-	top: 0;
-	align-items: start;
-	justify-content: end;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: flex-start;
 	width: 200px;
 	height: 100vh;
 	padding: 1rem;
@@ -667,45 +675,37 @@ header {
 	}
 
 	body {
-		justify-content: inherit;
+		flex-direction: column; /* Stack header and main content on narrow screens */
 		max-width: 40rem;
-		margin: 0 auto;
 		padding: 0;
 	}
 
-	.layout-wrapper {
-		display: initial;
-		max-width: initial;
-	}
-
 	main {
-		max-width: initial;
-
-		/* Add a margin for when chat bubble is absolute */
-		/* Right now we have header relative with 1rem top margin */
-		/* TODO: There's definitely some better way to handle this */
-		&:where(.chat-active) {
-			margin-top: 2rem;
-		}
+		max-width: none;
+		padding: 1rem;
 	}
 
-	header {
+	.site-header {
 		position: relative;
-		width: 100%;
+		width: 100%; /* Full width on narrow screens */
 		max-width: 640px;
-		height: initial;
+		height: auto;
 		padding-bottom: 0;
 		gap: 1rem 0.5rem;
 	}
 
-	nav {
-		flex-direction: column;
-	}
-
+	/* Mobile-specific nav bubble styles */
 	.nav-bubble {
 		position: relative;
 		left: initial;
-		transform: none; /* Reset the transform */
+		transform: none;
+	}
+
+	header {
+		position: relative;
+		height: auto;
+		width: 100%;
+		align-items: flex-start;
 	}
 }
 
@@ -713,6 +713,7 @@ header {
 .line-clamp {
 	-webkit-box-orient: vertical;
 	display: -webkit-box;
+	line-clamp: 2;
 	-webkit-line-clamp: 2;
 	overflow: hidden;
 }

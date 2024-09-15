@@ -54,30 +54,28 @@
 	<body style="--nav-item-active: {{ eleventyNavigation.order | default(1) }};">
 		<div class="noise-container"></div>
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
-		<div class="layout-wrapper">
-			<header class="site-header">
-				<nav>
-					<h2 class="visually-hidden">Top level navigation menu</h2>
-					{% include "components/nav-bubble.njk" %}
-					<div class="side-nav">
-						<ul class="nav-list">
-							<li id="chat-toggle" class="nav-item">Welcome!</li>
-							{%- for entry in collections.all | eleventyNavigation %}
-								<li class="nav-item">
-									<a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
-								</li>
-							{%- endfor %}
-						</ul>
-					</div>
-				</nav>
 
-				{# <div class="wave-divider"></div> #}
-			</header>
+		<header class="site-header">
+			<nav>
+				<h2 class="visually-hidden">Top level navigation menu</h2>
+				{% include "components/nav-bubble.njk" %}
+				<div class="side-nav">
+					<ul class="nav-list">
+						<li id="chat-toggle" class="nav-item">Welcome!</li>
+						{%- for entry in collections.all | eleventyNavigation %}
+							<li class="nav-item">
+								<a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
+							</li>
+						{%- endfor %}
+					</ul>
+				</div>
+			</nav>
+		</header>
 
-			<main id="skip">
-				{{ content | safe }}
-			</main>
-		</div>
+		<main id="skip">
+			{{ content | safe }}
+		</main>
+
 		<footer></footer>
 
 		<!-- This page `{{ page.url | htmlBaseUrl }}` was built on {% currentBuildDate %} -->
