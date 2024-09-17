@@ -1,4 +1,9 @@
-// const lightningCSS = require("@11tyrocks/eleventy-plugin-lightningcss");
+const {
+	getRandomHeight,
+	getRandomRotate,
+	getRandomSize,
+	generateColors,
+} = require("./public/js/sound-letters/letter-utils.js");
 
 /** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
 module.exports = async function (eleventyConfig) {
@@ -67,15 +72,6 @@ module.exports = async function (eleventyConfig) {
 			// enabled: process.env.ELEVENTY_ENV !== 'production'
 		},
 	);
-
-	eleventyConfig.addFilter("cssmin", function (code) {
-		let { code: minifiedCode } = lightningcss.transform({
-			code: Buffer.from(code),
-			minify: true,
-			sourceMap: false,
-		});
-		return minifiedCode.toString();
-	});
 
 	// Watch CSS files for changes
 	eleventyConfig.addWatchTarget("public/css/**/*.css");
@@ -161,6 +157,21 @@ module.exports = async function (eleventyConfig) {
 		}
 
 		return "#f0f0f0";
+	});
+
+	const colors = generateColors(7); // Assuming max 26 letters in alphabet
+
+	eleventyConfig.addFilter("randomLetterStyles", function (index) {
+		const parentHeight = 100; // We'll use a percentage for the build-time version
+		const height = getRandomHeight(index, parentHeight);
+		const rotation = getRandomRotate();
+		const size = Math.random() * 100;
+		const color = colors[index % 7]; // Cycle through colors if more than 26 letters
+
+		return {
+			wrapper: `--random-height: ${height}%;`,
+			letter: `--rotation: ${rotation}deg; --random-size: ${size}; --primary-color: ${color.primary}; --accent-color: ${color.accent};`,
+		};
 	});
 
 	// Customize Markdown library settings:

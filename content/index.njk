@@ -18,5 +18,8 @@ navPhrase: "You're home! What about checking out {}?"
   <p>I also like <a href="https://github.com/jacksongoode">coding</a> for fun, <a href="https://infinitytakes.bandcamp.com/">making music</a> with friends, <a href="https://vimeo.com/jacksongoode">making videos</a> (and watching movies), or you can <a href="mailto:hi@jackson.gd">send me an email</a>.</p>
 </div>
 
-<script src="/js/spin-letters.js"></script>
+<script type="module">
+  import { initializeLetters } from "/js/spin-letters.js";
+  initializeLetters();
+</script>
 <script type="module" src="/js/sound-letters.js"></script>

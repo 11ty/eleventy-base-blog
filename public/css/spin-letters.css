@@ -12,6 +12,14 @@
 	user-select: none;
 }
 
+.word {
+	visibility: visible; /* Show by default for non-JS environments */
+}
+
+.js-loaded .word {
+	visibility: visible; /* Show when JS has finished loading */
+}
+
 .letter-wrapper {
 	display: flex;
 	position: relative;
@@ -19,6 +27,7 @@
 	align-items: center; /* Center align items horizontally within the wrapper */
 	justify-content: center;
 	height: 0; /* We don't want height */
+	top: var(--random-height);
 }
 
 .letter {
@@ -26,7 +35,7 @@
 	position: absolute; /* Enable relative positioning for random vertical offset */
 
 	/* Rotation based effects */
-	transform: rotate3d(0, 0, 1, calc(var(--rotation, 0) * 1deg));
+	transform: rotate3d(0, 0, 1, var(--rotation, 0deg));
 
 	/* Size and placement */
 	font-size: clamp(
@@ -38,7 +47,12 @@
 	animation: fadeIn 0.3s ease-in forwards;
 	animation-delay: var(--random-delay);
 	mix-blend-mode: overlay;
-	cursor: pointer;
+
+	/* Color */
+	color: var(--accent-color, gray);
+	-webkit-text-stroke: 1px var(--primary-color, black);
+	text-stroke: 1px var(--primary-color, black);
+	paint-order: stroke fill;
 
 	/* Fade in */
 	opacity: 0;

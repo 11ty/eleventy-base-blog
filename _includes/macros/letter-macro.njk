@@ -1,8 +1,9 @@
 {% macro seperated_letters(word) %}
   <div class="word">
     {% for letter in word %}
-      <div class="letter-wrapper">
-        <div class="letter">{{ letter }}</div>
+      {% set styles = loop.index0 | randomLetterStyles %}
+      <div class="letter-wrapper" style="{{ styles.wrapper }}">
+        <span class="letter" style="{{ styles.letter }}">{{ letter }}</span>
       </div>
     {% endfor %}
   </div>
