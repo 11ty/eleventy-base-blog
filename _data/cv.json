@@ -7,22 +7,22 @@
 	"contact": [
 		{
 			"type": "email",
-			"value": "mail",
+			"value": "Mail",
 			"url": "mailto:wave@jackson.gd"
 		},
 		{
 			"type": "website",
-			"value": "web",
+			"value": "Web",
 			"url": "https://jackson.gd"
 		},
 		{
 			"type": "github",
-			"value": "github",
+			"value": "GitHub",
 			"url": "https://github.com/jacksongoode"
 		},
 		{
 			"type": "linkedin",
-			"value": "linkedin",
+			"value": "LinkedIn",
 			"url": "https://linkedin.com/in/jacksongoode"
 		}
 	],
@@ -37,7 +37,7 @@
 			"duration": "3 years",
 			"description": "Lead engineer architecting and implementing scalable solutions for real-time monitoring of electrical grid reliability across Sub-Saharan Africa.",
 			"responsibilities": [
-				"Develop and maintain infrastructure for real-time data monitoring, processing massive, real-time datasets from thousands of sensors using Spark",
+				"Develop and maintain infrastructure for real-time data monitoring, processing massive, real-time datasets from thousands of sensors in Spark",
 				"Design and implement custom Grafana plugins and programmatically deploy dashboards across multiple country deployments using Terraform",
 				"Architect a comprehensive library for distributed data processing and analysis in PySpark, enabling scalable ingestion, processing, and visualization of grid reliability data",
 				"Co-design and maintain company blog and website with modern web development frameworks"

@@ -82,15 +82,8 @@
 /* Enhanced about and contact section */
 .cv-about-contact {
 	display: flex;
+	flex-direction: column;
 	gap: 1rem;
-}
-
-.cv-about {
-	flex: 5;
-}
-
-.cv-contact {
-	flex: 1;
 }
 
 .cv-about p {
@@ -98,13 +91,10 @@
 }
 
 .contact-list {
+	display: flex;
 	padding: 0;
-	text-align: right;
 	list-style: none;
-}
-
-.contact-list li {
-	margin-bottom: 0.5rem;
+	justify-content: space-evenly;
 }
 
 /* Skills section */

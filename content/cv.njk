@@ -11,15 +11,15 @@ navPhrase: "Welcome to my CV! Here's a glimpse of my professional journey."
 </section>
 
 <section class="cv-about-contact">
-    <div class="cv-about">
-        <p>{{ cv.about }}</p>
-    </div>
     <div class="cv-contact">
         <ul class="contact-list">
             {% for item in cv.contact %}
             <li><a href="{{ item.url }}">{{ item.value }}</a></li>
             {% endfor %}
         </ul>
+    </div>
+    <div class="cv-about">
+        <p>{{ cv.about }}</p>
     </div>
 </section>
 
