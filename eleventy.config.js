@@ -1,10 +1,3 @@
-const {
-	getRandomHeight,
-	getRandomRotate,
-	getRandomSize,
-	generateColors,
-} = require("./public/js/sound-letters/letter-utils.js");
-
 /** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
 module.exports = async function (eleventyConfig) {
 	const pagefind = await import("pagefind");
@@ -159,13 +152,15 @@ module.exports = async function (eleventyConfig) {
 		return "#f0f0f0";
 	});
 
-	const colors = generateColors(7);
+	// Add this import
+	const letterUtils = await import("./public/js/sound-letters/letter-utils.js");
 
 	eleventyConfig.addFilter("randomLetterStyles", function (index) {
 		const parentHeight = 100; // We'll use a percentage for the build-time version
-		const height = getRandomHeight(index, parentHeight);
-		const rotation = getRandomRotate();
+		const height = letterUtils.getRandomHeight(index, parentHeight);
+		const rotation = letterUtils.getRandomRotate();
 		const size = Math.random() * 100;
+		const colors = letterUtils.generateColors(7);
 		const color = colors[index % 7]; // Cycle through colors if more than 26 letters
 
 		return {
