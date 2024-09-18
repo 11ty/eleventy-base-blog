@@ -159,7 +159,7 @@ module.exports = async function (eleventyConfig) {
 		return "#f0f0f0";
 	});
 
-	const colors = generateColors(7); // Assuming max 26 letters in alphabet
+	const colors = generateColors(7);
 
 	eleventyConfig.addFilter("randomLetterStyles", function (index) {
 		const parentHeight = 100; // We'll use a percentage for the build-time version
