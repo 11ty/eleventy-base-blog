@@ -35,10 +35,10 @@ function initializeLetters() {
 		wrapper.style.setProperty("--random-height", `${height}px`);
 	});
 
-	// After applying all styles, show the word element
-	requestAnimationFrame(() => {
-		document.documentElement.classList.add("js-loaded");
-	});
+    // After applying all styles, show the word element
+    requestAnimationFrame(() => {
+        document.documentElement.classList.add("js-loaded");
+    });
 }
 
 // Also export the function for potential use elsewhere

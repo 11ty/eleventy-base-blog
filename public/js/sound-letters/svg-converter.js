@@ -1,17 +1,17 @@
-const TextToSVG = require('text-to-svg');
+import TextToSVG from "text-to-svg";
 const textToSVG = TextToSVG.loadSync();
 
 function getSVGPathForLetter(letter) {
-  const options = {
-    x: 0,
-    y: 0,
-    fontSize: 72,
-    anchor: 'top',
-    attributes: { fill: 'currentColor' }
-  };
+	const options = {
+		x: 0,
+		y: 0,
+		fontSize: 72,
+		anchor: "top",
+		attributes: { fill: "currentColor" },
+	};
 
-  const svgString = textToSVG.getD(letter, options);
-  return svgString;
+	const svgString = textToSVG.getD(letter, options);
+	return svgString;
 }
 
-module.exports = { getSVGPathForLetter };
+export default { getSVGPathForLetter };

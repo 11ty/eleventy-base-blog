@@ -1,47 +1,48 @@
 {
-  "name": "jackson.gd",
-  "version": "1.0.0",
-  "description": "Jackson's cool website",
-  "scripts": {
-    "build": "bunx @11ty/eleventy",
-    "start": "bunx @11ty/eleventy --serve --quiet",
-    "debug": "DEBUG=Eleventy* bunx @11ty/eleventy",
-    "debugstart": "DEBUG=Eleventy* bunx @11ty/eleventy --serve --quiet",
-    "benchmark": "DEBUG=Eleventy:Benchmark* bunx @11ty/eleventy",
-    "cloudflare": "pip install fonttools[woff] && bunx @11ty/eleventy"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jacksongoode/jackson.gd.git"
-  },
-  "author": {
-    "name": "Jackson Goode & Zach Leatherman",
-    "email": "jacksongoode@proton.me",
-    "url": "https://jackson.gd/"
-  },
-  "license": "MIT",
-  "engines": {
-    "bun": "*"
-  },
-  "devDependencies": {
-    "@11ty/eleventy": "^3.0.0-beta.1",
-    "@11ty/eleventy-img": "^5.0.0-beta.10",
-    "@11ty/eleventy-navigation": "^0.3.5",
-    "@11ty/eleventy-plugin-bundle": "^2.0.2",
-    "@11ty/eleventy-plugin-rss": "^2.0.2",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
-    "luxon": "^3.5.0",
-    "markdown-it-anchor": "^9.2.0"
-  },
-  "dependencies": {
-    "@11tyrocks/eleventy-plugin-lightningcss": "^1.4.0",
-    "@elemaudio/core": "^3.2.1",
-    "@elemaudio/web-renderer": "^3.2.3",
-    "@photogabble/eleventy-plugin-font-subsetting": "^1.0.0",
-    "canvas": "^2.11.2",
-    "emoji-palette": "^0.0.3",
-    "lite-vimeo-embed": "^0.3.0",
-    "lite-youtube-embed": "^0.3.3",
-    "pagefind": "^1.1.1"
-  }
+	"name": "jackson.gd",
+	"version": "1.0.0",
+	"description": "Jackson's cool website",
+	"scripts": {
+		"build": "bunx @11ty/eleventy",
+		"start": "bunx @11ty/eleventy --serve --quiet",
+		"debug": "DEBUG=Eleventy* bunx @11ty/eleventy",
+		"debugstart": "DEBUG=Eleventy* bunx @11ty/eleventy --serve --quiet",
+		"benchmark": "DEBUG=Eleventy:Benchmark* bunx @11ty/eleventy",
+		"cloudflare": "pip install fonttools[woff] && bunx @11ty/eleventy"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/jacksongoode/jackson.gd.git"
+	},
+	"author": {
+		"name": "Jackson Goode & Zach Leatherman",
+		"email": "jacksongoode@proton.me",
+		"url": "https://jackson.gd/"
+	},
+	"type": "module",
+	"license": "MIT",
+	"engines": {
+		"bun": "*"
+	},
+	"devDependencies": {
+		"@11ty/eleventy": "^3.0.0-beta.1",
+		"@11ty/eleventy-img": "^5.0.0-beta.10",
+		"@11ty/eleventy-navigation": "^0.3.5",
+		"@11ty/eleventy-plugin-bundle": "^2.0.2",
+		"@11ty/eleventy-plugin-rss": "^2.0.2",
+		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+		"luxon": "^3.5.0",
+		"markdown-it-anchor": "^9.2.0"
+	},
+	"dependencies": {
+		"@11tyrocks/eleventy-plugin-lightningcss": "^1.4.0",
+		"@elemaudio/core": "^3.2.1",
+		"@elemaudio/web-renderer": "^3.2.3",
+		"@photogabble/eleventy-plugin-font-subsetting": "^1.0.0",
+		"canvas": "^2.11.2",
+		"emoji-palette": "^0.0.3",
+		"lite-vimeo-embed": "^0.3.0",
+		"lite-youtube-embed": "^0.3.3",
+		"pagefind": "^1.1.1"
+	}
 }

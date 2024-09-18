@@ -1,25 +1,20 @@
-/** @param {import('@11ty/eleventy').UserConfig} eleventyConfig */
-module.exports = async function (eleventyConfig) {
-	const pagefind = await import("pagefind");
-	const { DateTime } = await import("luxon");
-	const { default: markdownItAnchor } = await import("markdown-it-anchor");
-	const { createCanvas } = await import("canvas");
+import * as pagefind from "pagefind";
+import { DateTime } from "luxon";
+import markdownItAnchor from "markdown-it-anchor";
+import { createCanvas } from "canvas";
+import fontSubsettingPlugin from "@photogabble/eleventy-plugin-font-subsetting";
 
-	const { default: pluginRss } = await import("@11ty/eleventy-plugin-rss");
-	const { default: pluginSyntaxHighlight } = await import(
-		"@11ty/eleventy-plugin-syntaxhighlight"
-	);
-	const { default: pluginBundle } = await import(
-		"@11ty/eleventy-plugin-bundle"
-	);
-	const { default: pluginNavigation } = await import(
-		"@11ty/eleventy-navigation"
-	);
-	const { EleventyHtmlBasePlugin } = await import("@11ty/eleventy");
+import pluginRss from "@11ty/eleventy-plugin-rss";
+import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+import pluginBundle from "@11ty/eleventy-plugin-bundle";
+import pluginNavigation from "@11ty/eleventy-navigation";
+import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
 
-	const { default: pluginDrafts } = await import("./eleventy.config.drafts.js");
-	const { default: pluginImages } = await import("./eleventy.config.images.js");
+import pluginDrafts from "./eleventy.config.drafts.js";
+import pluginImages from "./eleventy.config.images.js";
+import * as letterUtils from "./public/js/sound-letters/letter-utils.js";
 
+export default async function (eleventyConfig) {
 	// const getSVGPathForLetter = await import('./public/js/sound-letters/svg-converter.js');
 
 	// Copy the contents of the `public` folder to the output folder
@@ -52,19 +47,16 @@ module.exports = async function (eleventyConfig) {
 	eleventyConfig.addPlugin(pluginBundle);
 
 	// Auto font subsetting
-	eleventyConfig.addPlugin(
-		require("@photogabble/eleventy-plugin-font-subsetting"),
-		{
-			srcFiles: [
-				"./public/font/Switzer-Variable.woff2",
-				"./public/font/Rag-Regular.woff2",
-				"./public/font/Rag-Italic.woff2",
-				"./public/font/Rag-Bold.woff2",
-				"./public/font/Rag-BoldItalic.woff2",
-			],
-			// enabled: process.env.ELEVENTY_ENV !== 'production'
-		},
-	);
+	eleventyConfig.addPlugin(fontSubsettingPlugin, {
+		srcFiles: [
+			"./public/font/Switzer-Variable.woff2",
+			"./public/font/Rag-Regular.woff2",
+			"./public/font/Rag-Italic.woff2",
+			"./public/font/Rag-Bold.woff2",
+			"./public/font/Rag-BoldItalic.woff2",
+		],
+		// enabled: process.env.ELEVENTY_ENV !== 'production'
+	});
 
 	// Watch CSS files for changes
 	eleventyConfig.addWatchTarget("public/css/**/*.css");
@@ -153,21 +145,26 @@ module.exports = async function (eleventyConfig) {
 	});
 
 	// Add this import
-	const letterUtils = await import("./public/js/sound-letters/letter-utils.js");
+	eleventyConfig.addFilter(
+		"randomLetterStyles",
+		function (index, totalLetters) {
+			const parentHeight = 100; // We'll use a percentage for the build-time version
+			const height = letterUtils.getRandomHeight(index, parentHeight);
+			const rotation = letterUtils.getRandomRotate();
+			const size = letterUtils.getRandomSize();
 
-	eleventyConfig.addFilter("randomLetterStyles", function (index) {
-		const parentHeight = 100; // We'll use a percentage for the build-time version
-		const height = letterUtils.getRandomHeight(index, parentHeight);
-		const rotation = letterUtils.getRandomRotate();
-		const size = Math.random() * 100;
-		const colors = letterUtils.generateColors(7);
-		const color = colors[index % 7]; // Cycle through colors if more than 26 letters
+			// Generate colors only once per word
+			if (!this.colors || this.colors.length !== totalLetters) {
+				this.colors = letterUtils.generateColors(totalLetters);
+			}
+			const color = this.colors[index];
 
-		return {
-			wrapper: `--random-height: ${height}%;`,
-			letter: `--rotation: ${rotation}deg; --random-size: ${size}; --primary-color: ${color.primary}; --accent-color: ${color.accent};`,
-		};
-	});
+			return {
+				wrapper: `--random-height: ${height}%;`,
+				letter: `--rotation: ${rotation}deg; --random-size: ${size}; --primary-color: ${color.primary}; --accent-color: ${color.accent};`,
+			};
+		},
+	);
 
 	// Customize Markdown library settings:
 	eleventyConfig.amendLibrary("md", (mdLib) => {
@@ -304,4 +301,4 @@ module.exports = async function (eleventyConfig) {
 		// folder name and does **not** affect where things go in the output folder.
 		pathPrefix: "/",
 	};
-};
+}

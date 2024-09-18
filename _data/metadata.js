@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	title: "Jackson",
 	url: "https://jackson.gd/",
 	language: "en",
