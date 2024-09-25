@@ -55,6 +55,7 @@
 	paint-order: stroke fill;
 
 	/* Fade in */
+	will-change: opacity;
 	opacity: 0;
 	transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
 	will-change: transform, font-variation-settings;
@@ -93,4 +94,9 @@
 
 .card :first-child {
 	margin-top: 0;
+}
+
+.js-loaded .letter {
+	animation: none;
+	transition: opacity 0.3s ease-in;
 }

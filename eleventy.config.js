@@ -152,6 +152,7 @@ export default async function (eleventyConfig) {
 			const height = letterUtils.getRandomHeight(index, parentHeight);
 			const rotation = letterUtils.getRandomRotate();
 			const size = letterUtils.getRandomSize();
+			const delay = size / 100;
 
 			// Generate colors only once per word
 			if (!this.colors || this.colors.length !== totalLetters) {
@@ -161,7 +162,13 @@ export default async function (eleventyConfig) {
 
 			return {
 				wrapper: `--random-height: ${height}%;`,
-				letter: `--rotation: ${rotation}deg; --random-size: ${size}; --primary-color: ${color.primary}; --accent-color: ${color.accent};`,
+				letter: `
+					--rotation: ${rotation}deg;
+					--random-size: ${size};
+					--primary-color: ${color.primary};
+					--accent-color: ${color.accent};
+					--random-delay: ${delay}s;
+				`,
 			};
 		},
 	);
