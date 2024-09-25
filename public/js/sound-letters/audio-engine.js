@@ -2,13 +2,12 @@
 import { el } from "https://cdn.jsdelivr.net/npm/@elemaudio/core@4.0.0-alpha.6/+esm";
 import WebRenderer from "https://cdn.jsdelivr.net/npm/@elemaudio/web-renderer@4.0.0-alpha.6/+esm";
 import { AUDIO_CONFIG } from "./config.js";
-
 export class AudioEngine {
 	static instance = null;
 
 	constructor() {
 		this.core = new WebRenderer();
-		this.ctx = new AudioContext();
+		this.ctx = new AudioContext({ latencyHint: "interactive" });
 		this.ctx.suspend();
 		this.initializePromise = null;
 		this.isInitialized = false;
@@ -35,6 +34,15 @@ export class AudioEngine {
 		} catch (error) {
 			console.error("Failed to initialize audio engine:", error);
 			throw error;
+		}
+	}
+
+	async ensureAudioContext() {
+		if (!this.ctx) {
+			this.ctx = new AudioContext({ latencyHint: "interactive" });
+		}
+		if (this.ctx.state === "suspended") {
+			await this.ctx.resume();
 		}
 	}
 
