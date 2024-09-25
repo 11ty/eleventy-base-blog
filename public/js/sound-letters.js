@@ -101,9 +101,9 @@ class SoundLetters {
 		if (this.isChatInputActive) return;
 
 		try {
-			await this.audioEngine.ensureAudioContext();
-			if (!this.audioEngine.isInitialized) {
-				await this.audioEngine.initialize();
+			if (!this.isAudioInitialized) {
+				await this.initializeAudio();
+				this.isAudioInitialized = true;
 			}
 
 			const key = element.textContent.toLowerCase();
@@ -139,8 +139,12 @@ class SoundLetters {
 	}
 
 	async initializeAudio() {
-		if (!this.audioEngine.isInitialized) {
-			await this.audioEngine.initialize();
+		if (!this.isAudioInitialized) {
+			await this.audioEngine.ensureAudioContext();
+			if (!this.audioEngine.isInitialized) {
+				await this.audioEngine.initialize();
+			}
+			this.isAudioInitialized = true;
 		}
 	}
 }
