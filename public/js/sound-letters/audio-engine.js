@@ -87,21 +87,27 @@ export class AudioEngine {
 		const filtered = el.svf({ mode: "lowpass" }, cutoff, resonance, saturated);
 
 		// Apply a highpass filter to remove unwanted low frequencies
-		const highpassed = el.highpass(300, 0.8, filtered);
+		const highpassed = el.highpass(160, 0.8, filtered);
 
 		// Add a state variable filter (SVF) configured as a notch to reduce harshness in the 800-1000 Hz range
 		const notched = el.svf(
 			{ mode: "notch" },
-			el.const({ key: `${key}:notchFreq`, value: 900 }),
-			el.const({ key: `${key}:notchQ`, value: 5.0 }), // Increased Q value for a gentler notch
+			el.const({ key: `${key}:notchFreq`, value: freq * 1.5 }),
+			el.const({ key: `${key}:notchQ`, value: 6.0 }), // Increased Q value for a gentler notch
 			highpassed,
 		);
+
+		// Base rate of 5 Hz, slightly increasing with frequency
+		const tremoloRate = el.add(3, el.mul(0.01, freq));
+		const tremoloDepth = 0.075; // 10% depth
+		const tremolo = el.add(1, el.mul(el.cycle(tremoloRate), tremoloDepth));
 
 		// Combine the envelope, velocity, and filtered signal
 		const output = el.mul(
 			notched,
 			env,
 			el.const({ key: `${key}:velocity`, value: velocity }),
+			tremolo,
 		);
 
 		// Apply final gain adjustment
