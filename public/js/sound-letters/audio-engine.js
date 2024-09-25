@@ -6,14 +6,16 @@ export class AudioEngine {
 	static instance = null;
 
 	constructor() {
+		this.isInitialized = false;
 		this.core = new WebRenderer();
 		this.ctx = new AudioContext({ latencyHint: "interactive" });
-		this.ctx.suspend();
 		this.initializePromise = null;
-		this.isInitialized = false;
+		this.node = null;
 	}
 
 	async initialize() {
+		if (this.isInitialized) return;
+
 		if (!this.initializePromise) {
 			this.initializePromise = this._initialize();
 		}
@@ -22,13 +24,17 @@ export class AudioEngine {
 
 	async _initialize() {
 		try {
-			await this.ctx.resume();
-			const node = await this.core.initialize(this.ctx, {
-				numberOfInputs: 0,
-				numberOfOutputs: 1,
-				outputChannelCount: [2],
-			});
-			node.connect(this.ctx.destination);
+			await this.ensureAudioContext();
+
+			if (!this.node) {
+				this.node = await this.core.initialize(this.ctx, {
+					numberOfInputs: 1,
+					numberOfOutputs: 1,
+					outputChannelCount: [2],
+				});
+				this.node.connect(this.ctx.destination);
+			}
+
 			this.isInitialized = true;
 			console.log("Audio engine initialized and connected");
 		} catch (error) {
@@ -38,9 +44,6 @@ export class AudioEngine {
 	}
 
 	async ensureAudioContext() {
-		if (!this.ctx) {
-			this.ctx = new AudioContext({ latencyHint: "interactive" });
-		}
 		if (this.ctx.state === "suspended") {
 			await this.ctx.resume();
 		}

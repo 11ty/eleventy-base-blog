@@ -139,12 +139,9 @@ class SoundLetters {
 	}
 
 	async initializeAudio() {
-		if (!this.isAudioInitialized) {
-			await this.audioEngine.ensureAudioContext();
-			if (!this.audioEngine.isInitialized) {
-				await this.audioEngine.initialize();
-			}
-			this.isAudioInitialized = true;
+		await this.audioEngine.ensureAudioContext();
+		if (!this.audioEngine.isInitialized) {
+			await this.audioEngine.initialize();
 		}
 	}
 }
