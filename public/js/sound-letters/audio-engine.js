@@ -1,7 +1,7 @@
 // AudioEngine.js
 import { el } from "https://cdn.jsdelivr.net/npm/@elemaudio/core@4.0.0-alpha.6/+esm";
 import WebRenderer from "https://cdn.jsdelivr.net/npm/@elemaudio/web-renderer@4.0.0-alpha.6/+esm";
-import { AUDIO_CONFIG } from "./config.js";
+import { AUDIO_CONFIG, SAMPLE_RATE } from "./config.js";
 export class AudioEngine {
 	static instance = null;
 
@@ -36,7 +36,7 @@ export class AudioEngine {
 			}
 
 			this.isInitialized = true;
-			console.log("Audio engine initialized and connected");
+			console.log("Audio engine initialized and connected 🎶");
 		} catch (error) {
 			console.error("Failed to initialize audio engine:", error);
 			throw error;
@@ -49,69 +49,91 @@ export class AudioEngine {
 		}
 	}
 
-	renderSynthVoice({ key, freq, gate, velocity }) {
-		// Smooth the gate signal to prevent clicks
+	renderSynthVoice({ key, freq, gate, velocity, position }) {
 		const smoothGate = el.smooth(
 			0.005,
-			el.const({ key: `${key}:smoothGate`, value: gate }),
+			el.const({ key: `${key}:gate`, value: gate }),
 		);
 
-		// Create an ADSR envelope
+		// Softer ADSR envelope
 		const { attack, decay, sustain, release } = AUDIO_CONFIG.ADSR_SETTINGS;
 		const env = el.adsr(attack, decay, sustain, release, smoothGate);
 
-		// Generate a subtle detuning effect
-		const detune = el.add(
-			el.mul(el.noise(), 0.01), // Random noise for slight pitch variation
-			el.mul(el.cycle(0.1), 0.2), // Slow LFO for subtle pitch modulation
+		// Tine and tone bar mechanism simulation
+		const fundamental = el.cycle(freq);
+		const secondHarmonic = el.cycle(el.mul(freq, 2));
+		const thirdHarmonic = el.cycle(el.mul(freq, 3));
+
+		// Mix harmonics with decreasing amplitudes
+		const harmonics = el.add(
+			el.mul(fundamental, AUDIO_CONFIG.HARMONIC_MIX.fundamental),
+			el.mul(secondHarmonic, AUDIO_CONFIG.HARMONIC_MIX.secondHarmonic),
+			el.mul(thirdHarmonic, AUDIO_CONFIG.HARMONIC_MIX.thirdHarmonic)
 		);
 
-		// Create three slightly detuned oscillators for a richer sound
-		const osc1 = el.cycle(el.mul(freq, el.add(1, el.mul(detune, 0.001))));
-		const osc2 = el.cycle(freq);
-		const osc3 = el.cycle(el.mul(freq, el.add(1, el.mul(detune, -0.001))));
+		// Simulate inharmonic overtones (very subtle)
+		const inharmonics = el.mul(el.noise(), AUDIO_CONFIG.INHARMONICS_AMOUNT);
 
-		// Mix the oscillators
-		const oscMix = el.add(
-			el.mul(osc1, 0.33),
-			el.mul(osc2, 0.34),
-			el.mul(osc3, 0.33),
+		// Softer attack characteristics
+		const attackNoise = el.mul(
+			el.noise(),
+			el.adsr(AUDIO_CONFIG.ATTACK_NOISE.attack, AUDIO_CONFIG.ATTACK_NOISE.decay, 0, AUDIO_CONFIG.ATTACK_NOISE.decay, smoothGate),
 		);
 
-		// Apply soft saturation for a warmer tone
-		const saturated = el.tanh(el.mul(oscMix, 1.5));
-
-		// Create a dynamic lowpass filter
-		const cutoff = el.add(el.mul(env, 2000), 100); // Envelope-controlled cutoff
-		const resonance = el.add(0.5, el.mul(env, 0.3)); // Slight envelope-controlled resonance
-		const filtered = el.svf({ mode: "lowpass" }, cutoff, resonance, saturated);
-
-		// Apply a highpass filter to remove unwanted low frequencies
-		const highpassed = el.highpass(160, 0.8, filtered);
-
-		// Add a state variable filter (SVF) configured as a notch to reduce harshness in the 800-1000 Hz range
-		const notched = el.svf(
-			{ mode: "notch" },
-			el.const({ key: `${key}:notchFreq`, value: freq * 1.5 }),
-			el.const({ key: `${key}:notchQ`, value: 6.0 }), // Increased Q value for a gentler notch
-			highpassed,
+		// Tine resonance using SVF (softer resonance)
+		const tineResonance = el.svf(
+			el.mul(freq, AUDIO_CONFIG.TINE_RESONANCE.frequency),
+			AUDIO_CONFIG.TINE_RESONANCE.q,
+			harmonics
 		);
 
-		// Base rate of 5 Hz, slightly increasing with frequency
-		const tremoloRate = el.add(3, el.mul(0.01, freq));
-		const tremoloDepth = 0.075; // 10% depth
-		const tremolo = el.add(1, el.mul(el.cycle(tremoloRate), tremoloDepth));
-
-		// Combine the envelope, velocity, and filtered signal
-		const output = el.mul(
-			notched,
-			env,
-			el.const({ key: `${key}:velocity`, value: velocity }),
-			tremolo,
+		// Combine tine, harmonics, and inharmonics
+		const rawTone = el.add(
+			el.mul(harmonics, 0.7),
+			el.mul(tineResonance, 0.2),
+			inharmonics,
+			el.mul(attackNoise, AUDIO_CONFIG.ATTACK_NOISE.amount)
 		);
 
-		// Apply final gain adjustment
-		return el.mul(output, 0.8);
+		// Softer pickup nonlinearity simulation
+		const pickupResponse = el.tanh(el.mul(rawTone, AUDIO_CONFIG.PICKUP_RESPONSE));
+
+		// Dynamic filtering (softer brightness)
+		const velocityBrightness = el.mul(velocity, AUDIO_CONFIG.FILTER_SETTINGS.velocitySensitivity);
+		const filterEnv = el.mul(env, AUDIO_CONFIG.FILTER_SETTINGS.envelopeAmount);
+		const filterCutoff = el.add(AUDIO_CONFIG.FILTER_SETTINGS.baseCutoff, velocityBrightness, filterEnv);
+		const filteredTone = el.svf(filterCutoff, 0.7, pickupResponse);
+
+		// Amplitude envelope
+		const ampEnv = el.mul(env, el.mul(velocity, AUDIO_CONFIG.AMPLITUDE));
+
+		// Apply amplitude envelope
+		const voiceOutput = el.mul(filteredTone, ampEnv);
+
+		// Stereo widening (subtle)
+		const stereoSpread = el.mul(AUDIO_CONFIG.STEREO_SETTINGS.spread, el.sub(position, 0.5));
+		const leftDelay = el.delay(
+			{ size: 100 },
+			el.mul(stereoSpread, -1),
+			AUDIO_CONFIG.STEREO_SETTINGS.delay,
+			voiceOutput
+		);
+		const rightDelay = el.delay({ size: 100 }, stereoSpread, AUDIO_CONFIG.STEREO_SETTINGS.delay, voiceOutput);
+
+		// Chorus effect (very subtle)
+		const chorusDelay = el.add(
+			5,
+			el.mul(el.cycle(AUDIO_CONFIG.CHORUS_SETTINGS.rate), AUDIO_CONFIG.CHORUS_SETTINGS.depth)
+		);
+		const leftChorus = el.delay({ size: SAMPLE_RATE }, chorusDelay, AUDIO_CONFIG.CHORUS_SETTINGS.mix, leftDelay);
+		const rightChorus = el.delay({ size: SAMPLE_RATE }, chorusDelay, AUDIO_CONFIG.CHORUS_SETTINGS.mix, rightDelay);
+
+		// Final output with slight panning
+		const pan = el.mul(el.sub(position, 0.5), AUDIO_CONFIG.PANNING_AMOUNT);
+		const leftChannel = el.mul(leftChorus, el.sub(1, pan));
+		const rightChannel = el.mul(rightChorus, el.add(1, pan));
+
+		return [leftChannel, rightChannel];
 	}
 
 	render(outputs) {
@@ -121,14 +143,24 @@ export class AudioEngine {
 		}
 
 		if (outputs.length > 0) {
-			const combinedOutput = el.add(...outputs);
+			const leftOutputs = outputs.map((output) => output[0]);
+			const rightOutputs = outputs.map((output) => output[1]);
+
+			const combinedLeft = el.add(...leftOutputs);
+			const combinedRight = el.add(...rightOutputs);
+
 			const gainReduction = el.div(
 				1,
-				el.sqrt(el.const({ key: "voiceCount", value: outputs.length })),
+				el.add(
+					1,
+					el.mul(0.1, el.const({ key: "voiceCount", value: outputs.length })),
+				),
 			);
-			const limitedOutput = el.tanh(el.mul(combinedOutput, gainReduction, 1.2));
 
-			this.core.render(limitedOutput, limitedOutput);
+			const limitedLeft = el.tanh(el.mul(combinedLeft, gainReduction));
+			const limitedRight = el.tanh(el.mul(combinedRight, gainReduction));
+
+			this.core.render(limitedLeft, limitedRight);
 		} else {
 			this.core.render(el.const({ value: 0 }), el.const({ value: 0 }));
 		}

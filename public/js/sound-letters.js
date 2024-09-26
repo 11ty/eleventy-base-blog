@@ -107,9 +107,11 @@ class SoundLetters {
 			}
 
 			const key = element.textContent.toLowerCase();
+			const letterData = this.letterMap.get(key);
 			if (isPressed && !element.isPressed) {
 				element.isPressed = true;
-				const normalizedFreq = this.voiceManager.allocateVoice(key);
+				const position = letterData.index / (this.letterMap.size - 1);
+				const normalizedFreq = this.voiceManager.allocateVoice(key, position);
 				this.rotationManager.applyRotation(element, normalizedFreq);
 			} else if (!isPressed && element.isPressed) {
 				element.isPressed = false;

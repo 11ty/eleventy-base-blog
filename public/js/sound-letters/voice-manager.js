@@ -8,7 +8,7 @@ export class VoiceManager {
         this.activeVoices = new Map();
     }
 
-    allocateVoice(key) {
+    allocateVoice(key, position) {
         if (this.activeVoices.size >= AUDIO_CONFIG.MAX_VOICES) {
             const oldestKey = Array.from(this.activeVoices.keys())[0];
             this.releaseVoice(oldestKey);
@@ -16,17 +16,18 @@ export class VoiceManager {
 
         const freq = this.frequencyManager.getFrequency(key);
         const velocity = 0.7 + Math.random() * 0.25;
-        const voice = this.audioEngine.renderSynthVoice({ key, freq, gate: 1, velocity });
-        this.activeVoices.set(key, { voice, freq, velocity });
+        const voice = this.audioEngine.renderSynthVoice({ key, freq, gate: 1, velocity, position });
+        this.activeVoices.set(key, { voice, freq, velocity, position, gate: 1 });
 
         return this.frequencyManager.getNormalizedFrequency(key);
     }
 
     releaseVoice(key) {
         if (this.activeVoices.has(key)) {
-            const { freq, velocity } = this.activeVoices.get(key);
-            const voice = this.audioEngine.renderSynthVoice({ key, freq, gate: 0, velocity });
-            this.activeVoices.set(key, { voice, freq, velocity, releaseStart: Date.now() });
+            const voiceData = this.activeVoices.get(key);
+            voiceData.gate = 0;
+            voiceData.releaseStart = Date.now();
+            // We don't need to re-render the voice here, it will be updated in renderActiveVoices
         }
     }
 
@@ -34,11 +35,21 @@ export class VoiceManager {
         const currentTime = Date.now();
         const outputs = [];
 
-        for (const [key, voice] of this.activeVoices.entries()) {
-            if (voice.releaseStart && currentTime - voice.releaseStart > AUDIO_CONFIG.ADSR_SETTINGS.release * 1000) {
+        for (const [key, voiceData] of this.activeVoices.entries()) {
+            if (voiceData.releaseStart && currentTime - voiceData.releaseStart > AUDIO_CONFIG.ADSR_SETTINGS.release * 1000) {
                 this.activeVoices.delete(key);
             } else {
-                outputs.push(voice.voice);
+                // Only update the voice if the gate has changed
+                if (voiceData.voice.gate !== voiceData.gate) {
+                    voiceData.voice = this.audioEngine.renderSynthVoice({
+                        key,
+                        freq: voiceData.freq,
+                        gate: voiceData.gate,
+                        velocity: voiceData.velocity,
+                        position: voiceData.position
+                    });
+                }
+                outputs.push(voiceData.voice);
             }
         }
 
