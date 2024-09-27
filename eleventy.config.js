@@ -16,7 +16,7 @@ export default async function(eleventyConfig) {
 	});
 
 	eleventyConfig.addUrlTransform((page) => {
-		if (page.url.endsWith("/")) {
+		if (page.outputPath?.endsWith(".html") && url.endsWith("/")) {
 			return page.url.slice(0, -1);
 		}
 	});
