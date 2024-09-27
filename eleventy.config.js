@@ -15,21 +15,6 @@ export default async function(eleventyConfig) {
 		}
 	});
 
-	eleventyConfig.addUrlTransform((page) => {
-		if (page.url.length > 1 && page.url.endsWith("/")) {
-			return page.url.slice(0, -1);
-		}
-	});
-	// eleventyConfig.addUrlTransform((page) => {
-	// 	if (page.url.endsWith(".html")) {
-	// 		return page.url.slice(0, -1 * ".html".length);
-	// 	}
-	// });
-	// eleventyConfig.addGlobalData("permalink", () => {
-	// 	return (data) =>
-	// 		`${data.page.filePathStem}.${data.page.outputFileExtension}`;
-	// });
-
 	// Copy the contents of the `public` folder to the output folder
 	// For example, `./public/css/` ends up in `_site/css/`
 	eleventyConfig
