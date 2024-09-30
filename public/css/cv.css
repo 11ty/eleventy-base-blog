@@ -92,9 +92,64 @@
 
 .contact-list {
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 0.5rem;
 	padding: 0;
 	list-style: none;
-	justify-content: space-evenly;
+}
+
+.contact-item {
+	flex: 1 1 calc(50% - 0.25rem);
+	min-width: 140px;
+}
+
+.contact-link {
+	display: flex;
+	align-items: center;
+	padding: 0.25rem 0.5rem;
+	border: 1px solid var(--color-gray-90);
+	border-radius: 0.25rem;
+	transition: background-color 0.3s ease;
+	text-decoration: none;
+	color: var(--color-gray-20);
+}
+
+.contact-link:hover {
+	background-color: var(--color-gray-90);
+}
+
+.contact-icon {
+	font-size: 1rem;
+	margin-right: 0.5rem;
+}
+
+.contact-info {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.contact-value {
+	font-weight: bold;
+	font-size: 0.9rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.contact-url {
+	font-size: 0.7em;
+	color: var(--color-gray-50);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@media (max-width: 600px) {
+	.contact-item {
+		flex-basis: 100%;
+	}
 }
 
 /* Skills section */
@@ -120,11 +175,11 @@
 /* Print styles */
 @media print {
 	body {
-		font-size: 12pt;
+		font-size: 10pt;
 	}
 
 	.cv-section {
-		page-break-inside: avoid;
+		break-inside: avoid-column;
 	}
 
 	a {
@@ -142,6 +197,14 @@
 
 	.timeline-item {
 		padding-left: 0;
+	}
+
+	.site-header {
+		display: none;
+	}
+
+	.wave-divider {
+		display: none;
 	}
 }
 
