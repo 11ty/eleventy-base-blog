@@ -27,7 +27,9 @@ navPhrase: "Welcome to my CV! Here's a glimpse of my professional journey."
         </ul>
     </div>
     <div class="cv-about">
-        <p>{{ cv.about }}</p>
+        {% for item in cv.about %}
+            <p>{{ item }}</p>
+        {% endfor %}
     </div>
 </section>
 

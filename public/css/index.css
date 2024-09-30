@@ -79,7 +79,7 @@ body {
 	width: 100%;
 	max-width: calc(40rem + 200px + 2rem);
 	margin: 0 auto;
-	padding: 0 1rem;
+	padding: 1rem;
 }
 
 .site-header {
@@ -682,7 +682,6 @@ header {
 
 	main {
 		max-width: none;
-		padding: 1rem;
 	}
 
 	.site-header {

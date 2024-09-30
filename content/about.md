@@ -1,5 +1,6 @@
 ---
 layout: layouts/home.njk
+title: "About Me"
 eleventyNavigation:
   key: About Me
   order: 4
@@ -19,7 +20,9 @@ Here's what I've been listening to!
   <img height="100" src="https://jackson-spotify.vercel.app/svg" alt="Current Spotify song"/>
 </a>
 
-And now, a brief attempt at marketing.
+<div class="wave-divider" style="--emoji-color: lightgray;"></div>
+
+And now... a brief attempt at marketing!
 
 ## CV
 
