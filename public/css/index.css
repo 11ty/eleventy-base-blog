@@ -64,7 +64,6 @@ html {
 }
 html,
 body {
-	max-width: 100%;
 	padding: 0;
 	background-color: Canvas;
 	background-color: transparent;
@@ -75,7 +74,7 @@ body {
 body {
 	display: flex;
 	flex-direction: row;
-	min-height: 100vh;
+	min-height: 100dvh;
 	width: 100%;
 	max-width: calc(40rem + 200px + 2rem);
 	margin: 0 auto;
