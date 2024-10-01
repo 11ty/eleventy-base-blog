@@ -5,6 +5,14 @@ navPhrase: "Welcome to my CV! Here's a glimpse of my professional journey."
 ---
 {% css %}{% include "public/css/cv.css" %}{% endcss %}
 
+{% macro anchorHeader(level, text) %}
+  {% set slug = text | lower | replace(" ", "-") | replace(",", "") | replace(".", "") %}
+  <h{{ level }} id="{{ slug }}">
+    {{ text }}
+    <a href="#{{ slug }}" class="header-anchor" aria-label="Permalink to {{ text }}">#</a>
+  </h{{ level }}>
+{% endmacro %}
+
 <section class="cv-header">
     <h1>{{ cv.header.name }}</h1>
     <p class="cv-tagline">{{ cv.header.tagline }}</p>
@@ -35,75 +43,55 @@ navPhrase: "Welcome to my CV! Here's a glimpse of my professional journey."
 
 <div class="wave-divider" style="--emoji-color: lightgray;"></div>
 
-<section class="cv-section">
-    <h2>Experience</h2>
-    <div class="timeline">
-        {% for job in cv.experience %}
-        <div class="timeline-item">
-            <h3 class="item-title">{{ job.title }} · {{ job.company }}</h3>
-            <div class="item-details">
-                {{ job.start_date }} → {{ job.end_date }}
-                {% if job.duration %} ({{ job.duration }}){% endif %}
-            </div>
-            <div class="item-location">{{ job.location }}</div>
-            <details>
-                <summary>{{ job.description }}</summary>
-                <ul>
-                    {% for responsibility in job.responsibilities %}
-                    <li>{{ responsibility }}</li>
-                    {% endfor %}
-                </ul>
-            </details>
+{{ anchorHeader(2, "Experience") }}
+<div class="timeline">
+    {% for job in cv.experience %}
+    <div class="timeline-item">
+        <h3 class="item-title">{{ job.title }} · {{ job.company }}</h3>
+        <div class="item-details">
+            {{ job.start_date }} → {{ job.end_date }}
+            {% if job.duration %} ({{ job.duration }}){% endif %}
         </div>
-        {% endfor %}
+        <div class="item-location">{{ job.location }}</div>
+        <details>
+            <summary>{{ job.description }}</summary>
+            <ul>
+                {% for responsibility in job.responsibilities %}
+                <li>{{ responsibility }}</li>
+                {% endfor %}
+            </ul>
+        </details>
     </div>
-    <div class="skills-container">
-        <ul class="skills-list">
-            {% for skill in cv.skills %}
-            <li>{{ skill }}</li>
-            {% endfor %}
-        </ul>
+    {% endfor %}
+</div>
+
+{{ anchorHeader(2, "Education") }}
+<div class="timeline">
+    {% for edu in cv.education %}
+    <div class="timeline-item">
+        <h3 class="item-title">{{ edu.degree }}</h3>
+        <div class="item-details">{{ edu.institution }} · {{ edu.start_date }} - {{ edu.end_date }}</div>
+        <div class="item-location">{{ edu.location }}</div>
+        {% if edu.summary %}
+        <div class="item-summary">{{ edu.summary }}</div>
+        {% endif %}
     </div>
-</section>
+    {% endfor %}
+</div>
 
-<div class="wave-divider" style="--emoji-color: lightgray;"></div>
-
-<section class="cv-section">
-    <h2>Education</h2>
-    <div class="timeline">
-        {% for edu in cv.education %}
-        <div class="timeline-item">
-            <h3 class="item-title">{{ edu.degree }}</h3>
-            <div class="item-details">{{ edu.institution }} · {{ edu.start_date }} - {{ edu.end_date }}</div>
-            <div class="item-location">{{ edu.location }}</div>
-            {% if edu.summary %}
-            <div class="item-summary">{{ edu.summary }}</div>
+{{ anchorHeader(2, "Selected Projects") }}
+<div class="timeline">
+    {% for project in cv.projects %}
+    <div class="timeline-item">
+        <h3 class="item-title">
+            {% if project.url %}
+                <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.name }}</a>
+            {% else %}
+                {{ project.name }}
             {% endif %}
-        </div>
-        {% endfor %}
+        </h3>
+        <div class="item-details">{{ project.tech }}</div>
+        <p>{{ project.description }}</p>
     </div>
-</section>
-
-<div class="wave-divider" style="--emoji-color: lightgray;"></div>
-
-<section class="cv-section projects-skills">
-    <div class="projects-container">
-        <h2>Selected Projects</h2>
-        <div class="timeline">
-            {% for project in cv.projects %}
-            <div class="timeline-item">
-                <h3 class="item-title">
-                    {% if project.url %}
-                        <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">{{ project.name }}</a>
-                    {% else %}
-                        {{ project.name }}
-                    {% endif %}
-                </h3>
-                <div class="item-details">{{ project.tech }}</div>
-                <p>{{ project.description }}</p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-
-</section>
+    {% endfor %}
+</div>

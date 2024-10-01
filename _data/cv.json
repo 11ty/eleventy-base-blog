@@ -35,7 +35,7 @@
 	],
 	"experience": [
 		{
-			"title": "Software Engineer",
+			"title": "Platform Engineer",
 			"company": "nLine",
 			"location": "Berkeley, California, United States",
 			"start_year": "2021",
@@ -77,7 +77,7 @@
 			"description": "Involved in retrieval and analysis of corporate and lead data, and improving in-house software.",
 			"responsibilities": [
 				"Retrieved, compiled, and enriched corporate data for clients' marketing teams",
-				"Built Python functions for batch data enrichment",
+				"Developed Python scripts for batch data enrichment",
 				"Designed UI for programs, product forms, and marketing material",
 				"Assisted in implementing marketing strategies for seed-round funding campaign"
 			]
