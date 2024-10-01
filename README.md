@@ -45,13 +45,12 @@ Or you can run [debug mode](https://www.11ty.dev/docs/debugging/) to see all the
 
 ## Features
 
-- Using [Eleventy v2.0](https://www.11ty.dev/blog/eleventy-v2/) with zero-JavaScript output.
+- Using [Eleventy v3](https://github.com/11ty/eleventy/releases/tag/v3.0.0) with zero-JavaScript output.
 	- Content is exclusively pre-rendered (this is a static site).
 	- Can easily [deploy to a subfolder without changing any content](https://www.11ty.dev/docs/plugins/html-base/)
 	- All URLs are decoupled from the content’s location on the file system.
 	- Configure templates via the [Eleventy Data Cascade](https://www.11ty.dev/docs/data-cascade/)
 - **Performance focused**: four-hundos Lighthouse score out of the box!
-	- [View the Lighthouse report for the latest build](https://eleventy-base-blog.netlify.app/reports/lighthouse/) courtesy of the [Netlify Lighthouse plugin](https://github.com/netlify/netlify-plugin-lighthouse).
 	- _0 Cumulative Layout Shift_
 	- _0ms Total Blocking Time_
 - Local development live reload provided by [Eleventy Dev Server](https://www.11ty.dev/docs/dev-server/).
@@ -68,8 +67,8 @@ Or you can run [debug mode](https://www.11ty.dev/docs/debugging/) to see all the
 	- Images can be co-located with blog post files.
 - Per page CSS bundles [via `eleventy-plugin-bundle`](https://github.com/11ty/eleventy-plugin-bundle).
 - Built-in [syntax highlighter](https://www.11ty.dev/docs/plugins/syntaxhighlight/) (zero-JavaScript output).
+- Draft content: use `draft: true` to mark any template as a draft. Drafts are **only** included during `--serve`/`--watch` and are excluded from full builds. This is driven by the `addPreprocessor` configuration API in `eleventy.config.js`. Schema validator will show an error if non-boolean value is set in data cascade.
 - Blog Posts
-	- Draft posts: use `draft: true` to mark a blog post as a draft. Drafts are **only** included during `--serve`/`--watch` and are excluded from full builds. This is driven by the `eleventyExcludeFromCollections` and `permalink` computed data in the `content/blog/blog.11tydata.js` directory data file. Schema validator will show an error if non-boolean value is set in data cascade.
 	- Automated next/previous links
 	- Accessible deep links to headings
 - Generated Pages

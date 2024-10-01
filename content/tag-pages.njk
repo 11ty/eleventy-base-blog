@@ -5,8 +5,10 @@ const pagination = {
 	size: 1,
 	alias: "tag",
 	filter: ["all", "posts"],
-	addAllPagesToCollections: true,
+	// addAllPagesToCollections: true,
 };
+
+const eleventyExcludeFromCollections = true;
 
 const eleventyComputed = {
 	title: "Tagged '{{ tag }}'",
