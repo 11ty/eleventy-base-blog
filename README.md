@@ -90,12 +90,11 @@ Or you can run [debug mode](https://www.11ty.dev/docs/debugging/) to see all the
 
 Deploy this Eleventy site in just a few clicks on these services:
 
+- Read more about [Deploying an Eleventy project](https://www.11ty.dev/docs/deployment/) to the web.
 - [Deploy this to **Netlify**](https://app.netlify.com/start/deploy?repository=https://github.com/11ty/eleventy-base-blog)
 - [Deploy this to **Vercel**](https://vercel.com/import/project?template=11ty%2Feleventy-base-blog)
 - Look in `.github/workflows/gh-pages.yml.sample` for information on Deploying to **GitHub Pages**.
 - [Try it out on **Stackblitz**](https://stackblitz.com/github/11ty/eleventy-base-blog)
-- If you run Eleventy locally you can drag your `_site` folder to [`netlify.com/drop`](https://netlify.com/drop) to upload it without using `git`.
-- Read more about [Deploying an Eleventy project](https://www.11ty.dev/docs/deployment/) to the web.
 
 ### Implementation Notes
 
