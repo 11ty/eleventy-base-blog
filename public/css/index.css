@@ -87,7 +87,6 @@ body {
 	top: 0;
 	align-self: flex-start;
 	width: 200px;
-	height: 100vh;
 	flex-shrink: 0;
 	padding: 1rem;
 }
@@ -480,7 +479,6 @@ header {
 	align-items: flex-end;
 	justify-content: flex-start;
 	width: 200px;
-	height: 100vh;
 	padding: 1rem;
 
 	&:not(:has(+ .chat-active)) {

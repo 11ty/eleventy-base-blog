@@ -55,7 +55,7 @@
 	width: 12px;
 	height: 12px;
 	border-radius: 50%;
-	background: var(--color-gray-20);
+	background: var(--color-gray-50);
 	cursor: pointer;
 }
 
@@ -63,7 +63,7 @@
 	width: 12px;
 	height: 12px;
 	border-radius: 50%;
-	background: var(--color-gray-20);
+	background: var(--color-gray-50);
 	cursor: pointer;
 	border: none;
 }
@@ -76,12 +76,10 @@
 
 #audio-params-toggle {
 	position: absolute;
-	bottom: 8px;
-	right: 8px;
+	right: -14px;
 	width: 28px;
 	height: 28px;
 	background: var(--color-gray-90);
-	border: 1px solid var(--color-gray-50);
 	border-radius: 50%;
 	cursor: pointer;
 	padding: 5px;
@@ -97,8 +95,8 @@
 	color: var(--color-gray-50);
 }
 
-#audio-params-toggle:hover svg {
-	color: var(--color-gray-20);
+#audio-params-toggle:hover {
+	filter: brightness(90%);
 }
 
 .fade-transition {
@@ -130,3 +128,7 @@
 #randomize-params:hover svg {
 	color: var(--color-gray-20);
 }
+
+/* #audio-params-gui {
+	display: none;
+} */
