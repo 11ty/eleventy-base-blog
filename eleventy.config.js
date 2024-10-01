@@ -54,7 +54,7 @@ export default async function(eleventyConfig) {
 		templateData: {
 			eleventyNavigation: {
 				key: "Feed",
-				order: 3
+				order: 4
 			}
 		},
 		collection: {
