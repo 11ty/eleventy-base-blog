@@ -103,7 +103,7 @@ main {
 
 	/* Add a margin for when chat bubble is absolute */
 	&:where(.chat-active) {
-		margin-top: 3rem;
+		margin-top: 2.25rem;
 	}
 }
 
