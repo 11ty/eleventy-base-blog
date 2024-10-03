@@ -103,7 +103,7 @@ main {
 
 	/* Add a margin for when chat bubble is absolute */
 	&:where(.chat-active) {
-		margin-top: 2.25rem;
+		margin-top: 3rem;
 	}
 }
 
@@ -679,6 +679,11 @@ header {
 
 	main {
 		max-width: none;
+
+		/* Add a margin for when chat bubble is absolute */
+		&:where(.chat-active) {
+			margin-top: 2.25rem;
+		}
 	}
 
 	.site-header {
