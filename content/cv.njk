@@ -27,7 +27,7 @@ navPhrase: "Welcome to my CV! Here's a glimpse of my professional journey."
                     <span class="contact-icon">{{ item.icon }}</span>
                     <div class="contact-info">
                         <span class="contact-value">{{ item.value }}</span>
-                        <span class="contact-url">{{ item.url }}</span>
+                        <span class="contact-url">{{ item.url | replace("https://", "") }}</span>
                     </div>
                 </a>
             </li>

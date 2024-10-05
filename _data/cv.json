@@ -17,19 +17,19 @@
 		{
 			"type": "website",
 			"value": "Web",
-			"url": "jackson.gd",
+			"url": "https://jackson.gd",
 			"icon": "🌐"
 		},
 		{
 			"type": "github",
 			"value": "GitHub",
-			"url": "github.com/jacksongoode",
+			"url": "https://github.com/jacksongoode",
 			"icon": "💻"
 		},
 		{
 			"type": "linkedin",
 			"value": "LinkedIn",
-			"url": "linkedin.com/in/jacksongoode",
+			"url": "https://linkedin.com/in/jacksongoode",
 			"icon": "👔"
 		}
 	],
