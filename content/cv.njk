@@ -1,7 +1,7 @@
 ---
 layout: layouts/home.njk
 title: "Jackson's CV"
-navPhrase: "Welcome to my CV! Here's a glimpse of my professional journey."
+navPhrase: "Welcome to my CV! Return to {}"
 ---
 {% css %}{% include "public/css/cv.css" %}{% endcss %}
 
@@ -19,7 +19,13 @@ navPhrase: "Welcome to my CV! Here's a glimpse of my professional journey."
 </section>
 
 <section class="cv-about-contact">
+    <div class="cv-about">
+        {% for item in cv.about %}
+            <p>{{ item }}</p>
+        {% endfor %}
+    </div>
     <div class="cv-contact">
+        <p>You can also find around the web:</p>
         <ul class="contact-list">
             {% for item in cv.contact %}
             <li class="contact-item">
@@ -34,11 +40,7 @@ navPhrase: "Welcome to my CV! Here's a glimpse of my professional journey."
             {% endfor %}
         </ul>
     </div>
-    <div class="cv-about">
-        {% for item in cv.about %}
-            <p>{{ item }}</p>
-        {% endfor %}
-    </div>
+
 </section>
 
 <div class="wave-divider" style="--emoji-color: lightgray;"></div>
