@@ -69,10 +69,14 @@
 				{% include "components/nav-bubble.njk" %}
 				<div class="side-nav">
 					<ul class="nav-list">
-						<li id="chat-toggle" class="nav-item">Welcome!</li>
+						<li id="chat-toggle" class="nav-item">
+							<span class="nav-link">Welcome!</span>
+						</li>
 						{%- for entry in collections.all | eleventyNavigation %}
 							<li class="nav-item">
-								<a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
+								<a href="{{ entry.url }}" class="nav-link"{% if entry.url == page.url %} aria-current="page" tabindex="-1"{% endif %}>
+									{{ entry.title }}
+								</a>
 							</li>
 						{%- endfor %}
 					</ul>

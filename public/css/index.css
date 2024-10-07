@@ -33,12 +33,12 @@
 /* Both for system and user preference */
 :root[data-theme="dark"],
 .dark-mode {
+	color-scheme: dark;
 	--color-bg: black;
 	--color-gray-20: #cccccc;
 	--color-gray-50: #808080;
 	--color-gray-90: #1a1a1a;
 	--noise-opacity: 0.1;
-	color-scheme: dark;
 }
 
 @font-face {
@@ -66,7 +66,6 @@ html {
 }
 html,
 body {
-	padding: 0;
 	background-color: Canvas;
 	background-color: transparent;
 	color: CanvasText;
@@ -237,14 +236,28 @@ nav {
 	list-style: none;
 }
 .nav-item {
-	display: inline-block;
+	display: block;
+}
+
+.nav-link {
+	display: block;
 	padding: 0.25rem 0;
-}
-.nav-item a[href]:not(:hover) {
 	text-decoration: none;
+	color: inherit;
 }
-.nav a[href][aria-current="page"] {
+
+a.nav-link:hover {
 	text-decoration: underline;
+}
+
+.nav-item a[href][aria-current="page"] {
+	color: GrayText;
+	cursor: default;
+	pointer-events: none;
+}
+
+.nav-item a[href][aria-current="page"]:hover {
+	text-decoration: none;
 }
 
 /* Posts list */
