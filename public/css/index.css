@@ -1,4 +1,5 @@
 :root {
+	color-scheme: light dark;
 	--color-bg: white;
 	--color-gray-20: #333333;
 	--color-gray-50: #7f7f7f;
@@ -25,7 +26,8 @@
 		0.9px 10.9px 11.5px -2.4px hsl(var(--shadow-color) / 0.11),
 		1.5px 19.3px 20.3px -3px hsl(var(--shadow-color) / 0.1);
 	--nav-height: 4rem; /* Default height to lower for header*/
-	color-scheme: light dark;
+	--padding-x: 1rem;
+	--padding-y: 2rem;
 }
 
 /* Both for system and user preference */
@@ -78,7 +80,6 @@ body {
 	width: 100%;
 	max-width: calc(40rem + 200px + 2rem);
 	margin: 0 auto;
-	padding: 1rem;
 }
 
 .site-header {
@@ -87,13 +88,13 @@ body {
 	align-self: flex-start;
 	width: 200px;
 	flex-shrink: 0;
-	padding: 1rem;
+	padding: var(--padding-y) var(--padding-x);
 }
 
 main {
 	width: 100%;
 	max-width: 40rem;
-	padding: 1rem;
+	padding: var(--padding-y) var(--padding-x);
 
 	& h1:first-child,
 	& h2:first-child,
@@ -674,11 +675,11 @@ header {
 	body {
 		flex-direction: column; /* Stack header and main content on narrow screens */
 		max-width: 40rem;
-		padding: 0;
 	}
 
 	main {
 		max-width: none;
+		padding: 1rem;
 
 		/* Add a margin for when chat bubble is absolute */
 		&:where(.chat-active) {
@@ -691,7 +692,7 @@ header {
 		width: 100%; /* Full width on narrow screens */
 		max-width: 640px;
 		height: auto;
-		padding-bottom: 0;
+		padding: var(--padding-y) var(--padding-x) 0;
 		gap: 1rem 0.5rem;
 	}
 
