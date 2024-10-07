@@ -55,3 +55,20 @@ layout: layouts/base.njk
   {%- endif %}
 {%- endif %}
 </article>
+
+{# Progress bar #}
+<script>
+  const supportsScrollTimeline = CSS.supports('animation-timeline: scroll()');
+
+  if (!supportsScrollTimeline) {
+    const progressBar = document.querySelector('.progress-bar');
+
+    const updateProgressBar = () => {
+      const progress = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+      progressBar.style.transform = `scaleY(${progress})`;
+      requestAnimationFrame(updateProgressBar);
+    };
+
+    requestAnimationFrame(updateProgressBar);
+  }
+</script>

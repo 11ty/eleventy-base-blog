@@ -62,7 +62,11 @@
 
 /* Only set the overflow to the root */
 html {
-	contain: paint;
+	/* contain: paint; */
+
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	scrollbar-width: none;
+	-ms-overflow-style: none;
 }
 html,
 body {
@@ -79,6 +83,9 @@ body {
 	width: 100%;
 	max-width: calc(40rem + 200px + 2rem);
 	margin: 0 auto;
+}
+body::-webkit-scrollbar {
+	display: none;
 }
 
 .site-header {
@@ -759,35 +766,33 @@ header {
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 0.5rem;
+	width: 5px;
 	height: 100vh;
-	transform: scaleY(0);
-	transform-origin: 0 0;
 	background-color: var(--color-gray-50);
+	z-index: 1000;
+	transform-origin: top;
+	transform: scaleY(0);
 }
 
 @supports (animation-timeline: scroll()) {
-	html {
-		-ms-overflow-style: none; /* Internet Explorer 10+ */
-		scrollbar-width: none; /* Firefox */
-	}
-
-	html::-webkit-scrollbar {
-		display: none; /* Chrome, Safari, and Opera */
-		width: 0;
-		height: 0;
-	}
-
 	.progress-bar {
+		animation: grow-progress auto linear;
 		animation-timeline: scroll(root block);
-		animation-range: entry 0% cover 100%;
-		animation: grow-progress linear;
 	}
 
 	@keyframes grow-progress {
+		from {
+			transform: scaleY(0);
+		}
 		to {
 			transform: scaleY(1);
 		}
+	}
+}
+
+@supports not (animation-timeline: scroll()) {
+	.progress-bar {
+		transition: transform 0.1s ease-out;
 	}
 }
 
@@ -866,8 +871,8 @@ header {
 	--fade-mask: linear-gradient(
 		to right,
 		transparent,
-		black 15%,
-		black 85%,
+		black 25%,
+		black 75%,
 		transparent
 	);
 
