@@ -37,4 +37,16 @@ export default function(eleventyConfig) {
 		return (tags || []).filter(tag => ["all", "posts"].indexOf(tag) === -1);
 	});
 
+	// Sorts tags in alphabetical order.
+	eleventyConfig.addFilter("sortTagsAlphabetically", function sortAlbabetically(tags) {
+		return (tags || []).sort((a, b) => {
+			if (a > b)
+				return 1;
+			else if (b > a)
+				return -1;
+			else
+				return 0;
+		})
+	})
+	
 };
