@@ -1,0 +1,207 @@
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/vendor';
+@import 'libs/breakpoints';
+@import 'libs/html-grid';
+
+/*
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
+/* Banner (transitions) */
+
+	.banner {
+
+		// Mixin.
+			@mixin transition-banner($event) {
+				$x: null;
+				$y: null;
+
+				@if ($event == 'load') {
+					$x: 'body.is-preload &';
+					$y: _duration(on-load);
+				}
+				@else if ($event == 'scroll') {
+					$x: '&.is-inactive';
+					$y: _duration(on-scroll);
+				}
+
+				// Content.
+					&.on#{$event}-content-fade-up {
+						.content {
+							@include vendor('transition', 'none');
+						}
+
+						#{$x} {
+							.content {
+								@include vendor('transform', 'none');
+								opacity: 1;
+							}
+						}
+					}
+
+					&.on#{$event}-content-fade-down {
+						.content {
+							@include vendor('transition', 'none');
+						}
+
+						#{$x} {
+							.content {
+								@include vendor('transform', 'none');
+								opacity: 1;
+							}
+						}
+					}
+
+					&.on#{$event}-content-fade-left {
+						.content {
+							@include vendor('transition', 'none');
+						}
+
+						#{$x} {
+							.content {
+								@include vendor('transform', 'none');
+								opacity: 1;
+							}
+						}
+					}
+
+					&.on#{$event}-content-fade-right {
+						.content {
+							@include vendor('transition', 'none');
+						}
+
+						#{$x} {
+							.content {
+								@include vendor('transform', 'none');
+								opacity: 1;
+							}
+						}
+					}
+
+					&.on#{$event}-content-fade-in {
+						.content {
+							@include vendor('transition', 'none');
+						}
+
+						#{$x} {
+							.content {
+								@include vendor('transform', 'none');
+								opacity: 1;
+							}
+						}
+					}
+
+				// Image.
+					&.on#{$event}-image-fade-up {
+						.image {
+							@include vendor('transition', 'none');
+
+							img {
+								@include vendor('transition', 'none');
+							}
+						}
+
+						#{$x} {
+							.image {
+								@include vendor('transform', 'none');
+								opacity: 1;
+
+								img {
+									opacity: 1;
+								}
+							}
+						}
+					}
+
+					&.on#{$event}-image-fade-down {
+						.image {
+							@include vendor('transition', 'none');
+
+							img {
+								@include vendor('transition', 'none');
+							}
+						}
+
+						#{$x} {
+							.image {
+								@include vendor('transform', 'none');
+								opacity: 1;
+
+								img {
+									opacity: 1;
+								}
+							}
+						}
+					}
+
+					&.on#{$event}-image-fade-left {
+						.image {
+							@include vendor('transition', 'none');
+
+							img {
+								@include vendor('transition', 'none');
+							}
+						}
+
+						#{$x} {
+							.image {
+								@include vendor('transform', 'none');
+								opacity: 1;
+
+								img {
+									opacity: 1;
+								}
+							}
+						}
+					}
+
+					&.on#{$event}-image-fade-right {
+						.image {
+							@include vendor('transition', 'none');
+
+							img {
+								@include vendor('transition', 'none');
+							}
+						}
+
+						#{$x} {
+							.image {
+								@include vendor('transform', 'none');
+								opacity: 1;
+
+								img {
+									opacity: 1;
+								}
+							}
+						}
+					}
+
+					&.on#{$event}-image-fade-in {
+						.image {
+							img {
+								@include vendor('transition', 'none');
+							}
+						}
+
+						#{$x} {
+							.image {
+								img {
+									opacity: 1;
+								}
+							}
+						}
+					}
+
+			}
+
+		// On Load.
+			@include transition-banner('load');
+
+		// On Scroll.
+			@include transition-banner('scroll');
+
+	}
