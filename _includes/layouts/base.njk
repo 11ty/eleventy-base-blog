@@ -24,7 +24,8 @@
 		{#- Add an arbitrary string to the bundle #}
 		{%- css %}/* This is an arbitrary CSS string added to the bundle */{% endcss %}
 		{#- Add the contents of a file to the bundle #}
-		{%- css %}{% include "public/css/index.css" %}{% endcss %}
+		{%- css %}{% include "public/css/main.css" %}{% endcss %}
+		{%- css %}{% include "public/css/fontawesome-all.min.css" %}{% endcss %}
 		{#- Or you can add from node_modules #}
 		{# {%- css %}{% include "node_modules/prismjs/themes/prism-okaidia.css" %}{% endcss %} #}
 
@@ -35,21 +36,29 @@
 
 		{#- Add the heading-anchors web component to the JavaScript bundle #}
 		{%- js %}{% include "node_modules/@zachleat/heading-anchors/heading-anchors.js" %}{% endjs %}
+		{%- js %}{% include "public/js/jquery.min.js" %}{% endjs %}
+		{%- js %}{% include "public/js/jquery.dropotron.min.js" %}{% endjs %}
+		{%- js %}{% include "public/js/browser.min.js" %}{% endjs %}
+		{%- js %}{% include "public/js/breakpoints.min.js" %}{% endjs %}
+		{%- js %}{% include "public/js/util.js" %}{% endjs %}
+		{%- js %}{% include "public/js/main.js" %}{% endjs %}
 	</head>
-	<body>
+	<body class="homepage is-preload">
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
 		{%include "./header.njk" %}
 
+		<div id="page-wrapper">
 		<main id="skip">
 			<heading-anchors>
 				{{ content | safe }}
 			</heading-anchors>
 		</main>
+		</div>
 
 		{% include "./footer.njk" %}
 
 		<!-- This page `{{ page.url | htmlBaseUrl }}` was built on {% currentBuildDate %} -->
-		<script type="module" src="{% getBundleFileUrl "js" %}"></script>
+		<script src="{% getBundleFileUrl "js" %}"></script>
 	</body>
 </html>
