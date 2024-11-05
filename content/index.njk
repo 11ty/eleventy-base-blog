@@ -85,6 +85,13 @@ const numberOfLatestPostsToShow = 3;
 						</div>
 					</div>
 				</section>
+				
+				<section id="banner">
+					<div class="container">
+						<p>Use this space for <strong>profound thoughts</strong>.<br />
+						Or an enormous ad. Whatever.</p>
+					</div>
+				</section>
 
 {% set postsCount = collections.posts | length %}
 {% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
