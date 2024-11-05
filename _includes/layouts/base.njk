@@ -36,29 +36,28 @@
 
 		{#- Add the heading-anchors web component to the JavaScript bundle #}
 		{%- js %}{% include "node_modules/@zachleat/heading-anchors/heading-anchors.js" %}{% endjs %}
-		{%- js %}{% include "public/js/jquery.min.js" %}{% endjs %}
-		{%- js %}{% include "public/js/jquery.dropotron.min.js" %}{% endjs %}
-		{%- js %}{% include "public/js/browser.min.js" %}{% endjs %}
-		{%- js %}{% include "public/js/breakpoints.min.js" %}{% endjs %}
-		{%- js %}{% include "public/js/util.js" %}{% endjs %}
-		{%- js %}{% include "public/js/main.js" %}{% endjs %}
 	</head>
 	<body class="homepage is-preload">
 		<a href="#skip" class="visually-hidden">Skip to main content</a>
 
 		{%include "./header.njk" %}
 
-		<div id="page-wrapper">
-		<main id="skip">
+		<div id="page-wrapper skip">
 			<heading-anchors>
 				{{ content | safe }}
 			</heading-anchors>
-		</main>
 		</div>
 
 		{% include "./footer.njk" %}
 
 		<!-- This page `{{ page.url | htmlBaseUrl }}` was built on {% currentBuildDate %} -->
-		<script src="{% getBundleFileUrl "js" %}"></script>
+		<script type="module" src="{% getBundleFileUrl "js" %}"></script>
+
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/jquery.dropotron.min.js"></script>
+		<script src="/js/browser.min.js"></script>
+		<script src="/js/breakpoints.min.js"></script>
+		<script src="/js/util.js"></script>
+		<script src="/js/main.js"></script>
 	</body>
 </html>
