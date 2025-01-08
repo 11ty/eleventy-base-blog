@@ -72,7 +72,9 @@ body {
 }
 
 /* Fluid images via https://www.zachleat.com/web/fluid-images/ */
-img {
+img,
+video,
+iframe {
   max-width: 100%;
 }
 img[width][height] {
