@@ -72,9 +72,7 @@ body {
 }
 
 /* Fluid images via https://www.zachleat.com/web/fluid-images/ */
-img,
-video,
-iframe {
+img{
   max-width: 100%;
 }
 img[width][height] {
@@ -84,6 +82,12 @@ img[src$=".svg"] {
   width: 100%;
   height: auto;
   max-width: none;
+}
+video,
+iframe {
+	max-width: 100%;
+	height: auto;
+	aspect-ratio: 16/9;
 }
 
 p:last-child {
