@@ -125,11 +125,6 @@ main :first-child {
 header {
 	border-bottom: 1px dashed var(--color-gray-20);
 }
-header:after {
-	content: "";
-	display: table;
-	clear: both;
-}
 
 .links-nextprev {
 	display: flex;
@@ -181,15 +176,16 @@ code {
 /* Header */
 header {
 	display: flex;
-	gap: 1em .5em;
+	gap: 1em;
 	flex-wrap: wrap;
+	justify-content: space-between;
 	align-items: center;
 	padding: 1em;
 }
 .home-link {
+	flex-grow: 1;
 	font-size: 1em; /* 16px /16 */
 	font-weight: 700;
-	margin-right: 2em;
 }
 .home-link:link:not(:hover) {
 	text-decoration: none;
@@ -198,13 +194,13 @@ header {
 /* Nav */
 .nav {
 	display: flex;
+	gap: .5em 1em;
 	padding: 0;
 	margin: 0;
 	list-style: none;
 }
 .nav-item {
 	display: inline-block;
-	margin-right: 1em;
 }
 .nav-item a[href]:not(:hover) {
 	text-decoration: none;
