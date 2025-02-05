@@ -41,6 +41,10 @@
 	box-sizing: border-box;
 }
 
+@view-transition {
+	navigation: auto;
+}
+
 html,
 body {
 	padding: 0;
@@ -67,6 +71,27 @@ body {
 	width: 1px;
 }
 
+/* Fluid images via https://www.zachleat.com/web/fluid-images/ */
+img{
+  max-width: 100%;
+}
+img[width][height] {
+  height: auto;
+}
+img[src$=".svg"] {
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+video,
+iframe {
+	width: 100%;
+	height: auto;
+}
+iframe {
+	aspect-ratio: 16/9;
+}
+
 p:last-child {
 	margin-bottom: 0;
 }
@@ -89,7 +114,8 @@ a[href]:active {
 	color: var(--text-color-link-active);
 }
 
-main {
+main,
+footer {
 	padding: 1rem;
 }
 main :first-child {
@@ -99,16 +125,20 @@ main :first-child {
 header {
 	border-bottom: 1px dashed var(--color-gray-20);
 }
-header:after {
-	content: "";
-	display: table;
-	clear: both;
-}
 
 .links-nextprev {
-	list-style: none;
+	display: flex;
+	justify-content: space-between;
+	gap: .5em 1em;
+	list-style: "";
 	border-top: 1px dashed var(--color-gray-20);
 	padding: 1em 0;
+}
+.links-nextprev > * {
+	flex-grow: 1;
+}
+.links-nextprev-next {
+	text-align: right;
 }
 
 table {
@@ -137,6 +167,7 @@ pre:not([class*="language-"]) {
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
+	overflow-x: auto;
 }
 code {
 	word-break: break-all;
@@ -145,15 +176,16 @@ code {
 /* Header */
 header {
 	display: flex;
-	gap: 1em .5em;
+	gap: 1em;
 	flex-wrap: wrap;
+	justify-content: space-between;
 	align-items: center;
 	padding: 1em;
 }
 .home-link {
+	flex-grow: 1;
 	font-size: 1em; /* 16px /16 */
 	font-weight: 700;
-	margin-right: 2em;
 }
 .home-link:link:not(:hover) {
 	text-decoration: none;
@@ -162,13 +194,13 @@ header {
 /* Nav */
 .nav {
 	display: flex;
+	gap: .5em 1em;
 	padding: 0;
 	margin: 0;
 	list-style: none;
 }
 .nav-item {
 	display: inline-block;
-	margin-right: 1em;
 }
 .nav-item a[href]:not(:hover) {
 	text-decoration: none;
@@ -245,26 +277,3 @@ header {
 	margin-right: 1em;
 }
 
-/* Direct Links / Markdown Headers */
-.header-anchor {
-	text-decoration: none;
-	font-style: normal;
-	font-size: 1em;
-	margin-left: .1em;
-}
-a[href].header-anchor,
-a[href].header-anchor:visited {
-	color: transparent;
-}
-a[href].header-anchor:focus,
-a[href].header-anchor:hover {
-	text-decoration: underline;
-}
-a[href].header-anchor:focus,
-:hover > a[href].header-anchor {
-	color: #aaa;
-}
-
-h2 + .header-anchor {
-	font-size: 1.5em;
-}
