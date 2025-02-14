@@ -73,7 +73,7 @@ Or you can run [debug mode](https://www.11ty.dev/docs/debugging/) to see all the
 	- Accessible deep links to headings
 - Generated Pages
 	- Home, Archive, and About pages.
-	- [Atom feed included (with easy one-line swap to use RSS or JSON](https://www.11ty.dev/docs/plugins/rss/)
+	- [Atom feed included (with easy one-line swap to use RSS or JSON)](https://www.11ty.dev/docs/plugins/rss/)
 	- `sitemap.xml`
 	- Zero-maintenance tag pages ([View on the Demo](https://eleventy-base-blog.netlify.app/tags/))
 	- Content not found (404) page
