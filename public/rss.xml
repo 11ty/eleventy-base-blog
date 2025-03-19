@@ -1,0 +1,47 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>Sean of All Trades</title>
+<link>http://seanofalltrades.glitch.me</link>
+<description>A blog by Sean O'Brien</description>
+<language>en-us</language>
+<imgage>
+  <url>https://cdn.glitch.global/20f72408-f4e6-44a2-8c7f-cb2b06892d20/android-chrome-512x512.png?v=1735625043056</url></imgage>
+<pubDate>Sat, 01 Mar 2025 11:39:21 GMT</pubDate>
+<lastBuildDate>Sat, 01 Mar 2025 11:39:21 GMT</lastBuildDate>
+<atom:link href="http://seanofalltrades.glitch.me/public/rss.xml" rel="self" type="application/rss+xml" />  
+
+<generator>Weblog Editor 2.0</generator>
+<managingEditor>fowcc@yahoo.com (Sean O)</managingEditor>
+<webMaster>fowcc@yahoo.com (Sean O)</webMaster>
+<item>
+<title>It All Begins with One</title>
+<link>https://seanofalltrades.glitch.me/posts/2024-12-31/</link>
+<description>My first post of many to come.</description>
+<pubDate>Tue, 31 Dec 2024 09:39:21 GMT</pubDate>
+</item>
+  <item>
+<title>I Good You Bid Evening!</title>
+<link>https://seanofalltrades.glitch.me/posts/2025-01-15/</link>
+<description>Time to set some goals for 2025.</description>
+<pubDate>Wed, 15 Jan 2025 09:39:21 GMT</pubDate>
+</item>
+  <item>
+<title>Man's Best Friend</title>
+<link>https://seanofalltrades.glitch.me/posts/2025-02-01/</link>
+<description>An update on the health of my dog.</description>
+<pubDate>Sat, 01 Feb 2025 011:39:21 GMT</pubDate>
+</item>
+  <item>
+<title>Adams Street</title>
+<link>https://seanofalltrades.glitch.me/posts/2025-02-15/</link>
+<description>The tale of not being able to give proper directions to a total stranger.</description>
+<pubDate>Sat, 15 Feb 2025 08:39:21 GMT</pubDate>
+</item>
+<item>
+<title>My Chompers</title>
+<link>https://seanofalltrades.glitch.me/posts/2025-03-01/</link>
+<description>Be good to your teeth or else you may wind up in this situation</description>
+<pubDate>Sat, 01 Mar 2025 08:39:21 GMT</pubDate>
+</item>
+</channel>
+</rss>
