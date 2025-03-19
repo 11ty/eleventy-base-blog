@@ -1,0 +1,16 @@
+{
+  "name": "Sean of All Trades",
+  "short_name": "SoAT",
+  "start_url": "https://seanofalltrades.glitch.me",
+  "background_color": "#515151",
+  "theme_color": "#515151",
+  "display": "standalone",
+  "description": "Blog of the one and only Sean O'Brien",
+  "orientation": "any",
+  "icons": [{
+    "src": "https://cdn.glitch.global/20f72408-f4e6-44a2-8c7f-cb2b06892d20/android-chrome-512x512.png?v=1735625043056",
+    "sizes": "512x512",
+    "type": "image/png",
+    "purpose": "maskable"
+  }]
+}
