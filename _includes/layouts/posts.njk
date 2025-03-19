@@ -1,0 +1,17 @@
+---
+layout: layouts/base.njk
+templateClass: tmpl-home
+---
+
+{# This is the template for the Posts page–it lists the posts in the collection #}
+
+<div class="wrapper home">
+  <div class="content">
+    {{ content | safe }}
+    <ul>
+      {%- for post in collections.posts -%}
+        <li{% if page.url == post.url %} aria-current="page"{% endif %}>{{ post.data.page.date | htmlDateString }} — <a href='{{ post.url }}'>{{ post.data.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
