@@ -1,16 +1,22 @@
 ---
 layout: layouts/base.njk
+templateClass: tmpl-home
 ---
-<!-- Delete this block, which will also remove the component CSS from the bundle -->
-{%- css %}{% include "public/css/message-box.css" %}{% endcss %}
-<div class="message-box">
-	<ol>
-		<li>Edit <code>_data/metadata.js</code> with your blog’s information.</li>
-		<li>(Optional) Edit <code>eleventy.config.js</code> with your <a href="https://www.11ty.dev/docs/config/">configuration preferences</a>.</li>
-		<li>Delete this message from <code>_includes/layouts/home.njk</code>.</li>
-	</ol>
-	<p><em>This is an <a href="https://www.11ty.dev/">Eleventy project</a> created from the <a href="https://github.com/11ty/eleventy-base-blog"><code>eleventy-base-blog</code> repo</a>.</em></p>
-</div>
-<!-- Stop deleting -->
 
-{{ content | safe }}
+{# The Home page uses this template–it extends the base template #}
+
+<div class="wrapper home">
+  <div class="content">
+    {{ content | safe }}
+    
+    {# After the the content defined in index.md, list the blog posts in the collection #}
+    <ul>
+      {%- for post in collections.posts -%}
+        <li{% if page.url == post.url %} aria-current="page"{% endif %}>{{ post.data.page.date | htmlDateString }} — <a href='{{ post.url }}'>{{ post.data.title }}</a></li>
+      {%- endfor -%}
+      <li><a href="/posts">View all posts</a></li>
+    </ul>
+  </div>
+</div>
+
+
