@@ -35,10 +35,17 @@ export default async function(eleventyConfig) {
 	// Adds the {% css %} paired shortcode
 	eleventyConfig.addBundle("css", {
 		toFileDirectory: "dist",
+		// Add all <style> content to `css` bundle
+		// supported selectors: https://www.npmjs.com/package/posthtml-match-helper
+		bundleHtmlContentFromSelector: "style",
 	});
+
 	// Adds the {% js %} paired shortcode
 	eleventyConfig.addBundle("js", {
 		toFileDirectory: "dist",
+		// Add all <script> content to the `js` bundle
+		// supported selectors: https://www.npmjs.com/package/posthtml-match-helper
+		bundleHtmlContentFromSelector: "script",
 	});
 
 	// Official plugins

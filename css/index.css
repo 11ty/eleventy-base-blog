@@ -211,6 +211,7 @@ header {
 
 /* Posts list */
 .postlist {
+	counter-reset: start-from var(--postlist-index);
 	list-style: none;
 	padding: 0;
 	padding-left: 1.5rem;
