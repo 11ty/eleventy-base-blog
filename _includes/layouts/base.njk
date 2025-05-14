@@ -37,7 +37,7 @@
 		<script type="module">{% include "node_modules/@zachleat/heading-anchors/heading-anchors.js" %}</script>
 	</head>
 	<body>
-		<a href="#skip" class="visually-hidden">Skip to main content</a>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
 
 		<header>
 			<a href="/" class="home-link">{{ metadata.title }}</a>
@@ -53,7 +53,7 @@
 			</nav>
 		</header>
 
-		<main id="skip">
+		<main id="main">
 			<heading-anchors>
 				{{ content | safe }}
 			</heading-anchors>
