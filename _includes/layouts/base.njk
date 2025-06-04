@@ -21,15 +21,18 @@
 		3. Learn more: https://github.com/11ty/eleventy-plugin-bundle
 		#}
 
-		{#- Add an arbitrary string to the bundle #}
+		{#- Add CSS to the bundle #}
 		<style>/* This is an arbitrary CSS string added to the bundle */</style>
+
 		{#- Add the contents of a file to the bundle #}
 		<style>{% include "css/index.css" %}</style>
+
 		{#- Or you can add from node_modules #}
-		{# <style>{% include "node_modules/prismjs/themes/prism-okaidia.css" %}</style> #}
+		{# <style>{% include "node_modules/something.css" %}</style> #}
 
 		{#- Render the CSS bundle using inlined CSS (for the fastest site performance in production) #}
 		<style>{% getBundle "css" %}</style>
+
 		{#- Renders the CSS bundle using a separate file, if you can't set CSP directive style-src: 'unsafe-inline' #}
 		{#- <link rel="stylesheet" href="{% getBundleFileUrl "css" %}"> #}
 
@@ -60,7 +63,9 @@
 		</main>
 
 		<footer>
-			<p><em>Built with <a href="https://www.11ty.dev/">{{ eleventy.generator }}</a></em></p>
+			<p>
+				<em>Built with <a href="https://www.11ty.dev/">{{ eleventy.generator }}</a></em>
+			</p>
 		</footer>
 
 		<!-- This page `{{ page.url }}` was built on {% currentBuildDate %} -->
