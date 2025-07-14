@@ -148,6 +148,7 @@ export const config = {
 		data: "../_data",          // default: "_data" (`input` relative)
 		output: "docs"
 	},
+	pathPrefix: "/eleventy-base-blog/"   // <--- Add this line!
 
 	// -----------------------------------------------------------------
 	// Optional items:
