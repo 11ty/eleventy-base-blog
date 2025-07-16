@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Classic‑Mac tweaks */
+@layer base {
+  html {
+    @apply bg-mac-light text-mac-dark antialiased; /* defined below */
+    font-family: 'Chicago', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+@layer utilities {
+  .window-border { @apply border border-mac-mid; }
+}

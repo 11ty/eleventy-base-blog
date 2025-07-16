@@ -1,0 +1,16 @@
+---
+title: Gallery
+layout: base.njk
+eleventyNavigation:
+  key: Gallery
+  order: 3
+---
+
+<section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  {%- for piece in collections.gallery %}
+    <figure class="window-border p-2 bg-white">
+      <img src="{{ piece.data.img }}" alt="{{ piece.data.title }}" class="w-full object-cover" />
+      <figcaption class="text-center text-sm mt-2">{{ piece.data.title }}</figcaption>
+    </figure>
+  {%- endfor %}
+</section>
