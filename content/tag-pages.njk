@@ -13,6 +13,8 @@ const eleventyExcludeFromCollections = true;
 const eleventyComputed = {
 	title: "Tagged '{{ tag }}'",
 	permalink: function(data) {
+		// If DuplicatePermalinkOutputError occurs, check that no tag occurs
+		// with differing case, e.g. "RSS" and "rss".
 		return `/tags/${this.slugify(data.tag)}/`;
 	}
 };
