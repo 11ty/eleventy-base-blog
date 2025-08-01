@@ -10,6 +10,10 @@ import pluginFilters from "./_config/filters.js";
 export default async function(eleventyConfig) {
 	// Drafts, see also _data/eleventyDataSchema.js
 	eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
+		if (data.draft) {
+      data.title = `${data.title} (draft)`;
+    }
+
 		if(data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
 			return false;
 		}
