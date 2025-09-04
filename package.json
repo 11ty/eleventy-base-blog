@@ -39,7 +39,7 @@
 		"@11ty/eleventy-img": "^6.0.4",
 		"@11ty/eleventy-navigation": "^1.0.4",
 		"@11ty/eleventy-plugin-rss": "^2.0.4",
-		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.1",
+		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
 		"cross-env": "^7.0.3",
 		"luxon": "^3.6.1",
 		"prismjs": "^1.30.0",
