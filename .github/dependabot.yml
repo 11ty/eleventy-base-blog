@@ -15,11 +15,11 @@ updates:
       - "dependency-updates"
     versioning-strategy: increase
     allow:
-      - dependency-type: production
+      - dependency-type: all
 
-  - package-ecosystem: github-actions
-    directory: ".github/workflows/"
-    schedule:
-      interval: monthly
-    cooldown:
-      default-days: 7
+#  - package-ecosystem: github-actions
+#    directory: ".github/workflows/"
+#    schedule:
+#      interval: monthly
+#    cooldown:
+#      default-days: 7
