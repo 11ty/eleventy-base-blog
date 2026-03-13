@@ -1,12 +1,12 @@
 # If you’d like to deploy this project to GitHub pages:
-
+#
 # 1. Remove the .sample file extension from this file so it ends with `.yml`
 #				e.g. `gh-pages.yml`
-
+#
 # 2. Go to your repository’s Settings on GitHub and find the GitHub Pages subsection.
 #				Under the Build and Deployment on the GitHub Pages settings, find the Source
 #				option and select “GitHub Actions”
-
+#
 # 3. In your project’s package.json, make sure the `build-ghpages` script has
 #				the `--pathprefix=` parameter set to your repository name.
 #				e.g.  "build-ghpages": "npx @11ty/eleventy --pathprefix=/YOUR_REPO_NAME/",
@@ -15,7 +15,7 @@
 #				to `example.com/` instead of `*.github.io/YOUR_REPO_NAME/` make sure to
 #				remove the `--pathprefix` parameter entirely.
 #				e.g.  "build-ghpages": "npx @11ty/eleventy",
-
+#
 # 4. Commit this new `gh-pages.yml` file and push it upstream to GitHub
 
 name: Deploy to GitHub Pages
@@ -33,21 +33,21 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # 6.0.2
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # 6.3.0
         with:
           node-version: '22'
 
       - name: Cache npm
-        uses: actions/cache@v3
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # 5.0.3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
 
       - name: Cache Eleventy .cache
-        uses: actions/cache@v3
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # 5.0.3
         with:
           path: ./.cache
           key: ${{ runner.os }}-eleventy-fetch-cache
@@ -57,7 +57,7 @@ jobs:
 
       - name: Upload static files as artifact
         id: deployment
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # 4.0.0
         with:
           path: _site/
 
@@ -73,4 +73,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # 4.0.5
