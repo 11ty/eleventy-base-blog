@@ -23,7 +23,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - deploy-gh-pages
 
 jobs:
   build:
