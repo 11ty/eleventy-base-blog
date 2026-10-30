@@ -32,14 +32,14 @@
 	"homepage": "https://github.com/11ty/eleventy-base-blog#readme",
 	"devDependencies": {
 		"@11ty/eleventy": "^3.1.7",
-		"@11ty/eleventy-img": "^7.0.0",
+		"@11ty/eleventy-img": "^7.1.1",
 		"@11ty/eleventy-navigation": "^1.0.5",
-		"@11ty/eleventy-plugin-rss": "^3.0.0",
+		"@11ty/eleventy-plugin-rss": "^3.1.0",
 		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
 		"cross-env": "^10.1.0",
 		"luxon": "^3.7.2",
 		"prismjs": "^1.30.0",
-		"zod": "^4.4.3"
+		"zod": "^4.6.7"
 	},
 	"dependencies": {
 		"@zachleat/heading-anchors": "^1.0.5"
