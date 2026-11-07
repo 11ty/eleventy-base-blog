@@ -42,6 +42,6 @@
 		"zod": "^4.6.7"
 	},
 	"dependencies": {
-		"@zachleat/heading-anchors": "^1.0.5"
+		"@zachleat/heading-anchors": "^1.1.0"
 	}
 }
